@@ -10,16 +10,21 @@ using System.Windows.Forms;
 
 namespace Perron.View.Forms
 {
-    public partial class FrmPrincipal : Form
+    public partial class FrmPrincipal : Form, IViewPrincipal
     {
         public FrmPrincipal()
         {
             InitializeComponent();
         }
 
-        private void FrmPrincipal_Load(object sender, EventArgs e)
+        public void EventoAbrirTelaIngredientes(EventHandler e)
         {
+            menuItemIngrediente.Click += e;
+        }
 
+        public void EventoFechar(FormClosedEventHandler e)
+        {
+            FormClosed += e;
         }
     }
 }

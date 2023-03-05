@@ -46,9 +46,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\ControllerIngrediente.cs" />
+    <Compile Include="Controller\ControllerPrincipal.cs" />
+    <Compile Include="Factory\Controller\FactoryController.cs" />
+    <Compile Include="Factory\View\FactoryView.cs" />
     <Compile Include="Outros\AlocarComponentes.cs" />
+    <Compile Include="Outros\Extensoes\ExDataGrid.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="View\Forms\Form Padrao Cadastro\FrmPadraoCadastro.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Forms\Form Padrao Cadastro\FrmPadraoCadastro.Designer.cs">
+      <DependentUpon>FrmPadraoCadastro.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Forms\FrmCadastroIngrediente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Forms\FrmCadastroIngrediente.Designer.cs">
+      <DependentUpon>FrmCadastroIngrediente.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Forms\FrmPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -64,6 +81,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="View\Forms\Form Padrao Cadastro\FrmPadraoCadastro.resx">
+      <DependentUpon>FrmPadraoCadastro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Forms\FrmCadastroIngrediente.resx">
+      <DependentUpon>FrmCadastroIngrediente.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\Forms\FrmPrincipal.resx">
       <DependentUpon>FrmPrincipal.cs</DependentUpon>
     </EmbeddedResource>
@@ -81,9 +104,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Controller\" />
-    <Folder Include="Factory\" />
     <Folder Include="View\UserControl\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{e09ba858-caaf-4a09-853d-20fb22fac4ce}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -31,13 +31,13 @@ namespace Perron.View.Forms
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.cadastroToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.financeiroToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.estoqueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.vendaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saborToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tamanhoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.preçoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ingredienteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemIngrediente = new System.Windows.Forms.ToolStripMenuItem();
+            this.financeiroToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.estoqueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.vendaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -63,28 +63,10 @@ namespace Perron.View.Forms
             this.saborToolStripMenuItem,
             this.tamanhoToolStripMenuItem,
             this.preçoToolStripMenuItem,
-            this.ingredienteToolStripMenuItem});
+            this.menuItemIngrediente});
             this.cadastroToolStripMenuItem.Name = "cadastroToolStripMenuItem";
             this.cadastroToolStripMenuItem.Size = new System.Drawing.Size(112, 32);
             this.cadastroToolStripMenuItem.Text = "Cadastro";
-            // 
-            // financeiroToolStripMenuItem
-            // 
-            this.financeiroToolStripMenuItem.Name = "financeiroToolStripMenuItem";
-            this.financeiroToolStripMenuItem.Size = new System.Drawing.Size(127, 32);
-            this.financeiroToolStripMenuItem.Text = "Financeiro";
-            // 
-            // estoqueToolStripMenuItem
-            // 
-            this.estoqueToolStripMenuItem.Name = "estoqueToolStripMenuItem";
-            this.estoqueToolStripMenuItem.Size = new System.Drawing.Size(103, 32);
-            this.estoqueToolStripMenuItem.Text = "Estoque";
-            // 
-            // vendaToolStripMenuItem
-            // 
-            this.vendaToolStripMenuItem.Name = "vendaToolStripMenuItem";
-            this.vendaToolStripMenuItem.Size = new System.Drawing.Size(86, 32);
-            this.vendaToolStripMenuItem.Text = "Venda";
             // 
             // saborToolStripMenuItem
             // 
@@ -104,11 +86,29 @@ namespace Perron.View.Forms
             this.preçoToolStripMenuItem.Size = new System.Drawing.Size(199, 32);
             this.preçoToolStripMenuItem.Text = "Preço";
             // 
-            // ingredienteToolStripMenuItem
+            // menuItemIngrediente
             // 
-            this.ingredienteToolStripMenuItem.Name = "ingredienteToolStripMenuItem";
-            this.ingredienteToolStripMenuItem.Size = new System.Drawing.Size(199, 32);
-            this.ingredienteToolStripMenuItem.Text = "Ingrediente";
+            this.menuItemIngrediente.Name = "menuItemIngrediente";
+            this.menuItemIngrediente.Size = new System.Drawing.Size(199, 32);
+            this.menuItemIngrediente.Text = "Ingrediente";
+            // 
+            // financeiroToolStripMenuItem
+            // 
+            this.financeiroToolStripMenuItem.Name = "financeiroToolStripMenuItem";
+            this.financeiroToolStripMenuItem.Size = new System.Drawing.Size(127, 32);
+            this.financeiroToolStripMenuItem.Text = "Financeiro";
+            // 
+            // estoqueToolStripMenuItem
+            // 
+            this.estoqueToolStripMenuItem.Name = "estoqueToolStripMenuItem";
+            this.estoqueToolStripMenuItem.Size = new System.Drawing.Size(103, 32);
+            this.estoqueToolStripMenuItem.Text = "Estoque";
+            // 
+            // vendaToolStripMenuItem
+            // 
+            this.vendaToolStripMenuItem.Name = "vendaToolStripMenuItem";
+            this.vendaToolStripMenuItem.Size = new System.Drawing.Size(86, 32);
+            this.vendaToolStripMenuItem.Text = "Venda";
             // 
             // flowLayoutPanel1
             // 
@@ -125,10 +125,11 @@ namespace Perron.View.Forms
             this.ClientSize = new System.Drawing.Size(1330, 829);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.menuStrip1);
+            this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FrmPrincipal";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Pizzaria Perron";
-            this.Load += new System.EventHandler(this.FrmPrincipal_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -143,7 +144,7 @@ namespace Perron.View.Forms
         private System.Windows.Forms.ToolStripMenuItem saborToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tamanhoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem preçoToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem ingredienteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem menuItemIngrediente;
         private System.Windows.Forms.ToolStripMenuItem financeiroToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem estoqueToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem vendaToolStripMenuItem;

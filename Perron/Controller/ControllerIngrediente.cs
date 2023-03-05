@@ -6,12 +6,9 @@ using System.Threading.Tasks;
 
 namespace Perron.Controller
 {
-    public class ControllerIngrediente : ControllerPadrao, IControllerIngrediente
+    public class ControllerIngrediente : ControllerPadrao , IControllerIngrediente
     {
-        
-
         private readonly IViewCadastroIngrediente _view;
-
 
         public ControllerIngrediente(IViewCadastroIngrediente view) : base(view)
         {
@@ -25,7 +22,10 @@ namespace Perron.Controller
         private void DelegarEventos()
         {
             _view.EventoGrid(EventoGrid);
-
+            _view.EventoCancelar(EventoCancelar);
+            _view.EventoDeletar(EventoDeletar);
+            _view.EventoNovo(EventoNovo);
+            _view.EventoSalvar(EventoSalvar);
         }
 
         #endregion
@@ -37,9 +37,26 @@ namespace Perron.Controller
         #endregion
 
         #region Eventos Privados
+
         private void EventoGrid(object o, EventArgs e)
         {
 
+        }
+        public void EventoNovo(object o, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+        public void EventoSalvar(object o, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+        public void EventoDeletar(object o, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+        public void EventoCancelar(object o, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
 
@@ -50,8 +67,8 @@ namespace Perron.Controller
         #endregion
 
 
-        
 
-        
+
+
     }
 }

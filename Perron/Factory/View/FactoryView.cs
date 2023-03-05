@@ -8,13 +8,20 @@ using System.Threading.Tasks;
 
 public static class FactoryView
 {
+    
+        
     public static IViewPrincipal Principal()
     {
         return new FrmPrincipal();
     }
-    public static IViewCadastroIngrediente CadastroIngrediente()
+    public static IViewCadastroIngrediente CadastroIngrediente(IViewPrincipal view)
     {
-        return new FrmCadastroIngrediente();
+        var viewIngrediente =  new FrmCadastroIngrediente();
+
+        viewIngrediente.MdiParent = (FrmPrincipal)view;
+
+
+        return viewIngrediente;
     }
 
 

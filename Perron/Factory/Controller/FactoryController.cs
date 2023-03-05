@@ -10,9 +10,9 @@ public static class FactoryController
         var view = FactoryView.Principal();
         return new ControllerPrincipal(view);
     }
-    public static IControllerIngrediente CadastroIngredientes()
+    public static IControllerIngrediente CadastroIngredientes(IViewPrincipal viewPai)
     {
-        var view = FactoryView.CadastroIngrediente();
+        var view = FactoryView.CadastroIngrediente(viewPai);
 
         return new ControllerIngrediente(view);
 

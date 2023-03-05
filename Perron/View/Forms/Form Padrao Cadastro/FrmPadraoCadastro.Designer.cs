@@ -101,6 +101,7 @@ namespace Perron.View.Forms.Form_Padrao_Cadastro
             this.Controls.Add(this.panel1);
             this.Name = "FrmPadraoCadastro";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 

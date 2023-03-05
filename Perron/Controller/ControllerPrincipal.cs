@@ -49,7 +49,7 @@ namespace Perron.Factory.Controller
         }
         private void EventoAbrirCadastroIngrediente(object o, EventArgs e)
         {
-            _controllerIngrediente = FactoryController.CadastroIngredientes();
+            _controllerIngrediente = FactoryController.CadastroIngredientes(_view);
         }
 
 

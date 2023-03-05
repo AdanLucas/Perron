@@ -47,9 +47,12 @@
     <Compile Include="Interface\Controller\IControllerIngrediente.cs" />
     <Compile Include="Interface\Controller\IControllerPrincipal.cs" />
     <Compile Include="Interface\View\IViewCadastroIngrediente.cs" />
+    <Compile Include="Interface\View\IViewCadastroSabor.cs" />
     <Compile Include="Interface\View\Padrao\IViewPadraoCadastro.cs" />
     <Compile Include="Interface\View\IViewPrincipal.cs" />
-    <Compile Include="Model\IngredienteModel.cs" />
+    <Compile Include="Model\ClasseModel.cs" />
+    <Compile Include="Model\EngredienteModel.cs" />
+    <Compile Include="Model\SaborModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

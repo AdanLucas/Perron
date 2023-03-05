@@ -15,14 +15,18 @@ public interface IViewPadraoCadastro
     bool VisibilidadeBotaoSalvar { set; }
     bool VisibilidadeBotaoNovo { set; }
     bool VisibilidadeBotaoDeletar { set; }
+    bool VisibilidadeBotaoCancelar { set; }
 
     #endregion
 
     #region Eventos
+
     void EventoFecharForms(FormClosedEventHandler e);
     void EventoNovo(EventHandler e);
     void EventoSalvar(EventHandler e);
     void EventoDeletar(EventHandler e);
+    void EventoCancelar(EventHandler e);
+
     #endregion
 
 

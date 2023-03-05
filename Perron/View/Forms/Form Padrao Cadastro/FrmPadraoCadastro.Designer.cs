@@ -33,6 +33,7 @@ namespace Perron.View.Forms.Form_Padrao_Cadastro
             this.btnSalvar = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnRemover = new System.Windows.Forms.Button();
+            this.btnCancelar = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -60,6 +61,7 @@ namespace Perron.View.Forms.Form_Padrao_Cadastro
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnCancelar);
             this.panel1.Controls.Add(this.btnRemover);
             this.panel1.Controls.Add(this.btnSalvar);
             this.panel1.Controls.Add(this.btnNovo);
@@ -80,6 +82,17 @@ namespace Perron.View.Forms.Form_Padrao_Cadastro
             this.btnRemover.Text = "Remover";
             this.btnRemover.UseVisualStyleBackColor = true;
             // 
+            // btnCancelar
+            // 
+            this.btnCancelar.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnCancelar.FlatAppearance.BorderSize = 3;
+            this.btnCancelar.Location = new System.Drawing.Point(204, 0);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(68, 22);
+            this.btnCancelar.TabIndex = 3;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            // 
             // FrmPadraoCadastro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -99,5 +112,6 @@ namespace Perron.View.Forms.Form_Padrao_Cadastro
         private System.Windows.Forms.Button btnSalvar;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnRemover;
+        private System.Windows.Forms.Button btnCancelar;
     }
 }

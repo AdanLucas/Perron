@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DTO\dtoCell.cs" />
+    <Compile Include="Emumerator\EStatusCadastroTela.cs" />
     <Compile Include="Interface\Controller\IControllerIngrediente.cs" />
     <Compile Include="Interface\Controller\IControllerPrincipal.cs" />
     <Compile Include="Interface\View\IViewCadastroIngrediente.cs" />

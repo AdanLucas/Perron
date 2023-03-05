@@ -22,8 +22,15 @@ namespace Perron.View.Forms.Form_Padrao_Cadastro
         {
             set { btnRemover.Visible = value; }
         }
+        public bool VisibilidadeBotaoCancelar
+        {
+            set { btnCancelar.Visible = value; }
+        }
 
-
+        public void EventoCancelar(EventHandler e)
+        {
+            btnCancelar.Click += e;
+        }
 
         public void EventoDeletar(EventHandler e)
         {

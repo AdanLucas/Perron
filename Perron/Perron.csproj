@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller\ControllerIngrediente.cs" />
+    <Compile Include="Controller\ControllerPadrao.cs" />
     <Compile Include="Controller\ControllerPrincipal.cs" />
     <Compile Include="Factory\Controller\FactoryController.cs" />
     <Compile Include="Factory\View\FactoryView.cs" />

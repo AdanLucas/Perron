@@ -46,6 +46,7 @@
     <Compile Include="Emumerator\EStatusCadastroTela.cs" />
     <Compile Include="Interface\Controller\IControllerIngrediente.cs" />
     <Compile Include="Interface\Controller\IControllerPrincipal.cs" />
+    <Compile Include="Interface\View\IViewCadastroEngredienteSabor.cs" />
     <Compile Include="Interface\View\IViewCadastroIngrediente.cs" />
     <Compile Include="Interface\View\IViewCadastroSabor.cs" />
     <Compile Include="Interface\View\Padrao\IViewPadraoCadastro.cs" />

@@ -31,17 +31,17 @@ namespace Perron
         {
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.gbEngredientesSabor = new System.Windows.Forms.GroupBox();
+            this.dgvEngredientesSabor = new System.Windows.Forms.DataGridView();
+            this.txtBuscaEngredientesVinculados = new System.Windows.Forms.TextBox();
             this.gbEngredientesCadastrados = new System.Windows.Forms.GroupBox();
             this.txtBuscaEngredientesCadastrados = new System.Windows.Forms.TextBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.gbEngredientesSabor = new System.Windows.Forms.GroupBox();
-            this.txtBuscaEngredientesVinculados = new System.Windows.Forms.TextBox();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.dgvEngredientesCadastrado = new System.Windows.Forms.DataGridView();
             this.panel1.SuspendLayout();
-            this.gbEngredientesCadastrados.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.gbEngredientesSabor.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEngredientesSabor)).BeginInit();
+            this.gbEngredientesCadastrados.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEngredientesCadastrado)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -54,10 +54,41 @@ namespace Perron
             this.panel1.Size = new System.Drawing.Size(638, 544);
             this.panel1.TabIndex = 0;
             // 
+            // gbEngredientesSabor
+            // 
+            this.gbEngredientesSabor.Controls.Add(this.dgvEngredientesSabor);
+            this.gbEngredientesSabor.Controls.Add(this.txtBuscaEngredientesVinculados);
+            this.gbEngredientesSabor.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.gbEngredientesSabor.Location = new System.Drawing.Point(0, 319);
+            this.gbEngredientesSabor.Name = "gbEngredientesSabor";
+            this.gbEngredientesSabor.Size = new System.Drawing.Size(638, 225);
+            this.gbEngredientesSabor.TabIndex = 1;
+            this.gbEngredientesSabor.TabStop = false;
+            this.gbEngredientesSabor.Text = "Engredientes Vinculado ao Sabor";
+            // 
+            // dgvEngredientesSabor
+            // 
+            this.dgvEngredientesSabor.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvEngredientesSabor.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvEngredientesSabor.Location = new System.Drawing.Point(5, 57);
+            this.dgvEngredientesSabor.Name = "dgvEngredientesSabor";
+            this.dgvEngredientesSabor.Size = new System.Drawing.Size(630, 162);
+            this.dgvEngredientesSabor.TabIndex = 4;
+            // 
+            // txtBuscaEngredientesVinculados
+            // 
+            this.txtBuscaEngredientesVinculados.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBuscaEngredientesVinculados.Location = new System.Drawing.Point(489, 25);
+            this.txtBuscaEngredientesVinculados.Name = "txtBuscaEngredientesVinculados";
+            this.txtBuscaEngredientesVinculados.Size = new System.Drawing.Size(146, 26);
+            this.txtBuscaEngredientesVinculados.TabIndex = 3;
+            // 
             // gbEngredientesCadastrados
             // 
             this.gbEngredientesCadastrados.Controls.Add(this.txtBuscaEngredientesCadastrados);
-            this.gbEngredientesCadastrados.Controls.Add(this.dataGridView1);
+            this.gbEngredientesCadastrados.Controls.Add(this.dgvEngredientesCadastrado);
             this.gbEngredientesCadastrados.Dock = System.Windows.Forms.DockStyle.Top;
             this.gbEngredientesCadastrados.Location = new System.Drawing.Point(0, 0);
             this.gbEngredientesCadastrados.Name = "gbEngredientesCadastrados";
@@ -74,47 +105,16 @@ namespace Perron
             this.txtBuscaEngredientesCadastrados.Size = new System.Drawing.Size(146, 26);
             this.txtBuscaEngredientesCadastrados.TabIndex = 5;
             // 
-            // dataGridView1
+            // dgvEngredientesCadastrado
             // 
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.dgvEngredientesCadastrado.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 49);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(632, 253);
-            this.dataGridView1.TabIndex = 3;
-            // 
-            // gbEngredientesSabor
-            // 
-            this.gbEngredientesSabor.Controls.Add(this.dataGridView2);
-            this.gbEngredientesSabor.Controls.Add(this.txtBuscaEngredientesVinculados);
-            this.gbEngredientesSabor.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.gbEngredientesSabor.Location = new System.Drawing.Point(0, 319);
-            this.gbEngredientesSabor.Name = "gbEngredientesSabor";
-            this.gbEngredientesSabor.Size = new System.Drawing.Size(638, 225);
-            this.gbEngredientesSabor.TabIndex = 1;
-            this.gbEngredientesSabor.TabStop = false;
-            this.gbEngredientesSabor.Text = "Engredientes Vinculado ao Sabor";
-            // 
-            // txtBuscaEngredientesVinculados
-            // 
-            this.txtBuscaEngredientesVinculados.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBuscaEngredientesVinculados.Location = new System.Drawing.Point(489, 25);
-            this.txtBuscaEngredientesVinculados.Name = "txtBuscaEngredientesVinculados";
-            this.txtBuscaEngredientesVinculados.Size = new System.Drawing.Size(146, 26);
-            this.txtBuscaEngredientesVinculados.TabIndex = 3;
-            // 
-            // dataGridView2
-            // 
-            this.dataGridView2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(5, 57);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(630, 162);
-            this.dataGridView2.TabIndex = 4;
+            this.dgvEngredientesCadastrado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvEngredientesCadastrado.Location = new System.Drawing.Point(3, 49);
+            this.dgvEngredientesCadastrado.Name = "dgvEngredientesCadastrado";
+            this.dgvEngredientesCadastrado.Size = new System.Drawing.Size(632, 253);
+            this.dgvEngredientesCadastrado.TabIndex = 3;
             // 
             // UserControlEngredienteSabor
             // 
@@ -126,12 +126,12 @@ namespace Perron
             this.Name = "UserControlEngredienteSabor";
             this.Size = new System.Drawing.Size(638, 544);
             this.panel1.ResumeLayout(false);
-            this.gbEngredientesCadastrados.ResumeLayout(false);
-            this.gbEngredientesCadastrados.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.gbEngredientesSabor.ResumeLayout(false);
             this.gbEngredientesSabor.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEngredientesSabor)).EndInit();
+            this.gbEngredientesCadastrados.ResumeLayout(false);
+            this.gbEngredientesCadastrados.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEngredientesCadastrado)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -141,9 +141,9 @@ namespace Perron
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.GroupBox gbEngredientesCadastrados;
         private System.Windows.Forms.TextBox txtBuscaEngredientesCadastrados;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvEngredientesCadastrado;
         private System.Windows.Forms.GroupBox gbEngredientesSabor;
-        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridView dgvEngredientesSabor;
         private System.Windows.Forms.TextBox txtBuscaEngredientesVinculados;
     }
 }

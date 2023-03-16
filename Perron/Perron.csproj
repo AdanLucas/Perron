@@ -46,9 +46,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controller\ControllerIngrediente.cs" />
-    <Compile Include="Controller\ControllerPadrao.cs" />
-    <Compile Include="Controller\ControllerPrincipal.cs" />
+    <Compile Include="Presenter\PresenterEngredienteSabor.cs" />
+    <Compile Include="Presenter\PresenterIngrediente.cs" />
+    <Compile Include="Presenter\PresenterPadrao.cs" />
+    <Compile Include="Presenter\PresenterPrincipal.cs" />
+    <Compile Include="Presenter\PresenterSabor.cs" />
     <Compile Include="Factory\Controller\FactoryController.cs" />
     <Compile Include="Factory\View\FactoryView.cs" />
     <Compile Include="Outros\AlocarComponentes.cs" />
@@ -128,6 +130,10 @@
     <ProjectReference Include="..\Model\Model.csproj">
       <Project>{e09ba858-caaf-4a09-853d-20fb22fac4ce}</Project>
       <Name>Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Services\Services.csproj">
+      <Project>{43424ecc-1ad6-4498-b884-1dbcd70ff99d}</Project>
+      <Name>Services</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

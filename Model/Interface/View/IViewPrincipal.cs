@@ -17,6 +17,8 @@ public interface IViewPrincipal
     //void EventoAbrirTela(EventHandler e);
 
     void EventoAbrirTelaIngredientes(EventHandler e);
+    void EventoAbrirTelaCadastroSabor(EventHandler e);
+
 
     #endregion
 

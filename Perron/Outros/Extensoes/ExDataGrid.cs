@@ -18,7 +18,7 @@ public static class ExDataGrid
     }
     private static void PegarTipoLinha<T>(DataGridView grid, T obj)
     {
-        if (obj.GetType() == typeof(IngredienteModel))
+        if (obj.GetType() == typeof(EngredienteModel))
              CriarLinhaIngredientes(grid, obj);
 
         
@@ -27,7 +27,7 @@ public static class ExDataGrid
     }
     private static void CriarLinhaIngredientes(DataGridView grid, object obj)
     {
-        var ingrediente = (IngredienteModel)obj;
+        var ingrediente = (EngredienteModel)obj;
 
         var Linha = new DataGridViewRow();
 

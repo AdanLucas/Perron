@@ -31,18 +31,18 @@ namespace Perron.View.Forms
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.pagSabor = new System.Windows.Forms.TabPage();
-            this.pagEngredientes = new System.Windows.Forms.TabPage();
             this.dgvSaboresCadastrados = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.txtDescricaoSabor = new System.Windows.Forms.TextBox();
             this.comboClasse = new System.Windows.Forms.ComboBox();
+            this.pagEngredientes = new System.Windows.Forms.TabPage();
             this.painelEngredienteSabor = new System.Windows.Forms.Panel();
             this.tabControl1.SuspendLayout();
             this.pagSabor.SuspendLayout();
-            this.pagEngredientes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSaboresCadastrados)).BeginInit();
+            this.pagEngredientes.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -71,17 +71,6 @@ namespace Perron.View.Forms
             this.pagSabor.TabIndex = 0;
             this.pagSabor.Text = "Sabor";
             this.pagSabor.UseVisualStyleBackColor = true;
-            // 
-            // pagEngredientes
-            // 
-            this.pagEngredientes.Controls.Add(this.painelEngredienteSabor);
-            this.pagEngredientes.Location = new System.Drawing.Point(4, 29);
-            this.pagEngredientes.Name = "pagEngredientes";
-            this.pagEngredientes.Padding = new System.Windows.Forms.Padding(3);
-            this.pagEngredientes.Size = new System.Drawing.Size(638, 544);
-            this.pagEngredientes.TabIndex = 1;
-            this.pagEngredientes.Text = "Engredientes";
-            this.pagEngredientes.UseVisualStyleBackColor = true;
             // 
             // dgvSaboresCadastrados
             // 
@@ -133,6 +122,17 @@ namespace Perron.View.Forms
             this.comboClasse.Size = new System.Drawing.Size(136, 28);
             this.comboClasse.TabIndex = 4;
             // 
+            // pagEngredientes
+            // 
+            this.pagEngredientes.Controls.Add(this.painelEngredienteSabor);
+            this.pagEngredientes.Location = new System.Drawing.Point(4, 29);
+            this.pagEngredientes.Name = "pagEngredientes";
+            this.pagEngredientes.Padding = new System.Windows.Forms.Padding(3);
+            this.pagEngredientes.Size = new System.Drawing.Size(638, 544);
+            this.pagEngredientes.TabIndex = 1;
+            this.pagEngredientes.Text = "Engredientes";
+            this.pagEngredientes.UseVisualStyleBackColor = true;
+            // 
             // painelEngredienteSabor
             // 
             this.painelEngredienteSabor.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -147,13 +147,14 @@ namespace Perron.View.Forms
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(646, 617);
             this.Controls.Add(this.tabControl1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "FrmCadastroSabor";
             this.Controls.SetChildIndex(this.tabControl1, 0);
             this.tabControl1.ResumeLayout(false);
             this.pagSabor.ResumeLayout(false);
             this.pagSabor.PerformLayout();
-            this.pagEngredientes.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvSaboresCadastrados)).EndInit();
+            this.pagEngredientes.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

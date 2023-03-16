@@ -31,7 +31,7 @@ namespace Perron.View.Forms
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.cadastroToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saborToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemSabor = new System.Windows.Forms.ToolStripMenuItem();
             this.tamanhoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.preçoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemIngrediente = new System.Windows.Forms.ToolStripMenuItem();
@@ -59,7 +59,7 @@ namespace Perron.View.Forms
             // cadastroToolStripMenuItem
             // 
             this.cadastroToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.saborToolStripMenuItem,
+            this.menuItemSabor,
             this.tamanhoToolStripMenuItem,
             this.preçoToolStripMenuItem,
             this.menuItemIngrediente});
@@ -67,11 +67,11 @@ namespace Perron.View.Forms
             this.cadastroToolStripMenuItem.Size = new System.Drawing.Size(112, 32);
             this.cadastroToolStripMenuItem.Text = "Cadastro";
             // 
-            // saborToolStripMenuItem
+            // menuItemSabor
             // 
-            this.saborToolStripMenuItem.Name = "saborToolStripMenuItem";
-            this.saborToolStripMenuItem.Size = new System.Drawing.Size(199, 32);
-            this.saborToolStripMenuItem.Text = "Sabor";
+            this.menuItemSabor.Name = "menuItemSabor";
+            this.menuItemSabor.Size = new System.Drawing.Size(199, 32);
+            this.menuItemSabor.Text = "Sabor";
             // 
             // tamanhoToolStripMenuItem
             // 
@@ -131,7 +131,7 @@ namespace Perron.View.Forms
 
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem cadastroToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem saborToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem menuItemSabor;
         private System.Windows.Forms.ToolStripMenuItem tamanhoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem preçoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem menuItemIngrediente;

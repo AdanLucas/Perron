@@ -8,8 +8,8 @@ public interface IViewCadastroIngrediente : IViewPadraoCadastro
     void Close();
 
     string DescricaoIngrediente { get; set; }
-    void PopularGridIngredientes(List<IngredienteModel> Ingredientes);
-    IngredienteModel IngredienteSelecionado { get; }
+    void PopularGridIngredientes(List<EngredienteModel> Ingredientes);
+    EngredienteModel IngredienteSelecionado { get; }
     void EventoGrid(EventHandler e);
 
 

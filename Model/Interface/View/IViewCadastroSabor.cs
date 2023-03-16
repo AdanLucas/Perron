@@ -5,14 +5,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-public  interface IViewCadastroSabor : IViewPadraoCadastro
-    {
-          
-          string DescricaoSabor { get; set; }
-          
-          int IdClasse { get;}
+public interface IViewCadastroSabor : IViewPadraoCadastro
+{
 
-      Panel PainelEngredienteSabor { get; } 
+    void Show();
+    void Close();
+
+    string DescricaoSabor { get; set; }
+
+    int IdClasse { get; }
+
+    Panel PainelEngredienteSabor { get; }
 
     void PopularComboClasse(List<ClasseModel> ListaClasse);
 

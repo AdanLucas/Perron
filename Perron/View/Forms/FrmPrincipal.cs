@@ -17,6 +17,11 @@ namespace Perron.View.Forms
             InitializeComponent();
         }
 
+        public void EventoAbrirTelaCadastroSabor(EventHandler e)
+        {
+            menuItemSabor.Click += e;
+        }
+
         public void EventoAbrirTelaIngredientes(EventHandler e)
         {
             menuItemIngrediente.Click += e;

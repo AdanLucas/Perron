@@ -16,6 +16,7 @@ namespace Perron.Factory.Controller
         #region Controllers
 
         IControllerIngrediente _controllerIngrediente;
+        IControllerSabor _controllerSabor;
 
         #endregion
 
@@ -33,6 +34,7 @@ namespace Perron.Factory.Controller
         {
             _view.EventoFechar(EventoFechar);
             _view.EventoAbrirTelaIngredientes(EventoAbrirCadastroIngrediente);
+            _view.EventoAbrirTelaCadastroSabor(EventoAbrirCadastroSabor);
         }
 
 
@@ -51,7 +53,10 @@ namespace Perron.Factory.Controller
         {
             _controllerIngrediente = FactoryController.CadastroIngredientes(_view);
         }
-
+        private void EventoAbrirCadastroSabor(object o ,EventArgs e)
+        {
+            _controllerSabor = FactoryController.CadastroSabor(_view);
+        }
 
         #endregion
 

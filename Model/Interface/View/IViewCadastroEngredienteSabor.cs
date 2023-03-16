@@ -8,16 +8,13 @@ using System.Windows.Forms;
 public interface IViewCadastroEngredienteSabor
 {
     #region Campos de Busca
-
     string BuscarEngredientesCadastrados { get; }
     string BuscarEngredientesSabor { get; }
-
     #endregion
 
     #region Eventos
     void EventoGridEngredientesCadastrados(EventHandler e);
     void EventoGridEngredientesSabor(EventHandler e);
-
     void EventoBuscaEngredienteCadastrados(EventHandler e);
     void EventoBuscaEngredienteSabor(EventHandler e);
 

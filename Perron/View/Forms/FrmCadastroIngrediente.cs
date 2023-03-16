@@ -25,13 +25,13 @@ namespace Perron.View.Forms
         
         }
 
-        public IngredienteModel IngredienteSelecionado
+        public EngredienteModel IngredienteSelecionado
         {
             get
             {
                 try
                 {
-                    return (IngredienteModel)dgvIngredientes.CurrentRow.DataBoundItem;
+                    return (EngredienteModel)dgvIngredientes.CurrentRow.DataBoundItem;
                 }
                 catch
                 {
@@ -49,7 +49,7 @@ namespace Perron.View.Forms
             dgvIngredientes.DoubleClick += e;
         }
 
-        public void PopularGridIngredientes(List<IngredienteModel> Ingredientes)
+        public void PopularGridIngredientes(List<EngredienteModel> Ingredientes)
         {
             dgvIngredientes.DataSource = Ingredientes;
         }

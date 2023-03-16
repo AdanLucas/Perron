@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E09BA858-CAAF-4A09-853D-20FB22FAC4CE}</ProjectGuid>
+    <ProjectGuid>{43424ECC-1AD6-4498-B884-1DBCD70FF99D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Model</RootNamespace>
-    <AssemblyName>Model</AssemblyName>
+    <RootNamespace>Services</RootNamespace>
+    <AssemblyName>Services</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -33,7 +33,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -42,26 +41,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DTO\dtoCell.cs" />
-    <Compile Include="Emumerator\EStatusCadastroTela.cs" />
-    <Compile Include="Interface\Presenter\IControllerEngredienteSabor.cs" />
-    <Compile Include="Interface\Presenter\IControllerIngrediente.cs" />
-    <Compile Include="Interface\Presenter\IControllerPrincipal.cs" />
-    <Compile Include="Interface\Presenter\IControllerSabor.cs" />
-    <Compile Include="Interface\Services\IServiceSabor.cs" />
-    <Compile Include="Interface\View\IViewCadastroEngredienteSabor.cs" />
-    <Compile Include="Interface\View\IViewCadastroIngrediente.cs" />
-    <Compile Include="Interface\View\IViewCadastroSabor.cs" />
-    <Compile Include="Interface\View\Padrao\IViewPadraoCadastro.cs" />
-    <Compile Include="Interface\View\IViewPrincipal.cs" />
-    <Compile Include="Model\ClasseModel.cs" />
-    <Compile Include="Model\EngredienteModel.cs" />
-    <Compile Include="Model\SaborModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Interface\Repositorio\" />
-    <Folder Include="Outros\" />
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{e09ba858-caaf-4a09-853d-20fb22fac4ce}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Repository\Repository.csproj">
+      <Project>{d7dee4f2-3d31-46e6-8d33-c96cb27c941f}</Project>
+      <Name>Repository</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

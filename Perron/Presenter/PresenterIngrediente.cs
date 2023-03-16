@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Perron.Controller
 {
-    public class ControllerIngrediente : ControllerPadrao , IControllerIngrediente
+    public class PresenterIngrediente : PresenterPadrao , IControllerIngrediente
     {
         private readonly IViewCadastroIngrediente _view;
 
-        public ControllerIngrediente(IViewCadastroIngrediente view) : base(view)
+        public PresenterIngrediente(IViewCadastroIngrediente view) : base(view)
         {
             _view = view;
             _view.Show();

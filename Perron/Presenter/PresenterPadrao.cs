@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Perron.Controller
 {
-    public abstract class ControllerPadrao
+    public abstract class PresenterPadrao
     {
         private readonly IViewPadraoCadastro _view;
 
-        public ControllerPadrao(IViewPadraoCadastro view)
+        public PresenterPadrao(IViewPadraoCadastro view)
         {
             _view = view;
         }

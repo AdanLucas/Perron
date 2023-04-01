@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-    public interface IControllerSabor
+    public interface IPresenterSabor
     {
         
       

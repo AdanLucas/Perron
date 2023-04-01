@@ -7,13 +7,15 @@ using System.Threading.Tasks;
 
     public enum EStatusCadastroTela: long
     {
-        None=0,
+        None,
 
-        Inicio=1,
+        Inicio,
 
-        Cadastrando=2,
+        Novo,
 
-        ItemSelecionado=3,
+        Cadastrando,
+
+        ItemSelecionado,
 
         
     }

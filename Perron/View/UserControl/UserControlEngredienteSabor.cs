@@ -37,6 +37,43 @@ namespace Perron
             get { return txtBuscaEngredientesVinculados.Text; }
         }
 
+        public EngredienteModel EngredienteSelecionadoGridEngredienteCadastrado
+        {
+            get
+            {
+                try
+                {
+                    return (EngredienteModel)dgvEngredientesCadastrado.CurrentRow.DataBoundItem;
+
+                }
+                catch
+                {
+
+                    return null;
+                }
+            }
+
+
+        }
+        public EngredienteModel EngredienteSelecionadoGridEngredienteSabor
+        {
+            get
+            {
+                try
+                {
+                    return (EngredienteModel)dgvEngredientesSabor.CurrentRow.DataBoundItem;
+
+                }
+                catch
+                {
+
+                    return null;
+                }
+            }
+
+
+        }
+
         public void EventoBuscaEngredienteCadastrados(EventHandler e)
         {
             txtBuscaEngredientesCadastrados.Enter += e;

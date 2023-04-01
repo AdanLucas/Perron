@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace Perron.Factory.Controller
 {
-    public class ControllerPrincipal : IControllerPrincipal
+    public class ControllerPrincipal : IPresenterPrincipal
     {
 
         private readonly IViewPrincipal _view;
@@ -15,8 +15,8 @@ namespace Perron.Factory.Controller
 
         #region Controllers
 
-        IControllerIngrediente _controllerIngrediente;
-        IControllerSabor _controllerSabor;
+        IPresenterEngrediente _controllerIngrediente;
+        IPresenterSabor _controllerSabor;
 
         #endregion
 
@@ -51,11 +51,11 @@ namespace Perron.Factory.Controller
         }
         private void EventoAbrirCadastroIngrediente(object o, EventArgs e)
         {
-            _controllerIngrediente = FactoryController.CadastroIngredientes(_view);
+            _controllerIngrediente = FactoryPresenter.CadastroIngredientes(_view);
         }
         private void EventoAbrirCadastroSabor(object o ,EventArgs e)
         {
-            _controllerSabor = FactoryController.CadastroSabor(_view);
+            _controllerSabor = FactoryPresenter.CadastroSabor(_view);
         }
 
         #endregion

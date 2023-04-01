@@ -51,7 +51,7 @@
     <Compile Include="Presenter\PresenterPadrao.cs" />
     <Compile Include="Presenter\PresenterPrincipal.cs" />
     <Compile Include="Presenter\PresenterSabor.cs" />
-    <Compile Include="Factory\Controller\FactoryController.cs" />
+    <Compile Include="Factory\Presenter\FactoryPresenter.cs" />
     <Compile Include="Factory\View\FactoryView.cs" />
     <Compile Include="Outros\AlocarComponentes.cs" />
     <Compile Include="Outros\Extensoes\ExComboBox.cs" />

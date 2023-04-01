@@ -17,7 +17,7 @@ namespace Perron
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            FactoryController.Principal();
+            FactoryPresenter.Principal();
             Application.Run();
         }
     }

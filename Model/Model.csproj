@@ -44,10 +44,11 @@
   <ItemGroup>
     <Compile Include="DTO\dtoCell.cs" />
     <Compile Include="Emumerator\EStatusCadastroTela.cs" />
-    <Compile Include="Interface\Presenter\IControllerEngredienteSabor.cs" />
-    <Compile Include="Interface\Presenter\IControllerIngrediente.cs" />
-    <Compile Include="Interface\Presenter\IControllerPrincipal.cs" />
-    <Compile Include="Interface\Presenter\IControllerSabor.cs" />
+    <Compile Include="Interface\Presenter\IPresenterEngredienteSabor.cs" />
+    <Compile Include="Interface\Presenter\IPresenterEngrediente.cs" />
+    <Compile Include="Interface\Presenter\IPresenterPrincipal.cs" />
+    <Compile Include="Interface\Presenter\IPresenterSabor.cs" />
+    <Compile Include="Interface\Services\IServiceEngrediente.cs" />
     <Compile Include="Interface\Services\IServiceSabor.cs" />
     <Compile Include="Interface\View\IViewCadastroEngredienteSabor.cs" />
     <Compile Include="Interface\View\IViewCadastroIngrediente.cs" />

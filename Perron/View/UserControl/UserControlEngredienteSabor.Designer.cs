@@ -58,9 +58,10 @@ namespace Perron
             // 
             this.gbEngredientesSabor.Controls.Add(this.dgvEngredientesSabor);
             this.gbEngredientesSabor.Controls.Add(this.txtBuscaEngredientesVinculados);
-            this.gbEngredientesSabor.Location = new System.Drawing.Point(0, 279);
+            this.gbEngredientesSabor.Dock = System.Windows.Forms.DockStyle.Top;
+            this.gbEngredientesSabor.Location = new System.Drawing.Point(0, 276);
             this.gbEngredientesSabor.Name = "gbEngredientesSabor";
-            this.gbEngredientesSabor.Size = new System.Drawing.Size(629, 259);
+            this.gbEngredientesSabor.Size = new System.Drawing.Size(632, 259);
             this.gbEngredientesSabor.TabIndex = 1;
             this.gbEngredientesSabor.TabStop = false;
             this.gbEngredientesSabor.Text = "Engredientes Vinculado ao Sabor";
@@ -73,15 +74,16 @@ namespace Perron
             this.dgvEngredientesSabor.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvEngredientesSabor.Location = new System.Drawing.Point(6, 57);
             this.dgvEngredientesSabor.Name = "dgvEngredientesSabor";
-            this.dgvEngredientesSabor.Size = new System.Drawing.Size(623, 196);
+            this.dgvEngredientesSabor.RowHeadersWidth = 51;
+            this.dgvEngredientesSabor.Size = new System.Drawing.Size(623, 202);
             this.dgvEngredientesSabor.TabIndex = 4;
             // 
             // txtBuscaEngredientesVinculados
             // 
             this.txtBuscaEngredientesVinculados.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBuscaEngredientesVinculados.Location = new System.Drawing.Point(480, 25);
+            this.txtBuscaEngredientesVinculados.Location = new System.Drawing.Point(483, 25);
             this.txtBuscaEngredientesVinculados.Name = "txtBuscaEngredientesVinculados";
-            this.txtBuscaEngredientesVinculados.Size = new System.Drawing.Size(146, 26);
+            this.txtBuscaEngredientesVinculados.Size = new System.Drawing.Size(146, 30);
             this.txtBuscaEngredientesVinculados.TabIndex = 3;
             // 
             // gbEngredientesCadastrados
@@ -101,7 +103,7 @@ namespace Perron
             this.txtBuscaEngredientesCadastrados.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBuscaEngredientesCadastrados.Location = new System.Drawing.Point(483, 17);
             this.txtBuscaEngredientesCadastrados.Name = "txtBuscaEngredientesCadastrados";
-            this.txtBuscaEngredientesCadastrados.Size = new System.Drawing.Size(146, 26);
+            this.txtBuscaEngredientesCadastrados.Size = new System.Drawing.Size(146, 30);
             this.txtBuscaEngredientesCadastrados.TabIndex = 5;
             // 
             // dgvEngredientesCadastrado
@@ -112,12 +114,13 @@ namespace Perron
             this.dgvEngredientesCadastrado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvEngredientesCadastrado.Location = new System.Drawing.Point(6, 49);
             this.dgvEngredientesCadastrado.Name = "dgvEngredientesCadastrado";
+            this.dgvEngredientesCadastrado.RowHeadersWidth = 51;
             this.dgvEngredientesCadastrado.Size = new System.Drawing.Size(623, 224);
             this.dgvEngredientesCadastrado.TabIndex = 3;
             // 
             // UserControlEngredienteSabor
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

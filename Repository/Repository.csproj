@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Connection\Dados Conexao Banco\" />
+    <Folder Include="Factory\" />
     <Folder Include="Repository\" />
     <Folder Include="Transaction\" />
   </ItemGroup>

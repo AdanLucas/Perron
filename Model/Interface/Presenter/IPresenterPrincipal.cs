@@ -5,7 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-public interface IControllerPrincipal
+public interface IPresenterPrincipal
+
 {
  
 }

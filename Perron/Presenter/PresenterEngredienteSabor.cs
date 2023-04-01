@@ -30,8 +30,8 @@ namespace Perron.Controller
         {
             _view = view;
             DelegarEventos();
-            SetarListaEngredienteCadastrados();
-            ExibirEngredienteCadastrados("");
+            //SetarListaEngredienteCadastrados();
+            //ExibirEngredienteCadastrados("");
 
         }
 

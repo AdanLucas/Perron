@@ -43,11 +43,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DTO\dtoCell.cs" />
+    <Compile Include="Emumerator\EStatusCadastro.cs" />
     <Compile Include="Emumerator\EStatusCadastroTela.cs" />
+    <Compile Include="Emumerator\EUnidadeMedida.cs" />
     <Compile Include="Interface\Presenter\IPresenterEngredienteSabor.cs" />
     <Compile Include="Interface\Presenter\IPresenterEngrediente.cs" />
     <Compile Include="Interface\Presenter\IPresenterPrincipal.cs" />
     <Compile Include="Interface\Presenter\IPresenterSabor.cs" />
+    <Compile Include="Interface\Repository\IRepositoryDadosEngredienteSabor.cs" />
+    <Compile Include="Interface\Repository\IRepositoryEngrediente.cs" />
+    <Compile Include="Interface\Repository\IRepositorySabor.cs" />
+    <Compile Include="Interface\Repository\IRepositoryTamanho.cs" />
     <Compile Include="Interface\Services\IServiceEngrediente.cs" />
     <Compile Include="Interface\Services\IServiceSabor.cs" />
     <Compile Include="Interface\View\IViewCadastroEngredienteSabor.cs" />
@@ -56,12 +62,13 @@
     <Compile Include="Interface\View\Padrao\IViewPadraoCadastro.cs" />
     <Compile Include="Interface\View\IViewPrincipal.cs" />
     <Compile Include="Model\ClasseModel.cs" />
+    <Compile Include="Model\DadosSaborEngredienteModel.cs" />
     <Compile Include="Model\EngredienteModel.cs" />
     <Compile Include="Model\SaborModel.cs" />
+    <Compile Include="Model\TamanhoModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Interface\Repositorio\" />
     <Folder Include="Outros\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

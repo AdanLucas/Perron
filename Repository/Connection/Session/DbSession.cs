@@ -20,7 +20,7 @@ public class DbSession : IDisposable
     {
         try
         {
-            Connection = new SqlConnection(StringConexao.SqlServer);
+            Connection = new SqlConnection(StringConexao.Base);
             Connection.Open();
         }
         catch

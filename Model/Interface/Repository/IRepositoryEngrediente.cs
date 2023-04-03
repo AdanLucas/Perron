@@ -10,8 +10,7 @@ using System.Threading.Tasks;
         void SalvarEngrediente(EngredienteModel Engrediente);
         EngredienteModel GetEngredientePorId(int Id);
         List<EngredienteModel> GetListaEngrediente(EStatusCadastro statusCadastro);
-
-
-
-    }
+    List<EngredienteModel> GetListaEngredientePorSabor(int IDSabor);
+    List<EngredienteModel> GetListaEngredientePorSabor(int IDSabor);
+}
 

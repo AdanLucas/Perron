@@ -58,5 +58,11 @@
       <Name>Model</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="ScriptBase\StoredProcedure\pc_cadastroDadosSaborEngrediente.sql" />
+    <Content Include="ScriptBase\StoredProcedure\pc_cadastroEngrediente.sql" />
+    <Content Include="ScriptBase\StoredProcedure\pc_cadastroSabor.sql" />
+    <Content Include="ScriptBase\StoredProcedure\pc_cadastroTamanho.sql" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

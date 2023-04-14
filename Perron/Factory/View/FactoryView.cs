@@ -10,7 +10,11 @@ using System.Windows.Forms;
 public static class FactoryView
 {
 
-
+    private static void SetarMidParentTelaPrincial(Form telaFilho,IViewPrincipal TelaPai)
+    {
+        telaFilho.MdiParent = (FrmPrincipal)TelaPai;
+        
+    }
     public static IViewPrincipal Principal()
     {
         return new FrmPrincipal();
@@ -19,8 +23,7 @@ public static class FactoryView
     {
         var viewIngrediente = new FrmCadastroIngrediente();
 
-        viewIngrediente.MdiParent = (FrmPrincipal)viewPrincipal;
-
+        SetarMidParentTelaPrincial(viewIngrediente, viewPrincipal);
 
         return viewIngrediente;
     }
@@ -43,8 +46,15 @@ public static class FactoryView
         return userControl;
 
     }
+    public static IViewClasse CadastroClasse(IViewPrincipal viewPrincipal)
+    {
+        var CadatroClasse = new FrmClasse();
 
+        SetarMidParentTelaPrincial(CadatroClasse, viewPrincipal);
 
+        return CadatroClasse;
+
+    }
 
 }
 

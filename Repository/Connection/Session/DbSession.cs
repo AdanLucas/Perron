@@ -9,10 +9,6 @@ using System.Threading.Tasks;
 
 public class DbSession : IDisposable
 {
-
-    
-
-
     public IDbConnection Connection { get; set; }
     public IDbTransaction Transaction { get; set; }
 

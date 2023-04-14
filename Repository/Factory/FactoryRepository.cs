@@ -5,8 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Repository.Factory
-{
+
     public static class FactoryRepository
     {
         public static IRepositorySabor Sabor()
@@ -25,6 +24,9 @@ namespace Repository.Factory
         {
             return null;
         }
-
+        public static IRepositoryClasse Classe()
+        {
+            return new RepositoryClasse();
+        }
     }
-}
+

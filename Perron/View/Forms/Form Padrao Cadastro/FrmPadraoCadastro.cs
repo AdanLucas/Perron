@@ -26,6 +26,32 @@ namespace Perron.View.Forms.Form_Padrao_Cadastro
         {
             set { btnCancelar.Visible = value; }
         }
+        public bool VisualizarCadastrosAtivo
+        {
+            get
+            {
+                return ckAtivo.Checked;
+            }
+        }
+        public bool VisualizarCadastrosInativos
+        {
+            get
+            {
+                return ckAtivo.Checked;
+            }
+        }
+
+        public bool VisibilidadeckAtivo { set { ckAtivo.Visible = value;} }
+        public bool VisibilidadeckInativo { set { ckInativo.Visible = value; } }
+
+        public void EventockAtivo(EventHandler e)
+        {
+            ckAtivo.CheckStateChanged += e;
+        }
+        public void EventockInativo(EventHandler e)
+        {
+            ckInativo.CheckStateChanged += e;
+        }
 
         public void EventoCancelar(EventHandler e)
         {
@@ -51,5 +77,8 @@ namespace Perron.View.Forms.Form_Padrao_Cadastro
         {
             btnSalvar.Click += e;
         }
+      
+
+
     }
 }

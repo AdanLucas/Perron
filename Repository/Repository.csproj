@@ -49,6 +49,7 @@
     <Compile Include="Connection\Session\DbSession.cs" />
     <Compile Include="Factory\FactoryRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\RepositoryClasse.cs" />
     <Compile Include="Repository\RepositoryEngrediente.cs" />
     <Compile Include="Repository\RepositorySabor.cs" />
     <Compile Include="Repository\RepositoryTamanho.cs" />
@@ -63,6 +64,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ScriptBase\StoredProcedure\pc_cadastroClasse.sql" />
     <Content Include="ScriptBase\StoredProcedure\pc_cadastroDadosSaborEngrediente.sql" />
     <Content Include="ScriptBase\StoredProcedure\pc_cadastroEngrediente.sql" />
     <Content Include="ScriptBase\StoredProcedure\pc_cadastroSabor.sql" />

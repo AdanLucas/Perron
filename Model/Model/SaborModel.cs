@@ -5,14 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-public class SaborModel
+public class SaborModel:Aentity
 {
-    public int Id { get; set; }
     public string Descricao { get; set; }
-    public ClasseModel classe { get; set; }
+    public ClasseModel Classe { get; set; }
     public List<EngredienteModel> Engredientes { private get; set; }
-    public bool Ativo { get; set; }
-
     public List<EngredienteModel> GetEngredientePorStatus(EStatusCadastro Status)
     {
         List<EngredienteModel> ret;

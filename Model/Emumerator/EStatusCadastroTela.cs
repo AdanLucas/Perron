@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-    public enum EStatusCadastroTela: long
+    public enum EStatusCadastroTela
     {
         None,
 

@@ -5,15 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-    public enum EStatusCadastro 
+    public abstract class Aentity
     {
-        none,
-         
-        Todos,
-
-        Ativo,
-
-        Inativo,
+        public long Id { get; set; }
+        public bool Ativo{ get; set; }
 
     }
 

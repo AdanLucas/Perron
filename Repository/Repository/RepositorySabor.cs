@@ -27,7 +27,7 @@ namespace Repository.Repository
                 {
                     id = sabor.Id,
                     descricao = sabor.Descricao,
-                    idClasse = sabor.classe.Id,
+                    idClasse = sabor.Classe.Id,
                     ativo = sabor.Ativo 
                 },transaction: Session.Transaction);
 
@@ -35,18 +35,17 @@ namespace Repository.Repository
         }
 
        
-        private List<EngredienteModel> GetListaEngredientePorSabor(DbSession session, int IDSabor)
+        private List<EngredienteModel> GetListaEngredientePorSabor(DbSession session, long IDSabor)
         {
            return session.Connection.Query<EngredienteModel>($"select * from Engrediente where id IN (select Engrediente from Sabor_has_Engrediente where Sabor = {IDSabor})").ToList();
         }
         private ClasseModel GetClassePorSabor(DbSession session,int IDClasse)
         {
 
-            session.Connection.Query<ClasseModel>($"Select * from Classe where id = {IDClasse}").FirstOrDefault();
-
-            return null;
+            return session.Connection.Query<ClasseModel>($"Select * from Classe where id = {IDClasse}").FirstOrDefault();
+            
         }
-        
+
         #endregion
 
 
@@ -81,17 +80,21 @@ namespace Repository.Repository
 
             using (var session = new DbSession())
             {
-                var Lista =  session.Connection.Query<SaborModel>(sql).ToList();
+                var Lista = session.Connection.Query<SaborModel>(sql).ToList();
 
                 foreach (var item in Lista)
                 {
-                    int idClasse 
-
+                    long IDclasse = session.Connection.Query<int>($"Select IdClsse From Sabor where Id = {item.Id}").FirstOrDefault();
+                    item.Classe = session.Connection.Query<ClasseModel>($"select * from Classe where id = {IDclasse}").FirstOrDefault();
+                    item.Engredientes = GetListaEngredientePorSabor(session,item.Id);
 
 
                 }
 
+                return Lista;
+
             }
+
         }
 
         public SaborModel GetSaborPorId(int Id)

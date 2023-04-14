@@ -5,15 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-    public enum EStatusCadastro 
+   public class StatusCadastroExibidoEventArgs : EventArgs
     {
-        none,
-         
-        Todos,
-
-        Ativo,
-
-        Inativo,
-
+        public EStatusCadastro Status;
     }
 

@@ -105,36 +105,46 @@ namespace Perron.Controller
         }
         private void ExibirEngredienteCadastrados(String Busca)
         {
-            if (ListaEngredienteCadastrados.Count > 0)
+            if (ListaEngredienteCadastrados != null)
             {
-                List<EngredienteModel> Lista;
 
-                if (Busca == "")
-                {
-                    Lista = ListaEngredienteCadastrados;
-                }
-                else
-                {
-                   Lista = ListaEngredienteCadastrados.Where(c => c.Descricao.Contains(Busca)).ToList();
-                   _view.PopularGridEngredientesCadastrados(Lista);
-                }
 
+
+                if (ListaEngredienteCadastrados.Count > 0)
+                {
+                    List<EngredienteModel> Lista;
+
+                    if (Busca == "")
+                    {
+                        Lista = ListaEngredienteCadastrados;
+                    }
+                    else
+                    {
+                        Lista = ListaEngredienteCadastrados.Where(c => c.Descricao.Contains(Busca)).ToList();
+                        _view.PopularGridEngredientesCadastrados(Lista);
+                    }
+
+                }
             }
         }
         private void ExibirEngredienteSabor(String Busca)
-        {
-            if (ListaEngridienteSabor.Count > 0)
+        {  
+            if(ListaEngridienteSabor != null)
             {
-                List<EngredienteModel> Lista;
 
-                if (Busca == "")
+                if (ListaEngridienteSabor.Count > 0)
                 {
-                    Lista = ListaEngridienteSabor;
-                }
-                else
-                {
-                    Lista = ListaEngridienteSabor.Where(c => c.Descricao.Contains(Busca)).ToList();
-                    _view.PopularGridEngredientesSabor(Lista);
+                    List<EngredienteModel> Lista;
+
+                    if (Busca == "")
+                    {
+                        Lista = ListaEngridienteSabor;
+                    }
+                    else
+                    {
+                        Lista = ListaEngridienteSabor.Where(c => c.Descricao.Contains(Busca)).ToList();
+                        _view.PopularGridEngredientesSabor(Lista);
+                    }
                 }
 
             }
@@ -213,6 +223,7 @@ namespace Perron.Controller
         }
         private void EventoBuscaEngredienteSabor(object o, EventArgs e)
         {
+
             this.ExibirEngredienteSabor(_view.BuscarEngredientesSabor);
         }
 

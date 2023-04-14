@@ -3,18 +3,36 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Perron.Controller
 {
     public abstract class PresenterPadrao
     {
-        private readonly IViewPadraoCadastro _view;
+        #region View
+        private readonly IViewPadraoCadastro _view; 
+        #endregion
 
+        #region Eventos
+        public event StatusCadastroExibidoEventHandler EventoExibicaoCadastros; 
+        #endregion
+
+        #region Construtor
         public PresenterPadrao(IViewPadraoCadastro view)
         {
             _view = view;
+            DelegarEventos();
         }
+        #endregion
 
+
+        #region Metodos Publicos
+
+        private void DelegarEventos()
+        {
+            _view.EventockAtivo(EventoCkativo);
+            _view.EventockInativo(EventoCkativo);
+        }
         public void EstadoBotoes(EStatusCadastroTela statusTela)
         {
             switch (statusTela)
@@ -25,6 +43,8 @@ namespace Perron.Controller
                     _view.VisibilidadeBotaoNovo = false;
                     _view.VisibilidadeBotaoSalvar = false;
                     _view.VisibilidadeBotaoCancelar = false;
+                    _view.VisibilidadeckAtivo = false;
+                    _view.VisibilidadeckInativo = false;
 
                     break;
 
@@ -34,6 +54,8 @@ namespace Perron.Controller
                     _view.VisibilidadeBotaoNovo = true;
                     _view.VisibilidadeBotaoSalvar = false;
                     _view.VisibilidadeBotaoCancelar = true;
+                    _view.VisibilidadeckAtivo = true;
+                    _view.VisibilidadeckInativo = true;
 
                     break;
 
@@ -43,6 +65,8 @@ namespace Perron.Controller
                     _view.VisibilidadeBotaoNovo = false;
                     _view.VisibilidadeBotaoSalvar = true;
                     _view.VisibilidadeBotaoCancelar = true;
+                    _view.VisibilidadeckAtivo = false;
+                    _view.VisibilidadeckInativo = false;
 
                     break;
 
@@ -52,6 +76,18 @@ namespace Perron.Controller
                     _view.VisibilidadeBotaoNovo = false;
                     _view.VisibilidadeBotaoSalvar = true;
                     _view.VisibilidadeBotaoCancelar = true;
+                    _view.VisibilidadeckAtivo = true;
+                    _view.VisibilidadeckInativo = true;
+
+                    break;
+                case EStatusCadastroTela.Novo:
+
+                    _view.VisibilidadeBotaoDeletar = false;
+                    _view.VisibilidadeBotaoNovo = false;
+                    _view.VisibilidadeBotaoSalvar = true;
+                    _view.VisibilidadeBotaoCancelar = true;
+                    _view.VisibilidadeckAtivo = false;
+                    _view.VisibilidadeckInativo = false;
 
                     break;
 
@@ -59,6 +95,56 @@ namespace Perron.Controller
                     break;
             }
         }
+        #endregion
+
+
+         #region Metodos Privados
+        private EStatusCadastro GetstatusDosCadastrados()
+        {
+            if (_view.VisualizarCadastrosAtivo)
+                return EStatusCadastro.Ativo;
+
+            else if (_view.VisualizarCadastrosInativos)
+                return EStatusCadastro.Inativo;
+
+            else if (_view.VisualizarCadastrosAtivo && _view.VisualizarCadastrosInativos)
+                return EStatusCadastro.Todos;
+
+
+            return EStatusCadastro.none;
+        }
+        public void MessageDeSucesso()
+        {
+            MessageBox.Show("Cadastro Realizado com Sucesso!", "Sucesso!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        public void MessagemErro(Exception ex)
+        {
+            MessageBox.Show(ex.Message, "Ocorreu um erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+        private void NotificarEventoExibicaoCadastros()
+        {
+            if (EventoExibicaoCadastros != null)
+            {
+                EventoExibicaoCadastros(this, new StatusCadastroExibidoEventArgs { Status = GetstatusDosCadastrados() });
+            }
+
+
+        } 
+        #endregion
+
+
+        #region Evento Privados
+
+        private void EventoCkInativo(object o ,EventArgs e)
+        {
+            NotificarEventoExibicaoCadastros();
+        }
+        private void EventoCkativo(object o, EventArgs e)
+        {
+            NotificarEventoExibicaoCadastros();
+        }
+
+        #endregion
 
 
     }

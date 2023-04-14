@@ -16,6 +16,18 @@ public static class ExDataGrid
              PegarTipoLinha<T>(grid, item);
         }
     }
+    public static void DataSourceAentity<T>(this DataGridView grid, List<T> Lista)
+    {
+        if(Lista==null)
+             grid.DataSource = Lista;
+
+        else
+        {
+            grid.DataSource = Lista;
+            grid.Columns["Id"].Visible = false;
+            grid.Columns["Ativo"].Visible = false;
+        }
+    }
     private static void PegarTipoLinha<T>(DataGridView grid, T obj)
     {
         if (obj.GetType() == typeof(EngredienteModel))

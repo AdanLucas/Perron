@@ -5,11 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-    public class ClasseModel
-    {
-        public int Id { get; set; }
-        public string DescricaoClasse{ get; set; }
-        public bool Ativo { get; set; }
+public class ClasseModel : Aentity
+{
+    public string DescricaoClasse { get; set; }
 
-    }
+
+
+}
 

@@ -15,8 +15,9 @@ namespace Perron.Factory.Controller
 
         #region Controllers
 
-        IPresenterEngrediente _controllerIngrediente;
-        IPresenterSabor _controllerSabor;
+        IPresenterEngrediente _presenterIngrediente;
+        IPresenterSabor _presenterSabor;
+        IPresenterClasse _presenterClasse;
 
         #endregion
 
@@ -35,6 +36,7 @@ namespace Perron.Factory.Controller
             _view.EventoFechar(EventoFechar);
             _view.EventoAbrirTelaIngredientes(EventoAbrirCadastroIngrediente);
             _view.EventoAbrirTelaCadastroSabor(EventoAbrirCadastroSabor);
+            _view.EventoAbrirtelaCadastroClasse(EventoAbrirCadastroClasse);
         }
 
 
@@ -51,13 +53,16 @@ namespace Perron.Factory.Controller
         }
         private void EventoAbrirCadastroIngrediente(object o, EventArgs e)
         {
-            _controllerIngrediente = FactoryPresenter.CadastroIngredientes(_view);
+            _presenterIngrediente = FactoryPresenter.CadastroIngredientes(_view);
         }
         private void EventoAbrirCadastroSabor(object o ,EventArgs e)
         {
-            _controllerSabor = FactoryPresenter.CadastroSabor(_view);
+            _presenterSabor = FactoryPresenter.CadastroSabor(_view);
         }
-
+        private void EventoAbrirCadastroClasse(object o, EventArgs e)
+        {
+            _presenterClasse = FactoryPresenter.Classe(_view); 
+        }
         #endregion
 
         #region Eventos Publicos

@@ -16,6 +16,13 @@ public interface IViewPadraoCadastro
     bool VisibilidadeBotaoNovo { set; }
     bool VisibilidadeBotaoDeletar { set; }
     bool VisibilidadeBotaoCancelar { set; }
+    bool VisibilidadeckAtivo { set; }
+    bool VisibilidadeckInativo { set; }
+
+    bool VisualizarCadastrosAtivo { get; }
+    bool VisualizarCadastrosInativos { get; }
+
+
 
     #endregion
 
@@ -26,6 +33,8 @@ public interface IViewPadraoCadastro
     void EventoSalvar(EventHandler e);
     void EventoDeletar(EventHandler e);
     void EventoCancelar(EventHandler e);
+    void EventockAtivo(EventHandler e);
+    void EventockInativo(EventHandler e);
 
     #endregion
 

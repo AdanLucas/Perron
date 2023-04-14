@@ -4,16 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
-    public enum EStatusCadastro 
+   public interface IPresenterClasse
     {
-        none,
-         
-        Todos,
-
-        Ativo,
-
-        Inativo,
+    //void Abrir();
+    //void Fechar();
 
     }
 

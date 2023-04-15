@@ -19,6 +19,7 @@ public interface IViewPrincipal
     void EventoAbrirTelaIngredientes(EventHandler e);
     void EventoAbrirTelaCadastroSabor(EventHandler e);
     void EventoAbrirtelaCadastroClasse(EventHandler e);
+    void EventoAbrirtelaCadastroTAmanho(EventHandler e);
 
 
     #endregion

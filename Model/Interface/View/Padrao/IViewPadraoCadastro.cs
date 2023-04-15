@@ -22,7 +22,11 @@ public interface IViewPadraoCadastro
     bool VisualizarCadastrosAtivo { get; }
     bool VisualizarCadastrosInativos { get; }
 
+    #region Metodos
 
+    void RemoverCheck();
+
+    #endregion
 
     #endregion
 

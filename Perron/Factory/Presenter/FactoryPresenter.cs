@@ -40,6 +40,12 @@ public static class FactoryPresenter
         var service = FactoryService.Classe();
         return new PresenterClasse(view, service);
     }
+    public static IPresenterCadastroTamanho CadastroTamanho(IViewPrincipal viewPai)
+    {
+        var view = FactoryView.CadastroTamanho(viewPai);
+        var service = FactoryService.Tamanho();
+        return new PresenterCadastroTamanho(view, service);
+    }
 
 }
 

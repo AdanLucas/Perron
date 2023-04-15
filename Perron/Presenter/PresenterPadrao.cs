@@ -25,14 +25,14 @@ namespace Perron.Controller
         }
         #endregion
 
-
-        #region Metodos Publicos
-
         private void DelegarEventos()
         {
             _view.EventockAtivo(EventoCkativo);
             _view.EventockInativo(EventoCkativo);
         }
+
+        #region Metodos Publicos
+
         public void EstadoBotoes(EStatusCadastroTela statusTela)
         {
             switch (statusTela)
@@ -95,27 +95,31 @@ namespace Perron.Controller
                     break;
             }
         }
+        public void RemoverCkeck()
+        {
+            _view.RemoverCheck();
+        }
         #endregion
 
 
          #region Metodos Privados
         private EStatusCadastro GetstatusDosCadastrados()
         {
-            if (_view.VisualizarCadastrosAtivo)
-                return EStatusCadastro.Ativo;
+             if (_view.VisualizarCadastrosAtivo && _view.VisualizarCadastrosInativos)
+                                return EStatusCadastro.Todos;
+
+            else if (_view.VisualizarCadastrosAtivo)
+                                return EStatusCadastro.Ativo;
 
             else if (_view.VisualizarCadastrosInativos)
-                return EStatusCadastro.Inativo;
-
-            else if (_view.VisualizarCadastrosAtivo && _view.VisualizarCadastrosInativos)
-                return EStatusCadastro.Todos;
+                                 return EStatusCadastro.Inativo;
 
 
             return EStatusCadastro.none;
         }
-        public void MessageDeSucesso()
+        public void MessageDeSucesso(String msg)
         {
-            MessageBox.Show("Cadastro Realizado com Sucesso!", "Sucesso!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show($"{msg}!", "Sucesso!", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
         public void MessagemErro(Exception ex)
         {

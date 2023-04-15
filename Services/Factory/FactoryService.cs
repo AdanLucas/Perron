@@ -31,6 +31,12 @@ public static class FactoryService
 
         return new ServiceClasse(reposotiry);
     }
+    public static IServiceTamanho Tamanho()
+    {
+        var repo = FactoryRepository.Tamanho();
+
+        return new ServiceTamanho(repo);
+    }
 
 }
 

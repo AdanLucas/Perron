@@ -32,9 +32,11 @@ namespace Perron.Presenter
             _view.EventoSalvar(this.EventoSalvar);
             _view.EventoDeletar(this.EventoInativar);
             base.EventoExibicaoCadastros += EventoExibirCadastros;
-            _view.EventoNovo(EventoNovoCadastro);
+            _view.EventoNovo(this.EventoNovoCadastro);
+            _view.EventoCancelar(this.EventoCancelar);
+            _view.EventoGrid(this.EventoGrid);
         }
-
+        
         private void ValidarClasse()
         {
             bool ret = true;
@@ -114,6 +116,7 @@ namespace Perron.Presenter
                 _serivce.Salvar(_classe);
                 MessageBox.Show($"Classe {_classe.DescricaoClasse} cadastrada Com sucesso!", "Sucesso!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 EstadoInicial();
+                RemoverCkeck();
             }
             catch (Exception ex)
             {
@@ -131,7 +134,7 @@ namespace Perron.Presenter
                 _classe = _view.ClasseSelecionadaGrid;
                 _classe.InativarCadastro();
                 _serivce.Salvar(_classe);
-
+                RemoverCkeck();
                 EstadoInicial();
 
 
@@ -140,6 +143,16 @@ namespace Perron.Presenter
         private void EventoNovoCadastro(object o , EventArgs e)
         {
             NovoCadastro();
+        }
+        private void EventoCancelar(object o, EventArgs e)
+        {
+            EstadoInicial();
+            RemoverCkeck();
+        }
+        private void EventoGrid(object o,EventArgs e)
+        {
+            SetItemSelecionado();
+            SetClasseNaView();
         }
         #endregion
 

@@ -10,6 +10,7 @@ namespace Perron.View.Forms.Form_Padrao_Cadastro
             InitializeComponent();
         }
 
+
         public bool VisibilidadeBotaoSalvar
         {
             set { btnSalvar.Visible = value; }
@@ -37,12 +38,18 @@ namespace Perron.View.Forms.Form_Padrao_Cadastro
         {
             get
             {
-                return ckAtivo.Checked;
+                return ckInativo.Checked;
             }
         }
 
         public bool VisibilidadeckAtivo { set { ckAtivo.Visible = value;} }
         public bool VisibilidadeckInativo { set { ckInativo.Visible = value; } }
+
+        public void RemoverCheck()
+        {
+            ckInativo.Checked = false;
+            ckAtivo.Checked = false;
+        }
 
         public void EventockAtivo(EventHandler e)
         {

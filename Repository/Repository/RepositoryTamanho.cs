@@ -26,31 +26,11 @@ namespace Repository.Repository
 
         #region metodos Publicos
 
-        public List<TamanhoModel> GetListaTamanho(EStatusCadastro status)
+        public List<TamanhoModel> GetListaTamanho()
         {
             using (var Session = new DbSession())
             {
-                var where = "";
-                var sql = $"select * from Tamanho {where}";
-
-                switch (status)
-                {
-                    case EStatusCadastro.Ativo:
-
-                        where = "where Ativo  =1";
-
-                        break;
-                    case EStatusCadastro.Inativo:
-
-                        where = "where Ativo  = 0";
-
-                        break;
-                }
-
-
-                return Session.Connection.Query<TamanhoModel>(sql).ToList();
-
-
+                return Session.Connection.Query<TamanhoModel>("select * from Tamanho").ToList();
             }
 
 

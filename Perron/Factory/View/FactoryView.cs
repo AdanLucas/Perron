@@ -55,6 +55,13 @@ public static class FactoryView
         return CadatroClasse;
 
     }
+    public static IViewCadastroTamanho CadastroTamanho(IViewPrincipal viewPrincipal)
+    {
+        var view = new FrmCadastroTamanho();
 
+        SetarMidParentTelaPrincial(view, viewPrincipal);
+
+        return view;
+    }
 }
 

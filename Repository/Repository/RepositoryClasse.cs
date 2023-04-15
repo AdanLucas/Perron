@@ -34,7 +34,7 @@ namespace Repository.Repository
         }
         private ClasseModel ScriptGetClassePorID(DbSession session,int id)
         {
-            return session.Connection.Query<ClasseModel>($"Select * from Classe where id = {id}").FirstOrDefault();
+            return session.Connection.Query<ClasseModel>($"select Id,Descricao as DescricaoClasse,Ativo from Classe where id = {id}").FirstOrDefault();
         }
 
         public ClasseModel GetClassePorId(int Id)

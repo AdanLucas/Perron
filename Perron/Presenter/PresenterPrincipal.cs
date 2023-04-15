@@ -18,6 +18,7 @@ namespace Perron.Factory.Controller
         IPresenterEngrediente _presenterIngrediente;
         IPresenterSabor _presenterSabor;
         IPresenterClasse _presenterClasse;
+        IPresenterCadastroTamanho _presenterTamanho;
 
         #endregion
 
@@ -37,6 +38,7 @@ namespace Perron.Factory.Controller
             _view.EventoAbrirTelaIngredientes(EventoAbrirCadastroIngrediente);
             _view.EventoAbrirTelaCadastroSabor(EventoAbrirCadastroSabor);
             _view.EventoAbrirtelaCadastroClasse(EventoAbrirCadastroClasse);
+            _view.EventoAbrirtelaCadastroTAmanho(this.EventoAbrirCadastroTamanho);
         }
 
 
@@ -47,6 +49,7 @@ namespace Perron.Factory.Controller
         #endregion
 
         #region Eventos Privados
+
         private void EventoFechar(object o, FormClosedEventArgs e)
         {
             Application.Exit();
@@ -63,6 +66,11 @@ namespace Perron.Factory.Controller
         {
             _presenterClasse = FactoryPresenter.Classe(_view); 
         }
+        private void EventoAbrirCadastroTamanho(object o, EventArgs e)
+        {
+            _presenterTamanho = FactoryPresenter.CadastroTamanho(_view);
+        }
+
         #endregion
 
         #region Eventos Publicos

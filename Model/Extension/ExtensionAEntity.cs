@@ -19,16 +19,19 @@ using System.Windows.Forms;
 
             }
         }
-        public static void InativarCadastro(this Aentity cadastro)
+    public static bool InativarCadastro(this Aentity cadastro)
     {
         if (cadastro.Ativo == true)
         {
+
             if (MessageBox.Show("Deseja Inativar o Cadastro ?", "Inativar Cadastro ?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                cadastro.Ativo = false;
+                return cadastro.Ativo = false;
             }
 
         }
+
+        return cadastro.Ativo;
     }
 
 

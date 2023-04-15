@@ -43,6 +43,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Aentity\Aentity.cs" />
+    <Compile Include="Delegates\Genericos\EventArgsGenerico.cs" />
+    <Compile Include="Delegates\Genericos\EventHandlerGenerico.cs" />
     <Compile Include="Delegates\StatusCadastroExibidoEventArgs.cs" />
     <Compile Include="Delegates\StatusCadastroExibidoEventHandler.cs" />
     <Compile Include="DTO\dtoCell.cs" />
@@ -51,6 +53,7 @@
     <Compile Include="Emumerator\EStatusCadastroTela.cs" />
     <Compile Include="Emumerator\EUnidadeMedida.cs" />
     <Compile Include="Extension\ExtensionAEntity.cs" />
+    <Compile Include="Interface\Presenter\IPresenterCadastroTamanho.cs" />
     <Compile Include="Interface\Presenter\IPresenterClasse.cs" />
     <Compile Include="Interface\Presenter\IPresenterEngredienteSabor.cs" />
     <Compile Include="Interface\Presenter\IPresenterEngrediente.cs" />
@@ -64,9 +67,11 @@
     <Compile Include="Interface\Services\IServiceClasse.cs" />
     <Compile Include="Interface\Services\IServiceEngrediente.cs" />
     <Compile Include="Interface\Services\IServiceSabor.cs" />
+    <Compile Include="Interface\Services\IServiceTamanho.cs" />
     <Compile Include="Interface\View\IViewCadastroEngredienteSabor.cs" />
     <Compile Include="Interface\View\IViewCadastroIngrediente.cs" />
     <Compile Include="Interface\View\IViewCadastroSabor.cs" />
+    <Compile Include="Interface\View\IViewCadastroTamanho.cs" />
     <Compile Include="Interface\View\IViewClasse.cs" />
     <Compile Include="Interface\View\Padrao\IViewPadraoCadastro.cs" />
     <Compile Include="Interface\View\IViewPrincipal.cs" />

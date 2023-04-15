@@ -12,7 +12,7 @@ namespace Repository.Repository
 
         #region Interfaces
 
-       
+        
 
         #endregion
 
@@ -33,7 +33,26 @@ namespace Repository.Repository
 
 
         }
+        private void CadastroEngredienteSabor(DbSession Session,long IDsabor,EngredienteModel Engrediente)
+        {
+            try
+            {
+                Session.Connection.Execute("Exec pc_cadastroSaborEngrediente @IDSabor,IDEngrediente,@Ativo", param: new
+                {
+                    IDSabor = IDsabor,
+                    IDEngrediente = Engrediente.Id,
+                     Ativo = Engrediente.Ativo
+                },transaction: Session.Transaction);
 
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+
+        }
+        
        
         private List<EngredienteModel> GetListaEngredientePorSabor(DbSession session, long IDSabor)
         {
@@ -109,7 +128,31 @@ namespace Repository.Repository
         {
             using (var Session = new DbSession())
             {
-                pc_cadastroSabor(Session, sabor);
+                var Unit = new UnitOfWork(Session);
+
+                Unit.BeginTran();
+
+                try
+                {
+                   pc_cadastroSabor(Session, sabor);
+
+                    foreach (var Engrediente in sabor.GetEngredientePorStatus(EStatusCadastro.Todos))
+                    {
+                        CadastroEngredienteSabor(Session, sabor.Id, Engrediente);
+                    }
+
+                    Unit.Commit();
+
+                }
+                catch
+                {
+                    Unit.RollBack();
+                    throw new Exception("Ocorreu Um erro Ao Cadastrar Sabor");
+                    
+                }    
+
+
+                
             }
         } 
 

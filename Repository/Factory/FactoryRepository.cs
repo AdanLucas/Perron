@@ -14,7 +14,7 @@ using System.Threading.Tasks;
         }
         public static IRepositoryTamanho Tamanho()
         {
-            return null;
+            return new RepositoryTamanho();
         }
         public static IRepositoryEngrediente Engrediente()
         {

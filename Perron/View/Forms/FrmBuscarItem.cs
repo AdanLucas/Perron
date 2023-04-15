@@ -15,6 +15,7 @@ namespace Perron.View.Forms
         public FrmBuscarItem()
         {
             InitializeComponent();
+            dgvItem.DoubleClick += EventoGrid;
         }
         public void PopularLista<T>(List<T> lista)
         {
@@ -25,26 +26,24 @@ namespace Perron.View.Forms
                 dgvItem.Columns["Ativo"].Visible = false;
             }
         }
-        public T GetItemSelecionado
+        public T GetItemSelecionado<T>()
         {
-            get
+            try
             {
-                try
-                {
-                    return (T).CurrentRow.DataBoundItem;
-                }
-                catch
-                {
-                    return default(T);
-                }
+                return (T)dgvItem.CurrentRow.DataBoundItem;
+
             }
+            catch (Exception ex)
+            {
 
-          
+                throw new Exception("Item Não Selecionado");
+            }
         }
-
         public void EventoGrid(object o, EventArgs e)
         {
-            if()
+
+            this.DialogResult = DialogResult.OK;
+            this.Close();
           
         }
     }

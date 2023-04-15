@@ -6,9 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Perron.Outros
+namespace Perron.Presenter
 {
-    public class BuscarItemGenerico<T>
+    public  class BuscarItemGenerico<T>
     {
 
         public EventHandlerGenerico<T> EventoTermino;
@@ -35,13 +35,17 @@ namespace Perron.Outros
         }
 
 
-       public void Buscar()
+       public T Get()
         {
-           if(AbrirTelaDialor() == DialogResult.OK)
+            if (AbrirTelaDialor() == DialogResult.OK)
             {
-                _view.Close();
-                NotificarEvento(GetItem());
+                return GetItem();
             }
+            else 
+            {
+                throw new Exception("Cancelado Pelo usuario");
+            }
+            
         }
 
 

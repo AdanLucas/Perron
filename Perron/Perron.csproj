@@ -46,15 +46,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Outros\BuscarItemGenerico.cs" />
+    <Compile Include="Presenter\Outros\PresenterBuscarItemGenerico.cs" />
     <Compile Include="Outros\ExibirStatusCadastro.cs" />
-    <Compile Include="Presenter\PresenterCadastroTamanho.cs" />
-    <Compile Include="Presenter\PresenterClasse.cs" />
-    <Compile Include="Presenter\PresenterEngredienteSabor.cs" />
-    <Compile Include="Presenter\PresenterIngrediente.cs" />
-    <Compile Include="Presenter\PresenterPadrao.cs" />
-    <Compile Include="Presenter\PresenterPrincipal.cs" />
-    <Compile Include="Presenter\PresenterSabor.cs" />
+    <Compile Include="Presenter\Cadastro\PresenterCadastroTamanho.cs" />
+    <Compile Include="Presenter\Cadastro\PresenterClasse.cs" />
+    <Compile Include="Presenter\Cadastro\PresenterEngredienteSabor.cs" />
+    <Compile Include="Presenter\Cadastro\PresenterIngrediente.cs" />
+    <Compile Include="Presenter\Cadastro\PresenterPadrao.cs" />
+    <Compile Include="Presenter\Principal\PresenterPrincipal.cs" />
+    <Compile Include="Presenter\Cadastro\PresenterSabor.cs" />
     <Compile Include="Factory\Presenter\FactoryPresenter.cs" />
     <Compile Include="Factory\View\FactoryView.cs" />
     <Compile Include="Outros\AlocarComponentes.cs" />

@@ -1,4 +1,5 @@
 ﻿using Perron.Controller;
+using Services.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,6 @@ namespace Perron.Presenter
     {
 
         private readonly IViewClasse _view;
-
         private ClasseModel _classe;
         private readonly IServiceClasse _serivce;
 
@@ -22,7 +22,9 @@ namespace Perron.Presenter
             _view.Show();
             _serivce = service;
             DelegarEventos();
-            EstadoInicial();
+
+            AlterarStatusTela(EStatusCadastroTela.Inicio);
+
         }
 
         #region Metodos Privados
@@ -32,11 +34,11 @@ namespace Perron.Presenter
             _view.EventoSalvar(this.EventoSalvar);
             _view.EventoDeletar(this.EventoInativar);
             base.EventoExibicaoCadastros += EventoExibirCadastros;
+            base.EventoStatusCadastroTela += EventoAlterarStatusCadastro;
             _view.EventoNovo(this.EventoNovoCadastro);
             _view.EventoCancelar(this.EventoCancelar);
             _view.EventoGrid(this.EventoGrid);
         }
-        
         private void ValidarClasse()
         {
             bool ret = true;
@@ -69,26 +71,30 @@ namespace Perron.Presenter
 
             _classe.DescricaoClasse = _view.DescricaoClasse;
         }
-        private void NovoCadastro()
+        private void EstadoInicial()
         {
-            EstadoBotoes(EStatusCadastroTela.Novo);
+            _classe = null;
+            _view.DescricaoClasse = "";
+            
+
+        }
+        private void EstadoNovoCadastro()
+        {
             _classe = new ClasseModel();
             _classe.Ativo = true;
             _view.DescricaoClasse = "";
             _view.PopularGridClasse(null);
 
         }
-        private void EstadoInicial()
+        private void EstadoItemSelecionado()
         {
-            _classe = null;
-            _view.DescricaoClasse = "";
-            EstadoBotoes(EStatusCadastroTela.Inicio);
-
+            SetItemSelecionado();
         }
         private void SetItemSelecionado()
         {
-            EstadoBotoes(EStatusCadastroTela.ItemSelecionado);
             _classe = _view.ClasseSelecionadaGrid;
+            SetClasseNaView();
+
         }
         #endregion
 
@@ -111,12 +117,11 @@ namespace Perron.Presenter
             try
             {
                 GetClasseView();
-                ValidarClasse();
+                ValidadorModel.ValidarModeloLancaExcecao(_classe);
                 _classe.AtivarCadastroInativo();
                 _serivce.Salvar(_classe);
-                MessageBox.Show($"Classe {_classe.DescricaoClasse} cadastrada Com sucesso!", "Sucesso!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                EstadoInicial();
-                RemoverCkeck();
+                MessageDeSucesso($"Classe {_classe.DescricaoClasse} cadastrada Com sucesso!");
+                AlterarStatusTela(EStatusCadastroTela.Inicio);
             }
             catch (Exception ex)
             {
@@ -134,29 +139,52 @@ namespace Perron.Presenter
                 _classe = _view.ClasseSelecionadaGrid;
                 _classe.InativarCadastro();
                 _serivce.Salvar(_classe);
-                RemoverCkeck();
-                EstadoInicial();
-
-
+                AlterarStatusTela(EStatusCadastroTela.Inicio);
             }
         }
         private void EventoNovoCadastro(object o , EventArgs e)
         {
-            NovoCadastro();
+            AlterarStatusTela(EStatusCadastroTela.Novo);
         }
         private void EventoCancelar(object o, EventArgs e)
         {
-            EstadoInicial();
-            RemoverCkeck();
+            AlterarStatusTela(EStatusCadastroTela.Inicio);
+
         }
         private void EventoGrid(object o,EventArgs e)
         {
-            SetItemSelecionado();
-            SetClasseNaView();
+            AlterarStatusTela(EStatusCadastroTela.ItemSelecionado);
         }
         #endregion
 
+        private void EventoAlterarStatusCadastro(object o,StatusCadastroTelaEventArgs e)
+        {
+            switch (e.statusTela)
+            {
+             
+                case EStatusCadastroTela.Inicio:
+                    EstadoInicial();
+                    break;
 
+
+                case EStatusCadastroTela.Novo:
+                    EstadoNovoCadastro();
+                    break;
+
+
+                case EStatusCadastroTela.Cadastrando:
+                    break;
+
+
+                case EStatusCadastroTela.ItemSelecionado:
+                    EstadoItemSelecionado();
+                    break;
+
+
+                default:
+                    break;
+            }
+        }
 
     }
 }

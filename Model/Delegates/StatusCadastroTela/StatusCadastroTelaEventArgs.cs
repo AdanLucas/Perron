@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 
-    public class dtoCell<T>: DataGridViewCell
+    public class StatusCadastroTelaEventArgs : EventArgs
     {
-        T Item { get; set; }
+        public EStatusCadastroTela statusTela { get; set; }
     }
 

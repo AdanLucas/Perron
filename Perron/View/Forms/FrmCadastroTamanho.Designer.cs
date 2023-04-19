@@ -42,7 +42,7 @@ namespace Perron.View.Forms
             // numQnt
             // 
             this.numQnt.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numQnt.Location = new System.Drawing.Point(466, 117);
+            this.numQnt.Location = new System.Drawing.Point(455, 61);
             this.numQnt.Name = "numQnt";
             this.numQnt.Size = new System.Drawing.Size(54, 26);
             this.numQnt.TabIndex = 3;
@@ -50,7 +50,7 @@ namespace Perron.View.Forms
             // txtDescricao
             // 
             this.txtDescricao.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDescricao.Location = new System.Drawing.Point(113, 116);
+            this.txtDescricao.Location = new System.Drawing.Point(113, 60);
             this.txtDescricao.Name = "txtDescricao";
             this.txtDescricao.Size = new System.Drawing.Size(130, 26);
             this.txtDescricao.TabIndex = 4;
@@ -60,21 +60,21 @@ namespace Perron.View.Forms
             this.dgvTamanhos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvTamanhos.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvTamanhos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvTamanhos.Location = new System.Drawing.Point(12, 234);
+            this.dgvTamanhos.Location = new System.Drawing.Point(12, 136);
             this.dgvTamanhos.MultiSelect = false;
             this.dgvTamanhos.Name = "dgvTamanhos";
             this.dgvTamanhos.ReadOnly = true;
             this.dgvTamanhos.RowHeadersWidth = 51;
             this.dgvTamanhos.RowTemplate.Height = 24;
             this.dgvTamanhos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvTamanhos.Size = new System.Drawing.Size(660, 204);
+            this.dgvTamanhos.Size = new System.Drawing.Size(497, 204);
             this.dgvTamanhos.TabIndex = 5;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(12, 211);
+            this.label1.Location = new System.Drawing.Point(12, 113);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(187, 20);
             this.label1.TabIndex = 6;
@@ -84,7 +84,7 @@ namespace Perron.View.Forms
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(12, 119);
+            this.label2.Location = new System.Drawing.Point(12, 63);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(86, 20);
             this.label2.TabIndex = 6;
@@ -94,7 +94,7 @@ namespace Perron.View.Forms
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(269, 119);
+            this.label3.Location = new System.Drawing.Point(268, 63);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(164, 20);
             this.label3.TabIndex = 6;
@@ -104,7 +104,7 @@ namespace Perron.View.Forms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(684, 450);
+            this.ClientSize = new System.Drawing.Size(519, 350);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -114,7 +114,7 @@ namespace Perron.View.Forms
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.MaximizeBox = false;
             this.Name = "FrmCadastroTamanho";
-            this.Text = "FrmCadastroTamanho";
+            this.Text = "Cadastro de Tamanho";
             this.Controls.SetChildIndex(this.numQnt, 0);
             this.Controls.SetChildIndex(this.txtDescricao, 0);
             this.Controls.SetChildIndex(this.dgvTamanhos, 0);

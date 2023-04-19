@@ -12,7 +12,7 @@ using System.Windows.Forms;
         {
             if (cadastro.Ativo == false)
             {
-                if (MessageBox.Show("A marcadoria Esta Inativa, Deseja Ativar?", "Cadastro Inativo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show("O Cadastro Está Inativa, Deseja Ativar?", "Cadastro Inativo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     cadastro.Ativo = true;
                 }

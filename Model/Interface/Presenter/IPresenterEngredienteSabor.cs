@@ -7,10 +7,9 @@ using System.Threading.Tasks;
 
 public interface IPresenterEngredienteSabor
 {
-    void StatusCadastro(EStatusCadastroTela status);
-    List<EngredienteModel> GetEngredienteSabor();
     
-
-
+    List<EngredienteModel> GetEngredienteSabor();
+    void SetListaEngredienteSabor(List<EngredienteModel>Lista);
+    void EventoAtualizarStatusCadastro(object o, StatusCadastroTelaEventArgs e);
 }
 

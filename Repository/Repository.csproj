@@ -50,10 +50,12 @@
     <Compile Include="Factory\FactoryRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\RepositoryClasse.cs" />
+    <Compile Include="Repository\RepositoryDinamico.cs" />
     <Compile Include="Repository\RepositoryEngrediente.cs" />
     <Compile Include="Repository\RepositorySabor.cs" />
     <Compile Include="Repository\RepositoryTamanho.cs" />
     <Compile Include="ScriptBase\CriandoBaseSql.cs" />
+    <Compile Include="ScriptsDinamicos\ScriptsDinamicos.cs" />
     <Compile Include="Transaction\UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup />

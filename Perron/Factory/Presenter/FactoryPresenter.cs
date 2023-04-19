@@ -30,8 +30,9 @@ public static class FactoryPresenter
     public static IPresenterSabor CadastroSabor(IViewPrincipal viewPai)
     {
         var view = FactoryView.CadastroSabor(viewPai);
+        var serivce = FactoryService.Sabor();
 
-        return new PresenterSabor(view);
+        return new PresenterSabor(view,serivce);
 
     }
     public static IPresenterClasse Classe(IViewPrincipal viewPai)

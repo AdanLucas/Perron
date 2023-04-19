@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Perron.Outros;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -21,9 +22,12 @@ namespace Perron.View.Forms
         {
             if (lista != null)
             {
+
                 dgvItem.DataSource = lista;
                 dgvItem.Columns["Id"].Visible = false;
                 dgvItem.Columns["Ativo"].Visible = false;
+                dgvItem.ColumnHeadersVisible = false;
+                
             }
         }
         public T GetItemSelecionado<T>()

@@ -9,7 +9,7 @@ namespace Repository.Repository
 
 
 
-    public  class RepositoryClasse: IRepositoryClasse
+    public  class RepositoryClasse: IRepositoryClasse 
     {
         private void pc_cadastroClasse(DbSession Session, ClasseModel Classe)
         {
@@ -28,7 +28,7 @@ namespace Repository.Repository
                 throw new Exception(ex.Message);
             }
         }
-        private List<ClasseModel>ScriptGetListaClasse(DbSession session )
+        private List<ClasseModel> ScriptGetListaClasse(DbSession session )
         {
             return session.Connection.Query<ClasseModel>("select Id,Descricao as DescricaoClasse,Ativo from Classe").ToList();
         }
@@ -37,7 +37,7 @@ namespace Repository.Repository
             return session.Connection.Query<ClasseModel>($"select Id,Descricao as DescricaoClasse,Ativo from Classe where id = {id}").FirstOrDefault();
         }
 
-        public ClasseModel GetClassePorId(int Id)
+        public ClasseModel GetItemPorID(int Id)
         {
             using (var session = new DbSession())
             {
@@ -45,7 +45,7 @@ namespace Repository.Repository
             }
         }
 
-        public List<ClasseModel> GetListaClasse()
+        public List<ClasseModel> GetLista()
         {
             using (var Session = new DbSession())
             {
@@ -60,7 +60,6 @@ namespace Repository.Repository
                 this.pc_cadastroClasse(Session, classe);
             }
         }
-
-    
+      
     }
 }

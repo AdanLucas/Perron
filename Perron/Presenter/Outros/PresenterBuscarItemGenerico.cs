@@ -1,4 +1,5 @@
 ﻿using Perron.View.Forms;
+using Services.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,9 +15,11 @@ namespace Perron.Presenter
         public EventHandlerGenerico<T> EventoTermino;
 
        private FrmBuscarItem _view = new FrmBuscarItem();
-        public BuscarItemGenerico(List<T> Lista)
+
+        
+        public BuscarItemGenerico()
         {
-            _view.PopularLista<T>(Lista);
+            _view.PopularLista<T>(ServiceDinamico<T>.GetLista());
         }
         private DialogResult AbrirTelaDialor()
         {

@@ -5,10 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-public interface IRepositoryClasse: IRepositoryBase<ClasseModel>
+public interface IRepositoryBase<T>
 {
-    
-
-
+    void Salvar(T Item);
+    List<T> GetLista();
+    T GetItemPorID(int Id);
 }
-

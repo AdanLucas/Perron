@@ -42,7 +42,7 @@ namespace Perron.View.Forms
             // 
             this.panel2.Controls.Add(this.dgvIngredientes);
             this.panel2.Location = new System.Drawing.Point(21, 290);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(683, 242);
             this.panel2.TabIndex = 3;
@@ -53,7 +53,7 @@ namespace Perron.View.Forms
             this.dgvIngredientes.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvIngredientes.GridColor = System.Drawing.SystemColors.ActiveCaption;
             this.dgvIngredientes.Location = new System.Drawing.Point(0, 0);
-            this.dgvIngredientes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvIngredientes.Margin = new System.Windows.Forms.Padding(4);
             this.dgvIngredientes.Name = "dgvIngredientes";
             this.dgvIngredientes.RowHeadersWidth = 51;
             this.dgvIngredientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -64,7 +64,7 @@ namespace Perron.View.Forms
             // 
             this.txtDescricao.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDescricao.Location = new System.Drawing.Point(181, 134);
-            this.txtDescricao.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtDescricao.Margin = new System.Windows.Forms.Padding(4);
             this.txtDescricao.Name = "txtDescricao";
             this.txtDescricao.Size = new System.Drawing.Size(445, 34);
             this.txtDescricao.TabIndex = 4;
@@ -100,10 +100,10 @@ namespace Perron.View.Forms
             this.Controls.Add(this.txtDescricao);
             this.Controls.Add(this.lbDescricao);
             this.Controls.Add(this.panel2);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
-            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.Margin = new System.Windows.Forms.Padding(5);
             this.MaximizeBox = false;
             this.Name = "FrmCadastroIngrediente";
+            this.Load += new System.EventHandler(this.FrmCadastroIngrediente_Load);
             this.Controls.SetChildIndex(this.panel2, 0);
             this.Controls.SetChildIndex(this.lbDescricao, 0);
             this.Controls.SetChildIndex(this.txtDescricao, 0);

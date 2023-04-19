@@ -53,5 +53,10 @@ namespace Perron.View.Forms
         {
             dgvIngredientes.DataSource = Ingredientes;
         }
+
+        private void FrmCadastroIngrediente_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

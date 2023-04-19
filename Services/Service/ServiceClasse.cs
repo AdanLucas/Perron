@@ -18,12 +18,12 @@ namespace Services.Service
 
         public ClasseModel GetClasseporId(int Id)
         {
-            return _repository.GetClassePorId(Id);
+            return _repository.GetItemPorID(Id);
         }
 
         public List<ClasseModel> GetlistaClasse(EStatusCadastro statusCadastro)
         {
-            var Lista = _repository.GetListaClasse();
+            var Lista = _repository.GetLista();
 
             switch (statusCadastro)
             {

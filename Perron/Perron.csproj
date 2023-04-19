@@ -34,6 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -46,6 +47,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Outros\GerenciarStatusCadastro.cs" />
+    <Compile Include="Outros\PegarAtributoClasse.cs" />
     <Compile Include="Presenter\Outros\PresenterBuscarItemGenerico.cs" />
     <Compile Include="Outros\ExibirStatusCadastro.cs" />
     <Compile Include="Presenter\Cadastro\PresenterCadastroTamanho.cs" />
@@ -53,6 +56,7 @@
     <Compile Include="Presenter\Cadastro\PresenterEngredienteSabor.cs" />
     <Compile Include="Presenter\Cadastro\PresenterIngrediente.cs" />
     <Compile Include="Presenter\Cadastro\PresenterPadrao.cs" />
+    <Compile Include="Presenter\Outros\PresenterGetEstatusCadastro.cs" />
     <Compile Include="Presenter\Principal\PresenterPrincipal.cs" />
     <Compile Include="Presenter\Cadastro\PresenterSabor.cs" />
     <Compile Include="Factory\Presenter\FactoryPresenter.cs" />
@@ -62,6 +66,12 @@
     <Compile Include="Outros\Extensoes\ExDataGrid.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="View\UserControl\UserControlStatusCadastro.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\UserControl\UserControlStatusCadastro.Designer.cs">
+      <DependentUpon>UserControlStatusCadastro.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Forms\FrmBuscarItem.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -125,6 +135,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="View\UserControl\UserControlStatusCadastro.resx">
+      <DependentUpon>UserControlStatusCadastro.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\Forms\FrmBuscarItem.resx">
       <DependentUpon>FrmBuscarItem.cs</DependentUpon>
     </EmbeddedResource>

@@ -18,12 +18,9 @@ public static class FactoryService
     }
     public static IServiceSabor Sabor()
     {
-
-
-
-
-
-        return null;
+        var repo = FactoryRepository.Sabor();
+        return new ServiceSabor(repo);
+        
     }
     public static IServiceClasse Classe()
     {

@@ -6,13 +6,10 @@ using System.Threading.Tasks;
 
 
 
-public interface IRepositoryEngrediente
+public interface IRepositoryEngrediente: IRepositoryBase<EngredienteModel>
 {
-    void SalvarEngrediente(EngredienteModel Engrediente);
-    
     EngredienteModel GetEngredientePorId(int Id);
     List<EngredienteDTO> GetListaEngredienteDTO();
-    List<EngredienteModel> GetListaEngrediente(EStatusCadastro statusCadastro);
     List<EngredienteModel> GetListaEngredientePorSabor(int IDSabor);
 
 }

@@ -18,38 +18,63 @@ namespace Perron.View.Forms
             InitializeComponent();
         }
 
+
         public string DescricaoSabor
         {
             get { return txtDescricaoSabor.Text; }
             set { txtDescricaoSabor.Text = value; }
-        
+
         }
-        public int IdClasse 
+        public Panel PainelEngredienteSabor
+        {
+            get { return painelEngredienteSabor; }
+        }
+        public string DescricaoClasse
+        {
+            set { txtClasse.Text = value; }
+        }
+        public void EventoBuscarClasse(EventHandler e)
+        {
+            btnBuscarClasse.Click += e;
+        }
+        public bool VisibilidadeBotao
+        {
+            set { btnBuscarClasse.Visible = value; }
+        }
+        public SaborModel ItemSelecionadoGrid
         {
             get
             {
                 try
                 {
-                    return (int)comboClasse.SelectedValue;
+                    return (SaborModel)dgvSaboresCadastrados.CurrentRow.DataBoundItem;
                 }
                 catch
                 {
 
-                    return 0;
-                }    
-
+                    return null;
+                }
             }
-            set { }
+        
+        }
+        public void EventoGrid(EventHandler e)
+        {
+            dgvSaboresCadastrados.DoubleClick += e;
         }
 
-        public Panel PainelEngredienteSabor
+        public void PopularGrid(List<SaborModel> Lista)
         {
-            get { return painelEngredienteSabor;}
-        }
+            dgvSaboresCadastrados.DataSource = null;
 
-        public void PopularComboClasse(List<ClasseModel> ListaClasse)
-        {
-            comboClasse.ConfigurarDadosComboBox<ClasseModel>(ListaClasse);
+            if(Lista != null)
+            {
+                dgvSaboresCadastrados.DataSource = Lista;
+                dgvSaboresCadastrados.Columns["Id"].Visible = false;
+                dgvSaboresCadastrados.Columns["Ativo"].Visible = false;
+                dgvSaboresCadastrados.Columns["Classe"].Visible = false;
+            }
+
+         
         }
     }
 }

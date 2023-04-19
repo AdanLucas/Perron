@@ -5,11 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-public interface IRepositorySabor
+public interface IRepositorySabor: IRepositoryBase<SaborModel>
 {
-    void SalvarSabor(SaborModel sabor);
-    SaborModel GetSaborPorId(int Id);
-    List<SaborModel> GetListaSabor(EStatusCadastro statusCadastro);
 
 }
 

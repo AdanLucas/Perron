@@ -41,16 +41,13 @@ namespace Perron.View.Forms.Form_Padrao_Cadastro
                 return ckInativo.Checked;
             }
         }
-
-        public bool VisibilidadeckAtivo { set { ckAtivo.Visible = value;} }
-        public bool VisibilidadeckInativo { set { ckInativo.Visible = value; } }
-
+        public bool VisibilidadeckAtivo { set { ckAtivo.Enabled = value;} }
+        public bool VisibilidadeckInativo { set { ckInativo.Enabled = value; } }
         public void RemoverCheck()
         {
             ckInativo.Checked = false;
             ckAtivo.Checked = false;
         }
-
         public void EventockAtivo(EventHandler e)
         {
             ckAtivo.CheckStateChanged += e;
@@ -59,33 +56,27 @@ namespace Perron.View.Forms.Form_Padrao_Cadastro
         {
             ckInativo.CheckStateChanged += e;
         }
-
         public void EventoCancelar(EventHandler e)
         {
             btnCancelar.Click += e;
         }
-
         public void EventoDeletar(EventHandler e)
         {
             btnRemover.Click += e;
         }
-
         public void EventoFecharForms(FormClosedEventHandler e)
         {
             FormClosed += e;
         }
-
         public void EventoNovo(EventHandler e)
         {
             btnNovo.Click += e;
         }
-
         public void EventoSalvar(EventHandler e)
         {
             btnSalvar.Click += e;
         }
+
       
-
-
     }
 }

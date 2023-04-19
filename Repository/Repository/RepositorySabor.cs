@@ -19,17 +19,16 @@ namespace Repository.Repository
      
 
         #region Metodos Privados
-
         private void pc_cadastroSabor(DbSession Session,SaborModel sabor)
         {
-            Session.Connection.Execute("pc_cadastroSabor @id,@descricao,@idClasse,@ativo",
+            sabor.Id = (long)Session.Connection.Query<int>("pc_cadastroSabor @id,@descricao,@idClasse,@ativo",
                 param: new
                 {
                     id = sabor.Id,
                     descricao = sabor.Descricao,
                     idClasse = sabor.Classe.Id,
-                    ativo = sabor.Ativo 
-                },transaction: Session.Transaction);
+                    ativo = sabor.Ativo
+                }, transaction: Session.Transaction).FirstOrDefault();
 
 
         }
@@ -37,9 +36,9 @@ namespace Repository.Repository
         {
             try
             {
-                Session.Connection.Execute("Exec pc_cadastroSaborEngrediente @IDSabor,IDEngrediente,@Ativo", param: new
+                Session.Connection.Execute("Exec pc_cadastroSaborEngrediente @IDSabor,@IDEngrediente,@Ativo", param: new
                 {
-                    IDSabor = IDsabor,
+                    IDSabor = (int)IDsabor,
                     IDEngrediente = Engrediente.Id,
                      Ativo = Engrediente.Ativo
                 },transaction: Session.Transaction);
@@ -52,59 +51,32 @@ namespace Repository.Repository
 
 
         }
-        
-       
-        private List<EngredienteModel> GetListaEngredientePorSabor(DbSession session, long IDSabor)
-        {
-           return session.Connection.Query<EngredienteModel>($"select * from Engrediente where id IN (select Engrediente from Sabor_has_Engrediente where Sabor = {IDSabor})").ToList();
-        }
         private ClasseModel GetClassePorSabor(DbSession session,int IDClasse)
         {
 
             return session.Connection.Query<ClasseModel>($"Select * from Classe where id = {IDClasse}").FirstOrDefault();
             
         }
-
+        private List<EngredienteModel> GetListaEngredientePorSabor(DbSession session, long IDSabor)
+        {
+           return session.Connection.Query<EngredienteModel>($"select * from Engrediente where id IN (select Engrediente from Sabor_has_Engrediente where Sabor = {IDSabor})").ToList();
+        }
         #endregion
 
 
 
         #region Metodos Publicos
 
-        public List<SaborModel> GetListaSabor(EStatusCadastro statusCadastro)
+        public List<SaborModel> GetLista()
         {
-            string where = "";
-            string sql = $"Select * from Sabor {where}";
-
-            switch (statusCadastro)
-            {
-                case EStatusCadastro.Todos:
-
-                    where = "";
-
-                    break;
-                case EStatusCadastro.Ativo:
-
-                    where = "where Ativo = 1";
-
-                    break;
-                case EStatusCadastro.Inativo:
-
-                    where = "where Ativo = 0";
-
-                    break;
-                default:
-                    break;
-            }
-
             using (var session = new DbSession())
             {
-                var Lista = session.Connection.Query<SaborModel>(sql).ToList();
+                var Lista = session.Connection.Query<SaborModel>("Select * from Sabor").ToList();
 
                 foreach (var item in Lista)
                 {
-                    long IDclasse = session.Connection.Query<int>($"Select IdClsse From Sabor where Id = {item.Id}").FirstOrDefault();
-                    item.Classe = session.Connection.Query<ClasseModel>($"select * from Classe where id = {IDclasse}").FirstOrDefault();
+                    long IDclasse = session.Connection.Query<int>($"Select IdClasse From Sabor where Id = {item.Id}").FirstOrDefault();
+                    item.Classe = session.Connection.Query<ClasseModel>($"select Id,Descricao as DescricaoClasse,Ativo from Classe where id= {IDclasse}").FirstOrDefault();
                     item.Engredientes = GetListaEngredientePorSabor(session,item.Id);
 
 
@@ -116,7 +88,7 @@ namespace Repository.Repository
 
         }
 
-        public SaborModel GetSaborPorId(int Id)
+        public SaborModel GetItemPorID(int Id)
         {
             using (var session = new DbSession())
             {
@@ -124,7 +96,7 @@ namespace Repository.Repository
             }
         }
 
-        public void SalvarSabor(SaborModel sabor)
+        public void Salvar(SaborModel sabor)
         {
             using (var Session = new DbSession())
             {

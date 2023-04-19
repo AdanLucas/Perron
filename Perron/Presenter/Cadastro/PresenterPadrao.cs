@@ -14,10 +14,12 @@ namespace Perron.Controller
         #endregion
 
         #region Eventos
-        public event StatusCadastroExibidoEventHandler EventoExibicaoCadastros; 
+        public event StatusCadastroExibidoEventHandler EventoExibicaoCadastros;
+        public event StatusCadastroTelaEventhandler EventoStatusCadastroTela;
         #endregion
 
         #region Construtor
+        public EStatusCadastroTela StatusCadastro {  get; private set; }
         public PresenterPadrao(IViewPadraoCadastro view)
         {
             _view = view;
@@ -25,17 +27,39 @@ namespace Perron.Controller
         }
         #endregion
 
+
+
+
+        #region Metodos Publicos
+
+        public void AlterarStatusTela(EStatusCadastroTela status)
+        {
+            StatusCadastro = status;
+            NotificarEventoStatusTela();
+        }
+        public void MessageDeSucesso(String msg)
+        {
+            MessageBox.Show($"{msg}!", "Sucesso!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        public void MessagemErro(Exception ex)
+        {
+            MessageBox.Show(ex.Message, "Ocorreu um erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+        #endregion
+
+
+
+
+         #region Metodos Privados
         private void DelegarEventos()
         {
             _view.EventockAtivo(EventoCkativo);
             _view.EventockInativo(EventoCkativo);
+            EventoStatusCadastroTela += this.EventoAlterarStausCadastro;
         }
-
-        #region Metodos Publicos
-
-        public void EstadoBotoes(EStatusCadastroTela statusTela)
+        private void EstadoBotoes()
         {
-            switch (statusTela)
+            switch (StatusCadastro)
             {
                 case EStatusCadastroTela.None:
 
@@ -45,6 +69,7 @@ namespace Perron.Controller
                     _view.VisibilidadeBotaoCancelar = false;
                     _view.VisibilidadeckAtivo = false;
                     _view.VisibilidadeckInativo = false;
+                    _view.RemoverCheck();
 
                     break;
 
@@ -56,6 +81,7 @@ namespace Perron.Controller
                     _view.VisibilidadeBotaoCancelar = true;
                     _view.VisibilidadeckAtivo = true;
                     _view.VisibilidadeckInativo = true;
+                    _view.RemoverCheck();
 
                     break;
 
@@ -67,6 +93,7 @@ namespace Perron.Controller
                     _view.VisibilidadeBotaoCancelar = true;
                     _view.VisibilidadeckAtivo = false;
                     _view.VisibilidadeckInativo = false;
+                    _view.RemoverCheck();
 
                     break;
 
@@ -76,18 +103,19 @@ namespace Perron.Controller
                     _view.VisibilidadeBotaoNovo = false;
                     _view.VisibilidadeBotaoSalvar = true;
                     _view.VisibilidadeBotaoCancelar = true;
-                    _view.VisibilidadeckAtivo = true;
-                    _view.VisibilidadeckInativo = true;
+                    _view.VisibilidadeckAtivo = false;
+                    _view.VisibilidadeckInativo = false;
 
                     break;
                 case EStatusCadastroTela.Novo:
 
-                    _view.VisibilidadeBotaoDeletar = false;
-                    _view.VisibilidadeBotaoNovo = false;
                     _view.VisibilidadeBotaoSalvar = true;
                     _view.VisibilidadeBotaoCancelar = true;
                     _view.VisibilidadeckAtivo = false;
                     _view.VisibilidadeckInativo = false;
+                    _view.VisibilidadeBotaoDeletar = false;
+                    _view.VisibilidadeBotaoNovo = false;
+                    _view.RemoverCheck();
 
                     break;
 
@@ -95,14 +123,24 @@ namespace Perron.Controller
                     break;
             }
         }
-        public void RemoverCkeck()
+        private void NotificarEventoExibicaoCadastros()
         {
-            _view.RemoverCheck();
+            if (EventoExibicaoCadastros != null)
+            {
+                EventoExibicaoCadastros(this, new StatusCadastroExibidoEventArgs { Status = GetstatusDosCadastrados() });
+            }
+
+
         }
-        #endregion
+        private void NotificarEventoStatusTela()
+        {
+            if (EventoExibicaoCadastros != null)
+            {
+                EventoStatusCadastroTela(this, new StatusCadastroTelaEventArgs { statusTela = StatusCadastro});
+            }
 
 
-         #region Metodos Privados
+        }
         private EStatusCadastro GetstatusDosCadastrados()
         {
              if (_view.VisualizarCadastrosAtivo && _view.VisualizarCadastrosInativos)
@@ -117,28 +155,11 @@ namespace Perron.Controller
 
             return EStatusCadastro.none;
         }
-        public void MessageDeSucesso(String msg)
-        {
-            MessageBox.Show($"{msg}!", "Sucesso!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-        public void MessagemErro(Exception ex)
-        {
-            MessageBox.Show(ex.Message, "Ocorreu um erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
-        private void NotificarEventoExibicaoCadastros()
-        {
-            if (EventoExibicaoCadastros != null)
-            {
-                EventoExibicaoCadastros(this, new StatusCadastroExibidoEventArgs { Status = GetstatusDosCadastrados() });
-            }
-
-
-        } 
         #endregion
 
 
-        #region Evento Privados
 
+        #region Evento Privados
         private void EventoCkInativo(object o ,EventArgs e)
         {
             NotificarEventoExibicaoCadastros();
@@ -147,7 +168,11 @@ namespace Perron.Controller
         {
             NotificarEventoExibicaoCadastros();
         }
-
+        private void EventoAlterarStausCadastro(object o, EventArgs e)
+        {
+            EstadoBotoes();
+            
+        }
         #endregion
 
 

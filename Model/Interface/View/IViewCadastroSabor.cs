@@ -12,13 +12,15 @@ public interface IViewCadastroSabor : IViewPadraoCadastro
     void Close();
 
     string DescricaoSabor { get; set; }
-
-    int IdClasse { get; }
-
+    string DescricaoClasse { set; }
     Panel PainelEngredienteSabor { get; }
+    bool VisibilidadeBotao { set; }
+    void EventoBuscarClasse(EventHandler e);
+    void EventoGrid(EventHandler e);
 
-    void PopularComboClasse(List<ClasseModel> ListaClasse);
+    SaborModel ItemSelecionadoGrid { get; }
 
+    void PopularGrid(List<SaborModel> Lista);
 
 }
 

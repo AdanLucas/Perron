@@ -35,46 +35,26 @@ namespace Repository.Repository
             }
         }
 
-        public EngredienteModel GetEngredientePorId(int Id)
+        public EngredienteModel GetItemPorID(int Id)
         {
             throw new NotImplementedException();
         }
 
-        public List<EngredienteModel> GetListaEngrediente(EStatusCadastro statusCadastro)
+        public List<EngredienteModel> GetLista()
         {
-            var where = "";
-            var sql = $"select * from Engrediente {where}";
-
-            switch (statusCadastro)
-            {
-
-                case EStatusCadastro.Ativo:
-
-                    where = "where Ativo = 1";
-
-                    break;
-                case EStatusCadastro.Inativo:
-
-                    where = "where Ativo = 0";
-
-                    break;
-
-            }
+          
 
             using (var session = new DbSession())
             {
 
-                return session.Connection.Query<EngredienteModel>(sql).ToList();
+                return session.Connection.Query<EngredienteModel>("select * from Engrediente").ToList();
 
             }
 
 
         }
 
-        public void SalvarEngrediente(EngredienteModel Engrediente)
-        {
-            throw new NotImplementedException();
-        }
+     
 
         public List<EngredienteDTO> GetListaEngredienteDTO()
         {
@@ -83,6 +63,17 @@ namespace Repository.Repository
                 return Session.Connection.Query<EngredienteDTO>("select id,Descricao, case Ativo when 1 then 'Ativo'  when 0 then 'Inativo' end Status  from Engrediente").ToList();
             }
         }
+
+        public void Salvar(EngredienteModel Item)
+        {
+            throw new NotImplementedException();
+        }
+
+        public EngredienteModel GetEngredientePorId(int Id)
+        {
+            throw new NotImplementedException();
+        }
+
 
         #endregion
 

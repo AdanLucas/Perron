@@ -10,6 +10,7 @@ public interface IViewCadastroEngredienteSabor
     #region Campos de Busca
     string BuscarEngredientesCadastrados { get; }
     string BuscarEngredientesSabor { get; }
+    Panel PainelStatus { get; }
     #endregion
 
     #region Eventos

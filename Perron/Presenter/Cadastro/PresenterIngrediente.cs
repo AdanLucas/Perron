@@ -75,19 +75,19 @@ namespace Perron.Controller
                 throw new Exception(Erro);
         }
         
-        #endregion
+             #endregion
+
 
         #region Metodos Publicos
-
-
-
         #endregion
+
+
 
         #region Eventos Privados
 
         private void EventoGrid(object o, EventArgs e)
         {
-
+            
         }
         public void EventoNovo(object o, EventArgs e)
         {

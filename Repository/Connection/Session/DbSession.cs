@@ -16,7 +16,7 @@ public class DbSession : IDisposable
     {
         try
         {
-            Connection = new SqlConnection(StringConexao.Base);
+            Connection = new SqlConnection(ConfiguracoesGlobais.Instancia.StringConexaoDados);
             Connection.Open();
         }
         catch

@@ -55,6 +55,7 @@
     <Compile Include="Repository\RepositorySabor.cs" />
     <Compile Include="Repository\RepositoryTamanho.cs" />
     <Compile Include="ScriptBase\CriandoBaseSql.cs" />
+    <Compile Include="ScriptBase\CriandoProcedure.cs" />
     <Compile Include="ScriptsDinamicos\ScriptsDinamicos.cs" />
     <Compile Include="Transaction\UnitOfWork.cs" />
   </ItemGroup>
@@ -63,6 +64,10 @@
     <ProjectReference Include="..\Model\Model.csproj">
       <Project>{e09ba858-caaf-4a09-853d-20fb22fac4ce}</Project>
       <Name>Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Utilitarios\Utilitarios.csproj">
+      <Project>{b1ba4d17-70ff-4490-910e-1e9904542662}</Project>
+      <Name>Utilitarios</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

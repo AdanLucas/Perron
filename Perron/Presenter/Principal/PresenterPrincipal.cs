@@ -28,6 +28,7 @@ namespace Perron.Factory.Controller
             
             _view.Show();
             DelegarEventos();
+            var dados = ConfiguracoesGlobais.Instancia.ConfiguracaoInicial.API;
         }
             
 

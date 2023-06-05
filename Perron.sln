@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.33328.57
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Perron", "Perron\Perron.csproj", "{A73B7707-C713-4026-91EA-FAFE146BE693}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository", "Repository\Repository.csproj", "{D7DEE4F2-3D31-46E6-8D33-C96CB27C941F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{43424ECC-1AD6-4498-B884-1DBCD70FF99D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilitarios", "Utilitarios\Utilitarios.csproj", "{B1BA4D17-70FF-4490-910E-1E9904542662}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{43424ECC-1AD6-4498-B884-1DBCD70FF99D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{43424ECC-1AD6-4498-B884-1DBCD70FF99D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{43424ECC-1AD6-4498-B884-1DBCD70FF99D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1BA4D17-70FF-4490-910E-1E9904542662}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1BA4D17-70FF-4490-910E-1E9904542662}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1BA4D17-70FF-4490-910E-1E9904542662}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1BA4D17-70FF-4490-910E-1E9904542662}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

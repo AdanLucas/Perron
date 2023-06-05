@@ -188,6 +188,10 @@
       <Project>{43424ecc-1ad6-4498-b884-1dbcd70ff99d}</Project>
       <Name>Services</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Utilitarios\Utilitarios.csproj">
+      <Project>{b1ba4d17-70ff-4490-910e-1e9904542662}</Project>
+      <Name>Utilitarios</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

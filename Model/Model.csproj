@@ -50,6 +50,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Aentity\Aentity.cs" />
+    <Compile Include="Configuracao\ArqConfiguracao.cs" />
+    <Compile Include="Configuracao\ConfiguracaoAPI.cs" />
+    <Compile Include="Configuracao\ConfiguracaoConexaoBancoDados.cs" />
     <Compile Include="Delegates\Genericos\EventArgsGenerico.cs" />
     <Compile Include="Delegates\Genericos\EventHandlerGenerico.cs" />
     <Compile Include="Delegates\StatusCadastroTela\StatusCadastroTelaEventArgs.cs" />

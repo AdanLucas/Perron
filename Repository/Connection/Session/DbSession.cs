@@ -49,11 +49,11 @@ public class DbSession : IDisposable
         switch (Tipo)
         {
             case ETipoConexao.Master:
-                Connection = new SqlConnection(ConfiguracoesGlobais.Instancia.StringConexaoMaster);
+                Connection = new SqlConnection(ConfiguracaoInicial.Instancia.StringConexaoMaster);
                 break;
 
             case ETipoConexao.BaseConfigurada:
-                Connection = new SqlConnection(ConfiguracoesGlobais.Instancia.StringConexaoDados);
+                Connection = new SqlConnection(ConfiguracaoInicial.Instancia.StringConexaoDados);
                 break;
         }
     }

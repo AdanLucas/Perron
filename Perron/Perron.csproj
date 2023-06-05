@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Global\ConfiguracoesGlobais.cs" />
     <Compile Include="Outros\GerenciarStatusCadastro.cs" />
     <Compile Include="Outros\PegarAtributoClasse.cs" />
     <Compile Include="Presenter\Outros\PresenterBuscarItemGenerico.cs" />

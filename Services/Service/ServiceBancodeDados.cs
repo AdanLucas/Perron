@@ -11,7 +11,7 @@ namespace Services.Service
     public class ServiceBancodeDados: IServiceBancoDeDados
     {
 
-
+        private int TentaTivasCriarBanco = 0;
  
 
 
@@ -22,14 +22,10 @@ namespace Services.Service
         {
             _repositorio = repositorio;
         }
-
-
-
-       public async Task<bool>RealizarVerificacaoBancoDados()
+       public async Task RealizarVerificacaoBancoDados()
         {
-            bool ret = false;
             await 
-                Task.Run(() =>
+                Task.Run(async () =>
                                 {
                                     if (_repositorio.ValidarConexaoComAInstancia())
                                     {
@@ -40,7 +36,9 @@ namespace Services.Service
                                                 _repositorio.CriarBaseDeDadosDefaut();
 
 
-                                                ret = _repositorio.validarExistenciaBancodeDadosConfigurado();
+                                                await GerenciarTenativa();
+
+
                                             }
                                             catch (Exception ex)
                                             {
@@ -52,10 +50,27 @@ namespace Services.Service
                                     {
                                         throw new Exception("Nao possivel Realizar Conexao com a Instancia!");
                                     }
-                                                                                                                             });
+                                });
 
 
-            return ret;
+           
+        }
+
+        private async Task GerenciarTenativa()
+        {
+            this.TentaTivasCriarBanco++;
+
+            if (TentaTivasCriarBanco >= 3)
+                throw new Exception("Excedeu as tentantivas de Criar o banco de dados");
+
+
+
+            if (!_repositorio.validarExistenciaBancodeDadosConfigurado())
+               await  RealizarVerificacaoBancoDados();
+
+            else
+                return;
+
         }
     }
 }

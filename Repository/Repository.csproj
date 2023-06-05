@@ -44,8 +44,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Connection\Dados Conexao Banco\DadosConexaoBanco.cs" />
-    <Compile Include="Connection\Dados Conexao Banco\StringConexao.cs" />
     <Compile Include="Connection\Session\DbSession.cs" />
     <Compile Include="Factory\FactoryRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -5,9 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-    public interface IServiceBancoDeDados
-    {
-
-
-    }
+public interface IServiceBancoDeDados
+{
+    Task  RealizarVerificacaoBancoDados();
+}
 

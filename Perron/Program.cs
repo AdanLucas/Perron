@@ -17,8 +17,15 @@ namespace Perron
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            ConfiguracoesGlobais.Instancia.Iniciar();
-            Application.Run();
+            try
+            {
+                ConfiguracoesGlobais.Instancia.Iniciar();
+                Application.Run();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erro!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

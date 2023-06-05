@@ -37,8 +37,9 @@ namespace Repository.Repository
             {
                 using (_session = new DbSession(ETipoConexao.Master))
                 {
+                    var sql = CriandoBaseSql.ScriptBase();
 
-                    _session.Connection.Execute(CriandoBaseSql.ScriptBase());
+                    _session.Connection.Query(sql, transaction: _session.Transaction);
 
 
 
@@ -50,10 +51,10 @@ namespace Repository.Repository
 
                 }
             }
-            catch
+            catch (Exception ex)
             {
 
-                return false; ;
+                throw ex;
             }
         }
         public List<string> GetListaBancoInstancia()

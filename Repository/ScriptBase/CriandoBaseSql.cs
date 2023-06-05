@@ -7,12 +7,12 @@ using System.Reflection;
 
 public static class CriandoBaseSql
 {
-	public static string nomePadrao { get { return ConfiguracoesGlobais.Instancia.ConfiguracaoInicial.ConexaoBancoDados.Banco; } }
-	private static string usuario { get { return ConfiguracoesGlobais.Instancia.ConfiguracaoInicial.ConexaoBancoDados.Usuario; } }
+	public static string nomePadrao { get { return ConfiguracaoInicial.Instancia.Configuracao.ConexaoBancoDados.Banco; } }
+	private static string usuario { get { return ConfiguracaoInicial.Instancia.Configuracao.ConexaoBancoDados.Usuario; } }
 	public static string ScriptBase()
 	{
 		return $@"
-						USE [master]
+					USE [master]
 						GO
 						/****** Object:  Database [{nomePadrao}]    Script Date: 04/06/2023 00:48:17 ******/
 						CREATE DATABASE [{nomePadrao}]
@@ -417,6 +417,9 @@ public static class CriandoBaseSql
 						GO
 						ALTER DATABASE [{nomePadrao}] SET  READ_WRITE 
 						GO
+                        
+                        
+                        
                         
                      ";
 	}

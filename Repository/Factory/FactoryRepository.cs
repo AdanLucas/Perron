@@ -31,7 +31,7 @@ using System.Threading.Tasks;
         }
          public static IRepositoryVerificacaoBancoDedados VerificacaoBancodeDados()
          {
-             return null;
+             return new RepositoryBancoDeDados();
          }
 }
 

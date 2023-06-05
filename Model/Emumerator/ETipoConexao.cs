@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Repository.ScriptBase
+namespace Model.Emumerator
 {
-    public class CriandoProcedure
+    public enum ETipoConexao
     {
-
-
+        Master,
+        BaseConfigurada
     }
 }

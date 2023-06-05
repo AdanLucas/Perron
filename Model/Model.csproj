@@ -62,8 +62,13 @@
     <Compile Include="DTO\EngredienteDTO.cs" />
     <Compile Include="Emumerator\EStatusCadastro.cs" />
     <Compile Include="Emumerator\EStatusCadastroTela.cs" />
+    <Compile Include="Emumerator\ETipoConexao.cs" />
     <Compile Include="Emumerator\EUnidadeMedida.cs" />
     <Compile Include="Extension\ExtensionAEntity.cs" />
+    <Compile Include="Extension\ExtensionICriptFunction.cs" />
+    <Compile Include="Extension\ExtensionIScriptProcedeure.cs" />
+    <Compile Include="Interface\BancoDeDados\IScriptFunction.cs" />
+    <Compile Include="Interface\BancoDeDados\IScriptProcedure.cs" />
     <Compile Include="Interface\Presenter\IPresenterCadastroTamanho.cs" />
     <Compile Include="Interface\Presenter\IPresenterClasse.cs" />
     <Compile Include="Interface\Presenter\IPresenterEngredienteSabor.cs" />
@@ -76,6 +81,8 @@
     <Compile Include="Interface\Repository\IRepositoryEngrediente.cs" />
     <Compile Include="Interface\Repository\IRepositorySabor.cs" />
     <Compile Include="Interface\Repository\IRepositoryTamanho.cs" />
+    <Compile Include="Interface\Repository\IRepositoryVerificacaoBancoDedados.cs" />
+    <Compile Include="Interface\Services\IServiceBancoDeDados.cs" />
     <Compile Include="Interface\Services\IServiceClasse.cs" />
     <Compile Include="Interface\Services\IServiceEngrediente.cs" />
     <Compile Include="Interface\Services\IServiceSabor.cs" />

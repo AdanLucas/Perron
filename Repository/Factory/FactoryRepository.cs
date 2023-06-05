@@ -27,6 +27,11 @@ using System.Threading.Tasks;
         public static IRepositoryClasse Classe()
         {
             return new RepositoryClasse();
+
         }
-    }
+         public static IRepositoryVerificacaoBancoDedados VerificacaoBancodeDados()
+         {
+             return null;
+         }
+}
 

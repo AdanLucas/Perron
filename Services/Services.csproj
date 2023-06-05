@@ -44,7 +44,7 @@
   <ItemGroup>
     <Compile Include="Factory\FactoryService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service\BancodeDados.cs" />
+    <Compile Include="Service\ServiceBancodeDados.cs" />
     <Compile Include="Service\ServiceClasse.cs" />
     <Compile Include="Service\ServiceDinamico.cs" />
     <Compile Include="Service\ServiceSabor.cs" />

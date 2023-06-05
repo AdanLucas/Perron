@@ -17,8 +17,7 @@ namespace Perron
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            var dados = ConfiguracoesGlobais.Instancia.ConfiguracaoInicial.API;
-            FactoryPresenter.Principal();
+            ConfiguracoesGlobais.Instancia.Iniciar();
             Application.Run();
         }
     }

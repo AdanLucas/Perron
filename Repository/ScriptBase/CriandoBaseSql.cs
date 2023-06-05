@@ -1,15 +1,17 @@
 ﻿
-using Repository.ScriptBase;
+using Model.Interface.BancoDeDados;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 
 public static class CriandoBaseSql
 {
-    private static string nomePadrao = "";
-
-	public static CriandoProcedure Procedures = new CriandoProcedure(); 
-
-    public static string ScriptBase()
-    {
-            return $@"
+	public static string nomePadrao { get { return ConfiguracoesGlobais.Instancia.ConfiguracaoInicial.ConexaoBancoDados.Banco; } }
+	private static string usuario { get { return ConfiguracoesGlobais.Instancia.ConfiguracaoInicial.ConexaoBancoDados.Usuario; } }
+	public static string ScriptBase()
+	{
+		return $@"
 						USE [master]
 						GO
 						/****** Object:  Database [{nomePadrao}]    Script Date: 04/06/2023 00:48:17 ******/
@@ -417,20 +419,22 @@ public static class CriandoBaseSql
 						GO
                         
                      ";
-    }
-
+	}
 	public static string CriandoUsuario()
 	{
 		return $@"
-
-				
-
-
-				
-
+                    if not exists (select top 1 1 from sys.sysusers where name = '{usuario}')
+                    BEGIN
+                        CREATE USER [{usuario}] FOR LOGIN [{usuario}]
+						EXEC sp_addrolemember N'db_ddladmin', N'{usuario}'
+	                    EXEC sp_addrolemember N'db_datareader', N'{usuario}'; 
+                        EXEC sp_addrolemember N'db_backupoperator', N'{usuario}' 
+						EXEC sp_addrolemember N'db_datawriter',  N'{usuario}' 
+                    END;
 				";
 	}
 
-
 }
+
+
 

@@ -34,6 +34,10 @@ public static class FactoryService
 
         return new ServiceTamanho(repo);
     }
-
+    public static IServiceBancoDeDados BancoDados()
+    {
+        var repo = FactoryRepository.VerificacaoBancodeDados();
+        return new ServiceBancodeDados(repo);
+    }
 }
 

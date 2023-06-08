@@ -1,8 +1,9 @@
-﻿using System.Xml.Serialization;
+﻿using System.Runtime.CompilerServices;
+using System.Xml.Serialization;
 
 
 public class ArqConfiguracao
-{ 
+{
     [XmlElement("API")]
     public ConfiguracaoAPI API { get; set; }
 

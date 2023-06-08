@@ -9,6 +9,7 @@ namespace Model.Emumerator
     public enum ETipoConexao
     {
         Master,
-        BaseConfigurada
+        BaseConfigurada,
+        LocalDb
     }
 }

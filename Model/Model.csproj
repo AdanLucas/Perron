@@ -65,10 +65,6 @@
     <Compile Include="Emumerator\ETipoConexao.cs" />
     <Compile Include="Emumerator\EUnidadeMedida.cs" />
     <Compile Include="Extension\ExtensionAEntity.cs" />
-    <Compile Include="Extension\ExtensionICriptFunction.cs" />
-    <Compile Include="Extension\ExtensionIScriptProcedeure.cs" />
-    <Compile Include="Interface\BancoDeDados\IScriptFunction.cs" />
-    <Compile Include="Interface\BancoDeDados\IScriptProcedure.cs" />
     <Compile Include="Interface\Presenter\IPresenterCadastroTamanho.cs" />
     <Compile Include="Interface\Presenter\IPresenterClasse.cs" />
     <Compile Include="Interface\Presenter\IPresenterEngredienteSabor.cs" />

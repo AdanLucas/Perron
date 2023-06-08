@@ -22,22 +22,32 @@ public class ConfiguracaoInicial
         }
 
     }
-
-    public ArqConfiguracao Configuracao { get; set; }
-    private static ConfiguracaoInicial instance;
     
+    public ArqConfiguracao Configuracao { get; set; }
+    public string StringConexaoMaster
+    {
+        get
+        {
+            if (Configuracao.ConexaoBancoDados.LocalDb)
+                return stringConexaoLocalDbMaster;
+
+            else 
+                return stringConexaoMaster;
+        }
+    }
     public string StringConexaoDados
     {
         get
         {
-            return
-            $@"Data Source={instance.Configuracao.ConexaoBancoDados.Instancia};
-            Initial Catalog={instance.Configuracao.ConexaoBancoDados.Banco};
-            User Id={instance.Configuracao.ConexaoBancoDados.Usuario};
-            Password={instance.Configuracao.ConexaoBancoDados.Senha};";
+            if (Configuracao.ConexaoBancoDados.LocalDb)
+                return this.stringConexaoLocalDb;
+
+            else
+                return this.stringConexaoDados;
         }
     }
-    public string StringConexaoMaster
+
+    private string stringConexaoMaster
     {
         get
         {
@@ -48,9 +58,36 @@ public class ConfiguracaoInicial
             Password={instance.Configuracao.ConexaoBancoDados.Senha};";
         }
     }
+    private string stringConexaoDados
+    {
+        get
+        {
+            return
+            $@"Data Source={instance.Configuracao.ConexaoBancoDados.Instancia};
+            Initial Catalog={instance.Configuracao.ConexaoBancoDados.Banco};
+            User Id={instance.Configuracao.ConexaoBancoDados.Usuario};
+            Password={instance.Configuracao.ConexaoBancoDados.Senha};";
+        }
+    }
+    private string stringConexaoLocalDb
+    {
+        get
+        {
+            return
+            $@"Data Source=(LocalDB)\MSSQLLocalDB;Initial Catalog={instance.Configuracao.ConexaoBancoDados.Banco};Integrated Security=True;";
+        }
+    }
+    private string stringConexaoLocalDbMaster
+    {
+        get
+        {
+            return
+            $@"Data Source={Configuracao.ConexaoBancoDados.Instancia};Initial Catalog=master;Integrated Security=True;";
+        }
+    }
 
 
-
+    private static ConfiguracaoInicial instance;
     private ConfiguracaoInicial()
     {
         GerenciandoXmlConfiguracao xmlConfiguracao = new GerenciandoXmlConfiguracao();

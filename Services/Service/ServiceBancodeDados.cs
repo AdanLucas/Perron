@@ -24,27 +24,22 @@ namespace Services.Service
         }
        public async Task RealizarVerificacaoBancoDados()
         {
-            await 
-                Task.Run(async () =>
-                                {
+            await Task.Run(() => {
                                     if (_repositorio.ValidarConexaoComAInstancia())
                                     {
-                                        if (!_repositorio.validarExistenciaBancodeDadosConfigurado())
-                                        {
+                                         if (_repositorio.validarExistenciaBancodeDadosConfigurado())
+                                             return;
+
                                             try
                                             {
                                                 _repositorio.CriarBaseDeDadosDefaut();
-
-
-                                                await GerenciarTenativa();
-
-
+                                                
                                             }
                                             catch (Exception ex)
                                             {
-                                                throw ex;
+                                                    throw ex;
                                             }
-                                        }
+                                        
                                     }
                                     else
                                     {

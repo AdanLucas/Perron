@@ -12,4 +12,8 @@
     <Folder Include="ValidacaoBancoDados\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNet.Providers.LocalDb" Version="2.0.1" />
+  </ItemGroup>
+
 </Project>

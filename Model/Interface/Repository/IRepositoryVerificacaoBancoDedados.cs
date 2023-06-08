@@ -10,7 +10,7 @@ using System.Threading.Tasks;
         bool validarExistenciaBancodeDadosConfigurado();
         bool ValidarConexaoComAInstancia();
         List<string> GetListaBancoInstancia();
-        bool CriarBaseDeDadosDefaut();
+        void CriarBaseDeDadosDefaut();
 
     }
 

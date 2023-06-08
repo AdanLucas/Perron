@@ -74,7 +74,7 @@ namespace Utilitarios.Xml
             conf.ConexaoBancoDados = new ConfiguracaoConexaoBancoDados();
             conf.API = new ConfiguracaoAPI();
 
-
+            conf.ConexaoBancoDados.LocalDb = false;
             conf.ConexaoBancoDados.Banco = "Perron";
             conf.ConexaoBancoDados.Instancia = @"ADANLUCAS-PC\META";
             conf.ConexaoBancoDados.Usuario = "sa";

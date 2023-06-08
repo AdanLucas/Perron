@@ -29,8 +29,10 @@ public class ConfiguracoesGlobais
     {
         _serviceBancodedados = FactoryService.BancoDados();
     }
-    public async void Iniciar() 
+    public async Task Iniciar() 
     {
+
+
         try
         {
             ConfiguracaoInicial.Instancia.Iniciar();

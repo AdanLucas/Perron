@@ -1,4 +1,5 @@
-﻿using Perron.View.Forms;
+﻿using Perron.Factory.Controller;
+using Perron.View.Forms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,14 +14,20 @@ namespace Perron
         /// Ponto de entrada principal para o aplicativo.
         /// </summary>
         [STAThread]
-        static void Main()
+        static  void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             try
             {
-                ConfiguracoesGlobais.Instancia.Iniciar();
+                
+
+                Task tarefa = ConfiguracoesGlobais.Instancia.Iniciar();
+                Task.WaitAll(tarefa);
+                FactoryPresenter.Principal();
                 Application.Run();
+
+                
             }
             catch (Exception ex)
             {

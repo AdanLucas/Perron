@@ -1,20 +1,20 @@
 ﻿using Dapper;
 using Model.Emumerator;
-using Model.Extension;
-using Model.Interface.BancoDeDados;
 using System;
-using System.Activities.Statements;
 using System.Collections.Generic;
 using System.Linq;
-using System.Transactions;
+using GerenciandoBaseDedados.GerencaidorScript;
+
 namespace Repository.Repository
+
+
 {
     public class RepositoryBancoDeDados : IRepositoryVerificacaoBancoDedados 
     {
 
         DbSession _session;
 
-        string NomeBaseCadastrada = CriandoBaseSql.nomePadrao;
+        string NomeBaseCadastrada = ConfiguracaoInicial.Instancia.Configuracao.ConexaoBancoDados.Banco;
 
        
 
@@ -32,43 +32,34 @@ namespace Repository.Repository
         {
             try
             {
-                CriandoBase();
+                
                 CriarTabelasProcFunctionConstraint();
 
             }
             catch (Exception ex)
             {
-                DropBase();
+                
                 throw ex;
             }
 
         }
-        private void CriandoBase()
+        private void CriandoBase(DbSession _session, string sql)
         {
-            using (_session = new DbSession(ETipoConexao.Master))
+            try
             {
-                try
-                {
-                    var dbocommand = _session.Connection.CreateCommand();
-                    dbocommand.Connection = _session.Connection;
-                    dbocommand.CommandText = CriandoBaseSql.ScriptBase();
-                    dbocommand.ExecuteNonQuery();
-                    dbocommand.Dispose();
-
-                    if (!validarExistenciaBancodeDadosConfigurado(_session))
-                        throw new Exception("Erro ao Criar Banco");
-
-                    
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
+                var dbocommand = _session.Connection.CreateCommand();
+                dbocommand.Connection = _session.Connection;
+                dbocommand.Transaction = _session.Transaction;
+                dbocommand.CommandText = sql;
+                dbocommand.ExecuteNonQuery();
+                dbocommand.Dispose();
 
             }
-
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
-
         public List<string> GetListaBancoInstancia()
         {
             using (_session = new DbSession(ETipoConexao.Master))
@@ -76,64 +67,34 @@ namespace Repository.Repository
                 return _session.Connection.Query<string>(@"SELECT name FROM sys.databases").ToList();
             }
         }
-
         private void CriarTabelasProcFunctionConstraint()
-        {
-
-            using (var session = new DbSession())
-            {
-                    var Unit = new UnitOfWork(session);
-                try
-                {
-
-                    Unit.BeginTran();
-
-                    IScriptTabela tabela = null;
-                    IScriptConstraint constraint = null;
-                    IScriptProcedure procedure = null;
-                    IScriptFunction function = null;
-
-                    tabela.ExecutarScriptCriacao(session);
-                    constraint.ExecutarScriptCriacao(session);
-                    procedure.ExecutarScritpCriacao(session);
-                    function.ExecutarScritpCriacao(session);
-
-                    //var usuario = CriandoBaseSql.CriandoUsuario();
-
-                    //session.Connection.Execute(usuario, transaction: session.Transaction);
-
-                    Unit.Commit();
-
-                }
-                catch (Exception ex)
-                {
-                    Unit.RollBack();
-                    throw ex;
-                }
-
-            }
-
-
-        }
-
-
-        private void DropBase()
         {
             using (_session = new DbSession(ETipoConexao.Master))
             {
-                try
-                {
-                    _session.Connection.Execute(CriandoBaseSql.DropDataBase());
+                 var UnitMastar = new UnitOfWork(_session);
+                 GerenciandoScript InicarCriacao = new GerenciandoScript();
+                 CriandoBase(_session, InicarCriacao.ScriptCriacaoBase(NomeBaseCadastrada));
 
-                }
-                catch (Exception ex)
+                using (var session = new DbSession())
                 {
-
-                    throw ex;
+                    var Unit = new UnitOfWork(session);
+                    try
+                    {
+                        Unit.BeginTran();
+                        InicarCriacao.IniciarTransacao(session.Connection);
+                        InicarCriacao.ExecutarCriacaoBase(session.Transaction);
+                        Unit.Commit();
+                        
+                    }
+                    catch (Exception ex)
+                    {
+                        Unit.RollBack();
+                        throw ex;
+                    }
                 }
             }
         }
-
+        
         public bool ValidarConexaoComAInstancia()
         {
             try
@@ -149,10 +110,9 @@ namespace Repository.Repository
                 return false;
             }
         }
-
         public bool validarExistenciaBancodeDadosConfigurado()
         {
-            using (_session = new DbSession(ETipoConexao.Master))
+            using (var _session = new DbSession(ETipoConexao.Master))
             {
                 return validarExistenciaBancodeDadosConfigurado(_session);
             }

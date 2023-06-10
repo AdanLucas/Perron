@@ -45,16 +45,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Extension\ExtensionIScriptTabela.cs" />
-    <Compile Include="Extension\ExtensionIScriptConstranit.cs" />
-    <Compile Include="Interfaces\IScriptConstraint.cs" />
-    <Compile Include="Interfaces\IScriptFunction.cs" />
-    <Compile Include="Interfaces\IScriptProcedure.cs" />
     <Compile Include="Connection\Session\DbSession.cs" />
-    <Compile Include="Extension\ExtensionIScriptFunction.cs" />
-    <Compile Include="Extension\ExtensionIScriptProcedeure.cs" />
     <Compile Include="Factory\FactoryRepository.cs" />
-    <Compile Include="Interfaces\IScriptTabela.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\RepositoryBancoDeDados.cs" />
     <Compile Include="Repository\RepositoryClasse.cs" />
@@ -62,27 +54,15 @@
     <Compile Include="Repository\RepositoryEngrediente.cs" />
     <Compile Include="Repository\RepositorySabor.cs" />
     <Compile Include="Repository\RepositoryTamanho.cs" />
-    <Compile Include="ScriptBase\Constraint\FK_Sabor_Classe.cs" />
-    <Compile Include="ScriptBase\Constraint\FK_Sabor_has_EngredienteTamanho_Sabor_has_Engrediente.cs" />
-    <Compile Include="ScriptBase\Constraint\FK_Sabor_has_EngredienteTamanho_Tamanho.cs" />
-    <Compile Include="ScriptBase\Constraint\FK_Sabor_has_Engrediente_Engrediente.cs" />
-    <Compile Include="ScriptBase\Constraint\FK_Sabor_has_Engrediente_Sabor.cs" />
-    <Compile Include="ScriptBase\CriandoBaseSql.cs" />
-    <Compile Include="ScriptBase\StoredProcedure\pc_cadastroSabor.cs" />
-    <Compile Include="ScriptBase\StoredProcedure\pc_cadastroEngrediente.cs" />
-    <Compile Include="ScriptBase\StoredProcedure\pc_cadastroDadosSaborEngrediente.cs" />
-    <Compile Include="ScriptBase\StoredProcedure\Pc_cadastroClasse.cs" />
-    <Compile Include="ScriptBase\Tabela\Classe.cs" />
-    <Compile Include="ScriptBase\Tabela\Engediente.cs" />
-    <Compile Include="ScriptBase\Tabela\Sabor.cs" />
-    <Compile Include="ScriptBase\Tabela\Sabor_has_Engrediente.cs" />
-    <Compile Include="ScriptBase\Tabela\Sabor_has_EngredienteTamanho.cs" />
-    <Compile Include="ScriptBase\Tabela\Tamanho.cs" />
     <Compile Include="ScriptsDinamicos\ScriptsDinamicos.cs" />
     <Compile Include="Transaction\UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <ProjectReference Include="..\GerenciandoBaseDedados\GerenciandoBaseDedados.csproj">
+      <Project>{559da37b-7302-4363-97eb-901ac23101fb}</Project>
+      <Name>GerenciandoBaseDedados</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Model\Model.csproj">
       <Project>{e09ba858-caaf-4a09-853d-20fb22fac4ce}</Project>
       <Name>Model</Name>

@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
-using System.Xml;
-using Utilitarios.ArquivoConfiguracao;
-using Utilitarios.Xml;
 
 
 
@@ -31,8 +26,6 @@ public class ConfiguracoesGlobais
     }
     public async Task Iniciar() 
     {
-
-
         try
         {
             ConfiguracaoInicial.Instancia.Iniciar();

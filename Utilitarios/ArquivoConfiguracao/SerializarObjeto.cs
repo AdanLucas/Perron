@@ -11,12 +11,12 @@ namespace Utilitarios.ArquivoConfiguracao
 {
     public static class SerializarObjeto
     {
-        public static ArqConfiguracao DeserializarXml(XmlDocument xml)
+        public static T DeserializarXml<T>(XmlDocument xml)
         {
             using (XmlNodeReader reader = new XmlNodeReader(xml.DocumentElement))
             {
                 XmlSerializer serializer = new XmlSerializer(typeof(ArqConfiguracao));
-                ArqConfiguracao conf = (ArqConfiguracao)serializer.Deserialize(reader);
+                 T conf = (T)serializer.Deserialize(reader);
 
                 return conf;
             }

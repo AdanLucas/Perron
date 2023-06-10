@@ -1,16 +1,23 @@
-﻿
-using Model.Interface.BancoDeDados;
+﻿using Model.Interface.BancoDeDados;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 
-public static class CriandoBaseSql
+public class ScriptCriacaoBase
 {
-	public static string nomePadrao { get { return ConfiguracaoInicial.Instancia.Configuracao.ConexaoBancoDados.Banco; } }
-	private static string usuario { get { return ConfiguracaoInicial.Instancia.Configuracao.ConexaoBancoDados.Usuario; } }
-   
-    public static string ScriptBase()
+	
+
+    private string nomePadrao { get; set; }
+    
+
+    public ScriptCriacaoBase(string NomeBase) 
+    {
+        nomePadrao = NomeBase;
+    }
+
+    public  string CriacaoBase()
     {
         return $@"	CREATE DATABASE [{nomePadrao}]
 
@@ -53,20 +60,23 @@ public static class CriandoBaseSql
     					ALTER DATABASE [{nomePadrao}] SET DELAYED_DURABILITY = DISABLED 
     					ALTER DATABASE [{nomePadrao}] SET QUERY_STORE = OFF";
     }
-    public static string CriandoUsuario()
-	{
-		return $@"
-                    if not exists (select top 1 1 from sys.sysusers where name = '{usuario}')
-                    BEGIN
-                        CREATE USER [{usuario}] FOR LOGIN [{usuario}]
-						EXEC sp_addrolemember N'db_ddladmin', N'{usuario}'
-	                    EXEC sp_addrolemember N'db_datareader', N'{usuario}'; 
-                        EXEC sp_addrolemember N'db_backupoperator', N'{usuario}' 
-						EXEC sp_addrolemember N'db_datawriter',  N'{usuario}' 
-                    END;
-				";
-	}
-    public static string DropDataBase()
+
+
+
+ //   public static string CriandoUsuario()
+	//{
+	//	return $@"
+ //                   if not exists (select top 1 1 from sys.sysusers where name = '{usuario}')
+ //                   BEGIN
+ //                       CREATE USER [{usuario}] FOR LOGIN [{usuario}]
+	//					EXEC sp_addrolemember N'db_ddladmin', N'{usuario}'
+	//                    EXEC sp_addrolemember N'db_datareader', N'{usuario}'; 
+ //                       EXEC sp_addrolemember N'db_backupoperator', N'{usuario}' 
+	//					EXEC sp_addrolemember N'db_datawriter',  N'{usuario}' 
+ //                   END;
+	//			";
+	//}
+    public string DropDataBase()
     {
         return $@"Drop Database [{nomePadrao}]";
     }

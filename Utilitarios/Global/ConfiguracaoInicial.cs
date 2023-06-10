@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml;
+﻿using System.Xml;
 using Utilitarios.ArquivoConfiguracao;
 using Utilitarios.Xml;
+using Model.Extension;
 
 
 
 public class ConfiguracaoInicial
 {
+    
+    private static ConfiguracaoInicial instance;
+
     public static ConfiguracaoInicial Instancia
     {
         get
@@ -17,12 +17,11 @@ public class ConfiguracaoInicial
             if (instance == null)
                 instance = new ConfiguracaoInicial();
 
-
             return instance;
         }
-
     }
-    
+
+    #region Publicos
     public ArqConfiguracao Configuracao { get; set; }
     public string StringConexaoMaster
     {
@@ -31,7 +30,7 @@ public class ConfiguracaoInicial
             if (Configuracao.ConexaoBancoDados.LocalDb)
                 return stringConexaoLocalDbMaster;
 
-            else 
+            else
                 return stringConexaoMaster;
         }
     }
@@ -45,8 +44,9 @@ public class ConfiguracaoInicial
             else
                 return this.stringConexaoDados;
         }
-    }
-
+    } 
+    #endregion
+    #region Privados
     private string stringConexaoMaster
     {
         get
@@ -85,16 +85,18 @@ public class ConfiguracaoInicial
             $@"Data Source={Configuracao.ConexaoBancoDados.Instancia};Initial Catalog=master;Integrated Security=True;";
         }
     }
-
-
-    private static ConfiguracaoInicial instance;
+    #endregion
+    #region Construtor Privados
     private ConfiguracaoInicial()
     {
-        GerenciandoXmlConfiguracao xmlConfiguracao = new GerenciandoXmlConfiguracao();
-        XmlDocument xml = xmlConfiguracao.GetXMlConfiguracao();
 
-        Configuracao = SerializarObjeto.DeserializarXml(xml);
-    }
+        Configuracao = new ArqConfiguracao();
+        Configuracao.SetarPropriedades();
+        var xmlConfiguracao = new GerenciadorXml<ArqConfiguracao>(Configuracao.PegarNomeArquivo(),Configuracao);
+        XmlDocument xml = xmlConfiguracao.GetXMlConfiguracao();
+        Configuracao = SerializarObjeto.DeserializarXml<ArqConfiguracao>(xml);
+    } 
+    #endregion
 
 
     public void Iniciar() { }

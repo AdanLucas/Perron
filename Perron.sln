@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Servic
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Utilitarios", "Utilitarios\Utilitarios.csproj", "{B1BA4D17-70FF-4490-910E-1E9904542662}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GerenciandoBaseDedados", "GerenciandoBaseDedados\GerenciandoBaseDedados.csproj", "{559DA37B-7302-4363-97EB-901AC23101FB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{B1BA4D17-70FF-4490-910E-1E9904542662}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B1BA4D17-70FF-4490-910E-1E9904542662}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B1BA4D17-70FF-4490-910E-1E9904542662}.Release|Any CPU.Build.0 = Release|Any CPU
+		{559DA37B-7302-4363-97EB-901AC23101FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{559DA37B-7302-4363-97EB-901AC23101FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{559DA37B-7302-4363-97EB-901AC23101FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{559DA37B-7302-4363-97EB-901AC23101FB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -18,9 +18,10 @@ public interface IViewPadraoCadastro
     bool VisibilidadeBotaoCancelar { set; }
     bool VisibilidadeckAtivo { set; }
     bool VisibilidadeckInativo { set; }
-
+    int AlturaTela { set; }
     bool VisualizarCadastrosAtivo { get; }
     bool VisualizarCadastrosInativos { get; }
+    bool VisiblidadeBusca { set; }
 
     #region Metodos
 

@@ -44,9 +44,8 @@ namespace Perron.View.Forms.Form_Padrao_Cadastro
             this.btnNovo.Dock = System.Windows.Forms.DockStyle.Left;
             this.btnNovo.FlatAppearance.BorderSize = 3;
             this.btnNovo.Location = new System.Drawing.Point(0, 0);
-            this.btnNovo.Margin = new System.Windows.Forms.Padding(4);
             this.btnNovo.Name = "btnNovo";
-            this.btnNovo.Size = new System.Drawing.Size(91, 31);
+            this.btnNovo.Size = new System.Drawing.Size(68, 25);
             this.btnNovo.TabIndex = 0;
             this.btnNovo.Text = "Novo";
             this.btnNovo.UseVisualStyleBackColor = true;
@@ -55,10 +54,9 @@ namespace Perron.View.Forms.Form_Padrao_Cadastro
             // 
             this.btnSalvar.Dock = System.Windows.Forms.DockStyle.Left;
             this.btnSalvar.FlatAppearance.BorderSize = 3;
-            this.btnSalvar.Location = new System.Drawing.Point(91, 0);
-            this.btnSalvar.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSalvar.Location = new System.Drawing.Point(68, 0);
             this.btnSalvar.Name = "btnSalvar";
-            this.btnSalvar.Size = new System.Drawing.Size(91, 31);
+            this.btnSalvar.Size = new System.Drawing.Size(68, 25);
             this.btnSalvar.TabIndex = 1;
             this.btnSalvar.Text = "Salvar";
             this.btnSalvar.UseVisualStyleBackColor = true;
@@ -74,28 +72,28 @@ namespace Perron.View.Forms.Form_Padrao_Cadastro
             this.panel1.Controls.Add(this.btnNovo);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(531, 31);
+            this.panel1.Size = new System.Drawing.Size(510, 25);
             this.panel1.TabIndex = 2;
             // 
             // ckInativo
             // 
             this.ckInativo.AutoSize = true;
-            this.ckInativo.Location = new System.Drawing.Point(446, 6);
+            this.ckInativo.Location = new System.Drawing.Point(334, 5);
+            this.ckInativo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.ckInativo.Name = "ckInativo";
-            this.ckInativo.Size = new System.Drawing.Size(71, 21);
+            this.ckInativo.Size = new System.Drawing.Size(58, 17);
             this.ckInativo.TabIndex = 3;
             this.ckInativo.Text = "Inativo";
             this.ckInativo.UseVisualStyleBackColor = true;
-            
             // 
             // ckAtivo
             // 
             this.ckAtivo.AutoSize = true;
-            this.ckAtivo.Location = new System.Drawing.Point(371, 7);
+            this.ckAtivo.Location = new System.Drawing.Point(278, 6);
+            this.ckAtivo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.ckAtivo.Name = "ckAtivo";
-            this.ckAtivo.Size = new System.Drawing.Size(61, 21);
+            this.ckAtivo.Size = new System.Drawing.Size(50, 17);
             this.ckAtivo.TabIndex = 3;
             this.ckAtivo.Text = "Ativo";
             this.ckAtivo.UseVisualStyleBackColor = true;
@@ -104,10 +102,9 @@ namespace Perron.View.Forms.Form_Padrao_Cadastro
             // 
             this.btnCancelar.Dock = System.Windows.Forms.DockStyle.Left;
             this.btnCancelar.FlatAppearance.BorderSize = 3;
-            this.btnCancelar.Location = new System.Drawing.Point(273, 0);
-            this.btnCancelar.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCancelar.Location = new System.Drawing.Point(204, 0);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(91, 31);
+            this.btnCancelar.Size = new System.Drawing.Size(68, 25);
             this.btnCancelar.TabIndex = 3;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
@@ -116,23 +113,21 @@ namespace Perron.View.Forms.Form_Padrao_Cadastro
             // 
             this.btnRemover.Dock = System.Windows.Forms.DockStyle.Left;
             this.btnRemover.FlatAppearance.BorderSize = 3;
-            this.btnRemover.Location = new System.Drawing.Point(182, 0);
-            this.btnRemover.Margin = new System.Windows.Forms.Padding(4);
+            this.btnRemover.Location = new System.Drawing.Point(136, 0);
             this.btnRemover.Name = "btnRemover";
-            this.btnRemover.Size = new System.Drawing.Size(91, 31);
+            this.btnRemover.Size = new System.Drawing.Size(68, 25);
             this.btnRemover.TabIndex = 2;
             this.btnRemover.Text = "Remover";
             this.btnRemover.UseVisualStyleBackColor = true;
             // 
             // FrmPadraoCadastro
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(531, 714);
+            this.ClientSize = new System.Drawing.Size(510, 511);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmPadraoCadastro";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

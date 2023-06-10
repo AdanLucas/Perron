@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -33,14 +34,7 @@ namespace Perron.Controller
         }
         private void SetEngrediente()
         {
-            if (_engrediente == null)
-            {
-                _engrediente = new EngredienteModel();
-            }
-
             _engrediente.Descricao = _view.DescricaoIngrediente;
-            
-
 
         }
         private void SetEngredienteTela()
@@ -82,22 +76,28 @@ namespace Perron.Controller
         #endregion
 
 
-
+    
         #region Eventos Privados
-
         private void EventoGrid(object o, EventArgs e)
         {
-            
+            if (_view.IngredienteSelecionado != null)
+            {
+                SetEngredienteTela();
+            }
         }
         public void EventoNovo(object o, EventArgs e)
         {
-         
+            AlterarStatusTela(EStatusCadastroTela.Novo);
+            _engrediente = new EngredienteModel();
+            _engrediente.Ativo=true;
 
         }
         public void EventoSalvar(object o, EventArgs e)
         {
             try
             {
+
+                SetEngrediente();
                 ValidarDadosEngrediente();
                 AtivarIngredienteInativo(_engrediente);
                 _service.Salvar(_engrediente);
@@ -114,9 +114,9 @@ namespace Perron.Controller
         }
         public void EventoCancelar(object o, EventArgs e)
         {
-            throw new NotImplementedException();
+            AlterarStatusTela(EStatusCadastroTela.Inicio);
         }
-
+        
 
         #endregion
 

@@ -11,20 +11,20 @@ using System.Windows.Forms;
 
 namespace Perron.View.Forms
 {
-    public partial class FrmCadastroIngrediente : FrmPadraoCadastro, IViewCadastroIngrediente
+    public partial class FrmCadastroIngrediente:FrmPadraoCadastro, IViewCadastroIngrediente
     {
         public FrmCadastroIngrediente()
         {
             InitializeComponent();
         }
 
+        public bool VisibilidadeGroupEngredientes { set { gbEngredientes.Visible = value; }}
         public string DescricaoIngrediente
         {
             get { return txtDescricao.Text; }
             set { txtDescricao.Text = value; }
         
         }
-
         public EngredienteModel IngredienteSelecionado
         {
             get
@@ -43,20 +43,35 @@ namespace Perron.View.Forms
             }
         
         }
-
         public void EventoGrid(EventHandler e)
         {
             dgvIngredientes.DoubleClick += e;
         }
-
+        public void EventoBuscar(EventHandler e)
+        {
+            txtDescricao.TextChanged += e;
+        }
         public void PopularGridIngredientes(List<EngredienteModel> Ingredientes)
         {
-            dgvIngredientes.DataSource = Ingredientes;
-        }
+            dgvIngredientes.DataSource = null;
 
+
+            if(Ingredientes != null)
+            {
+                dgvIngredientes.DataSource = Ingredientes;
+                dgvIngredientes.Columns["Id"].Visible = false;
+                dgvIngredientes.Columns["Ativo"].Visible = false;
+            }
+        }
         private void FrmCadastroIngrediente_Load(object sender, EventArgs e)
         {
 
         }
+        private void txtDescricao_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+        
+
     }
 }

@@ -18,7 +18,7 @@ using System.Threading.Tasks;
         }
         public static IRepositoryEngrediente Engrediente()
         {
-            return null;
+            return new RepositoryEngrediente();
         }
         public static IRepositoryDadosEngredienteSabor DadosEngredienteSabor()
         {

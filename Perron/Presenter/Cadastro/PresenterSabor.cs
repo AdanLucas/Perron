@@ -25,7 +25,7 @@ namespace Perron.Controller
             SetarControllerIngrediente(_view.PainelEngredienteSabor);
             _view.Show();
             DelegarEventos();
-            base.AlterarStatusTela(EStatusCadastroTela.Inicio);
+            base.StatusCadastro = EStatusCadastroTela.Inicio;
             
         }
         #region Metodos Privados
@@ -140,7 +140,7 @@ namespace Perron.Controller
 
         private void EventoNovo(object o , EventArgs e)
         {
-            AlterarStatusTela(EStatusCadastroTela.Novo);
+            base.StatusCadastro = EStatusCadastroTela.Novo;
 
         }
         private void EventoSalvar(object o, EventArgs e)
@@ -152,7 +152,7 @@ namespace Perron.Controller
                 Salvar(_sabor);
                 MessageDeSucesso($"Sabor {_sabor.Descricao} salvo com sucesso!");
 
-                AlterarStatusTela(EStatusCadastroTela.Inicio);
+                base.StatusCadastro = EStatusCadastroTela.Inicio;
             }
             catch (Exception ex)
             {
@@ -169,20 +169,20 @@ namespace Perron.Controller
                 {
                     Salvar(_sabor);
 
-                    AlterarStatusTela(EStatusCadastroTela.Inicio);
+                    base.StatusCadastro = EStatusCadastroTela.Inicio;
                 }
             }
         }
         private void EventoCancelar(object o, EventArgs e)
         {
-            AlterarStatusTela(EStatusCadastroTela.Inicio);
+            base.StatusCadastro = EStatusCadastroTela.Inicio;
             
         }
         private void EventoGrid(object o, EventArgs e)
         {
             if (_view.ItemSelecionadoGrid != null)
             {
-                AlterarStatusTela(EStatusCadastroTela.ItemSelecionado);
+                base.StatusCadastro = EStatusCadastroTela.ItemSelecionado;
             }
         }
         private void EventoBuscarClasse(object o, EventArgs e)

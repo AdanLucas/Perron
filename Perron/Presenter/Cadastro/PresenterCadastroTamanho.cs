@@ -53,7 +53,7 @@ namespace Perron.Presenter
             {
                 _tamanho = _view.ItemSelecionadoGrid;
                 SetDadostela();
-                AlterarStatusTela(EStatusCadastroTela.ItemSelecionado);
+                base.StatusCadastro = EStatusCadastroTela.ItemSelecionado;
 
             }
             else
@@ -65,7 +65,7 @@ namespace Perron.Presenter
         {
             this._tamanho = new TamanhoModel();
             _tamanho.Ativo = true;
-            base.AlterarStatusTela(EStatusCadastroTela.Inicio);
+            base.StatusCadastro = EStatusCadastroTela.Inicio;
             _view.QuantidadePedaco = 0;
             _view.DescricaoTamanho = "";
 
@@ -128,12 +128,12 @@ namespace Perron.Presenter
         }
         private void EventoCancelar(object o, EventArgs e)
         {
-            AlterarStatusTela(EStatusCadastroTela.Inicio);
+            base.StatusCadastro = EStatusCadastroTela.Inicio;
         }
         private void EventoNovo(object o, EventArgs e)
         {
             EstatoInicial();
-            this.AlterarStatusTela(EStatusCadastroTela.Novo);
+            base.StatusCadastro = EStatusCadastroTela.Novo;
 
         }
         private void EventoInativar(object o, EventArgs e)

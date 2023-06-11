@@ -42,40 +42,36 @@ namespace Perron.View.Forms
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(13, 67);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(10, 65);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(127, 29);
+            this.label1.Size = new System.Drawing.Size(99, 24);
             this.label1.TabIndex = 7;
             this.label1.Text = "Descrição:";
             // 
             // txtDescricao
             // 
             this.txtDescricao.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDescricao.Location = new System.Drawing.Point(146, 64);
-            this.txtDescricao.Margin = new System.Windows.Forms.Padding(4);
+            this.txtDescricao.Location = new System.Drawing.Point(110, 63);
             this.txtDescricao.Name = "txtDescricao";
-            this.txtDescricao.Size = new System.Drawing.Size(363, 34);
+            this.txtDescricao.Size = new System.Drawing.Size(282, 29);
             this.txtDescricao.TabIndex = 6;
             // 
             // lbDescricao
             // 
             this.lbDescricao.AutoSize = true;
             this.lbDescricao.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbDescricao.Location = new System.Drawing.Point(11, 143);
-            this.lbDescricao.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbDescricao.Location = new System.Drawing.Point(12, 117);
             this.lbDescricao.Name = "lbDescricao";
-            this.lbDescricao.Size = new System.Drawing.Size(119, 25);
+            this.lbDescricao.Size = new System.Drawing.Size(57, 20);
             this.lbDescricao.TabIndex = 8;
-            this.lbDescricao.Text = "Ingredientes";
+            this.lbDescricao.Text = "Classe";
             // 
             // panel2
             // 
             this.panel2.Controls.Add(this.dgvClasse);
-            this.panel2.Location = new System.Drawing.Point(18, 172);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4);
+            this.panel2.Location = new System.Drawing.Point(14, 140);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(491, 242);
+            this.panel2.Size = new System.Drawing.Size(378, 197);
             this.panel2.TabIndex = 9;
             // 
             // dgvClasse
@@ -86,23 +82,22 @@ namespace Perron.View.Forms
             this.dgvClasse.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvClasse.GridColor = System.Drawing.SystemColors.ActiveCaption;
             this.dgvClasse.Location = new System.Drawing.Point(0, 0);
-            this.dgvClasse.Margin = new System.Windows.Forms.Padding(4);
             this.dgvClasse.Name = "dgvClasse";
             this.dgvClasse.RowHeadersWidth = 51;
             this.dgvClasse.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvClasse.Size = new System.Drawing.Size(491, 242);
+            this.dgvClasse.Size = new System.Drawing.Size(378, 197);
             this.dgvClasse.TabIndex = 0;
             // 
             // FrmClasse
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(513, 420);
+            this.ClientSize = new System.Drawing.Size(409, 341);
             this.Controls.Add(this.lbDescricao);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtDescricao);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.MaximizeBox = false;
             this.Name = "FrmClasse";
             this.Text = "Cadastro de Classe";

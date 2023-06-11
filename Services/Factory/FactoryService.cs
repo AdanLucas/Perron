@@ -10,11 +10,9 @@ public static class FactoryService
 {
     public static IServiceEngrediente Engrediente()
     {
+        var repo = FactoryRepository.Engrediente();
 
-
-
-
-        return null;
+        return new ServiceEngrediente(repo);
     }
     public static IServiceSabor Sabor()
     {

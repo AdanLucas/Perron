@@ -44,8 +44,7 @@ namespace Perron.View.Forms.Form_Padrao_Cadastro
         public bool VisibilidadeckAtivo { set { ckAtivo.Enabled = value;} }
         public bool VisibilidadeckInativo { set { ckInativo.Enabled = value; } }
 
-        public int AlturaTela { set => throw new NotImplementedException(); }
-        public bool VisiblidadeBusca { set => throw new NotImplementedException(); }
+        public int AlturaTela { set => this.Height = value; }
 
         public void RemoverCheck()
         {

@@ -23,7 +23,7 @@ namespace Perron.Presenter
             _serivce = service;
             DelegarEventos();
 
-            AlterarStatusTela(EStatusCadastroTela.Inicio);
+            base.StatusCadastro = EStatusCadastroTela.Inicio;
 
         }
 
@@ -75,8 +75,9 @@ namespace Perron.Presenter
         {
             _classe = null;
             _view.DescricaoClasse = "";
-            
 
+
+            
         }
         private void EstadoNovoCadastro()
         {
@@ -121,7 +122,7 @@ namespace Perron.Presenter
                 _classe.AtivarCadastroInativo();
                 _serivce.Salvar(_classe);
                 MessageDeSucesso($"Classe {_classe.DescricaoClasse} cadastrada Com sucesso!");
-                AlterarStatusTela(EStatusCadastroTela.Inicio);
+                base.StatusCadastro = EStatusCadastroTela.Inicio;
             }
             catch (Exception ex)
             {
@@ -139,24 +140,22 @@ namespace Perron.Presenter
                 _classe = _view.ClasseSelecionadaGrid;
                 _classe.InativarCadastro();
                 _serivce.Salvar(_classe);
-                AlterarStatusTela(EStatusCadastroTela.Inicio);
+                base.StatusCadastro = EStatusCadastroTela.Inicio;
             }
         }
         private void EventoNovoCadastro(object o , EventArgs e)
         {
-            AlterarStatusTela(EStatusCadastroTela.Novo);
+            base.StatusCadastro = EStatusCadastroTela.Novo;
         }
         private void EventoCancelar(object o, EventArgs e)
         {
-            AlterarStatusTela(EStatusCadastroTela.Inicio);
+            base.StatusCadastro = EStatusCadastroTela.Inicio;
 
         }
         private void EventoGrid(object o,EventArgs e)
         {
-            AlterarStatusTela(EStatusCadastroTela.ItemSelecionado);
+            base.StatusCadastro = EStatusCadastroTela.ItemSelecionado;
         }
-        #endregion
-
         private void EventoAlterarStatusCadastro(object o,StatusCadastroTelaEventArgs e)
         {
             switch (e.statusTela)
@@ -185,6 +184,8 @@ namespace Perron.Presenter
                     break;
             }
         }
+        #endregion
+
 
     }
 }

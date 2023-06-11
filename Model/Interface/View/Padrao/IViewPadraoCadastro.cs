@@ -21,7 +21,6 @@ public interface IViewPadraoCadastro
     int AlturaTela { set; }
     bool VisualizarCadastrosAtivo { get; }
     bool VisualizarCadastrosInativos { get; }
-    bool VisiblidadeBusca { set; }
 
     #region Metodos
 

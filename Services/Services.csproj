@@ -47,6 +47,7 @@
     <Compile Include="Service\ServiceBancodeDados.cs" />
     <Compile Include="Service\ServiceClasse.cs" />
     <Compile Include="Service\ServiceDinamico.cs" />
+    <Compile Include="Service\ServiceEngrediente.cs" />
     <Compile Include="Service\ServiceSabor.cs" />
     <Compile Include="Service\ServiceTamanho.cs" />
   </ItemGroup>

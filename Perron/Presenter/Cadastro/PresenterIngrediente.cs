@@ -22,7 +22,7 @@ namespace Perron.Controller
             _view.Show();
             _service = service;
             DelegarEventos();
-           base.StatusCadastro = EStatusCadastroTela.Inicio;
+              base.StatusCadastro = EStatusCadastroTela.Inicio;
             SetListaEngredienteCadastrado(EStatusCadastro.Todos);
         }
 

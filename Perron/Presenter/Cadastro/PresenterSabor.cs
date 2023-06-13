@@ -58,7 +58,6 @@ namespace Perron.Controller
             _sabor = _view.ItemSelecionadoGrid;
             SetDadosSdabor();
             _view.VisibilidadeBotao = true;
-
         } 
         
         #endregion
@@ -103,7 +102,6 @@ namespace Perron.Controller
             try
             {
                 ValidadorModel.ValidarModeloLancaExcecao(_sabor);
-                _sabor.AtivarCadastroInativo();
                 _service.Salvar(_sabor);
             }
             catch (Exception ex)
@@ -118,15 +116,15 @@ namespace Perron.Controller
             {
                 _sabor.Engredientes = _presenterIngrediente.GetEngredienteSabor();
                 _sabor.Descricao = _view.DescricaoSabor;
+                
             }
         }
         private void SetDadosSdabor()
         {
             _view.DescricaoSabor = _sabor.Descricao;
             SetarClasseNaView();
-
-            _presenterIngrediente.SetListaEngredienteSabor(_sabor.GetEngredientePorStatus(EStatusCadastro.Todos));
-
+            var Lista = _sabor.GetEngredientePorStatus(EStatusCadastro.Todos);
+            _presenterIngrediente.SetListaEngredienteSabor(Lista);
         }
 
 
@@ -145,7 +143,6 @@ namespace Perron.Controller
         }
         private void EventoSalvar(object o, EventArgs e)
         {
-
             try
             {
                 GetdadosSabor();

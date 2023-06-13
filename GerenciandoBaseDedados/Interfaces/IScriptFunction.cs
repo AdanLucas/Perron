@@ -9,8 +9,8 @@ namespace Model.Interface.BancoDeDados
 {
     public interface IScriptFunction
     {
-        string GUID { get; set; }
-        string Function { get;  set; }
+        string GUID { get; }
+        string Function { get;}
         string ScriptFunction { get; }
     }
 }

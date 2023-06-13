@@ -19,6 +19,10 @@ namespace Perron
                 return ckAtivo.Checked;
 
             }
+            set
+            {
+                ckAtivo.Checked = value;
+            }
         }
         public bool Inativo
         {
@@ -26,6 +30,10 @@ namespace Perron
             {
                 return ckInativo.Checked;
 
+            }
+            set
+            {
+                ckInativo.Checked = value;
             }
         }
 

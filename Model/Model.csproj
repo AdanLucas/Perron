@@ -87,6 +87,7 @@
     <Compile Include="Interface\Services\IServiceTamanho.cs" />
     <Compile Include="Interface\View\IViewCadastroEngredienteSabor.cs" />
     <Compile Include="Interface\View\IViewCadastroIngrediente.cs" />
+    <Compile Include="Interface\View\IViewCadastroPreco.cs" />
     <Compile Include="Interface\View\IViewCadastroSabor.cs" />
     <Compile Include="Interface\View\IViewCadastroTamanho.cs" />
     <Compile Include="Interface\View\IViewClasse.cs" />
@@ -95,6 +96,7 @@
     <Compile Include="Model\ClasseModel.cs" />
     <Compile Include="Model\DadosSaborEngredienteModel.cs" />
     <Compile Include="Model\EngredienteModel.cs" />
+    <Compile Include="Model\PIzza.cs" />
     <Compile Include="Model\SaborModel.cs" />
     <Compile Include="Model\TamanhoModel.cs" />
     <Compile Include="Outros\ValidadorModel.cs" />

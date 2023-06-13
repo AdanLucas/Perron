@@ -29,43 +29,37 @@ namespace Perron.View.Forms.Form_Padrao_Cadastro
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnNovo = new System.Windows.Forms.Button();
             this.btnSalvar = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.ckInativo = new System.Windows.Forms.CheckBox();
-            this.ckAtivo = new System.Windows.Forms.CheckBox();
-            this.btnCancelar = new System.Windows.Forms.Button();
-            this.btnRemover = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.ckAtivo = new System.Windows.Forms.CheckBox();
+            this.ckInativo = new System.Windows.Forms.CheckBox();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.btnRemover = new System.Windows.Forms.Button();
+            this.btnCancelar = new System.Windows.Forms.Button();
+            this.btnNovo = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
-            // btnNovo
-            // 
-            this.btnNovo.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnNovo.FlatAppearance.BorderSize = 3;
-            this.btnNovo.Location = new System.Drawing.Point(0, 0);
-            this.btnNovo.Name = "btnNovo";
-            this.btnNovo.Size = new System.Drawing.Size(68, 33);
-            this.btnNovo.TabIndex = 0;
-            this.btnNovo.Text = "Novo";
-            this.btnNovo.UseVisualStyleBackColor = true;
-            // 
             // btnSalvar
             // 
+            this.btnSalvar.BackColor = System.Drawing.Color.Transparent;
+            this.btnSalvar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnSalvar.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnSalvar.FlatAppearance.BorderSize = 3;
-            this.btnSalvar.Location = new System.Drawing.Point(68, 0);
+            this.btnSalvar.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnSalvar.FlatAppearance.BorderSize = 5;
+            this.btnSalvar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnSalvar.Location = new System.Drawing.Point(46, 0);
             this.btnSalvar.Name = "btnSalvar";
-            this.btnSalvar.Size = new System.Drawing.Size(68, 33);
+            this.btnSalvar.Size = new System.Drawing.Size(46, 36);
             this.btnSalvar.TabIndex = 1;
-            this.btnSalvar.Text = "Salvar";
-            this.btnSalvar.UseVisualStyleBackColor = true;
+            this.btnSalvar.UseVisualStyleBackColor = false;
             // 
             // panel1
             // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.AutoSize = true;
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.panel3);
@@ -75,20 +69,18 @@ namespace Perron.View.Forms.Form_Padrao_Cadastro
             this.panel1.Controls.Add(this.btnNovo);
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(510, 33);
+            this.panel1.Size = new System.Drawing.Size(510, 36);
             this.panel1.TabIndex = 2;
             // 
-            // ckInativo
+            // panel2
             // 
-            this.ckInativo.AutoSize = true;
-            this.ckInativo.Dock = System.Windows.Forms.DockStyle.Right;
-            this.ckInativo.Location = new System.Drawing.Point(63, 0);
-            this.ckInativo.Margin = new System.Windows.Forms.Padding(2);
-            this.ckInativo.Name = "ckInativo";
-            this.ckInativo.Size = new System.Drawing.Size(58, 33);
-            this.ckInativo.TabIndex = 3;
-            this.ckInativo.Text = "Inativo";
-            this.ckInativo.UseVisualStyleBackColor = true;
+            this.panel2.Controls.Add(this.ckAtivo);
+            this.panel2.Controls.Add(this.ckInativo);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel2.Location = new System.Drawing.Point(204, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(121, 36);
+            this.panel2.TabIndex = 4;
             // 
             // ckAtivo
             // 
@@ -97,50 +89,72 @@ namespace Perron.View.Forms.Form_Padrao_Cadastro
             this.ckAtivo.Location = new System.Drawing.Point(0, 0);
             this.ckAtivo.Margin = new System.Windows.Forms.Padding(2);
             this.ckAtivo.Name = "ckAtivo";
-            this.ckAtivo.Size = new System.Drawing.Size(50, 33);
+            this.ckAtivo.Size = new System.Drawing.Size(50, 36);
             this.ckAtivo.TabIndex = 3;
             this.ckAtivo.Text = "Ativo";
             this.ckAtivo.UseVisualStyleBackColor = true;
             // 
-            // btnCancelar
+            // ckInativo
             // 
-            this.btnCancelar.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnCancelar.FlatAppearance.BorderSize = 3;
-            this.btnCancelar.Location = new System.Drawing.Point(204, 0);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(68, 33);
-            this.btnCancelar.TabIndex = 3;
-            this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.UseVisualStyleBackColor = true;
-            // 
-            // btnRemover
-            // 
-            this.btnRemover.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnRemover.FlatAppearance.BorderSize = 3;
-            this.btnRemover.Location = new System.Drawing.Point(136, 0);
-            this.btnRemover.Name = "btnRemover";
-            this.btnRemover.Size = new System.Drawing.Size(68, 33);
-            this.btnRemover.TabIndex = 2;
-            this.btnRemover.Text = "Remover";
-            this.btnRemover.UseVisualStyleBackColor = true;
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.ckAtivo);
-            this.panel2.Controls.Add(this.ckInativo);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel2.Location = new System.Drawing.Point(292, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(121, 33);
-            this.panel2.TabIndex = 4;
+            this.ckInativo.AutoSize = true;
+            this.ckInativo.Dock = System.Windows.Forms.DockStyle.Right;
+            this.ckInativo.Location = new System.Drawing.Point(63, 0);
+            this.ckInativo.Margin = new System.Windows.Forms.Padding(2);
+            this.ckInativo.Name = "ckInativo";
+            this.ckInativo.Size = new System.Drawing.Size(58, 36);
+            this.ckInativo.TabIndex = 3;
+            this.ckInativo.Text = "Inativo";
+            this.ckInativo.UseVisualStyleBackColor = true;
             // 
             // panel3
             // 
             this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel3.Location = new System.Drawing.Point(272, 0);
+            this.panel3.Location = new System.Drawing.Point(184, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(20, 33);
+            this.panel3.Size = new System.Drawing.Size(20, 36);
             this.panel3.TabIndex = 5;
+            // 
+            // btnRemover
+            // 
+            this.btnRemover.BackColor = System.Drawing.Color.Transparent;
+            this.btnRemover.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnRemover.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnRemover.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnRemover.FlatAppearance.BorderSize = 5;
+            this.btnRemover.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnRemover.Location = new System.Drawing.Point(92, 0);
+            this.btnRemover.Name = "btnRemover";
+            this.btnRemover.Size = new System.Drawing.Size(46, 36);
+            this.btnRemover.TabIndex = 2;
+            this.btnRemover.UseVisualStyleBackColor = false;
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.BackColor = System.Drawing.Color.Transparent;
+            this.btnCancelar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnCancelar.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnCancelar.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnCancelar.FlatAppearance.BorderSize = 5;
+            this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnCancelar.Location = new System.Drawing.Point(138, 0);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(46, 36);
+            this.btnCancelar.TabIndex = 3;
+            this.btnCancelar.UseVisualStyleBackColor = false;
+            // 
+            // btnNovo
+            // 
+            this.btnNovo.BackColor = System.Drawing.Color.Transparent;
+            this.btnNovo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnNovo.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnNovo.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnNovo.FlatAppearance.BorderSize = 5;
+            this.btnNovo.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnNovo.Location = new System.Drawing.Point(0, 0);
+            this.btnNovo.Name = "btnNovo";
+            this.btnNovo.Size = new System.Drawing.Size(46, 36);
+            this.btnNovo.TabIndex = 0;
+            this.btnNovo.UseVisualStyleBackColor = false;
             // 
             // FrmPadraoCadastro
             // 

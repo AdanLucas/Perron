@@ -19,16 +19,16 @@ namespace Repository.Repository
      
 
         #region Metodos Privados
-        private void pc_cadastroSabor(DbSession Session,SaborModel sabor)
+        private int pc_cadastroSabor(DbSession Session,SaborModel sabor)
         {
-            sabor.Id = (long)Session.Connection.Query<int>("pc_cadastroSabor @id,@descricao,@idClasse,@ativo",
+            return Session.Connection.Query<int>("exec pc_cadastroSabor @id,@descricao,@idClasse,@ativo",
                 param: new
                 {
                     id = sabor.Id,
                     descricao = sabor.Descricao,
                     idClasse = sabor.Classe.Id,
                     ativo = sabor.Ativo
-                }, transaction: Session.Transaction).FirstOrDefault();
+                         },transaction: Session.Transaction).FirstOrDefault<int>();
 
 
         }
@@ -59,7 +59,7 @@ namespace Repository.Repository
         }
         private List<EngredienteModel> GetListaEngredientePorSabor(DbSession session, long IDSabor)
         {
-           return session.Connection.Query<EngredienteModel>($"select * from Engrediente where id IN (select Engrediente from Sabor_has_Engrediente where Sabor = {IDSabor})").ToList();
+           return session.Connection.Query<EngredienteModel>($@"SELECT * FROM  FN_GetEngredientePorSabor ({IDSabor})").ToList();
         }
         #endregion
 
@@ -78,8 +78,6 @@ namespace Repository.Repository
                     long IDclasse = session.Connection.Query<int>($"Select IdClasse From Sabor where Id = {item.Id}").FirstOrDefault();
                     item.Classe = session.Connection.Query<ClasseModel>($"select Id,Descricao as DescricaoClasse,Ativo from Classe where id= {IDclasse}").FirstOrDefault();
                     item.Engredientes = GetListaEngredientePorSabor(session,item.Id);
-
-
                 }
 
                 return Lista;
@@ -106,7 +104,7 @@ namespace Repository.Repository
 
                 try
                 {
-                   pc_cadastroSabor(Session, sabor);
+                    sabor.Id =  pc_cadastroSabor(Session, sabor);
 
                     foreach (var Engrediente in sabor.GetEngredientePorStatus(EStatusCadastro.Todos))
                     {

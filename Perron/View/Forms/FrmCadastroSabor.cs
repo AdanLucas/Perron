@@ -16,9 +16,16 @@ namespace Perron.View.Forms
         public FrmCadastroSabor()
         {
             InitializeComponent();
+            ConfigurarBotao();
         }
 
-
+        private void ConfigurarBotao()
+        {
+            btnBuscarClasse.Image = Properties.Resources.Buscar25;
+           btnBuscarClasse.BackgroundImageLayout = ImageLayout.Zoom;
+            btnBuscarClasse.FlatStyle = FlatStyle.Popup;
+        }
+        
         public string DescricaoSabor
         {
             get { return txtDescricaoSabor.Text; }

@@ -78,6 +78,7 @@ namespace Perron.Controller
         {
             base.AlterarAlturaTela(411);
             _view.VisibilidadeGroupEngredientes = true;
+            SetListaEngredienteCadastrado(EStatusCadastro.none);
             EstadoInicial();
         }
         private void EstadoTelaCadastrando()
@@ -88,7 +89,7 @@ namespace Perron.Controller
         }
         private void EstadoTelaCadastroSelecionado()
         {
-
+            
         }
         private void AtivarIngredienteInativo(EngredienteModel _engrediente)
         {
@@ -168,11 +169,8 @@ namespace Perron.Controller
         }
         #endregion
 
-
         #region Metodos Publicos
         #endregion
-
-
     
         #region Eventos Privados
         private void EventoStatusTela(object o, StatusCadastroTelaEventArgs e)
@@ -197,11 +195,12 @@ namespace Perron.Controller
         {
             try
             {
-
                 SetEngrediente();
                 ValidarDadosEngrediente();
                 AtivarIngredienteInativo(_engrediente);
                 _service.Salvar(_engrediente);
+                base.StatusCadastro = EStatusCadastroTela.Inicio;
+                base.MessageDeSucesso($"Engrediente {_engrediente.Descricao} Cadastrado com Sucesso!");
 
             }
             catch (Exception ex)
@@ -225,6 +224,16 @@ namespace Perron.Controller
         private void EventoBucarPorDescricao(object o, EventArgs e)
         {
             FiltrarListaPorNome(_view.DescricaoIngrediente);
+        }
+        private void EventoGridCadastrado(object o, EventArgs e)
+        {
+            if(_view.IngredienteSelecionado!= null)
+            {
+                _engrediente =_view.IngredienteSelecionado;
+                SetEngredienteTela();
+                
+
+            }
         }
         #endregion
 

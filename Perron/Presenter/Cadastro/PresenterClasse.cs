@@ -59,6 +59,7 @@ namespace Perron.Presenter
         }
         public void SetClasseNaView()
         {
+            _classe = _view.ClasseSelecionadaGrid;
             _view.DescricaoClasse = _classe.DescricaoClasse;
         }
         private void GetClasseView()
@@ -75,9 +76,11 @@ namespace Perron.Presenter
         {
             _classe = null;
             _view.DescricaoClasse = "";
+            _view.AlturaTela = 376;
+            _view.VisibilidadeGroupBoxClassesCadastrados = true;
 
 
-            
+
         }
         private void EstadoNovoCadastro()
         {
@@ -85,6 +88,8 @@ namespace Perron.Presenter
             _classe.Ativo = true;
             _view.DescricaoClasse = "";
             _view.PopularGridClasse(null);
+            _view.AlturaTela = 185;
+            _view.VisibilidadeGroupBoxClassesCadastrados = false;
 
         }
         private void EstadoItemSelecionado()
@@ -93,9 +98,7 @@ namespace Perron.Presenter
         }
         private void SetItemSelecionado()
         {
-            _classe = _view.ClasseSelecionadaGrid;
             SetClasseNaView();
-
         }
         #endregion
 

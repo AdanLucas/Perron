@@ -33,9 +33,8 @@ namespace Perron.Controller
             SetarListaEngredienteCadastrados();
             ExibirEngredienteCadastrados("");
             _status = new PresenterGetEstatusCadastro(_view.PainelStatus);
-
             DelegarEventos();
-            _status.Visibilidade(false);
+            _status.Visibilidade(true);
         }
 
         #endregion
@@ -44,6 +43,7 @@ namespace Perron.Controller
         public List<EngredienteModel> GetEngredienteSabor()
         {
             return ListaEngredienteSabor;
+           
         }
 
         public void StatusCadastro(EStatusCadastroTela status)
@@ -75,7 +75,7 @@ namespace Perron.Controller
                     break;
 
                 case EStatusCadastroTela.ItemSelecionado:
-                    this.StatusDeCadastroSelecionado();
+                    this.StatusCadastroEditandoCadastrando();
                     break;
 
 
@@ -89,7 +89,11 @@ namespace Perron.Controller
         public void SetListaEngredienteSabor(List<EngredienteModel> Lista)
         {
             if (Lista.Count > 0)
+            {
                 ListaEngredienteSabor = Lista;
+                _status.SetStatus(EStatusCadastro.Ativo);
+                ExibirEngredienteSabor();
+            }
         }
         #endregion
 
@@ -115,9 +119,6 @@ namespace Perron.Controller
         {
             if (ListaEngredienteCadastrados != null)
             {
-
-
-
                 if (ListaEngredienteCadastrados.Count > 0)
                 {
                     List<EngredienteModel> Lista;
@@ -129,9 +130,9 @@ namespace Perron.Controller
                     else
                     {
                         Lista = ListaEngredienteCadastrados.Where(c => c.Descricao.Contains(Busca) && c.Ativo == true).ToList();
-                        _view.PopularGridEngredientesCadastrados(Lista);
                     }
 
+                        _view.PopularGridEngredientesCadastrados(Lista);
                 }
             }
         }
@@ -229,9 +230,8 @@ namespace Perron.Controller
                     ListaEngredienteSabor = new List<EngredienteModel>();
 
                 ListaEngredienteSabor.Add(Engrediente);
-
+                _status.SetStatus(EStatusCadastro.Ativo);
                 ExibirEngredienteSabor();
-
             }
         }
         private void InativarEngredienteLista()
@@ -258,9 +258,12 @@ namespace Perron.Controller
         }
         private void ExibirEngredienteSabor()
         {
-            var LIsta = FiltrarListaPorDescricao(FiltrarListaPorStatus(ListaEngredienteSabor));
 
-            _view.PopularGridEngredientesSabor(LIsta);
+            var LIstaPorStatus = FiltrarListaPorStatus(ListaEngredienteSabor);
+            var ListaPorDescricao = FiltrarListaPorDescricao(LIstaPorStatus);
+            _view.PopularGridEngredientesSabor(ListaPorDescricao);
+
+
         }
 
 
@@ -275,8 +278,11 @@ namespace Perron.Controller
         {
             if (_view.EngredienteSelecionadoGridEngredienteCadastrado != null)
             {
-                var Engrediente = _view.EngredienteSelecionadoGridEngredienteCadastrado;
-                this.AdicionarEngredienteListaSabor(Engrediente);
+                if(_statusCadastro.Equals(EStatusCadastroTela.Novo) || _statusCadastro.Equals(EStatusCadastroTela.Cadastrando) || _statusCadastro.Equals(EStatusCadastroTela.ItemSelecionado))
+                {
+                    var Engrediente = _view.EngredienteSelecionadoGridEngredienteCadastrado;
+                    this.AdicionarEngredienteListaSabor(Engrediente);
+                }
             }
         }
         private void EventoGridEngredienteSabor(object o, EventArgs e)

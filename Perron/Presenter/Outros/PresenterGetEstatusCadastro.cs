@@ -77,7 +77,36 @@ namespace Perron.Presenter.Outros
         {
             return this.GetStatusView();
         }
+        public void SetStatus(EStatusCadastro status)
+        {
+            switch (status) 
+            {
+                case EStatusCadastro.none:
+                    _view.Ativo = false;
+                    _view.Inativo = false;
+                    break;
 
+                case EStatusCadastro.Ativo:
+                    _view.Ativo = true;
+                    _view.Inativo = false;
+                    break;
+
+                case EStatusCadastro.Inativo:
+                    _view.Ativo = false;
+                    _view.Inativo = true;
+                    break;
+
+                case EStatusCadastro.Todos:
+                    _view.Ativo = true;
+                    _view.Inativo = true;
+                    break;
+
+
+            }
+
+        }
+        private  bool SetarStatusAtivo { set { _view.Ativo = value; } }
+        private bool SetarStatusInativo { set { _view.Inativo = value; } }
         #endregion
     }
 }

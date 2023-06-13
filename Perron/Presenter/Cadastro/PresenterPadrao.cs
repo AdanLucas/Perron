@@ -96,7 +96,12 @@ namespace Perron.Controller
                     break;
 
                 case EStatusCadastroTela.ItemSelecionado:
-                    _view.VisibilidadeBotaoDeletar = true;
+
+                    if (_view.VisualizarCadastrosInativos)
+                        _view.VisibilidadeBotaoDeletar = false;
+                    else
+                        _view.VisibilidadeBotaoDeletar = true;
+
                     _view.VisibilidadeBotaoNovo = false;
                     _view.VisibilidadeBotaoSalvar = true;
                     _view.VisibilidadeBotaoCancelar = true;

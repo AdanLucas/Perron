@@ -20,14 +20,11 @@ namespace Perron
             Application.SetCompatibleTextRenderingDefault(false);
             try
             {
-                
-
                 Task tarefa = ConfiguracoesGlobais.Instancia.Iniciar();
                 Task.WaitAll(tarefa);
                 FactoryPresenter.Principal();
                 Application.Run();
 
-                
             }
             catch (Exception ex)
             {

@@ -8,6 +8,8 @@ namespace Perron.View.Forms.Form_Padrao_Cadastro
         public FrmPadraoCadastro()
         {
             InitializeComponent();
+
+            ConfigurarImagemBotao();
         }
 
 
@@ -33,12 +35,20 @@ namespace Perron.View.Forms.Form_Padrao_Cadastro
             {
                 return ckAtivo.Checked;
             }
+            set
+            {
+                ckAtivo.Checked = value;
+            }
         }
         public bool VisualizarCadastrosInativos
         {
             get
             {
                 return ckInativo.Checked;
+            }
+            set
+            {
+                ckInativo.Checked = value;
             }
         }
         public bool VisibilidadeckAtivo { set { ckAtivo.Enabled = value;} }
@@ -79,7 +89,17 @@ namespace Perron.View.Forms.Form_Padrao_Cadastro
         {
             btnSalvar.Click += e;
         }
-
+        private void ConfigurarImagemBotao()
+        {
+            btnNovo.Image = Properties.Resources.BotaoAdd;
+            btnSalvar.Image = Properties.Resources.BotaoOk;
+            btnCancelar.Image = Properties.Resources.BotaoCancel;
+            btnRemover.Image = Properties.Resources.BotaoRemover;
+            btnCancelar.BackgroundImageLayout = ImageLayout.Zoom;
+            btnRemover.BackgroundImageLayout = ImageLayout.Zoom;
+            btnNovo.BackgroundImageLayout = ImageLayout.Zoom;
+            btnSalvar.BackgroundImageLayout = ImageLayout.Zoom;
+        }
       
     }
 }

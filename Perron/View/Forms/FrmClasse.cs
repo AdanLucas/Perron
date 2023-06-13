@@ -16,6 +16,8 @@ namespace Perron.View.Forms
         public FrmClasse()
         {
             InitializeComponent();
+
+            
         }
 
         public string DescricaoClasse
@@ -23,7 +25,7 @@ namespace Perron.View.Forms
             get { return txtDescricao.Text; }
             set { txtDescricao.Text = value; }
         }
-
+        public bool VisibilidadeGroupBoxClassesCadastrados { set {gbClassesCadastradas.Visible = value; }} 
         public ClasseModel ClasseSelecionadaGrid
         {
             get

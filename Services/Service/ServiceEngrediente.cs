@@ -20,7 +20,7 @@ namespace Services.Service
 
         public List<EngredienteModel> GetListaEngredientesCadastroados()
         {
-            return _repositorio.GetLista();
+            return _repositorio.GetLista(EStatusCadastro.Todos);
         }
         public void Salvar(EngredienteModel Engrediente)
         {

@@ -37,7 +37,7 @@ namespace Perron.View.Forms
                 return (T)dgvItem.CurrentRow.DataBoundItem;
 
             }
-            catch (Exception ex)
+            catch
             {
 
                 throw new Exception("Item Não Selecionado");

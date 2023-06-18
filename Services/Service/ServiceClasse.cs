@@ -23,7 +23,7 @@ namespace Services.Service
 
         public List<ClasseModel> GetlistaClasse(EStatusCadastro statusCadastro)
         {
-            var Lista = _repository.GetLista();
+            var Lista = _repository.GetLista(EStatusCadastro.Todos);
 
             switch (statusCadastro)
             {

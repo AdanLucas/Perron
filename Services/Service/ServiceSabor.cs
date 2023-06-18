@@ -19,7 +19,7 @@ namespace Services.Service
 
         public List<SaborModel> GetListaSabor(EStatusCadastro status)
         {
-            var Lista = _repo.GetLista();
+            var Lista = _repo.GetLista(EStatusCadastro.Todos);
 
             switch (status)
             {

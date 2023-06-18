@@ -35,7 +35,7 @@ namespace Perron.View.Forms
             this.menuItemSabor = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemTamanho = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemIngrediente = new System.Windows.Forms.ToolStripMenuItem();
-            this.preçoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemCadastroPreco = new System.Windows.Forms.ToolStripMenuItem();
             this.financeiroToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.estoqueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.vendaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -54,7 +54,8 @@ namespace Perron.View.Forms
             this.vendaToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1773, 43);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(2, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(1330, 36);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -65,68 +66,67 @@ namespace Perron.View.Forms
             this.menuItemSabor,
             this.menuItemTamanho,
             this.menuItemIngrediente,
-            this.preçoToolStripMenuItem});
+            this.menuItemCadastroPreco});
             this.cadastroToolStripMenuItem.Name = "cadastroToolStripMenuItem";
-            this.cadastroToolStripMenuItem.Size = new System.Drawing.Size(138, 39);
+            this.cadastroToolStripMenuItem.Size = new System.Drawing.Size(112, 32);
             this.cadastroToolStripMenuItem.Text = "Cadastro";
             // 
             // menuItemClasse
             // 
             this.menuItemClasse.Name = "menuItemClasse";
-            this.menuItemClasse.Size = new System.Drawing.Size(248, 40);
+            this.menuItemClasse.Size = new System.Drawing.Size(199, 32);
             this.menuItemClasse.Text = "Classe";
             // 
             // menuItemSabor
             // 
             this.menuItemSabor.Name = "menuItemSabor";
-            this.menuItemSabor.Size = new System.Drawing.Size(248, 40);
+            this.menuItemSabor.Size = new System.Drawing.Size(199, 32);
             this.menuItemSabor.Text = "Sabor";
             // 
             // menuItemTamanho
             // 
             this.menuItemTamanho.Name = "menuItemTamanho";
-            this.menuItemTamanho.Size = new System.Drawing.Size(248, 40);
+            this.menuItemTamanho.Size = new System.Drawing.Size(199, 32);
             this.menuItemTamanho.Text = "Tamanho";
             // 
             // menuItemIngrediente
             // 
             this.menuItemIngrediente.Name = "menuItemIngrediente";
-            this.menuItemIngrediente.Size = new System.Drawing.Size(248, 40);
+            this.menuItemIngrediente.Size = new System.Drawing.Size(199, 32);
             this.menuItemIngrediente.Text = "Ingrediente";
             // 
-            // preçoToolStripMenuItem
+            // menuItemCadastroPreco
             // 
-            this.preçoToolStripMenuItem.Name = "preçoToolStripMenuItem";
-            this.preçoToolStripMenuItem.Size = new System.Drawing.Size(248, 40);
-            this.preçoToolStripMenuItem.Text = "Preço";
+            this.menuItemCadastroPreco.Name = "menuItemCadastroPreco";
+            this.menuItemCadastroPreco.Size = new System.Drawing.Size(199, 32);
+            this.menuItemCadastroPreco.Text = "Preço";
             // 
             // financeiroToolStripMenuItem
             // 
             this.financeiroToolStripMenuItem.Name = "financeiroToolStripMenuItem";
-            this.financeiroToolStripMenuItem.Size = new System.Drawing.Size(158, 39);
+            this.financeiroToolStripMenuItem.Size = new System.Drawing.Size(127, 32);
             this.financeiroToolStripMenuItem.Text = "Financeiro";
             // 
             // estoqueToolStripMenuItem
             // 
             this.estoqueToolStripMenuItem.Name = "estoqueToolStripMenuItem";
-            this.estoqueToolStripMenuItem.Size = new System.Drawing.Size(127, 39);
+            this.estoqueToolStripMenuItem.Size = new System.Drawing.Size(103, 32);
             this.estoqueToolStripMenuItem.Text = "Estoque";
             // 
             // vendaToolStripMenuItem
             // 
             this.vendaToolStripMenuItem.Name = "vendaToolStripMenuItem";
-            this.vendaToolStripMenuItem.Size = new System.Drawing.Size(107, 39);
+            this.vendaToolStripMenuItem.Size = new System.Drawing.Size(86, 32);
             this.vendaToolStripMenuItem.Text = "Venda";
             // 
             // FrmPrincipal
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1773, 1020);
+            this.ClientSize = new System.Drawing.Size(1330, 829);
             this.Controls.Add(this.menuStrip1);
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Pizzaria Perron";
@@ -143,7 +143,7 @@ namespace Perron.View.Forms
         private System.Windows.Forms.ToolStripMenuItem cadastroToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem menuItemSabor;
         private System.Windows.Forms.ToolStripMenuItem menuItemTamanho;
-        private System.Windows.Forms.ToolStripMenuItem preçoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem menuItemCadastroPreco;
         private System.Windows.Forms.ToolStripMenuItem menuItemIngrediente;
         private System.Windows.Forms.ToolStripMenuItem financeiroToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem estoqueToolStripMenuItem;

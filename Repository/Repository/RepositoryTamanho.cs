@@ -25,8 +25,7 @@ namespace Repository.Repository
         #endregion
 
         #region metodos Publicos
-
-        public List<TamanhoModel> GetListaTamanho()
+        public List<TamanhoModel> GetListaTamanho(EStatusCadastro status)
         {
             using (var Session = new DbSession())
             {
@@ -35,7 +34,6 @@ namespace Repository.Repository
 
 
         }
-
         public TamanhoModel GetTamanhoPorId(int id)
         {
             using (var session = new DbSession())
@@ -43,7 +41,6 @@ namespace Repository.Repository
                 return session.Connection.Query<TamanhoModel>($"Select * from Tamanho where id = {id}").FirstOrDefault();
             }
         }
-
         public void SalvarTamanho(TamanhoModel tamanho)
         {
             using (var session = new DbSession())
@@ -51,7 +48,6 @@ namespace Repository.Repository
                 pc_cadastroTamanho(session, tamanho);
             }
         } 
-
         #endregion
 
     }

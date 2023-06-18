@@ -67,6 +67,7 @@
     <Compile Include="Emumerator\EUnidadeMedida.cs" />
     <Compile Include="Extension\ExtensionAEntity.cs" />
     <Compile Include="Extension\ExtensionXml.cs" />
+    <Compile Include="Interface\Presenter\IPresenterCadastroPreco.cs" />
     <Compile Include="Interface\Presenter\IPresenterCadastroTamanho.cs" />
     <Compile Include="Interface\Presenter\IPresenterClasse.cs" />
     <Compile Include="Interface\Presenter\IPresenterEngredienteSabor.cs" />
@@ -77,10 +78,12 @@
     <Compile Include="Interface\Repository\IRepositoryDadosEngredienteSabor.cs" />
     <Compile Include="Interface\Repository\IRepositoryBase.cs" />
     <Compile Include="Interface\Repository\IRepositoryEngrediente.cs" />
+    <Compile Include="Interface\Repository\IRepositoryPreco.cs" />
     <Compile Include="Interface\Repository\IRepositorySabor.cs" />
     <Compile Include="Interface\Repository\IRepositoryTamanho.cs" />
     <Compile Include="Interface\Repository\IRepositoryVerificacaoBancoDedados.cs" />
     <Compile Include="Interface\Services\IServiceBancoDeDados.cs" />
+    <Compile Include="Interface\Services\IServiceCadastroPreco.cs" />
     <Compile Include="Interface\Services\IServiceClasse.cs" />
     <Compile Include="Interface\Services\IServiceEngrediente.cs" />
     <Compile Include="Interface\Services\IServiceSabor.cs" />
@@ -94,9 +97,11 @@
     <Compile Include="Interface\View\Padrao\IViewPadraoCadastro.cs" />
     <Compile Include="Interface\View\IViewPrincipal.cs" />
     <Compile Include="Model\ClasseModel.cs" />
+    <Compile Include="Model\ClasseView\PrecoView.cs" />
     <Compile Include="Model\DadosSaborEngredienteModel.cs" />
     <Compile Include="Model\EngredienteModel.cs" />
     <Compile Include="Model\PIzza.cs" />
+    <Compile Include="Model\PrecoModel.cs" />
     <Compile Include="Model\SaborModel.cs" />
     <Compile Include="Model\TamanhoModel.cs" />
     <Compile Include="Outros\ValidadorModel.cs" />

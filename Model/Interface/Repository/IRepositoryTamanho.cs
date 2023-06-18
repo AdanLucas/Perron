@@ -9,6 +9,6 @@ public interface IRepositoryTamanho
 {
       void SalvarTamanho(TamanhoModel tamanho);
       TamanhoModel GetTamanhoPorId(int id);
-      List<TamanhoModel> GetListaTamanho();
+      List<TamanhoModel> GetListaTamanho(EStatusCadastro status);
 }
 

@@ -37,5 +37,13 @@ public static class FactoryService
         var repo = FactoryRepository.VerificacaoBancodeDados();
         return new ServiceBancodeDados(repo);
     }
+    public static IServiceCadastroPreco CadastroPreco()
+    {
+        var _repoPreco = FactoryRepository.Preco();
+        var _repoTamanho = FactoryRepository.Tamanho();
+        var _repoClasse = FactoryRepository.Classe();
+
+        return new  ServicePreco(_repoPreco,_repoTamanho,_repoClasse);
+    }
 }
 

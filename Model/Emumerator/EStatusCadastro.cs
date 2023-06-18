@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
+/// <summary>
+/// Define o Status do Cadastro
+/// </summary>
     public enum EStatusCadastro 
     {
         none,

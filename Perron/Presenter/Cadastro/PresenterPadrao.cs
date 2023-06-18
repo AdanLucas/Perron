@@ -29,7 +29,23 @@ namespace Perron.Controller
             DelegarEventos();
         }
         #endregion
+        
+        protected virtual void EventoSalvar(object o, EventArgs e)
+        {
 
+        }
+        protected virtual void EventoNovo(object o, EventArgs e)
+        {
+
+        }
+        protected virtual void EventoCancelar(object o, EventArgs e)
+        {
+
+        }
+        protected virtual void EventoRemover(object o, EventArgs e)
+        {
+
+        }
 
         #region Protected
         protected void MessageDeSucesso(String msg)
@@ -43,16 +59,18 @@ namespace Perron.Controller
         protected void AlterarAlturaTela(int altura)
         {
             _view.AlturaTela = altura;
-        } 
+        }
         #endregion
 
 
         #region Metodos Privados
+        protected virtual void AtualizarStatusTela() { }
         private void DelegarEventos()
         {
             _view.EventockAtivo(EventoCkativo);
             _view.EventockInativo(EventoCkativo);
             EventoStatusCadastroTela += this.EventoAlterarStausCadastro;
+            _view.EventoCancelar(EventoTeste);
         }
         private  void AlterarStatusTela(EStatusCadastroTela status)
         {
@@ -159,6 +177,10 @@ namespace Perron.Controller
 
 
         #region Evento Privados
+        private void EventoTeste(object o, EventArgs e)
+        {
+            AtualizarStatusTela();
+        }
         private void EventoCkInativo(object o ,EventArgs e)
         {
             NotificarEventoExibicaoCadastros();

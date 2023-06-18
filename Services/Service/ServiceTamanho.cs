@@ -20,7 +20,7 @@ namespace Services.Service
 
         public List<TamanhoModel> GetListaTamanho(EStatusCadastro status)
         {
-            var lista = _repo.GetListaTamanho();
+            var lista = _repo.GetListaTamanho(EStatusCadastro.Todos);
 
             switch (status)
             {

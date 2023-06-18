@@ -50,6 +50,7 @@
     <Compile Include="Global\ConfiguracoesGlobais.cs" />
     <Compile Include="Outros\GerenciarStatusCadastro.cs" />
     <Compile Include="Outros\PegarAtributoClasse.cs" />
+    <Compile Include="Presenter\Cadastro\PresenterCadastroPreco.cs" />
     <Compile Include="Presenter\Outros\PresenterBuscarItemGenerico.cs" />
     <Compile Include="Outros\ExibirStatusCadastro.cs" />
     <Compile Include="Presenter\Cadastro\PresenterCadastroTamanho.cs" />

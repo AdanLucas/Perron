@@ -66,8 +66,7 @@ namespace Repository.Repository
 
 
         #region Metodos Publicos
-
-        public List<SaborModel> GetLista()
+        public List<SaborModel> GetLista(EStatusCadastro status)
         {
             using (var session = new DbSession())
             {

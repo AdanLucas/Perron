@@ -1,4 +1,5 @@
-﻿using Perron;
+﻿using Model.Interface.View;
+using Perron;
 using Perron.View.Forms;
 using System;
 using System.Collections.Generic;
@@ -10,10 +11,10 @@ using System.Windows.Forms;
 public static class FactoryView
 {
 
-    private static void SetarMidParentTelaPrincial(Form telaFilho,IViewPrincipal TelaPai)
+    private static void SetarMidParentTelaPrincial(Form telaFilho, IViewPrincipal TelaPai)
     {
         telaFilho.MdiParent = (FrmPrincipal)TelaPai;
-        
+
     }
     public static IViewPrincipal Principal()
     {
@@ -59,6 +60,13 @@ public static class FactoryView
     {
         var view = new FrmCadastroTamanho();
 
+        SetarMidParentTelaPrincial(view, viewPrincipal);
+
+        return view;
+    }
+    public static IViewCadastroPreco CadastroPreco(IViewPrincipal viewPrincipal)
+    {
+        var view = new FrmCadastroPreco();
         SetarMidParentTelaPrincial(view, viewPrincipal);
 
         return view;

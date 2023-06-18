@@ -40,7 +40,7 @@ namespace Repository.Repository
                 return session.Connection.Query<EngredienteModel>($"select * From Engrediente where Id = {Id}").FirstOrDefault();
             }
         }
-        public List<EngredienteModel> GetLista()
+        public List<EngredienteModel> GetLista(EStatusCadastro status)
         {
             using (var session = new DbSession())
             {

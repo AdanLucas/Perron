@@ -36,6 +36,10 @@ namespace Perron.View.Forms
         {
             menuItemIngrediente.Click += e;
         }
+        public void EventoAbrirTelaCadastroPreco(EventHandler e)
+        {
+            menuItemCadastroPreco.Click += e;
+        }
 
         public void EventoFechar(FormClosedEventHandler e)
         {

@@ -12,23 +12,23 @@ using System.Windows.Forms;
 
 namespace Perron.View.Forms
 {
-    public partial class FrmCadastroPreco : FrmPadraoCadastro , IViewCadastroPreco
+    public partial class FrmCadastroPreco : FrmPadraoCadastro, IViewCadastroPreco
     {
         public FrmCadastroPreco()
         {
             InitializeComponent();
-            ConfigurarBotao();
+            COnfigurarTela();
         }
+
         private void COnfigurarTela()
         {
             btnAddPreco.Image = Properties.Resources.add;
             base.VisibilidadeckAtivo = false;
             base.VisibilidadeckInativo = false;
         }
-
         public TamanhoModel TamanhoSelecionado
         {
-            get 
+            get
             {
                 try
                 {
@@ -41,9 +41,8 @@ namespace Perron.View.Forms
                 }
             }
 
-        
-        }
 
+        }
         public ClasseModel ClasseSelecioanda
         {
             get
@@ -61,10 +60,9 @@ namespace Perron.View.Forms
 
 
         }
-
         public decimal PrecoInformado
         {
-            get 
+            get
             {
                 try
                 {
@@ -79,23 +77,36 @@ namespace Perron.View.Forms
                 }
             }
         }
+        public PrecoView PrecoSelecionado 
+        {
+            get 
+            {
+                try
+                {
+                    return (PrecoView)dgvPrecos.CurrentRow.DataBoundItem;
+                }
+                catch
+                {
+                    throw null; 
+                }
+            }
+        }
+
+        public bool VisibilidadePainel { set { pnPreco.Visible = value; } }
 
         public void EventoGridClasse(EventHandler e)
         {
             dgvClasses.Click += e;
         }
-
         public void EventoGridPrecos(EventHandler e)
         {
             dgvPrecos.Click += e;
         }
-
         public void EventoGridTamanho(EventHandler e)
         {
             dgvTamanho.Click += e;
             
         }
-
         public void SetarListaClasse(List<ClasseModel> ListaClasse)
         {
             dgvClasses.DataSource = null;
@@ -103,10 +114,11 @@ namespace Perron.View.Forms
             if (ListaClasse != null)
             {
                 dgvClasses.DataSource = ListaClasse;
+                dgvClasses.Columns["Id"].Visible = false;
+                dgvClasses.Columns["Ativo"].Visible = false;
             }
         }
-
-        public void SetarListaPrecosCadastrados(List<object> ListaPreco)
+        public void SetarListaPrecosCadastrados(List<PrecoView> ListaPreco)
         {
             dgvPrecos.DataSource = null;
 
@@ -114,9 +126,10 @@ namespace Perron.View.Forms
             if (ListaPreco != null)
             {
                 dgvPrecos.DataSource = ListaPreco;
+                dgvPrecos.Columns["Index"].Visible = false;
+          
             }
         }
-
         public void SetarListatamanho(List<TamanhoModel> ListaTamanho)
         {
             dgvTamanho.DataSource = null;
@@ -124,8 +137,16 @@ namespace Perron.View.Forms
             if(ListaTamanho!= null)
             {
                 dgvTamanho.DataSource = ListaTamanho;
+                dgvTamanho.Columns["Id"].Visible = false;
+                dgvTamanho.Columns["Ativo"].Visible = false;
+                dgvTamanho.Columns["QntPedacos"].HeaderText = "Quantidade de Pedaços";
+                dgvTamanho.Columns["Descricao"].HeaderText = "Descrição";
+
             }
         }
-
+        public void EventoAdicionarPreco(EventHandler e)
+        {
+            btnAddPreco.Click +=e;
+        }
     }
 }

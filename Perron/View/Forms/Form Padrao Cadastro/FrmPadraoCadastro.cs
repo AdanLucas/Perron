@@ -51,6 +51,13 @@ namespace Perron.View.Forms.Form_Padrao_Cadastro
                 ckInativo.Checked = value;
             }
         }
+        public bool SetarVisiblidadeCKStatus
+        {
+            set
+            {
+                SetarVisibilidaCkStatus(value);
+            }
+        }
         public bool VisibilidadeckAtivo { set { ckAtivo.Enabled = value;} }
         public bool VisibilidadeckInativo { set { ckInativo.Enabled = value; } }
 
@@ -100,6 +107,11 @@ namespace Perron.View.Forms.Form_Padrao_Cadastro
             btnNovo.BackgroundImageLayout = ImageLayout.Zoom;
             btnSalvar.BackgroundImageLayout = ImageLayout.Zoom;
         }
+        private void SetarVisibilidaCkStatus(bool status)
+        {
+            ckAtivo.Visible = status;
+            ckInativo.Visible = status;
+        } 
       
     }
 }

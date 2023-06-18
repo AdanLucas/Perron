@@ -2,6 +2,8 @@
 using Perron.Controller;
 using Perron.Factory.Controller;
 using Perron.Presenter;
+using Perron.Presenter.Cadastro;
+using System.Net.NetworkInformation;
 using System.Windows.Forms;
 
 public static class FactoryPresenter
@@ -47,6 +49,13 @@ public static class FactoryPresenter
         var service = FactoryService.Tamanho();
         return new PresenterCadastroTamanho(view, service);
     }
+    public static IPresenterCadastroPreco CadastroPreco(IViewPrincipal viewPai)
+    {
+        var view = FactoryView.CadastroPreco(viewPai);
+        var service = FactoryService.CadastroPreco();
+
+        return new PresenterCadastroPreco(view, service);
+    } 
 
 }
 

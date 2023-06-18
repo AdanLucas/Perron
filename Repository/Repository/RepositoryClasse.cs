@@ -28,9 +28,20 @@ namespace Repository.Repository
                 throw new Exception(ex.Message);
             }
         }
-        private List<ClasseModel> ScriptGetListaClasse(DbSession session )
+        private List<ClasseModel> ScriptGetListaClasse(DbSession session , EStatusCadastro status)
         {
-            return session.Connection.Query<ClasseModel>("select Id,Descricao as DescricaoClasse,Ativo from Classe").ToList();
+            
+            bool ret = false;
+
+            if (status.Equals(EStatusCadastro.Todos))
+                return session.Connection.Query<ClasseModel>("select Id,Descricao as DescricaoClasse,Ativo from Classe").ToList();
+
+            else
+            {
+                ret = EStatusCadastro.Ativo.Equals(status);
+              return session.Connection.Query<ClasseModel>("select Id,Descricao as DescricaoClasse,Ativo from Classe where ativo = @StatusCadastro",param: new { StatusCadastro = ret}).ToList();
+
+            }
         }
         private ClasseModel ScriptGetClassePorID(DbSession session,int id)
         {
@@ -45,11 +56,11 @@ namespace Repository.Repository
             }
         }
 
-        public List<ClasseModel> GetLista()
+        public List<ClasseModel> GetLista(EStatusCadastro status)
         {
             using (var Session = new DbSession())
             {
-                return this.ScriptGetListaClasse(Session);
+                return this.ScriptGetListaClasse(Session,status);
             }
         }
 

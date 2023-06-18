@@ -11,8 +11,8 @@ namespace Perron.Outros
     {
 
         private  IViewPadraoCadastro _view;
-        private EStatusCadastroTela StatusTela;
-        public   StatusCadastroTelaEventhandler EventoCadastro;
+        private EComportamentoTela _comportamentoAtual;
+        public   ComportamentoTelaEventHandler EventoComportamentoAtual;
 
         public GerenciarStatusCadastro(IViewPadraoCadastro view)
         {
@@ -21,8 +21,8 @@ namespace Perron.Outros
 
         private void NotificarEvento()
         {
-            if (EventoCadastro != null)
-                EventoCadastro(this, new StatusCadastroTelaEventArgs { statusTela = StatusTela });
+            if (EventoComportamentoAtual != null)
+                EventoComportamentoAtual(this, new ComportamentoTelaEventArgs { StatusTela = _comportamentoAtual });
         }
 
 

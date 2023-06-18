@@ -22,48 +22,51 @@ namespace Perron.Controller
             _view.Show();
             _service = service;
             DelegarEventos();
-              base.StatusCadastro = EStatusCadastroTela.Inicio;
+              base.ComportamentoAtual = EComportamentoTela.Inicio;
             SetListaEngredienteCadastrado(EStatusCadastro.Todos);
         }
 
 
         #region metodos Privados
-        private void AlterandoStatusTela(EStatusCadastroTela status)
+
+        #region override
+        protected override void AlterarStatusCadastroExibidos(EStatusCadastro status)
         {
+            SetListaEngredienteCadastrado(status);
+            FiltrarListaPorNome(_view.DescricaoIngrediente);
+        }
+        protected override void AlterarComportamentoTela(EComportamentoTela status)
+        {
+      
             switch (status)
             {
-                case EStatusCadastroTela.Inicio:
+                case EComportamentoTela.Inicio:
                     EstadoTelaInicial();
                     break;
 
 
-                case EStatusCadastroTela.Novo:
+                case EComportamentoTela.Novo:
                     EstadoTelaCadastrando();
                     break;
 
 
-                case EStatusCadastroTela.ItemSelecionado:
+                case EComportamentoTela.ItemSelecionado:
                     EstadoTelaCadastroSelecionado();
                     break;
 
-                case EStatusCadastroTela.Cadastrando:
+                case EComportamentoTela.Cadastrando:
                     break;
-
-
-
             }
                 
         }
+        #endregion
+
+
         private void DelegarEventos()
         {
             _view.EventoGrid(EventoGrid);
-            _view.EventoCancelar(EventoCancelar);
-            _view.EventoDeletar(EventoDeletar);
-            _view.EventoNovo(EventoNovo);
-            _view.EventoSalvar(EventoSalvar);
             _view.EventoBuscar(EventoBucarPorDescricao);
-            EventoStatusCadastroTela += EventoStatusTela;
-            EventoExibicaoCadastros += EventoSetarListaEngredienteCadastrado;
+      
         }
         private void SetEngrediente()
         {
@@ -151,10 +154,9 @@ namespace Perron.Controller
 
 
         }
-        
         private void FiltrarListaPorNome(string Descricao)
         {
-            if ((ListaEngredientesCadastrados != null || ListaEngredientesCadastrados.Count > 0) && (!StatusCadastro.Equals(EStatusCadastroTela.Novo) || (!StatusCadastro.Equals(EStatusCadastroTela.Cadastrando))))
+            if ((ListaEngredientesCadastrados != null || ListaEngredientesCadastrados.Count > 0) && (!ComportamentoAtual.Equals(EComportamentoTela.Novo) || (!ComportamentoAtual.Equals(EComportamentoTela.Cadastrando))))
             {
                 if (String.IsNullOrEmpty(Descricao))
                 {
@@ -164,62 +166,17 @@ namespace Perron.Controller
                 {
                     _view.PopularGridIngredientes(ListaEngredientesCadastrados.Where(l => l.Descricao.Contains(Descricao)).ToList());
                 }
-
             }
         }
         #endregion
-
-        #region Metodos Publicos
-        #endregion
     
         #region Eventos Privados
-        private void EventoStatusTela(object o, StatusCadastroTelaEventArgs e)
-        {
-            AlterandoStatusTela(e.statusTela);
-        }
         private void EventoGrid(object o, EventArgs e)
         {
             if (_view.IngredienteSelecionado != null)
             {
                 SetEngredienteTela();
             }
-        }
-        private void EventoNovo(object o, EventArgs e)
-        {
-            base.StatusCadastro = EStatusCadastroTela.Novo;
-            _engrediente = new EngredienteModel();
-            _engrediente.Ativo = true;
-
-        }
-        private void EventoSalvar(object o, EventArgs e)
-        {
-            try
-            {
-                SetEngrediente();
-                ValidarDadosEngrediente();
-                AtivarIngredienteInativo(_engrediente);
-                _service.Salvar(_engrediente);
-                base.StatusCadastro = EStatusCadastroTela.Inicio;
-                base.MessageDeSucesso($"Engrediente {_engrediente.Descricao} Cadastrado com Sucesso!");
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Atenção!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-        private void EventoDeletar(object o, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-        private void EventoCancelar(object o, EventArgs e)
-        {
-            base.StatusCadastro = EStatusCadastroTela.Inicio;
-        } 
-        private void EventoSetarListaEngredienteCadastrado(object o, StatusCadastroExibidoEventArgs e)
-        {
-            SetListaEngredienteCadastrado(e.Status);
-            FiltrarListaPorNome(_view.DescricaoIngrediente);
         }
         private void EventoBucarPorDescricao(object o, EventArgs e)
         {
@@ -235,6 +192,42 @@ namespace Perron.Controller
 
             }
         }
+
+        #region Evento override
+        protected override void EventoNovo(object o, EventArgs e)
+        {
+            base.ComportamentoAtual = EComportamentoTela.Novo;
+            _engrediente = new EngredienteModel();
+            _engrediente.Ativo = true;
+
+        }
+        protected override void EventoSalvar(object o, EventArgs e)
+        {
+            try
+            {
+                SetEngrediente();
+                ValidarDadosEngrediente();
+                AtivarIngredienteInativo(_engrediente);
+                _service.Salvar(_engrediente);
+                base.ComportamentoAtual = EComportamentoTela.Inicio;
+                base.MessageDeSucesso($"Engrediente {_engrediente.Descricao} Cadastrado com Sucesso!");
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Atenção!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        protected override void EventoRemover(object o, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+        protected override void EventoCancelar(object o, EventArgs e)
+        {
+            base.ComportamentoAtual = EComportamentoTela.Inicio;
+        } 
+        #endregion
+
         #endregion
 
         

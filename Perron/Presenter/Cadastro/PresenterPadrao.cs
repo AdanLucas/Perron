@@ -10,17 +10,15 @@ namespace Perron.Controller
 {
     public abstract class PresenterPadrao
     {
-        #region View
+        #region Propriedades
         private readonly IViewPadraoCadastro _view; 
+        public EComportamentoTela ComportamentoAtual { get{ return comportamentoAtual; } set { SetarComportamentoTela(value); } }
+        private EComportamentoTela comportamentoAtual { get; set; }
         #endregion
-        private EStatusCadastroTela statusCadastro { get; set; }
 
         #region Eventos
-        public event StatusCadastroExibidoEventHandler EventoExibicaoCadastros;
-        public event StatusCadastroTelaEventhandler EventoStatusCadastroTela;
-        public EStatusCadastroTela StatusCadastro { get { return this.statusCadastro; } set { AlterarStatusTela(value); } }
+        public event ComportamentoTelaEventHandler EventoComportamentoTela;
         #endregion
-
 
         #region Construtor
         public PresenterPadrao(IViewPadraoCadastro view)
@@ -29,7 +27,10 @@ namespace Perron.Controller
             DelegarEventos();
         }
         #endregion
-        
+
+        #region VIRTUAL
+
+           #region Eventos
         protected virtual void EventoSalvar(object o, EventArgs e)
         {
 
@@ -46,8 +47,17 @@ namespace Perron.Controller
         {
 
         }
+        
+           #endregion
 
-        #region Protected
+           #region Metodos
+        protected virtual void AlterarComportamentoTela(EComportamentoTela status) { }
+        protected virtual void AlterarStatusCadastroExibidos(EStatusCadastro status) { }
+        #endregion
+
+        #endregion
+
+        #region PROTECTED
         protected void MessageDeSucesso(String msg)
         {
             MessageBox.Show($"{msg}!", "Sucesso!", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -59,31 +69,30 @@ namespace Perron.Controller
         protected void AlterarAlturaTela(int altura)
         {
             _view.AlturaTela = altura;
-        }
+        } 
         #endregion
 
-
         #region Metodos Privados
-        protected virtual void AtualizarStatusTela() { }
         private void DelegarEventos()
         {
-            _view.EventockAtivo(EventoCkativo);
-            _view.EventockInativo(EventoCkativo);
-            EventoStatusCadastroTela += this.EventoAlterarStausCadastro;
-            _view.EventoCancelar(EventoTeste);
+            _view.EventockAtivo(EventoCheckStatusCadastro);
+            _view.EventockInativo(EventoCheckStatusCadastro);
+            _view.EventoCancelar(this.EventoCancelar);
+            _view.EventoSalvar(this.EventoSalvar);
+            _view.EventoNovo(this.EventoNovo);
+            _view.EventoDeletar(this.EventoRemover);
         }
-        private  void AlterarStatusTela(EStatusCadastroTela status)
+        private void SetarComportamentoTela(EComportamentoTela status)
         {
-            statusCadastro = status;
+            comportamentoAtual = status;
             EstadoBotoes();
-            NotificarEventoStatusTela();
-
+            AlterarComportamentoTela(status);
         }
         private void EstadoBotoes()
         {
-            switch (statusCadastro)
+            switch (comportamentoAtual)
             {
-                case EStatusCadastroTela.None:
+                case EComportamentoTela.None:
                     _view.VisibilidadeBotaoDeletar = false;
                     _view.VisibilidadeBotaoNovo = false;
                     _view.VisibilidadeBotaoSalvar = false;
@@ -93,7 +102,7 @@ namespace Perron.Controller
                     _view.RemoverCheck();
                     break;
 
-                case EStatusCadastroTela.Inicio:
+                case EComportamentoTela.Inicio:
                     _view.VisibilidadeBotaoDeletar = false;
                     _view.VisibilidadeBotaoNovo = true;
                     _view.VisibilidadeBotaoSalvar = false;
@@ -103,7 +112,7 @@ namespace Perron.Controller
                     _view.RemoverCheck();
                     break;
 
-                case EStatusCadastroTela.Cadastrando:
+                case EComportamentoTela.Cadastrando:
                     _view.VisibilidadeBotaoDeletar = false;
                     _view.VisibilidadeBotaoNovo = false;
                     _view.VisibilidadeBotaoSalvar = true;
@@ -113,7 +122,7 @@ namespace Perron.Controller
                     _view.RemoverCheck();
                     break;
 
-                case EStatusCadastroTela.ItemSelecionado:
+                case EComportamentoTela.ItemSelecionado:
 
                     if (_view.VisualizarCadastrosInativos)
                         _view.VisibilidadeBotaoDeletar = false;
@@ -127,7 +136,7 @@ namespace Perron.Controller
                     _view.VisibilidadeckInativo = false;
                     break;
 
-                case EStatusCadastroTela.Novo:
+                case EComportamentoTela.Novo:
                     _view.VisibilidadeBotaoSalvar = true;
                     _view.VisibilidadeBotaoCancelar = true;
                     _view.VisibilidadeckAtivo = false;
@@ -141,22 +150,9 @@ namespace Perron.Controller
                     break;
             }
         }
-        private void NotificarEventoExibicaoCadastros()
+        private void NotificarEventoAlterarStatusCadastroExibido(EStatusCadastro status) 
         {
-            if (EventoExibicaoCadastros != null)
-            {
-                EventoExibicaoCadastros(this, new StatusCadastroExibidoEventArgs { Status = GetstatusDosCadastrados() });
-            }
-
-
-        }
-        private void NotificarEventoStatusTela()
-        {
-            if (EventoStatusCadastroTela != null)
-            {
-                EventoStatusCadastroTela(this, new StatusCadastroTelaEventArgs { statusTela = statusCadastro});
-            }
-
+            AlterarStatusCadastroExibidos(status);
         }
         private EStatusCadastro GetstatusDosCadastrados()
         {
@@ -172,27 +168,13 @@ namespace Perron.Controller
 
             return EStatusCadastro.none;
         }
+
         #endregion
 
-
-
         #region Evento Privados
-        private void EventoTeste(object o, EventArgs e)
+        private void EventoCheckStatusCadastro(object o, EventArgs e)
         {
-            AtualizarStatusTela();
-        }
-        private void EventoCkInativo(object o ,EventArgs e)
-        {
-            NotificarEventoExibicaoCadastros();
-        }
-        private void EventoCkativo(object o, EventArgs e)
-        {
-            NotificarEventoExibicaoCadastros();
-        }
-        private void EventoAlterarStausCadastro(object o, EventArgs e)
-        {
-            EstadoBotoes();
-            
+            NotificarEventoAlterarStatusCadastroExibido(GetstatusDosCadastrados());
         }
         #endregion
     }

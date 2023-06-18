@@ -25,8 +25,7 @@ namespace Perron.Presenter.Cadastro
             _view.SetarVisiblidadeCKStatus = false;
             AbrirTela();
             DelegarEventos();
-            this.StatusCadastro = EStatusCadastroTela.Inicio;
-
+            this.ComportamentoAtual = EComportamentoTela.Inicio;
         }
 
 
@@ -58,12 +57,8 @@ namespace Perron.Presenter.Cadastro
 
             AdicionarPrecoNaLista(preco);
 
-        } 
-        private void EventoNovoCadastro(object o,EventArgs e)
-        {
-            base.StatusCadastro = EStatusCadastroTela.Cadastrando;
         }
-        private void EventoSalvarListaPreco(object o , EventArgs e)
+        protected override void EventoSalvar(object o , EventArgs e)
         {
             if(_listaPreco==null || _listaPreco.Count == 0)
             {
@@ -75,7 +70,7 @@ namespace Perron.Presenter.Cadastro
                 {
                     _service.SalvarListaPrecos(_listaPreco);
                     MessageDeSucesso("Sabores Cadastrado Com sucesso!!");
-                    base.StatusCadastro = EStatusCadastroTela.Inicio;
+                    base.ComportamentoAtual = EComportamentoTela.Inicio;
                 }
                 catch (Exception ex)
                 {
@@ -84,19 +79,20 @@ namespace Perron.Presenter.Cadastro
 
             }
         }
+        protected override void EventoCancelar(object o, EventArgs e)
+        {
+            base.ComportamentoAtual = EComportamentoTela.Inicio;
+        }
+        protected override void EventoNovo(object o, EventArgs e)
+        {
+            base.ComportamentoAtual = EComportamentoTela.Cadastrando;
+        }
         #endregion
 
-        protected override void AtualizarStatusTela()
-        {
-            MessageBox.Show("Seu teste Deu Certo!");
-        }
         private void DelegarEventos()
         {
             _view.EventoGridClasse(EventoGridClasse);
             _view.EventoAdicionarPreco(EventoAddPreco);
-            base.EventoStatusCadastroTela += EventoStatusCadastro;
-            _view.EventoSalvar(EventoSalvarListaPreco);
-            _view.EventoNovo(EventoNovoCadastro);
         }
         private PrecoModel InstanciarPreco()
         {
@@ -192,49 +188,28 @@ namespace Perron.Presenter.Cadastro
                 MessageBox.Show(ex.Message, "Atenção!");
             }
         }
-        private void EventoStatusCadastro(object o,StatusCadastroTelaEventArgs e)
-        {
-            StatusCadastroAtual(e.statusTela);
-        }
-        private void StatusCadastroAtual(EStatusCadastroTela status)
+        protected override void AlterarComportamentoTela(EComportamentoTela status)
         {
             switch (status)
             {
-                case EStatusCadastroTela.None:
+                case EComportamentoTela.None:
                     break;
-                case EStatusCadastroTela.Inicio:
+                case EComportamentoTela.Inicio:
                     _view.AlturaTela = 468;
                     _view.VisibilidadePainel = false;
                     break;
               
-                case EStatusCadastroTela.Cadastrando:
+                case EComportamentoTela.Cadastrando:
                     _view.AlturaTela = 550;
                     _view.VisibilidadePainel = true;
                     break;
-                case EStatusCadastroTela.ItemSelecionado:
+                case EComportamentoTela.ItemSelecionado:
                     break;
                 default:
                     break;
             }
         }
-        private void EventoInativarPreco(object o, EventArgs e)
-        {
-            //if (MessageBox.Show($@"Deseja Inativar o Preco da Classe {_view.ClasseSelecioanda.DescricaoClasse} do Tamanho {_view.TamanhoSelecionado.Descricao} ?", "Inativar?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.OK) 
-            //{
-            //    try
-            //    {
-            //        RemoverOuInativar();
-            //        MessageDeSucesso("Inativado Com Sucesso!");
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        MessagemErro(ex);
-            //    }
-
-
-            //}
-
-        }
+        
 
     }
 }

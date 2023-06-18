@@ -56,13 +56,13 @@
     <Compile Include="Configuracao\ModelXmlBase.cs" />
     <Compile Include="Delegates\Genericos\EventArgsGenerico.cs" />
     <Compile Include="Delegates\Genericos\EventHandlerGenerico.cs" />
-    <Compile Include="Delegates\StatusCadastroTela\StatusCadastroTelaEventArgs.cs" />
-    <Compile Include="Delegates\StatusCadastroTela\StatusCadastroTelaEventhandler.cs" />
+    <Compile Include="Delegates\StatusCadastroTela\ComportamentoTelaEventArgs.cs" />
+    <Compile Include="Delegates\StatusCadastroTela\ComportamentoTelaEventHandler.cs" />
     <Compile Include="Delegates\StatusCadastro\StatusCadastroExibidoEventArgs.cs" />
     <Compile Include="Delegates\StatusCadastro\StatusCadastroExibidoEventHandler.cs" />
     <Compile Include="DTO\EngredienteDTO.cs" />
     <Compile Include="Emumerator\EStatusCadastro.cs" />
-    <Compile Include="Emumerator\EStatusCadastroTela.cs" />
+    <Compile Include="Emumerator\EComportamentoTela.cs" />
     <Compile Include="Emumerator\ETipoConexao.cs" />
     <Compile Include="Emumerator\EUnidadeMedida.cs" />
     <Compile Include="Extension\ExtensionAEntity.cs" />

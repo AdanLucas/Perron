@@ -22,21 +22,13 @@ namespace Perron.Presenter
             _view.Show();
             _serivce = service;
             DelegarEventos();
-
-            base.StatusCadastro = EStatusCadastroTela.Inicio;
+            base.ComportamentoAtual = EComportamentoTela.Inicio;
 
         }
 
         #region Metodos Privados
-
         private void DelegarEventos()
         {
-            _view.EventoSalvar(this.EventoSalvar);
-            _view.EventoDeletar(this.EventoInativar);
-            base.EventoExibicaoCadastros += EventoExibirCadastros;
-            base.EventoStatusCadastroTela += EventoAlterarStatusCadastro;
-            _view.EventoNovo(this.EventoNovoCadastro);
-            _view.EventoCancelar(this.EventoCancelar);
             _view.EventoGrid(this.EventoGrid);
         }
         private void ValidarClasse()
@@ -102,21 +94,12 @@ namespace Perron.Presenter
         }
         #endregion
 
-        #region Metodos Publicos
-
-
-
-
-        #endregion
-
-
         #region Eventos Privados
-
-        private void EventoExibirCadastros(object o,StatusCadastroExibidoEventArgs e)
+        protected override void AlterarStatusCadastroExibidos(EStatusCadastro status)
         {
-            _view.PopularGridClasse(_serivce.GetlistaClasse(e.Status));
+            _view.PopularGridClasse(_serivce.GetlistaClasse(status));
         }
-        private void EventoSalvar(object o, EventArgs e)
+        protected override void EventoSalvar(object o, EventArgs e)
         {
             try
             {
@@ -125,14 +108,14 @@ namespace Perron.Presenter
                 _classe.AtivarCadastroInativo();
                 _serivce.Salvar(_classe);
                 MessageDeSucesso($"Classe {_classe.DescricaoClasse} cadastrada Com sucesso!");
-                base.StatusCadastro = EStatusCadastroTela.Inicio;
+                base.ComportamentoAtual = EComportamentoTela.Inicio;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message,"Erro",MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
         }
-        private void EventoInativar(object o , EventArgs e)
+        protected override void EventoRemover(object o , EventArgs e)
         {
             if(_view.ClasseSelecionadaGrid == null)
             {
@@ -143,45 +126,45 @@ namespace Perron.Presenter
                 _classe = _view.ClasseSelecionadaGrid;
                 _classe.InativarCadastro();
                 _serivce.Salvar(_classe);
-                base.StatusCadastro = EStatusCadastroTela.Inicio;
+                base.ComportamentoAtual = EComportamentoTela.Inicio;
             }
         }
-        private void EventoNovoCadastro(object o , EventArgs e)
+        protected override void EventoNovo(object o , EventArgs e)
         {
-            base.StatusCadastro = EStatusCadastroTela.Novo;
+            base.ComportamentoAtual = EComportamentoTela.Novo;
         }
-        private void EventoCancelar(object o, EventArgs e)
+        protected override void EventoCancelar(object o, EventArgs e)
         {
-            base.StatusCadastro = EStatusCadastroTela.Inicio;
+            base.ComportamentoAtual = EComportamentoTela.Inicio;
 
         }
         private void EventoGrid(object o,EventArgs e)
         {
-            base.StatusCadastro = EStatusCadastroTela.ItemSelecionado;
+            base.ComportamentoAtual = EComportamentoTela.ItemSelecionado;
         }
-        private void EventoAlterarStatusCadastro(object o,StatusCadastroTelaEventArgs e)
+        protected override void AlterarComportamentoTela(EComportamentoTela status)
         {
-            switch (e.statusTela)
+       
+            switch (status)
             {
              
-                case EStatusCadastroTela.Inicio:
+                case EComportamentoTela.Inicio:
                     EstadoInicial();
                     break;
 
 
-                case EStatusCadastroTela.Novo:
+                case EComportamentoTela.Novo:
                     EstadoNovoCadastro();
                     break;
 
 
-                case EStatusCadastroTela.Cadastrando:
+                case EComportamentoTela.Cadastrando:
                     break;
 
 
-                case EStatusCadastroTela.ItemSelecionado:
+                case EComportamentoTela.ItemSelecionado:
                     EstadoItemSelecionado();
                     break;
-
 
                 default:
                     break;

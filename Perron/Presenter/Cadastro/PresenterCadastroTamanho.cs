@@ -12,25 +12,24 @@ namespace Perron.Presenter
 
         private readonly IViewCadastroTamanho _view;
         private readonly IServiceTamanho _service;
+
         private TamanhoModel _tamanho;
-        public PresenterCadastroTamanho(IViewCadastroTamanho view ,IServiceTamanho service) : base(view)
+
+        #region Construtor
+        public PresenterCadastroTamanho(IViewCadastroTamanho view, IServiceTamanho service) : base(view)
         {
             _view = view;
             _service = service;
             _view.Show();
             DelegarEventos();
             EstatoInicial();
-        }
+        } 
+        #endregion
+
         #region Metodos Privados
         private void DelegarEventos()
         {
-            _view.EventoSalvar(this.EventoSalvar);
-            _view.EventoCancelar(this.EventoCancelar);
-            _view.EventoNovo(this.EventoNovo);
             _view.EventoGrid(this.EventoGrid);
-            _view.EventoDeletar(this.EventoInativar);
-            base.EventoExibicaoCadastros += EventoPopularGrid;
-
         }
         private void SetdadosTamanho()
         {
@@ -53,7 +52,7 @@ namespace Perron.Presenter
             {
                 _tamanho = _view.ItemSelecionadoGrid;
                 SetDadostela();
-                base.StatusCadastro = EStatusCadastroTela.ItemSelecionado;
+                base.ComportamentoAtual = EComportamentoTela.ItemSelecionado;
 
             }
             else
@@ -65,7 +64,7 @@ namespace Perron.Presenter
         {
             this._tamanho = new TamanhoModel();
             _tamanho.Ativo = true;
-            base.StatusCadastro = EStatusCadastroTela.Inicio;
+            base.ComportamentoAtual = EComportamentoTela.Inicio;
             _view.QuantidadePedaco = 0;
             _view.DescricaoTamanho = "";
 
@@ -101,17 +100,17 @@ namespace Perron.Presenter
         }
         #endregion
 
-        #region Metodos Publicos
-
-
-
-
+        #region Metodos override
+        protected override void AlterarStatusCadastroExibidos(EStatusCadastro status)
+        {
+            _view.PopularGrid(_service.GetListaTamanho(status));
+        }
 
         #endregion
 
-        #region Eventos Privados
+        #region Eventos protected override
 
-        private void EventoSalvar(object o, EventArgs e)
+        protected override void EventoSalvar(object o, EventArgs e)
         {
             try
             {
@@ -126,17 +125,17 @@ namespace Perron.Presenter
 
 
         }
-        private void EventoCancelar(object o, EventArgs e)
+        protected override void EventoCancelar(object o, EventArgs e)
         {
-            base.StatusCadastro = EStatusCadastroTela.Inicio;
+            base.ComportamentoAtual = EComportamentoTela.Inicio;
         }
-        private void EventoNovo(object o, EventArgs e)
+        protected override void EventoNovo(object o, EventArgs e)
         {
             EstatoInicial();
-            base.StatusCadastro = EStatusCadastroTela.Novo;
+            base.ComportamentoAtual = EComportamentoTela.Novo;
 
         }
-        private void EventoInativar(object o, EventArgs e)
+        protected override void EventoRemover(object o, EventArgs e)
         {
             if (!_tamanho.InativarCadastro())
             {
@@ -150,15 +149,8 @@ namespace Perron.Presenter
         {
             SetTamanhoSelecionadoGrid();
         }
-        private void EventoPopularGrid(object o , StatusCadastroExibidoEventArgs e)
-        {
-            _view.PopularGrid(_service.GetListaTamanho(e.Status));
-        }
         #endregion
-
-        #region Eventos Publicos
-
-        #endregion
+     
     }
 
 

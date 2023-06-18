@@ -25,7 +25,7 @@ namespace Perron.Controller
             SetarControllerIngrediente(_view.PainelEngredienteSabor);
             _view.Show();
             DelegarEventos();
-            base.StatusCadastro = EStatusCadastroTela.Inicio;
+            base.ComportamentoAtual = EComportamentoTela.Inicio;
             
         }
         #region Metodos Privados
@@ -86,15 +86,8 @@ namespace Perron.Controller
         }
         private void DelegarEventos()
         {
-            _view.EventoNovo(this.EventoNovo);
-            _view.EventoSalvar(this.EventoSalvar);
-            _view.EventoDeletar(this.EventoRemover);
-            _view.EventoCancelar(this.EventoCancelar);
             _view.EventoGrid(this.EventoGrid);
             _view.EventoBuscarClasse(this.EventoBuscarClasse);
-            base.EventoExibicaoCadastros += EventoStatusCadastro;
-            base.EventoStatusCadastroTela += _presenterIngrediente.EventoAtualizarStatusCadastro;
-            base.EventoStatusCadastroTela += EventoComportamentoTela;
 
         }
         private void Salvar(SaborModel sabor)
@@ -136,12 +129,12 @@ namespace Perron.Controller
 
         #region Eventos privados
 
-        private void EventoNovo(object o , EventArgs e)
+        protected override void EventoNovo(object o , EventArgs e)
         {
-            base.StatusCadastro = EStatusCadastroTela.Novo;
+            base.ComportamentoAtual = EComportamentoTela.Novo;
 
         }
-        private void EventoSalvar(object o, EventArgs e)
+        protected override void EventoSalvar(object o, EventArgs e)
         {
             try
             {
@@ -149,16 +142,16 @@ namespace Perron.Controller
                 Salvar(_sabor);
                 MessageDeSucesso($"Sabor {_sabor.Descricao} salvo com sucesso!");
 
-                base.StatusCadastro = EStatusCadastroTela.Inicio;
+                base.ComportamentoAtual = EComportamentoTela.Inicio;
             }
             catch (Exception ex)
             {
                 base.MessagemErro(ex);
             }
         }
-        private void EventoRemover(object o, EventArgs e)
+        protected override void EventoRemover(object o, EventArgs e)
         {
-            if (StatusCadastro == EStatusCadastroTela.ItemSelecionado)
+            if (base.ComportamentoAtual == EComportamentoTela.ItemSelecionado)
             {
                 _sabor.InativarCadastro();
 
@@ -166,20 +159,21 @@ namespace Perron.Controller
                 {
                     Salvar(_sabor);
 
-                    base.StatusCadastro = EStatusCadastroTela.Inicio;
+                    base.ComportamentoAtual = EComportamentoTela.Inicio;
                 }
             }
         }
-        private void EventoCancelar(object o, EventArgs e)
+        protected override void EventoCancelar(object o, EventArgs e)
         {
-            base.StatusCadastro = EStatusCadastroTela.Inicio;
+            base.ComportamentoAtual = EComportamentoTela.Inicio;
             
         }
+
         private void EventoGrid(object o, EventArgs e)
         {
             if (_view.ItemSelecionadoGrid != null)
             {
-                base.StatusCadastro = EStatusCadastroTela.ItemSelecionado;
+                base.ComportamentoAtual = EComportamentoTela.ItemSelecionado;
             }
         }
         private void EventoBuscarClasse(object o, EventArgs e)
@@ -187,31 +181,36 @@ namespace Perron.Controller
             BuscarClasse();
             SetarClasseNaView();
         }
-        private void EventoStatusCadastro(object o, StatusCadastroExibidoEventArgs e)
+
+        protected override void AlterarStatusCadastroExibidos(EStatusCadastro status)
         {
-            _view.PopularGrid(_service.GetListaSabor(e.Status));
+            _view.PopularGrid(_service.GetListaSabor(status));
+
         }
-        private void EventoComportamentoTela(object o, StatusCadastroTelaEventArgs e)
+        protected override void AlterarComportamentoTela(EComportamentoTela status)
         {
-            switch (e.statusTela)
+            _presenterIngrediente.EventoAtualizarStatusCadastro(status);
+
+
+            switch (status)
             {
-                case EStatusCadastroTela.None:
+                case EComportamentoTela.None:
                     break;
-                case EStatusCadastroTela.Inicio:
+                case EComportamentoTela.Inicio:
                     EstadoInicial();
                     break;
 
-                case EStatusCadastroTela.Novo:
+                case EComportamentoTela.Novo:
                     EstadoNovoCadastro();
                     break;
 
 
-                case EStatusCadastroTela.Cadastrando:
+                case EComportamentoTela.Cadastrando:
                     EstadoNovoCadastro();
                     break;
 
 
-                case EStatusCadastroTela.ItemSelecionado:
+                case EComportamentoTela.ItemSelecionado:
                     EstadoItemSelecionado();
                     break;
 

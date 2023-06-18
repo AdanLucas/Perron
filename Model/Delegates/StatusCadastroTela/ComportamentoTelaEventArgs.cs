@@ -5,17 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-    public enum EStatusCadastroTela
+    public class ComportamentoTelaEventArgs : EventArgs
     {
-        None,
-
-        Inicio,
-
-        Novo,
-
-        Cadastrando,
-
-        ItemSelecionado,
-
+        public EComportamentoTela StatusTela { get; set; }
     }
 

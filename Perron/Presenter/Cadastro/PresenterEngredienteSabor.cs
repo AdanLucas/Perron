@@ -14,7 +14,7 @@ namespace Perron.Controller
         private readonly IViewCadastroEngredienteSabor _view;
         private readonly PresenterGetEstatusCadastro _status;
 
-        private EStatusCadastroTela _statusCadastro;
+        private EComportamentoTela _statusCadastro;
 
         #region Listas
 
@@ -46,7 +46,7 @@ namespace Perron.Controller
            
         }
 
-        public void StatusCadastro(EStatusCadastroTela status)
+        public void StatusCadastro(EComportamentoTela status)
         {
             _statusCadastro = status;
             Setstatus();
@@ -57,24 +57,24 @@ namespace Perron.Controller
             switch (_statusCadastro)
             {
                
-                case EStatusCadastroTela.None:
+                case EComportamentoTela.None:
                      break;
 
 
-                case EStatusCadastroTela.Inicio:
+                case EComportamentoTela.Inicio:
                     this.StatusDeCadastroInicial();
                      break;
 
 
-                case EStatusCadastroTela.Novo:
+                case EComportamentoTela.Novo:
                     this.StatusCadastroEditandoCadastrando();
                     break;
 
-                case EStatusCadastroTela.Cadastrando:
+                case EComportamentoTela.Cadastrando:
                     this.StatusCadastroEditandoCadastrando();
                     break;
 
-                case EStatusCadastroTela.ItemSelecionado:
+                case EComportamentoTela.ItemSelecionado:
                     this.StatusCadastroEditandoCadastrando();
                     break;
 
@@ -278,7 +278,7 @@ namespace Perron.Controller
         {
             if (_view.EngredienteSelecionadoGridEngredienteCadastrado != null)
             {
-                if(_statusCadastro.Equals(EStatusCadastroTela.Novo) || _statusCadastro.Equals(EStatusCadastroTela.Cadastrando) || _statusCadastro.Equals(EStatusCadastroTela.ItemSelecionado))
+                if(_statusCadastro.Equals(EComportamentoTela.Novo) || _statusCadastro.Equals(EComportamentoTela.Cadastrando) || _statusCadastro.Equals(EComportamentoTela.ItemSelecionado))
                 {
                     var Engrediente = _view.EngredienteSelecionadoGridEngredienteCadastrado;
                     this.AdicionarEngredienteListaSabor(Engrediente);
@@ -287,7 +287,7 @@ namespace Perron.Controller
         }
         private void EventoGridEngredienteSabor(object o, EventArgs e)
         {
-            if (_view.EngredienteSelecionadoGridEngredienteSabor != null && (_statusCadastro != EStatusCadastroTela.Novo))
+            if (_view.EngredienteSelecionadoGridEngredienteSabor != null && (_statusCadastro != EComportamentoTela.Novo))
             {
                 InativarEngredienteLista();
             }
@@ -305,7 +305,7 @@ namespace Perron.Controller
         }
         private void EventoGridEngredientesSabor(object o, EventArgs e)
         {
-            if (_statusCadastro == EStatusCadastroTela.ItemSelecionado)
+            if (_statusCadastro == EComportamentoTela.ItemSelecionado)
             {
                 InativarEngredienteLista();
                 ExibirEngredienteSabor();
@@ -325,9 +325,9 @@ namespace Perron.Controller
         #region Eventos Publicos
 
 
-        public void EventoAtualizarStatusCadastro(object o, StatusCadastroTelaEventArgs e)
+        public void EventoAtualizarStatusCadastro(EComportamentoTela status)
         {
-            _statusCadastro = e.statusTela;
+            _statusCadastro = status;
             Setstatus();
 
         }

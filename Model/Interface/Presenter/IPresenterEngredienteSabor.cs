@@ -10,6 +10,6 @@ public interface IPresenterEngredienteSabor
     
     List<EngredienteModel> GetEngredienteSabor();
     void SetListaEngredienteSabor(List<EngredienteModel>Lista);
-    void EventoAtualizarStatusCadastro(object o, StatusCadastroTelaEventArgs e);
+    void EventoAtualizarStatusCadastro(EComportamentoTela status);
 }
 

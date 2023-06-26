@@ -10,6 +10,9 @@ public interface IViewPadraoCadastro
 {
 
 
+    void Show();
+    void Close();
+
     #region Visiblidade Componentes
 
     bool VisibilidadeBotaoSalvar { set; }

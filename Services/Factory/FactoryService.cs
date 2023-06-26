@@ -1,4 +1,5 @@
-﻿using Services.Service;
+﻿using Model.Emumerator;
+using Services.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 
 public static class FactoryService
 {
+    
     public static IServiceEngrediente Engrediente()
     {
         var repo = FactoryRepository.Engrediente();
@@ -44,6 +46,11 @@ public static class FactoryService
         var _repoClasse = FactoryRepository.Classe();
 
         return new  ServicePreco(_repoPreco,_repoTamanho,_repoClasse);
+    }
+    public static IServiceTipoPessoa CadastroTipoPessoa(ETipoPessoa tipo)
+    {
+        var repo = FactoryRepository.TipoPessoa(tipo);
+        return new ServiceTipoPessoa(repo);
     }
 }
 

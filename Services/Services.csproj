@@ -51,6 +51,7 @@
     <Compile Include="Service\ServicePreco.cs" />
     <Compile Include="Service\ServiceSabor.cs" />
     <Compile Include="Service\ServiceTamanho.cs" />
+    <Compile Include="Service\ServiceTipoPessoa.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Model\Model.csproj">

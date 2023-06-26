@@ -91,9 +91,8 @@ namespace Perron.View.Forms
                 }
             }
         }
-
         public bool VisibilidadePainel { set { pnPreco.Visible = value; } }
-
+        public bool HabilitarGridClasse { set {dgvClasses.Enabled = value; } }
         public void EventoGridClasse(EventHandler e)
         {
             dgvClasses.Click += e;

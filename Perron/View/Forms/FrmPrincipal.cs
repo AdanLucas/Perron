@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Model.Emumerator;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,26 +13,25 @@ namespace Perron.View.Forms
 {
     public partial class FrmPrincipal : Form, IViewPrincipal
     {
+
         public FrmPrincipal()
         {
             InitializeComponent();
+          
         }
 
         public void EventoAbrirtelaCadastroClasse(EventHandler e)
         {
             this.menuItemClasse.Click += e;
         }
-
         public void EventoAbrirTelaCadastroSabor(EventHandler e)
         {
             menuItemSabor.Click += e;
         }
-
         public void EventoAbrirtelaCadastroTAmanho(EventHandler e)
         {
             menuItemTamanho.Click += e;
         }
-
         public void EventoAbrirTelaIngredientes(EventHandler e)
         {
             menuItemIngrediente.Click += e;
@@ -40,7 +40,10 @@ namespace Perron.View.Forms
         {
             menuItemCadastroPreco.Click += e;
         }
-
+        public void EventoAbrirTelaCadastroPessoa(EventHandler e)
+        {
+            menuItemCadastroPessoa.Click += e;
+        }
         public void EventoFechar(FormClosedEventHandler e)
         {
             FormClosed += e;

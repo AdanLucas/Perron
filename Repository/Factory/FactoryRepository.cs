@@ -1,4 +1,5 @@
-﻿using Repository.Repository;
+﻿using Model.Emumerator;
+using Repository.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,6 +37,17 @@ public static class FactoryRepository
     public static IRepositoryPreco Preco()
     {
         return new RepositoryCadastroPreco();
+    }
+    public static IReposotiryTipoPessoa TipoPessoa(ETipoPessoa tipo)
+    {
+
+        var repo = tipo.GetDadosRepository();
+        var _type = Type.GetType(repo);
+
+        if (_type == null)
+                throw new Exception("Classe nao Existe");
+
+        return (IReposotiryTipoPessoa)Activator.CreateInstance(_type);
     }
 }
 

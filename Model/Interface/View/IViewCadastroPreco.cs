@@ -19,6 +19,8 @@ namespace Model.Interface.View
         PrecoView PrecoSelecionado { get; }
         decimal PrecoInformado { get; }
         bool VisibilidadePainel { set; }
+        bool HabilitarGridClasse { set; }
+
         void EventoGridClasse(EventHandler e);
         void EventoGridTamanho(EventHandler e);
         void EventoGridPrecos(EventHandler e);

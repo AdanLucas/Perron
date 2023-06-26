@@ -53,6 +53,8 @@
     <Compile Include="Repository\RepositoryClasse.cs" />
     <Compile Include="Repository\RepositoryDinamico.cs" />
     <Compile Include="Repository\RepositoryEngrediente.cs" />
+    <Compile Include="Repository\RepositoryPessoaTipoEmpresa.cs" />
+    <Compile Include="Repository\RepositoryPessoaTipoPessoa.cs" />
     <Compile Include="Repository\RepositorySabor.cs" />
     <Compile Include="Repository\RepositoryTamanho.cs" />
     <Compile Include="ScriptsDinamicos\ScriptsDinamicos.cs" />

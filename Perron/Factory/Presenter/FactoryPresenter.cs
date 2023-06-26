@@ -1,4 +1,5 @@
 ﻿
+using Model.Emumerator;
 using Perron.Controller;
 using Perron.Factory.Controller;
 using Perron.Presenter;
@@ -56,6 +57,16 @@ public static class FactoryPresenter
 
         return new PresenterCadastroPreco(view, service);
     } 
+    public static IPresenterCadastroPessoa CadastroPessoa(Form viewPai, ETipoPessoa tipo)
+    {
+        var _serivce = FactoryService.CadastroTipoPessoa(ETipoPessoa.Pessoa);
+        var view = FactoryView.CadastroPessoa(viewPai);
+
+        return new PresenterCadastroPessoa(tipo,view,_serivce);
+    }
+    
+
+    
 
 }
 

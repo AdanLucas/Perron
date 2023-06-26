@@ -81,7 +81,18 @@ namespace Perron.Presenter.Cadastro
         }
         protected override void EventoCancelar(object o, EventArgs e)
         {
-            base.ComportamentoAtual = EComportamentoTela.Inicio;
+            try
+            {
+                  base.ComportamentoAtual = EComportamentoTela.Inicio;
+                  _listaPreco = null;
+                _listaPreco = _service.GetPrecoPorClasse((int)_view.ClasseSelecioanda.Id);
+                TransformarEmViewEPopularGrid();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erro!");
+            }
+
         }
         protected override void EventoNovo(object o, EventArgs e)
         {
@@ -197,14 +208,19 @@ namespace Perron.Presenter.Cadastro
                 case EComportamentoTela.Inicio:
                     _view.AlturaTela = 468;
                     _view.VisibilidadePainel = false;
+                    _view.HabilitarGridClasse = true;
                     break;
               
                 case EComportamentoTela.Cadastrando:
                     _view.AlturaTela = 550;
                     _view.VisibilidadePainel = true;
+                    _view.HabilitarGridClasse = false;
                     break;
+
                 case EComportamentoTela.ItemSelecionado:
                     break;
+
+
                 default:
                     break;
             }

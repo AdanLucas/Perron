@@ -53,7 +53,7 @@
             this.groupBox2.Controls.Add(this.dgvTamanho);
             this.groupBox2.Location = new System.Drawing.Point(9, 175);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(349, 84);
+            this.groupBox2.Size = new System.Drawing.Size(313, 84);
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Tamanho";
@@ -69,7 +69,7 @@
             this.dgvTamanho.Name = "dgvTamanho";
             this.dgvTamanho.ReadOnly = true;
             this.dgvTamanho.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvTamanho.Size = new System.Drawing.Size(343, 65);
+            this.dgvTamanho.Size = new System.Drawing.Size(307, 65);
             this.dgvTamanho.TabIndex = 0;
             // 
             // groupBox3
@@ -78,7 +78,7 @@
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.groupBox3.Location = new System.Drawing.Point(0, 345);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(365, 162);
+            this.groupBox3.Size = new System.Drawing.Size(327, 162);
             this.groupBox3.TabIndex = 4;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Preços Cadastrados";
@@ -94,7 +94,7 @@
             this.dgvPrecos.Name = "dgvPrecos";
             this.dgvPrecos.ReadOnly = true;
             this.dgvPrecos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvPrecos.Size = new System.Drawing.Size(359, 143);
+            this.dgvPrecos.Size = new System.Drawing.Size(321, 143);
             this.dgvPrecos.TabIndex = 2;
             // 
             // groupBox1
@@ -102,7 +102,7 @@
             this.groupBox1.Controls.Add(this.dgvClasses);
             this.groupBox1.Location = new System.Drawing.Point(9, 42);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(349, 120);
+            this.groupBox1.Size = new System.Drawing.Size(316, 120);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Classes";
@@ -111,6 +111,7 @@
             // 
             this.dgvClasses.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvClasses.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dgvClasses.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.dgvClasses.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvClasses.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.DescricaoClasse});
@@ -120,7 +121,7 @@
             this.dgvClasses.Name = "dgvClasses";
             this.dgvClasses.ReadOnly = true;
             this.dgvClasses.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvClasses.Size = new System.Drawing.Size(343, 101);
+            this.dgvClasses.Size = new System.Drawing.Size(310, 101);
             this.dgvClasses.TabIndex = 1;
             // 
             // DescricaoClasse
@@ -137,7 +138,7 @@
             this.pnPreco.Controls.Add(this.label1);
             this.pnPreco.Location = new System.Drawing.Point(12, 265);
             this.pnPreco.Name = "pnPreco";
-            this.pnPreco.Size = new System.Drawing.Size(343, 77);
+            this.pnPreco.Size = new System.Drawing.Size(310, 77);
             this.pnPreco.TabIndex = 8;
             // 
             // btnAddPreco
@@ -147,7 +148,7 @@
             this.btnAddPreco.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnAddPreco.FlatAppearance.BorderSize = 5;
             this.btnAddPreco.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnAddPreco.Location = new System.Drawing.Point(245, 13);
+            this.btnAddPreco.Location = new System.Drawing.Point(202, 14);
             this.btnAddPreco.Name = "btnAddPreco";
             this.btnAddPreco.Size = new System.Drawing.Size(82, 51);
             this.btnAddPreco.TabIndex = 2;
@@ -156,7 +157,7 @@
             // txtPreco
             // 
             this.txtPreco.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPreco.Location = new System.Drawing.Point(95, 16);
+            this.txtPreco.Location = new System.Drawing.Point(75, 16);
             this.txtPreco.Name = "txtPreco";
             this.txtPreco.Size = new System.Drawing.Size(100, 45);
             this.txtPreco.TabIndex = 1;
@@ -165,7 +166,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(21, 19);
+            this.label1.Location = new System.Drawing.Point(3, 19);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(70, 39);
             this.label1.TabIndex = 0;
@@ -175,7 +176,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(365, 507);
+            this.ClientSize = new System.Drawing.Size(327, 507);
             this.Controls.Add(this.pnPreco);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox3);

@@ -36,6 +36,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -47,9 +48,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\ControllerNotificao.cs" />
+    <Compile Include="Controller\ControllerTipoCliente.cs" />
+    <Compile Include="Controller\ControllerTipoEmpresa.cs" />
+    <Compile Include="Controller\ControllerTipoFornecedor.cs" />
+    <Compile Include="Controller\ControllerTipoFuncionario.cs" />
     <Compile Include="Global\ConfiguracoesGlobais.cs" />
     <Compile Include="Outros\GerenciarStatusCadastro.cs" />
     <Compile Include="Outros\PegarAtributoClasse.cs" />
+    <Compile Include="Presenter\Cadastro\PresenterCadastroPessoa.cs" />
     <Compile Include="Presenter\Cadastro\PresenterCadastroPreco.cs" />
     <Compile Include="Presenter\Outros\PresenterBuscarItemGenerico.cs" />
     <Compile Include="Outros\ExibirStatusCadastro.cs" />
@@ -78,6 +85,24 @@
     </Compile>
     <Compile Include="View\Forms\FrmCadastroPreco.Designer.cs">
       <DependentUpon>FrmCadastroPreco.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Forms\FrmCadastroUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Forms\FrmCadastroUsuario.Designer.cs">
+      <DependentUpon>FrmCadastroUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Forms\FrmPessoa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Forms\FrmPessoa.Designer.cs">
+      <DependentUpon>FrmPessoa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\TipoPessoaComponente.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\TipoPessoaComponente.Designer.cs">
+      <DependentUpon>TipoPessoaComponente.cs</DependentUpon>
     </Compile>
     <Compile Include="View\UserControl\UserControlStatusCadastro.cs">
       <SubType>UserControl</SubType>
@@ -146,6 +171,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\Forms\FrmCadastroPreco.resx">
       <DependentUpon>FrmCadastroPreco.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Forms\FrmCadastroUsuario.resx">
+      <DependentUpon>FrmCadastroUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Forms\FrmPessoa.resx">
+      <DependentUpon>FrmPessoa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\TipoPessoaComponente.resx">
+      <DependentUpon>TipoPessoaComponente.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\UserControl\UserControlStatusCadastro.resx">
       <DependentUpon>UserControlStatusCadastro.cs</DependentUpon>

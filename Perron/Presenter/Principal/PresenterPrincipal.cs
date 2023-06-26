@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Model.Emumerator;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -38,6 +39,7 @@ namespace Perron.Factory.Controller
             _view.EventoAbrirtelaCadastroClasse(EventoAbrirCadastroClasse);
             _view.EventoAbrirtelaCadastroTAmanho(this.EventoAbrirCadastroTamanho);
             _view.EventoAbrirTelaCadastroPreco(EventoAbrirCadastroPreco);
+            _view.EventoAbrirTelaCadastroPessoa(EventoAbrirCadastroPessoa);
         }
 
 
@@ -72,6 +74,10 @@ namespace Perron.Factory.Controller
         private void EventoAbrirCadastroPreco(object o, EventArgs e)
         {
             var CadastroPreco = FactoryPresenter.CadastroPreco(_view);
+        }
+        private void EventoAbrirCadastroPessoa(object o, EventArgs e)
+        {
+            var CadastroPreco = FactoryPresenter.CadastroPessoa((Form)_view,ETipoPessoa.Pessoa);
         }
 
         #endregion

@@ -21,6 +21,7 @@ public interface IViewPrincipal
     void EventoAbrirtelaCadastroClasse(EventHandler e);
     void EventoAbrirtelaCadastroTAmanho(EventHandler e);
     void EventoAbrirTelaCadastroPreco(EventHandler e);
+    void EventoAbrirTelaCadastroPessoa(EventHandler e);
 
 
     #endregion

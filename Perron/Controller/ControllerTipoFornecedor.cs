@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Model.Emumerator;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,21 +8,18 @@ using System.Windows.Forms;
 
 namespace Perron.Controller
 {
-    public class ControllerTipoFornecedor : IControllerTipoPessoa
+    public class ControllerTipoFornecedor : ControllerCadastroTipoPessoaBase
     {
-        public void EventoComportamento(object o, EventArgsGenerico<object[]> e)
+
+
+
+        public ControllerTipoFornecedor(): base(ETipoPessoa.Fornecedor) { }
+
+
+        public override void SetarUserEmTabPage(TabPage page)
         {
             
         }
 
-        public void Salvar(int IdPessoa, bool status)
-        {
-            
-        }
-
-        public void SetarUserEmTabPage(TabPage page)
-        {
-            
-        }
     }
 }

@@ -36,7 +36,6 @@ namespace Perron.Presenter
             bool ret = true;
             string msg = "";
 
-
             if(_classe.DescricaoClasse == "")
             {
                 msg  += "- Informa A descrição da Classe por favor\n\r";
@@ -49,7 +48,7 @@ namespace Perron.Presenter
 
 
         }
-        public void SetClasseNaView()
+        public  void SetClasseNaView()
         {
             _classe = _view.ClasseSelecionadaGrid;
             _view.DescricaoClasse = _classe.DescricaoClasse;

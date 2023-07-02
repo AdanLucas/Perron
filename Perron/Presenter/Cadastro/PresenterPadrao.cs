@@ -17,7 +17,7 @@ namespace Perron.Controller
         #endregion
 
         #region Eventos
-        public event ComportamentoTelaEventHandler EventoComportamentoTela;
+        
         #endregion
 
         #region Construtor
@@ -31,28 +31,18 @@ namespace Perron.Controller
         #region VIRTUAL
 
            #region Eventos
-        protected virtual void EventoSalvar(object o, EventArgs e)
-        {
-
-        }
-        protected virtual void EventoNovo(object o, EventArgs e)
-        {
-
-        }
-        protected virtual void EventoCancelar(object o, EventArgs e)
-        {
-
-        }
-        protected virtual void EventoRemover(object o, EventArgs e)
-        {
-
-        }
+        protected virtual void EventoSalvar(object o, EventArgs e) {  }
+        protected virtual void EventoNovo(object o, EventArgs e) {  }
+        protected virtual void EventoCancelar(object o, EventArgs e) {  }
+        protected virtual void EventoRemover(object o, EventArgs e) {  }
         
            #endregion
 
            #region Metodos
+
         protected virtual void AlterarComportamentoTela(EComportamentoTela status) { }
         protected virtual void AlterarStatusCadastroExibidos(EStatusCadastro status) { }
+
         #endregion
 
         #endregion
@@ -64,7 +54,7 @@ namespace Perron.Controller
         }
         protected void MessagemErro(Exception ex)
         {
-            MessageBox.Show(ex.Message, "Ocorreu um erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show(ex.Message + "\n\r" + ex.InnerException + "\n\r" + ex.StackTrace.ToString(), "Ocorreu um erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
         protected void AlterarAlturaTela(int altura)
         {

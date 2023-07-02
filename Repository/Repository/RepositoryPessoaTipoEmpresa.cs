@@ -19,7 +19,7 @@ namespace Repository.Repository
             throw new NotImplementedException();
         }
 
-        public void Salvar(object cadastro)
+        public int Salvar(object cadastro)
         {
             throw new NotImplementedException();
         }

@@ -9,8 +9,7 @@ namespace Model.Interface.View
 {
     public interface IViewCadastroPreco : IViewPadraoCadastro
     {
-        void Show();
-        void Close();
+  
         void SetarListaClasse(List<ClasseModel> ListaClasse);
         void SetarListatamanho(List<TamanhoModel> ListaTamanho);
         void SetarListaPrecosCadastrados(List<PrecoView> ListaPreco);

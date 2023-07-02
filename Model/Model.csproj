@@ -108,6 +108,7 @@
     <Compile Include="Model\ClasseView\PrecoView.cs" />
     <Compile Include="Model\DadosSaborEngredienteModel.cs" />
     <Compile Include="Model\EngredienteModel.cs" />
+    <Compile Include="Model\FuncionarioModel.cs" />
     <Compile Include="Model\PessoaModel.cs" />
     <Compile Include="Model\PessoaTipoEmpresa.cs" />
     <Compile Include="Model\PIzza.cs" />

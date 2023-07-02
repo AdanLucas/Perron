@@ -11,7 +11,7 @@ public interface IControllerTipoPessoa
 
     void EventoComportamento(object o, EventArgsGenerico<object[]> e);
     void SetarUserEmTabPage(TabPage page);
-    void Salvar(int IdPessoa ,bool ativo);
+    void Salvar(PessoaModel Pessoa, bool ativo);
     
 
 }

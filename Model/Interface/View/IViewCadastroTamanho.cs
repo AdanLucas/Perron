@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 
 public interface IViewCadastroTamanho : IViewPadraoCadastro
 {
-    void Show();
-    void Close();
+
 
     #region Propriedades
     int QuantidadePedaco { get; set; }

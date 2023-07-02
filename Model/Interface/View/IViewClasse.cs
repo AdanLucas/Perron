@@ -8,8 +8,7 @@ using System.Threading.Tasks;
 public interface IViewClasse : IViewPadraoCadastro
 {
 
-    void Show();
-    void Close();
+
 
     string DescricaoClasse { get; set; }
     void PopularGridClasse(List<ClasseModel> Lista);

@@ -59,12 +59,19 @@ namespace Perron.Presenter.Cadastro
         }
         private IControllerTipoPessoa InstanciarController(string NomeController)
         {
-            Type tipo = Type.GetType(NomeController);
+            try
+            {
+                Type tipo = Type.GetType(NomeController);
 
-            if (tipo != null)
-                return Activator.CreateInstance(tipo) as IControllerTipoPessoa;
+                if (tipo != null)
+                    return Activator.CreateInstance(tipo) as IControllerTipoPessoa;
 
-            return null;
+                return null;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
 
         }
         private void CriarRemoverController(ETipoPessoa tipo)
@@ -113,7 +120,7 @@ namespace Perron.Presenter.Cadastro
             catch (Exception ex)
             {
 
-                throw ex;
+                MessagemErro(ex);
             }
         }
         private bool RemoverCadastroTipoPessoa(ETipoPessoa Tipo)
@@ -164,7 +171,7 @@ namespace Perron.Presenter.Cadastro
                     if (!TipoCadastro.HasFlag(item) && item != ETipoPessoa.Pessoa)
                     {
                         var controller = InstanciarController(item.GetDadosController());
-                        controller.Salvar((int)_pessoa.Id, false);
+                        controller.Salvar(_pessoa, false);
                         _pessoa.Tipo -= (ETipoPessoa)item;
                     }
                 }
@@ -176,13 +183,21 @@ namespace Perron.Presenter.Cadastro
         }
         private void DefinirComportamentoCadastro(ETipoPessoa tipo)
         {
-            if (tipo.HasFlag(ETipoPessoa.Pessoa))
+            try
             {
-            }
-            else
-            {
-                IniciarCadastroTipoPessoa(tipo);
 
+                if (tipo.HasFlag(ETipoPessoa.Pessoa))
+                {
+                }
+                else
+                {
+                    IniciarCadastroTipoPessoa(tipo);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessagemErro(ex);
             }
         }
         private void SetarNomeTela()
@@ -203,11 +218,7 @@ namespace Perron.Presenter.Cadastro
         {
             if (EventoComportamentoCadastro != null)
             {
-                object[] paramentros = new object[]
-                {
-                    comportamento,
-                    _pessoa.Id
-                };
+                object[] paramentros = new object[] { comportamento,_pessoa };
 
                 EventoComportamentoCadastro(this, new EventArgsGenerico<Object[]> { Item = paramentros });
             }
@@ -224,9 +235,9 @@ namespace Perron.Presenter.Cadastro
         {
             base.ComportamentoAtual = EComportamentoTela.Novo;
         }
-        protected override void EventoSalvar(object o, EventArgs e)
+        protected override async void EventoSalvar(object o, EventArgs e)
         {
-            SalvarCadastro();
+            await SalvarCadastro();
         }
         protected override void EventoCancelar(object o, EventArgs e)
         {
@@ -259,7 +270,7 @@ namespace Perron.Presenter.Cadastro
 
                         foreach (var item in _controllers)
                         {
-                            item.Salvar((int)_pessoa.Id, true);
+                            item.Salvar(_pessoa,true);
                         }
 
                         tran.Complete();
@@ -269,7 +280,8 @@ namespace Perron.Presenter.Cadastro
                     catch (Exception ex)
                     {
                         tran.Dispose();
-                        throw ex;
+
+                        MessagemErro(ex);
                     }
                 }
             });
@@ -282,7 +294,7 @@ namespace Perron.Presenter.Cadastro
 
             }catch (Exception ex)
             {
-
+                throw ex;
             }
         }
         

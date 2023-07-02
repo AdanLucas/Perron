@@ -5,8 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Model.Model
-{
+
     public class PessoaModel : Aentity
     {
         public string Nome { get; set; }
@@ -15,4 +14,4 @@ namespace Model.Model
         public string Telefone { get; set; }
         public ETipoPessoa Tipo{ get; set; }
     }
-}
+

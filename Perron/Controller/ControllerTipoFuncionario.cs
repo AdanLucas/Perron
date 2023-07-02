@@ -1,30 +1,75 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Model.Emumerator;
+using Perron.View;
+using System;
+using System.Runtime.CompilerServices;
 using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
+
 
 
 namespace Perron.Controller
 {
-    public class ControllerTipoFuncionario : IControllerTipoPessoa
+
+    public class ControllerTipoFuncionario : ControllerCadastroTipoPessoaBase
     {
 
 
-        public void EventoComportamento(object o, EventArgsGenerico<object[]> e)
+
+        public ControllerTipoFuncionario() : base(ETipoPessoa.Funcionario) {  }
+
+
+        private UCTipoFuncionario _view;
+        private FuncionarioModel _funcionario { get {return GetDadosFuncionario(); } set { } }
+        private FuncionarioModel GetDadosFuncionario()
         {
-            
+           if(_funcionario==null)
+                     _funcionario = new FuncionarioModel();
+
+            try 
+            {
+                _funcionario.Id = _pessoal.Id;
+                _funcionario.Salario = _view.Salario;
+                _funcionario.DataContratado = _view.DatraContrato;
+
+                return _funcionario;
+            }     
+            catch (Exception ex) 
+            {
+                throw ex;
+            }
+
         }
-        public void Salvar(int IdPessoa, bool status)
+        public override void SetarUserEmTabPage(TabPage page)
         {
-            
+            _view = new UCTipoFuncionario();
+            page.Controls.Add(_view);
+        }
+        protected override void ComportamentoPopularCadastrando()
+        {
+
+        }
+        protected override void ComportamentoInicio()
+        {
+
+        }
+        protected override void ComportamentoNovo()
+        { 
+        
+        }
+        protected override void SalvarCadastro(bool ativo)
+        {
+            try
+            {
+                _funcionario.Id = _pessoal.Id;
+                _funcionario.Ativo = ativo;
+                _service.Salvar(_funcionario);
+            }
+            catch (Exception Ex)
+            {
+
+                throw Ex;
+            }
         }
 
-        public void SetarUserEmTabPage(TabPage page)
-        {
-            
-        }
+
     }
 }

@@ -49,5 +49,6 @@ public static class FactoryRepository
 
         return (IReposotiryTipoPessoa)Activator.CreateInstance(_type);
     }
+
 }
 

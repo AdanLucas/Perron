@@ -30,40 +30,36 @@ namespace Repository.Repository
         }
         private List<ClasseModel> ScriptGetListaClasse(DbSession session , EStatusCadastro status)
         {
-            
             bool ret = false;
 
             if (status.Equals(EStatusCadastro.Todos))
-                return session.Connection.Query<ClasseModel>("select Id,Descricao as DescricaoClasse,Ativo from Classe").ToList();
+                    return session.Connection.Query<ClasseModel>("select Id,Descricao as DescricaoClasse,Ativo from Classe").ToList();
 
             else
             {
                 ret = EStatusCadastro.Ativo.Equals(status);
-              return session.Connection.Query<ClasseModel>("select Id,Descricao as DescricaoClasse,Ativo from Classe where ativo = @StatusCadastro",param: new { StatusCadastro = ret}).ToList();
+                    return session.Connection.Query<ClasseModel>("select Id,Descricao as DescricaoClasse,Ativo from Classe where ativo = @StatusCadastro",param: new { StatusCadastro = ret}).ToList();
 
             }
         }
-        private ClasseModel ScriptGetClassePorID(DbSession session,int id)
-        {
-            return session.Connection.Query<ClasseModel>($"select Id,Descricao as DescricaoClasse,Ativo from Classe where id = {id}").FirstOrDefault();
-        }
-
-        public ClasseModel GetItemPorID(int Id)
-        {
-            using (var session = new DbSession())
-            {
-                return this.ScriptGetClassePorID(session, Id);
-            }
-        }
-
-        public List<ClasseModel> GetLista(EStatusCadastro status)
+        public  List<ClasseModel> GetLista(EStatusCadastro status)
         {
             using (var Session = new DbSession())
             {
                 return this.ScriptGetListaClasse(Session,status);
             }
         }
-
+        private ClasseModel ScriptGetClassePorID(DbSession session,int id)
+        {
+            return session.Connection.Query<ClasseModel>($"select Id,Descricao as DescricaoClasse,Ativo from Classe where id = {id}").FirstOrDefault();
+        }
+        public  ClasseModel GetItemPorID(int Id)
+        {
+            using (var session = new DbSession())
+            {
+                return this.ScriptGetClassePorID(session, Id);
+            }
+        }
         public void Salvar(ClasseModel classe)
         {
             using (var Session = new DbSession())

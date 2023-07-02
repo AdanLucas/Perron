@@ -5,10 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-public interface IRepositoryClasse: IRepositoryBase<ClasseModel>
-{
-    
+public interface IRepositoryClasse: IRepositoryBase<ClasseModel> { }
 
 
-}
+
+
+
+
+
 

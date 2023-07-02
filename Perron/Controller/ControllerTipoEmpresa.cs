@@ -10,25 +10,9 @@ using System.Windows.Forms;
 
 namespace Perron.Controller
 {
-    public class ControllerTipoEmpresa : IControllerTipoPessoa
+    public class ControllerTipoEmpresa : ControllerCadastroTipoPessoaBase
     {
-        private EComportamentoTela? _compartamento;
-        private PessoaModel _pessoa;
+        public ControllerTipoEmpresa(): base(ETipoPessoa.Empresa) {  }
 
-        private IServiceTipoPessoa _serivce = FactoryService.CadastroTipoPessoa(ETipoPessoa.Empresa);
-        public void EventoComportamento(object o, EventArgsGenerico<object[]> e)
-        {
-             _compartamento = (EComportamentoTela)e.Item[0];
-             _pessoa = (PessoaModel)e.Item[1];
-        }
-
-        public void Salvar(int IdPessoa, bool status)
-        {
-            
-        }
-        public void SetarUserEmTabPage(TabPage page)
-        {
-            
-        }
     }
 }

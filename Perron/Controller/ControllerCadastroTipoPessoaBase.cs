@@ -65,7 +65,6 @@ namespace Perron.Controller
         protected virtual void ComportamentoNovo() {  }         
         protected virtual void ComportamentoCadastrando() {  }
         protected virtual void ComportamentoNone() {  }
-        protected virtual void SalvarCadastro() { }
         protected virtual void SalvarCadastro(bool ativo) { }
         #endregion
 

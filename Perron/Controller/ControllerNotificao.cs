@@ -1,36 +1,67 @@
-﻿using System;
+﻿using Perron.Properties;
+using Perron.View;
+using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
+using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
-    public static class ControllerNotificao
+public static class ControllerNotificao
+{
+
+    private static FrmNotificacao _view = new FrmNotificacao();
+
+   static DialogResult dialogResult;
+
+    public static DialogResult ValidarCampoVazio(ref string campo)
     {
+        var result = _view.ShowDialog();
 
-        private static Form _view = new Form();
-
-
-        public static DialogResult ValidarCampoVazio(ref string campo)
+        if (result == DialogResult.OK)
         {
-            var result =  _view.ShowDialog();
+            campo = _view.Text;
 
-            if (result == DialogResult.OK)
-            {
-                campo = _view.Text;
-
-                return DialogResult.OK;
-            }
-            else if (result == DialogResult.Ignore)
-            {
-                return DialogResult.Ignore;
-            }
-
-            return DialogResult.Cancel;
+            return DialogResult.OK;
+        }
+        else if (result == DialogResult.Ignore)
+        {
+            return DialogResult.Ignore;
         }
 
-
-
+        return DialogResult.Cancel;
     }
+    public static DialogResult MessagemErro(Exception ex)
+    {
+        _view.Text = "Erro!!";
+        _view.pbImagem.Image = Resources.BotaoAbort;
+
+        _view.TextoPrincipal = ex.Message;
+        _view.TextoLongo = ex.StackTrace;
+        _view.TextoRodape = ex.InnerException.Message;
+        _view.BotaoCancelar.Click +=EventoCancelar;
+        _view.BotaoOk.Click += EventoOk;
+
+        _view.ShowDialog();
+
+        return dialogResult;
+    }
+    private static void EventoCancelar(object o, EventArgs e)
+    {
+        _view.Close();
+        dialogResult = DialogResult.Cancel;
+    }
+    private static void EventoOk(object o, EventArgs e)
+    {
+        _view.Close();
+        dialogResult = DialogResult.OK;
+    }
+
+
+
+}
 

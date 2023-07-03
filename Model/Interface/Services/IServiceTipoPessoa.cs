@@ -10,7 +10,7 @@ using System.Threading.Tasks;
     {
         IList GetListaCadastro(EStatusCadastro status);
         object GetCadastroPorId(int id);
-        bool Salvar(object cadastro);
+        int Salvar(object cadastro);
         Task SalvarLista(IList list);
     }
 

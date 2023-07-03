@@ -57,7 +57,6 @@
     <Compile Include="Controller\ControllerTipoFornecedor.cs" />
     <Compile Include="Controller\ControllerTipoFuncionario.cs" />
     <Compile Include="Global\ConfiguracoesGlobais.cs" />
-    <Compile Include="Outros\PegarAtributoClasse.cs" />
     <Compile Include="Presenter\Cadastro\PresenterCadastroPessoa.cs" />
     <Compile Include="Presenter\Cadastro\PresenterCadastroPreco.cs" />
     <Compile Include="Presenter\Outros\PresenterBuscarItemGenerico.cs" />
@@ -72,7 +71,6 @@
     <Compile Include="Presenter\Cadastro\PresenterSabor.cs" />
     <Compile Include="Factory\Presenter\FactoryPresenter.cs" />
     <Compile Include="Factory\View\FactoryView.cs" />
-    <Compile Include="Outros\AlocarComponentes.cs" />
     <Compile Include="Outros\Extensoes\ExComboBox.cs" />
     <Compile Include="Outros\Extensoes\ExDataGrid.cs" />
     <Compile Include="Program.cs" />
@@ -81,6 +79,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="View\FrmNotificacao.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FrmNotificacao.Designer.cs">
+      <DependentUpon>FrmNotificacao.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Forms\FrmCadastroPreco.cs">
       <SubType>Form</SubType>
@@ -182,6 +186,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FrmNotificacao.resx">
+      <DependentUpon>FrmNotificacao.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Forms\FrmCadastroPreco.resx">
       <DependentUpon>FrmCadastroPreco.cs</DependentUpon>

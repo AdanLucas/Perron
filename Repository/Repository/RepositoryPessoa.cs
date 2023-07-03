@@ -9,76 +9,21 @@ using Model.Model;
 
 namespace Repository.Repository
 {
-    internal class RepositoryPessoa : IReposotiryTipoPessoa
+    public class RepositoryPessoa : RepositoryBaseTipoPessoa
     {
-
-
-
-        private int PC_CadastroPessoa(DbSession session,PessoaModel Pessoa)
+        protected override int Procedure(object cadastro)
         {
-           return session.Connection.Query<int>("exec PC_CadastroPessoa @Id,@Nome,@Sobrenome,@CpfCnpj,@Telefone,@Tipo,@Ativo"
-                                                                 ,param: new {
-                                                                     Pessoa.Id
-                                                                    ,Pessoa.Nome
-                                                                    ,Pessoa.Sobrenome
-                                                                    ,Pessoa.CpfCnpj
-                                                                    ,Pessoa.Telefone
-                                                                    ,Pessoa.Tipo
-                                                                    ,Pessoa.Ativo}
-                                                                 ,transaction:session.Transaction).FirstOrDefault();
+            PessoaModel pessoa = (PessoaModel)cadastro;
+
+            return _session.Connection.Query<int>("EXEC PC_CadastroPessoa @Id,@Nome,@Sobrenome,@CpfCnpj,@Telefone,@Tipo,@Ativo", param: new { pessoa.Id, pessoa.Nome, pessoa.Sobrenome, pessoa.CpfCnpj, pessoa.Telefone, pessoa.Tipo, pessoa.Ativo}).FirstOrDefault();
         }
-
-        public object GetCadastroPorId(int Id)
+        protected override object ScriptGetCadastroPorID(int Id)
         {
-            using (var session = new DbSession())
-            {
-                return session.Connection.Query<PessoaModel>("SELECT * FROM PESSOA WHERE ID = @ID", param:new {Id}).FirstOrDefault();
-            }
-
+            return _session.Connection.Query<object>("SELECT * FROM PESSOA WHERE ID = @ID",param: new {Id}).FirstOrDefault();
         }
-
-        public IList GetLista()
+        protected override IList ScriptGetListaCadastrado()
         {
-            using (var session = new DbSession())
-            {
-                return session.Connection.Query<PessoaModel>("Select * from Pessoal").ToList();
-            }
-        }
-
-        public int Salvar(object cadastro)
-        {
-            using (var session = new DbSession())
-            {
-                try
-                {
-                    return PC_CadastroPessoa(session, cadastro as PessoaModel);
-                }
-                catch (Exception ex)
-                {
-
-                    throw ex;
-                }
-            }
-        }
-
-        public void SalvarLista(IList lista)
-        {
-            using (var session = new DbSession())
-            {
-                try
-                {
-                    foreach (var item in lista)
-                    {
-                        PC_CadastroPessoa(session, item as PessoaModel);
-                    }
-                }
-                catch (Exception ex)
-                {
-
-                    throw ex;
-                }
-
-            }
+           return _session.Connection.Query<object>("SELECT * FROM PESSOA").ToList();
         }
     }
 }

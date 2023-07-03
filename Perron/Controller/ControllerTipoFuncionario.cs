@@ -18,7 +18,9 @@ namespace Perron.Controller
 
 
         private UCTipoFuncionario _view;
-        private FuncionarioModel _funcionario { get {return GetDadosFuncionario(); } set { } }
+
+        private FuncionarioModel funcionario { get {return GetDadosFuncionario();} set { _funcionario = value; } }
+        private FuncionarioModel _funcionario { get; set; }
         private FuncionarioModel GetDadosFuncionario()
         {
            if(_funcionario==null)
@@ -28,7 +30,7 @@ namespace Perron.Controller
             {
                 _funcionario.Id = _pessoal.Id;
                 _funcionario.Salario = _view.Salario;
-                _funcionario.DataContratado = _view.DatraContrato;
+                _funcionario.DataAdimissao = _view.DatraContrato;
 
                 return _funcionario;
             }     
@@ -59,9 +61,9 @@ namespace Perron.Controller
         {
             try
             {
-                _funcionario.Id = _pessoal.Id;
-                _funcionario.Ativo = ativo;
-                _service.Salvar(_funcionario);
+                funcionario.Id = _pessoal.Id;
+                funcionario.Ativo = ativo;
+                _service.Salvar(funcionario);
             }
             catch (Exception Ex)
             {

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 public class FuncionarioModel : Aentity
 {
-    public DateTime DataContratado { get; set; }
+    public DateTime DataAdimissao { get; set; }
     public decimal Salario { get; set; }
 }
 

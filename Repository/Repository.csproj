@@ -55,9 +55,10 @@
     <Compile Include="Repository\RepositoryEngrediente.cs" />
     <Compile Include="Repository\RepositoryPessoa.cs" />
     <Compile Include="Repository\RepositoryPessoaTipoEmpresa.cs" />
-    <Compile Include="Repository\RepositoryPessoaTipoPessoa.cs" />
+    <Compile Include="Repository\RepositoryPessoaTipoFuncionario.cs" />
     <Compile Include="Repository\RepositorySabor.cs" />
     <Compile Include="Repository\RepositoryTamanho.cs" />
+    <Compile Include="Repository\RepositoryBaseTipoPessoa.cs" />
     <Compile Include="ScriptsDinamicos\ScriptsDinamicos.cs" />
     <Compile Include="Transaction\UnitOfWork.cs" />
   </ItemGroup>

@@ -22,8 +22,8 @@ namespace GerenciandoBaseDedados.ScriptBase.Function
                             ,Engrediente.Descricao
                             ,SaborEngrediente.Ativo 
                             from Engrediente AS Engrediente
-                           JOIN  Sabor_has_Engrediente as SaborEngrediente ON(Engrediente.Id = SaborEngrediente.Engrediente)
-                           where SaborEngrediente.Sabor = @sabor)";
+                                     JOIN  Sabor_has_Engrediente as SaborEngrediente ON(Engrediente.Id = SaborEngrediente.Engrediente)
+                                          where SaborEngrediente.Sabor = @sabor)";
             }
         }
     }

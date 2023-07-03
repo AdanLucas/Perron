@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -50,9 +51,13 @@ namespace Perron.Controller
         #region PROTECTED
         protected void MessageDeSucesso(String msg)
         {
-            MessageBox.Show($"{msg}!", "Sucesso!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show($"{msg}!", "Sucesso!", MessageBoxButtons.OK, MessageBoxIcon.Information,MessageBoxDefaultButton.Button1);
         }
         protected void MessagemErro(Exception ex)
+        {
+            ControllerNotificao.MessagemErro(ex);
+        }
+        protected void MessagemErro(Exception ex,StackTrace st)
         {
             MessageBox.Show(ex.Message + "\n\r" + ex.InnerException + "\n\r" + ex.StackTrace.ToString(), "Ocorreu um erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }

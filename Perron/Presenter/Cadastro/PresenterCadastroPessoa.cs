@@ -18,15 +18,15 @@ namespace Perron.Presenter.Cadastro
 
         #region Propriedades
 
-        private PessoaModel _pessoa = new PessoaModel();
+        private PessoaModel pessoa { get { return GetDadosPessoa();} set { SetDadospessoa(value); } }
+
+        private PessoaModel _pessoa;
         private ETipoPessoa TipoPessoaCadastro { get; set; }
         private readonly IViewCadastroPessoa _view;
         private TipoPessoaComponente _componenteSelecaoTipoPessoa;
         private readonly IServiceTipoPessoa _service;
         private ICollection<IControllerTipoPessoa> _controllers = new List<IControllerTipoPessoa>();
         private event EventHandlerGenerico<Object[]> EventoComportamentoCadastro; 
-
-       
 
         #endregion
 
@@ -72,6 +72,99 @@ namespace Perron.Presenter.Cadastro
             {
                 throw ex;
             }
+
+        }
+        private PessoaModel GetDadosPessoa()
+        {
+            try
+            {
+                if (_pessoa == null)
+                {
+                    _pessoa = new PessoaModel();
+                    _pessoa.Ativo = true;
+                }
+                
+                _pessoa.Nome = _view.Nome;
+                _pessoa.Sobrenome = _view.Sobrenome;
+                _pessoa.CpfCnpj = _view.CpfCnpj;
+                _pessoa.Tipo = _componenteSelecaoTipoPessoa.TipoPessoaSelecionado;
+                _pessoa.Telefone = _view.Telefone;
+
+
+                return _pessoa;
+
+            }
+            catch (Exception ex )
+            {
+
+                throw ex;
+            }
+        }
+        private void SetDadospessoa(PessoaModel pessoa)
+        {
+            _pessoa = pessoa;
+
+            _view.CpfCnpj = pessoa.CpfCnpj;
+            _view.Telefone = pessoa.Telefone;
+            _view.Sobrenome = pessoa.Sobrenome;
+            _view.Nome = pessoa.Nome;
+            _componenteSelecaoTipoPessoa.TipoPessoaSelecionado = pessoa.Tipo;
+
+
+        }
+        private void ValidarFormatarCompos()
+        {
+            bool validando = true;
+            string msg = "";
+
+            if (!string.IsNullOrEmpty(_view.Nome))
+            {
+                _view.Nome.Trim();
+
+            }
+            else
+            {
+                validando = false;
+                msg += "Valide o Campo Nome Por favor\n\r";
+            }
+            if (!string.IsNullOrEmpty(_view.Sobrenome))
+            {
+                _view.Sobrenome.Trim();
+
+            }
+            else
+            {
+                validando = false;
+                msg += "Valide o campo Sobrenome Por favor\n\r";
+            }
+            //if (!string.IsNullOrEmpty(_view.CpfCnpj) && _view.CpfCnpj.Length >= 10)
+            //{
+            //    _view.CpfCnpj.Trim();
+
+
+            //}
+            //else
+            //{
+            //    validando = false;
+            //    msg += "Verifique o CpfCnpj por favor\n\r";
+            //}
+            if (!string.IsNullOrEmpty(_view.Telefone) && _view.Telefone.Length >=10)
+            {
+                _view.Telefone.Trim();
+
+            }
+            else
+            {
+                validando = false;
+                msg += "Valide o Campo Telefone por favor\r\n";
+            }
+
+            if (!validando)
+            {
+                throw new Exception(msg);
+            }
+            
+
 
         }
         private void CriarRemoverController(ETipoPessoa tipo)
@@ -164,15 +257,19 @@ namespace Perron.Presenter.Cadastro
         {
             try
             {
-                var TipoCadastro = _componenteSelecaoTipoPessoa.TipoPessoaSelecionado;
-                
-                foreach (var item in _pessoa.Tipo.GetListEnumValue<ETipoPessoa>())
+
+                if (_pessoa != null)
                 {
-                    if (!TipoCadastro.HasFlag(item) && item != ETipoPessoa.Pessoa)
+                    var TipoCadastro = _componenteSelecaoTipoPessoa.TipoPessoaSelecionado;
+
+                    foreach (var item in _pessoa.Tipo.GetListEnumValue<ETipoPessoa>())
                     {
-                        var controller = InstanciarController(item.GetDadosController());
-                        controller.Salvar(_pessoa, false);
-                        _pessoa.Tipo -= (ETipoPessoa)item;
+                        if (!TipoCadastro.HasFlag(item) && item != ETipoPessoa.Pessoa)
+                        {
+                            var controller = InstanciarController(item.GetDadosController());
+                            controller.Salvar(_pessoa, false);
+                            _pessoa.Tipo -= (ETipoPessoa)item;
+                        }
                     }
                 }
             }
@@ -262,11 +359,10 @@ namespace Perron.Presenter.Cadastro
                     try
                     {
                         ValidarCadastroPessoa();
-
                         ValidarRemoverTipoPessoaCadastro();
+                        ValidarFormatarCompos();
 
-                        _service.Salvar(_pessoa);
-
+                        _pessoa.Id = _service.Salvar(pessoa);
 
                         foreach (var item in _controllers)
                         {
@@ -300,28 +396,32 @@ namespace Perron.Presenter.Cadastro
         
 
         #region Comportamentos Tela
-
         private void SetarComportamento(EComportamentoTela comportamento)
         {
             switch (comportamento)
             {
                 case EComportamentoTela.None:
+                    EventoNotificarEvento(EComportamentoTela.None);
                     break;
 
                 case EComportamentoTela.Inicio:
                     ComportamentoInicio();
+                    EventoNotificarEvento(EComportamentoTela.Inicio);
                     break;
 
                 case EComportamentoTela.Novo:
                     ComportamentoNovo();
+                    EventoNotificarEvento(EComportamentoTela.Novo);
                     break;
 
                 case EComportamentoTela.Cadastrando:
                     ComportamentoCadastrando();
+                    EventoNotificarEvento(EComportamentoTela.Cadastrando);
                     break;
 
                 case EComportamentoTela.ItemSelecionado:
                     ComportamentoItemSelecionado();
+                    EventoNotificarEvento(EComportamentoTela.ItemSelecionado);
                     break;
 
 
@@ -374,10 +474,6 @@ namespace Perron.Presenter.Cadastro
 
             }
         }
-        private void ComportamentoCancelar()
-        {
-            
-        } 
         private void ComportamentoItemSelecionado()
         {
             if (TipoPessoaCadastro.HasFlag(ETipoPessoa.Pessoa))

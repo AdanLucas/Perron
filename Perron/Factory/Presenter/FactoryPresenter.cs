@@ -61,7 +61,6 @@ public static class FactoryPresenter
     {
         var _serivce = FactoryService.CadastroTipoPessoa(ETipoPessoa.Pessoa);
         var view = FactoryView.CadastroPessoa(viewPai);
-
         return new PresenterCadastroPessoa(tipo,view,_serivce);
     }
     

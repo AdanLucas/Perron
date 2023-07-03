@@ -20,6 +20,7 @@ namespace Repository.ScriptBase.Tabela
                         (
     						[Id] [int] IDENTITY(1,1) NOT NULL,
     						[Descricao] [varchar](50) NULL,
+                            [TipoMedida] [int] NULL,
     						[Ativo] [bit] NULL,
     					 CONSTRAINT [PK_Engrediente] PRIMARY KEY CLUSTERED 
     					(

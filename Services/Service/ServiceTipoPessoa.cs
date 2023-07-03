@@ -25,9 +25,19 @@ namespace Services.Service
             return null;
         }
 
-        public bool Salvar(object cadastro)
+        public int Salvar(object cadastro)
         {
-            return false;
+            
+
+            try
+            {
+              return _repo.Salvar(cadastro);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         public Task SalvarLista(IList list)

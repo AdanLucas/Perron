@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 
     public enum EUnidadeMedida
     {
+        [Description("Não Definido")]
+        Nd = 0,
         [Description("Kilograma")]
         Kg=1,
         [Description("Unidade")]

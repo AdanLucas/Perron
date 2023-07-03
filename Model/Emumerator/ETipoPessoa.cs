@@ -11,7 +11,7 @@ namespace Model.Emumerator
     public enum ETipoPessoa : long
     {
         [EComando(
-            Repository = "Repository.Repository.RepositoryPessoaTipoPessoa",
+            Repository = "Repository.Repository.RepositoryPessoa",
             Controller = "Perron.Controller.ControllerTipoPessoa",
             Service = "Services.Service.ServiceTipoPessoa")]
         Pessoa = 0,

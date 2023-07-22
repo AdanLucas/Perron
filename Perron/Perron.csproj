@@ -104,6 +104,12 @@
     <Compile Include="View\Forms\FrmPessoa.Designer.cs">
       <DependentUpon>FrmPessoa.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\UserControl\UCCliente.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\UserControl\UCCliente.Designer.cs">
+      <DependentUpon>UCCliente.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\UserControl\UCCadastoFornecedor.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -201,6 +207,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\UserControl\UCCadastoFornecedor.resx">
       <DependentUpon>UCCadastoFornecedor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\UserControl\UCCliente.resx">
+      <DependentUpon>UCCliente.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\UserControl\UCTipoFuncionario.resx">
       <DependentUpon>UCTipoFuncionario.cs</DependentUpon>

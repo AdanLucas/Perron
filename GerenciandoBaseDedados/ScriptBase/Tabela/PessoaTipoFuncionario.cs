@@ -10,16 +10,11 @@
             {
                 return $@"CREATE TABLE [dbo].[{NomeTabela}]
                                    (
-                                	[ID] [int] IDENTITY(1,1) NOT NULL,
-                                	[Nome] [varchar](250) NULL,
-                                	[Sobrenome] [varchar](250) NULL,
-                                	[Tipo] [int] NULL,
-                                    [CpfCnpj] [varchar](20) NULL,
-                                	[Telefone] [varchar](15) NULL,
-                                	[Ativo] [bit] NULL,
-                                        CONSTRAINT [PK_Pessoas] PRIMARY KEY CLUSTERED ( [ID] ASC ) 
-                                        WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-                                        ) ON [PRIMARY]";
+                                	[Id] [int] NOT NULL,
+                                	[DataAdimissao] [datetime] NULL,
+                                	[Salario] [decimal](18, 0) NULL,
+                                	[Ativo] [bit] NULL
+                                                    ) ON [PRIMARY]";
             }
         }
     }

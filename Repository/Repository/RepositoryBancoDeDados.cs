@@ -32,9 +32,7 @@ namespace Repository.Repository
         {
             try
             {
-                
                 CriarTabelasProcFunctionConstraint();
-
             }
             catch (Exception ex)
             {
@@ -53,7 +51,6 @@ namespace Repository.Repository
                 dbocommand.CommandText = sql;
                 dbocommand.ExecuteNonQuery();
                 dbocommand.Dispose();
-
             }
             catch (Exception ex)
             {
@@ -72,8 +69,8 @@ namespace Repository.Repository
             using (_session = new DbSession(ETipoConexao.Master))
             {
                  var UnitMastar = new UnitOfWork(_session);
-                 GerenciandoScript InicarCriacao = new GerenciandoScript();
-                 CriandoBase(_session, InicarCriacao.ScriptCriacaoBase(NomeBaseCadastrada));
+
+                     GerenciandoScript.CriarBase(_session.Connection,NomeBaseCadastrada);
 
                 using (var session = new DbSession())
                 {
@@ -81,8 +78,8 @@ namespace Repository.Repository
                     try
                     {
                         Unit.BeginTran();
-                        InicarCriacao.IniciarTransacao(session.Connection);
-                        InicarCriacao.ExecutarCriacaoBase(session.Transaction);
+                        GerenciandoScript.IniciarTransacao(session.Connection);
+                        GerenciandoScript.ExecutarCriacaoBase(session.Transaction);
                         Unit.Commit();
                         
                     }

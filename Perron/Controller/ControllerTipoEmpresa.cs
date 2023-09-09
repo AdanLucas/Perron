@@ -14,7 +14,7 @@ namespace Perron.Controller
     public class ControllerTipoEmpresa : ControllerCadastroTipoPessoaBase
     {
 
-        private UCCadastoFornecedor _view;
+        private UCCadastroEmpresa _view;
 
         public ControllerTipoEmpresa(): base(ETipoPessoa.Empresa) {  }
 
@@ -22,7 +22,7 @@ namespace Perron.Controller
 
         public override void SetarUserEmTabPage(TabPage page)
         {
-            _view = new UCCadastoFornecedor();
+            _view = new UCCadastroEmpresa();
             page.Controls.Add(_view);
         }
 

@@ -68,7 +68,7 @@ namespace Perron.Presenter
         {
             _classe = null;
             _view.DescricaoClasse = "";
-            _view.AlturaTela = 376;
+            _view.SetarTamanhoMaximoTela();
             _view.VisibilidadeGroupBoxClassesCadastrados = true;
 
 
@@ -80,7 +80,7 @@ namespace Perron.Presenter
             _classe.Ativo = true;
             _view.DescricaoClasse = "";
             _view.PopularGridClasse(null);
-            _view.AlturaTela = 185;
+            _view.SetarTamanhoDaTelaReduzido();
             _view.VisibilidadeGroupBoxClassesCadastrados = false;
 
         }

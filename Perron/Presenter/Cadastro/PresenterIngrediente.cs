@@ -10,13 +10,15 @@ using System.Windows.Forms;
 
 namespace Perron.Controller
 {
-    public class PresenterIngrediente : PresenterPadrao , IPresenterEngrediente
+    public class PresenterIngrediente : PresenterPadrao , IPresenterIngrediente
     {
         private readonly IViewCadastroIngrediente _view;
-        private readonly IServiceEngrediente _service;
-        private EngredienteModel _engrediente;
+        private readonly IServiceIngrediente _service;
+        private EngredienteModel ingrediente { get { return GetDadosIngrediente(); } set{ SetEngrediente(value); } }
+
+        private EngredienteModel _ingrediente;
         private List<EngredienteModel> ListaEngredientesCadastrados;
-        public PresenterIngrediente(IViewCadastroIngrediente view,IServiceEngrediente service) : base(view)
+        public PresenterIngrediente(IViewCadastroIngrediente view,IServiceIngrediente service) : base(view)
         {
             _view = view;
             _view.Show();
@@ -35,29 +37,30 @@ namespace Perron.Controller
             SetListaEngredienteCadastrado(status);
             FiltrarListaPorNome(_view.DescricaoIngrediente);
         }
-        protected override void AlterarComportamentoTela(EComportamentoTela status)
+        protected override void AlterandoComportamentoTela()
         {
-      
-            switch (status)
-            {
-                case EComportamentoTela.Inicio:
-                    EstadoTelaInicial();
-                    break;
-
-
-                case EComportamentoTela.Novo:
-                    EstadoTelaCadastrando();
-                    break;
-
-
-                case EComportamentoTela.ItemSelecionado:
-                    EstadoTelaCadastroSelecionado();
-                    break;
-
-                case EComportamentoTela.Cadastrando:
-                    break;
-            }
-                
+            if (ComportamentoAtual.HasFlag(EComportamentoTela.Inicio))
+                                _view.EventoBuscar += EventoBucarPorDescricao;
+            
+            else
+                _view.EventoBuscar -= EventoBucarPorDescricao;
+        }
+        protected override void ComportamentoInicioTela()
+        {
+            _view.SetarTamanhoMaximoTela();
+            _view.HabilitaComboTipoMedida = false;
+            SetListaEngredienteCadastrado(EStatusCadastro.none);
+            EstadoInicial();
+        }
+        protected override void ComportamentoCadastrando()
+        {
+            _view.SetarTamanhoDaTelaReduzido();
+            _view.HabilitaComboTipoMedida = true;
+            _view.DescricaoIngrediente = "";
+        }
+        protected override void ComportamentoItemSelecionado()
+        {
+            _view.HabilitaComboTipoMedida = true;
         }
         #endregion
 
@@ -65,35 +68,23 @@ namespace Perron.Controller
         private void DelegarEventos()
         {
             _view.EventoGrid(EventoGrid);
-            _view.EventoBuscar(EventoBucarPorDescricao);
       
         }
-        private void SetEngrediente()
+        private EngredienteModel GetDadosIngrediente()
         {
-            _engrediente.Descricao = _view.DescricaoIngrediente;
+            _ingrediente.Descricao = _view.DescricaoIngrediente;
+            _ingrediente.TipoMedida = _view.TipoMedida;
 
+            return _ingrediente; 
         }
-        private void SetEngredienteTela()
+        private void SetEngrediente(EngredienteModel ingrediente)
         {
-            _view.DescricaoIngrediente = _engrediente.Descricao;
+            _ingrediente = ingrediente;
+            _ingrediente = _view.IngredienteSelecionado;
+            _view.DescricaoIngrediente = _ingrediente.Descricao;
+            _view.TipoMedida = _ingrediente.TipoMedida;
         }
-        private void EstadoTelaInicial()
-        {
-            base.AlterarAlturaTela(411);
-            _view.VisibilidadeGroupEngredientes = true;
-            SetListaEngredienteCadastrado(EStatusCadastro.none);
-            EstadoInicial();
-        }
-        private void EstadoTelaCadastrando()
-        {
-            base.AlterarAlturaTela(182);
-            _view.VisibilidadeGroupEngredientes = false;
-            _view.DescricaoIngrediente = "";
-        }
-        private void EstadoTelaCadastroSelecionado()
-        {
-            
-        }
+   
         private void AtivarIngredienteInativo(EngredienteModel _engrediente)
         {
             if (_engrediente.Ativo == false)
@@ -110,11 +101,16 @@ namespace Perron.Controller
 
             string Erro="";
 
-            if(_engrediente.Descricao == "")
+            if(ingrediente.Descricao == "")
             {   
                 ret = false;
                 Erro += "Infome Uma Decsricao Para o Engrediente;\n";
 
+            }
+            if(ingrediente.TipoMedida == 0)
+            {
+                ret = false;
+                Erro += "Selecione a Unidade de Medida Do Ingrediente;\n";
             }
 
             if (!ret)
@@ -122,9 +118,10 @@ namespace Perron.Controller
         }
         private void EstadoInicial()
         {
-            _engrediente = new EngredienteModel();
-            _engrediente.Ativo = true;
+            _ingrediente = new EngredienteModel();
+            _ingrediente.Ativo = true;
             _view.DescricaoIngrediente = null;
+            _view.TipoMedida = EUnidadeMedida.Nd;
         }
         private void SetListaEngredienteCadastrado(EStatusCadastro status)
         {
@@ -141,11 +138,11 @@ namespace Perron.Controller
                     ListaEngredientesCadastrados = Lista;
                     break;
                 case EStatusCadastro.Ativo:
-                    ListaEngredientesCadastrados = Lista.Where(l => l.Ativo = true).ToList();
+                    ListaEngredientesCadastrados = Lista.Where(l => l.Ativo == true).ToList();
                     break;
 
                 case EStatusCadastro.Inativo:
-                    ListaEngredientesCadastrados = Lista.Where(l => l.Ativo = false).ToList();
+                    ListaEngredientesCadastrados = Lista.Where(l => l.Ativo == false).ToList();
                     break;
 
                 default:
@@ -175,42 +172,31 @@ namespace Perron.Controller
         {
             if (_view.IngredienteSelecionado != null)
             {
-                SetEngredienteTela();
+                ingrediente = _view.IngredienteSelecionado;
+                base.ComportamentoAtual = EComportamentoTela.ItemSelecionado;
             }
         }
         private void EventoBucarPorDescricao(object o, EventArgs e)
         {
             FiltrarListaPorNome(_view.DescricaoIngrediente);
         }
-        private void EventoGridCadastrado(object o, EventArgs e)
-        {
-            if(_view.IngredienteSelecionado!= null)
-            {
-                _engrediente =_view.IngredienteSelecionado;
-                SetEngredienteTela();
-                
 
-            }
-        }
 
         #region Evento override
         protected override void EventoNovo(object o, EventArgs e)
         {
             base.ComportamentoAtual = EComportamentoTela.Novo;
-            _engrediente = new EngredienteModel();
-            _engrediente.Ativo = true;
-
         }
         protected override void EventoSalvar(object o, EventArgs e)
         {
             try
             {
-                SetEngrediente();
+                
                 ValidarDadosEngrediente();
-                AtivarIngredienteInativo(_engrediente);
-                _service.Salvar(_engrediente);
+                AtivarIngredienteInativo(ingrediente);
+                _service.Salvar(ingrediente);
                 base.ComportamentoAtual = EComportamentoTela.Inicio;
-                base.MessageDeSucesso($"Engrediente {_engrediente.Descricao} Cadastrado com Sucesso!");
+                base.MessageDeSucesso($"Engrediente {ingrediente.Descricao} Cadastrado com Sucesso!");
 
             }
             catch (Exception ex)
@@ -220,7 +206,13 @@ namespace Perron.Controller
         }
         protected override void EventoRemover(object o, EventArgs e)
         {
-            throw new NotImplementedException();
+            if(MessageBox.Show($"Deseja Remover o Ingrendiente {ingrediente.Descricao} ??", "Remover??", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                ingrediente.Ativo = false;
+                _service.Salvar(ingrediente);
+                ComportamentoAtual = EComportamentoTela.Inicio;
+            }
+
         }
         protected override void EventoCancelar(object o, EventArgs e)
         {

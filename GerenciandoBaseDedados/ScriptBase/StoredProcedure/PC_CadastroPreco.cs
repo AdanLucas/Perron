@@ -10,7 +10,7 @@ namespace Repository.ScriptBase.StoredProcedure
     public class PC_CadastroPreco : IScriptProcedure
     {
         public string GUID { get { return "8AE232B9-270F-4BAB-87FF-5A17F823B687"; } }
-        public string Prcedure { get { return "PC_CadastroPreco"; } }
+        public string Procedure { get { return "PC_CadastroPreco"; } }
 
         public string ScriptPrcedured 
         {

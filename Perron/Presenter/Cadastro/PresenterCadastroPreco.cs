@@ -206,13 +206,13 @@ namespace Perron.Presenter.Cadastro
                 case EComportamentoTela.None:
                     break;
                 case EComportamentoTela.Inicio:
-                    _view.AlturaTela = 468;
+                    _view.SetarTamanhoDaTelaReduzido();
                     _view.VisibilidadePainel = false;
                     _view.HabilitarGridClasse = true;
                     break;
               
                 case EComportamentoTela.Cadastrando:
-                    _view.AlturaTela = 550;
+                    _view.SetarTamanhoMaximoTela();
                     _view.VisibilidadePainel = true;
                     _view.HabilitarGridClasse = false;
                     break;

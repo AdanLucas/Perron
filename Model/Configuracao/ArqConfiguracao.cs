@@ -1,4 +1,5 @@
-﻿using System.Runtime.CompilerServices;
+﻿using Model.Configuracao;
+using System.Runtime.CompilerServices;
 using System.Xml.Serialization;
 
 
@@ -10,6 +11,11 @@ public class ArqConfiguracao
 
     [XmlElement("ConexaoBanco")]
     public ConfiguracaoConexaoBancoDados ConexaoBancoDados { get; set; }
+
+    [XmlElement("ConfiguracaoGeral")]
+    public ConfiguracoesGerais ConfiguracaoGeral { get; set; } 
+
+
 
 }
 

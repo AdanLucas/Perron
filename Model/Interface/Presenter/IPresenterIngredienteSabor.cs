@@ -5,11 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-public interface IPresenterEngredienteSabor
+public interface IPresenterIngredienteSabor
 {
     
-    List<EngredienteModel> GetEngredienteSabor();
-    void SetListaEngredienteSabor(List<EngredienteModel>Lista);
+    List<EngredienteModel> GetIngredienteSabor();
+    void SetListaIngredienteSabor(List<EngredienteModel>Lista);
     void EventoAtualizarStatusCadastro(EComportamentoTela status);
 }
 

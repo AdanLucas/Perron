@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-    public interface IPresenterEngrediente
+    public interface IPresenterIngrediente
 {
    
 

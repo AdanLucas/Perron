@@ -1,14 +1,17 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace Perron.View.Forms.Form_Padrao_Cadastro
 {
     public partial class FrmPadraoCadastro : Form, IViewPadraoCadastro
     {
+        protected virtual Size TamanhoTelaReduzida { get { return this.Size; } }
+        protected virtual Size TamanhoTelaCheia { get { return this.Size; } }
+
         public FrmPadraoCadastro()
         {
             InitializeComponent();
-
             ConfigurarImagemBotao();
         }
 
@@ -58,10 +61,10 @@ namespace Perron.View.Forms.Form_Padrao_Cadastro
                 SetarVisibilidaCkStatus(value);
             }
         }
-        public bool VisibilidadeckAtivo { set { ckAtivo.Enabled = value;} }
+        public bool VisibilidadeckAtivo { set { ckAtivo.Enabled = value; } }
         public bool VisibilidadeckInativo { set { ckInativo.Enabled = value; } }
 
-        public int AlturaTela { set => this.Height = value; }
+        public Size TamanhoTela { set => this.Size = value; }
 
         public void RemoverCheck()
         {
@@ -111,7 +114,15 @@ namespace Perron.View.Forms.Form_Padrao_Cadastro
         {
             ckAtivo.Visible = status;
             ckInativo.Visible = status;
-        } 
-      
+        }
+        public void SetarTamanhoDaTelaReduzido()
+        {
+            this.Size = TamanhoTelaReduzida;
+        }
+        public void SetarTamanhoMaximoTela()
+        {
+            this.Size = this.TamanhoTelaCheia;
+        }
+
     }
 }

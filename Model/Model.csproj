@@ -34,6 +34,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -53,6 +54,7 @@
     <Compile Include="Configuracao\ArqConfiguracao.cs" />
     <Compile Include="Configuracao\ConfiguracaoAPI.cs" />
     <Compile Include="Configuracao\ConfiguracaoConexaoBancoDados.cs" />
+    <Compile Include="Configuracao\ConfiguracoesGerais.cs" />
     <Compile Include="Configuracao\ModelXmlBase.cs" />
     <Compile Include="Delegates\Genericos\EventArgsGenerico.cs" />
     <Compile Include="Delegates\Genericos\EventHandlerGenerico.cs" />
@@ -61,7 +63,7 @@
     <Compile Include="Delegates\StatusCadastro\StatusCadastroExibidoEventArgs.cs" />
     <Compile Include="Delegates\StatusCadastro\StatusCadastroExibidoEventHandler.cs" />
     <Compile Include="DTO\EngredienteDTO.cs" />
-    <Compile Include="Emumerator\EComando.cs" />
+    <Compile Include="Emumerator\Attribute\EComando.cs" />
     <Compile Include="Emumerator\EStatusCadastro.cs" />
     <Compile Include="Emumerator\EComportamentoTela.cs" />
     <Compile Include="Emumerator\ETipoConexao.cs" />
@@ -75,8 +77,8 @@
     <Compile Include="Interface\Presenter\IPresenterCadastroPreco.cs" />
     <Compile Include="Interface\Presenter\IPresenterCadastroTamanho.cs" />
     <Compile Include="Interface\Presenter\IPresenterClasse.cs" />
-    <Compile Include="Interface\Presenter\IPresenterEngredienteSabor.cs" />
-    <Compile Include="Interface\Presenter\IPresenterEngrediente.cs" />
+    <Compile Include="Interface\Presenter\IPresenterIngredienteSabor.cs" />
+    <Compile Include="Interface\Presenter\IPresenterIngrediente.cs" />
     <Compile Include="Interface\Presenter\IPresenterPrincipal.cs" />
     <Compile Include="Interface\Presenter\IPresenterSabor.cs" />
     <Compile Include="Interface\Repository\IRepositoryClasse.cs" />
@@ -91,7 +93,7 @@
     <Compile Include="Interface\Services\IServiceBancoDeDados.cs" />
     <Compile Include="Interface\Services\IServiceCadastroPreco.cs" />
     <Compile Include="Interface\Services\IServiceClasse.cs" />
-    <Compile Include="Interface\Services\IServiceEngrediente.cs" />
+    <Compile Include="Interface\Services\IServiceIngrediente.cs" />
     <Compile Include="Interface\Services\IServiceSabor.cs" />
     <Compile Include="Interface\Services\IServiceTamanho.cs" />
     <Compile Include="Interface\Services\IServiceTipoPessoa.cs" />

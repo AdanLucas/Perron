@@ -14,7 +14,7 @@ namespace Perron.Factory.Controller
         private readonly IViewPrincipal _view;
 
         #region Presenters
-        IPresenterEngrediente _presenterIngrediente;
+        IPresenterIngrediente _presenterIngrediente;
         IPresenterSabor _presenterSabor;
         IPresenterClasse _presenterClasse;
         IPresenterCadastroTamanho _presenterTamanho;

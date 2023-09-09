@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-public interface IServiceEngrediente
+public interface IServiceIngrediente
 {
     List<EngredienteModel> GetListaEngredientesCadastroados();
     void Salvar(EngredienteModel Engrediente);

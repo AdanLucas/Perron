@@ -1,6 +1,6 @@
 ﻿namespace Perron.View
 {
-    partial class UCCadastoFornecedor
+    partial class UCCadastroEmpresa
     {
         /// <summary> 
         /// Variável de designer necessária.
@@ -30,12 +30,12 @@
         {
             this.SuspendLayout();
             // 
-            // UCCadastoFornecedor
+            // UCCadastroEmpresa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Name = "UCCadastoFornecedor";
-            this.Size = new System.Drawing.Size(439, 218);
+            this.Name = "UCCadastroEmpresa";
+            this.Size = new System.Drawing.Size(405, 206);
             this.ResumeLayout(false);
 
         }

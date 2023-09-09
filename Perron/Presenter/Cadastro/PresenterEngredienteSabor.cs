@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace Perron.Controller
 {
-    public class PresenterEngredienteSabor : IPresenterEngredienteSabor
+    public class PresenterIngredienteSabor : IPresenterIngredienteSabor
     {
         private readonly IViewCadastroEngredienteSabor _view;
         private readonly PresenterGetEstatusCadastro _status;
@@ -26,12 +26,12 @@ namespace Perron.Controller
 
 
         #region Construtor
-        public PresenterEngredienteSabor(IViewCadastroEngredienteSabor view)
+        public PresenterIngredienteSabor(IViewCadastroEngredienteSabor view)
         {
             _view = view;
 
-            SetarListaEngredienteCadastrados();
-            ExibirEngredienteCadastrados("");
+            SetarListaIngredienteCadastrados();
+            ExibirIngredienteCadastrados("");
             _status = new PresenterGetEstatusCadastro(_view.PainelStatus);
             DelegarEventos();
             _status.Visibilidade(true);
@@ -40,7 +40,7 @@ namespace Perron.Controller
         #endregion
 
         #region Metodos Publicos
-        public List<EngredienteModel> GetEngredienteSabor()
+        public List<EngredienteModel> GetIngredienteSabor()
         {
             return ListaEngredienteSabor;
            
@@ -86,7 +86,7 @@ namespace Perron.Controller
 
 
         }
-        public void SetListaEngredienteSabor(List<EngredienteModel> Lista)
+        public void SetListaIngredienteSabor(List<EngredienteModel> Lista)
         {
             if (Lista.Count > 0)
             {
@@ -101,21 +101,21 @@ namespace Perron.Controller
         #region Metodos Privados
         private void DelegarEventos()
         {
-            _view.EventoBuscaEngredienteCadastrados(this.EventoBuscaEngredienteCadastrado);
+            _view.EventoBuscaEngredienteCadastrados(this.EventoBuscaIngredienteCadastrado);
             _view.EventoBuscaEngredienteSabor(this.EventoBuscaEngredienteSabor);
-            _view.EventoGridEngredientesCadastrados(this.EventoGridEngredientesCadastrado);
-            _view.EventoGridEngredientesSabor(this.EventoGridEngredientesSabor);
+            _view.EventoGridEngredientesCadastrados(this.EventoGridIngredientesCadastrado);
+            _view.EventoGridEngredientesSabor(this.EventoGridIngredientesSabor);
             _status.EventoStatus += EventoStatusCadastroView;
 
 
         }
-        private void SetarListaEngredienteCadastrados()
+        private void SetarListaIngredienteCadastrados()
         {
             var Lista = ServiceDinamico<EngredienteModel>.GetLista();
             if (Lista.Count > 0)
                 ListaEngredienteCadastrados = Lista;
         }
-        private void ExibirEngredienteCadastrados(String Busca)
+        private void ExibirIngredienteCadastrados(String Busca)
         {
             if (ListaEngredienteCadastrados != null)
             {
@@ -274,7 +274,7 @@ namespace Perron.Controller
 
         #region Eventos Privados
 
-        private void EventoGridEngredientesCadastrado(object o, EventArgs e)
+        private void EventoGridIngredientesCadastrado(object o, EventArgs e)
         {
             if (_view.EngredienteSelecionadoGridEngredienteCadastrado != null)
             {
@@ -285,7 +285,7 @@ namespace Perron.Controller
                 }
             }
         }
-        private void EventoGridEngredienteSabor(object o, EventArgs e)
+        private void EventoGridIngredienteSabor(object o, EventArgs e)
         {
             if (_view.EngredienteSelecionadoGridEngredienteSabor != null && (_statusCadastro != EComportamentoTela.Novo))
             {
@@ -295,15 +295,15 @@ namespace Perron.Controller
 
 
         }
-        private void EventoBuscaEngredienteCadastrado(object o, EventArgs e)
+        private void EventoBuscaIngredienteCadastrado(object o, EventArgs e)
         {
-            this.ExibirEngredienteCadastrados(_view.BuscarEngredientesCadastrados);
+            this.ExibirIngredienteCadastrados(_view.BuscarEngredientesCadastrados);
         }
         private void EventoBuscaEngredienteSabor(object o, EventArgs e)
         {
             ExibirEngredienteSabor();
         }
-        private void EventoGridEngredientesSabor(object o, EventArgs e)
+        private void EventoGridIngredientesSabor(object o, EventArgs e)
         {
             if (_statusCadastro == EComportamentoTela.ItemSelecionado)
             {
@@ -315,9 +315,6 @@ namespace Perron.Controller
         {
             this.ExibirEngredienteSabor();
         }
-
-
-
 
         #endregion
 

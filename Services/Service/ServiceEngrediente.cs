@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Services.Service
 {
-    public class ServiceEngrediente : IServiceEngrediente
+    public class ServiceEngrediente : IServiceIngrediente
     {
         private readonly IRepositoryEngrediente _repositorio;
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -13,6 +14,10 @@ namespace Perron.Controller
     {
         #region Propriedades
         private readonly IViewPadraoCadastro _view; 
+
+        protected Aentity Entidade { get { return entidade; } set { AlterandoEntidade(value); } }
+        private Aentity entidade { get; set; }
+
         public EComportamentoTela ComportamentoAtual { get{ return comportamentoAtual; } set { SetarComportamentoTela(value); } }
         private EComportamentoTela comportamentoAtual { get; set; }
         #endregion
@@ -41,6 +46,12 @@ namespace Perron.Controller
 
            #region Metodos
 
+        protected virtual void ComportamentoInicioTela() { }
+        protected virtual void ComportamentoItemSelecionado() {}
+        protected virtual void ComportamentoCadastrando() { }
+        protected virtual void AlterandoComportamentoTela() { }
+        
+
         protected virtual void AlterarComportamentoTela(EComportamentoTela status) { }
         protected virtual void AlterarStatusCadastroExibidos(EStatusCadastro status) { }
 
@@ -61,13 +72,22 @@ namespace Perron.Controller
         {
             MessageBox.Show(ex.Message + "\n\r" + ex.InnerException + "\n\r" + ex.StackTrace.ToString(), "Ocorreu um erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
-        protected void AlterarAlturaTela(int altura)
-        {
-            _view.AlturaTela = altura;
-        } 
         #endregion
 
         #region Metodos Privados
+        private void AlterandoEntidade(Aentity _entidade)
+        {
+            if(_entidade.Ativo == false)
+            {
+                _view.VisibilidadeBotaoDeletar = false;
+            }
+            else
+            {
+                _view.VisibilidadeBotaoDeletar = true;
+            }
+
+            this.entidade = _entidade;
+        }
         private void DelegarEventos()
         {
             _view.EventockAtivo(EventoCheckStatusCadastro);
@@ -95,6 +115,7 @@ namespace Perron.Controller
                     _view.VisibilidadeckAtivo = false;
                     _view.VisibilidadeckInativo = false;
                     _view.RemoverCheck();
+                    ComportamentoInicioTela();
                     break;
 
                 case EComportamentoTela.Inicio:
@@ -105,6 +126,7 @@ namespace Perron.Controller
                     _view.VisibilidadeckAtivo = true;
                     _view.VisibilidadeckInativo = true;
                     _view.RemoverCheck();
+                    ComportamentoInicioTela();
                     break;
 
                 case EComportamentoTela.Cadastrando:
@@ -115,6 +137,7 @@ namespace Perron.Controller
                     _view.VisibilidadeckAtivo = false;
                     _view.VisibilidadeckInativo = false;
                     _view.RemoverCheck();
+                    this.ComportamentoCadastrando();
                     break;
 
                 case EComportamentoTela.ItemSelecionado:
@@ -129,6 +152,7 @@ namespace Perron.Controller
                     _view.VisibilidadeBotaoCancelar = true;
                     _view.VisibilidadeckAtivo = false;
                     _view.VisibilidadeckInativo = false;
+                    this.ComportamentoItemSelecionado();
                     break;
 
                 case EComportamentoTela.Novo:
@@ -139,6 +163,7 @@ namespace Perron.Controller
                     _view.VisibilidadeBotaoDeletar = false;
                     _view.VisibilidadeBotaoNovo = false;
                     _view.RemoverCheck();
+                    this.ComportamentoCadastrando();
                     break;
 
                 default:

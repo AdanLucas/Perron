@@ -10,7 +10,7 @@ namespace Repository.ScriptBase.StoredProcedure
     internal class pc_cadastroSabor : IScriptProcedure
     {
         public string GUID { get { return "FB015B90-7566-431C-AA97-D793781708D8"; } }
-        public string Prcedure { get { return "pc_cadastroSabor"; } }
+        public string Procedure { get { return "pc_cadastroSabor"; } }
 
         public string ScriptPrcedured 
         {

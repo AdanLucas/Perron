@@ -14,10 +14,11 @@ namespace Repository.Repository
         #region Metodos Privados
         private void pc_cadastroEngrediente(DbSession session, EngredienteModel engrediente)
         {
-            session.Connection.Execute("exec pc_cadastroEngrediente @id,@descricao,@ativo", param: new
+            session.Connection.Execute("exec pc_cadastroEngrediente @id,@descricao,@tipoMedida,@ativo", param: new
             {
                 id = engrediente.Id,
                 descricao = engrediente.Descricao,
+                tipoMedida= engrediente.TipoMedida,
                 ativo = engrediente.Ativo
                                             }, transaction: session.Transaction);
         }

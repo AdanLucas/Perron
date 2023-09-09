@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 public interface IScriptProcedure
 {
     string GUID { get;}
-    string Prcedure { get; }
+    string Procedure { get; }
     string ScriptPrcedured { get; }
 }
 

@@ -433,7 +433,7 @@ namespace Perron.Presenter.Cadastro
         {
             if (_componenteSelecaoTipoPessoa.TipoPessoaSetado.HasFlag(ETipoPessoa.Pessoa))
             {
-                SetarAlturaMaxima();
+                
                 _componenteSelecaoTipoPessoa.Enabled = true;
                 _componenteSelecaoTipoPessoa.RemoverCheck();
             }
@@ -448,7 +448,7 @@ namespace Perron.Presenter.Cadastro
         {
             if (TipoPessoaCadastro.HasFlag(ETipoPessoa.Pessoa))
             {
-                SetarAlturaMinina();
+                _view.SetarTamanhoDaTelaReduzido();
                 _componenteSelecaoTipoPessoa.Enabled = false;
                 _componenteSelecaoTipoPessoa.RemoverCheck();
                 RemoverTodosControllers();
@@ -458,14 +458,14 @@ namespace Perron.Presenter.Cadastro
             else
             {
                 EventoNotificarEvento(EComportamentoTela.Inicio);
-                SetarAlturaMaxima();
+                _view.SetarTamanhoMaximoTela();
             }
         }
         private void ComportamentoCadastrando()
         {
             if (TipoPessoaCadastro.HasFlag(ETipoPessoa.Pessoa))
             {
-                SetarAlturaMaxima();
+                _view.SetarTamanhoMaximoTela();
                 _componenteSelecaoTipoPessoa.Enabled = true;
                 _componenteSelecaoTipoPessoa.RemoverCheck(); 
             }
@@ -485,14 +485,7 @@ namespace Perron.Presenter.Cadastro
 
             }
         }
-        private void SetarAlturaMaxima()
-        {
-            _view.AlturaTela = 600;
-        }
-        private void SetarAlturaMinina()
-        {
-            _view.AlturaTela = 316;
-        }
+     
 
         #endregion
     }

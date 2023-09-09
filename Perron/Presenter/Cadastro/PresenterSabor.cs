@@ -13,7 +13,7 @@ namespace Perron.Controller
     {
 
         private readonly IViewCadastroSabor _view;
-        private IPresenterEngredienteSabor _presenterIngrediente;
+        private IPresenterIngredienteSabor _presenterIngrediente;
         private readonly IServiceSabor _service;
         private SaborModel _sabor;
 
@@ -37,7 +37,7 @@ namespace Perron.Controller
 
 
         #region Comportamento Tela
-        private void EstadoInicial()
+        protected override void ComportamentoInicioTela()
         {
             _sabor = null;
             _view.VisibilidadeBotao = false;
@@ -45,7 +45,7 @@ namespace Perron.Controller
             _view.DescricaoSabor = "";
 
         }
-        private void EstadoNovoCadastro()
+        protected override void ComportamentoCadastrando()
         {
             _sabor = new SaborModel();
             _sabor.Ativo = true;
@@ -53,7 +53,7 @@ namespace Perron.Controller
             _view.DescricaoClasse = "";
             _view.DescricaoSabor = "";
         }
-        private void EstadoItemSelecionado()
+        protected override void ComportamentoItemSelecionado()
         {
             _sabor = _view.ItemSelecionadoGrid;
             SetDadosSdabor();
@@ -107,7 +107,7 @@ namespace Perron.Controller
         {
             if(_sabor != null)
             {
-                _sabor.Engredientes = _presenterIngrediente.GetEngredienteSabor();
+                _sabor.Engredientes = _presenterIngrediente.GetIngredienteSabor();
                 _sabor.Descricao = _view.DescricaoSabor;
                 
             }
@@ -117,7 +117,7 @@ namespace Perron.Controller
             _view.DescricaoSabor = _sabor.Descricao;
             SetarClasseNaView();
             var Lista = _sabor.GetEngredientePorStatus(EStatusCadastro.Todos);
-            _presenterIngrediente.SetListaEngredienteSabor(Lista);
+            _presenterIngrediente.SetListaIngredienteSabor(Lista);
         }
 
 
@@ -128,7 +128,6 @@ namespace Perron.Controller
         #endregion
 
         #region Eventos privados
-
         protected override void EventoNovo(object o , EventArgs e)
         {
             base.ComportamentoAtual = EComportamentoTela.Novo;
@@ -185,40 +184,8 @@ namespace Perron.Controller
         protected override void AlterarStatusCadastroExibidos(EStatusCadastro status)
         {
             _view.PopularGrid(_service.GetListaSabor(status));
-
         }
-        protected override void AlterarComportamentoTela(EComportamentoTela status)
-        {
-            _presenterIngrediente.EventoAtualizarStatusCadastro(status);
-
-
-            switch (status)
-            {
-                case EComportamentoTela.None:
-                    break;
-                case EComportamentoTela.Inicio:
-                    EstadoInicial();
-                    break;
-
-                case EComportamentoTela.Novo:
-                    EstadoNovoCadastro();
-                    break;
-
-
-                case EComportamentoTela.Cadastrando:
-                    EstadoNovoCadastro();
-                    break;
-
-
-                case EComportamentoTela.ItemSelecionado:
-                    EstadoItemSelecionado();
-                    break;
-
-
-                default:
-                    break;
-            }
-        }
+    
         #endregion
 
     }

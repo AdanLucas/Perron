@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 public static class FactoryService
 {
     
-    public static IServiceEngrediente Engrediente()
+    public static IServiceIngrediente Engrediente()
     {
         var repo = FactoryRepository.Engrediente();
 

@@ -14,7 +14,7 @@ public static class FactoryPresenter
         var view = FactoryView.Principal();
         return new ControllerPrincipal(view);
     }
-    public static IPresenterEngrediente CadastroIngredientes(IViewPrincipal viewPai)
+    public static IPresenterIngrediente CadastroIngredientes(IViewPrincipal viewPai)
     {
         var view = FactoryView.CadastroIngrediente(viewPai);
         var servico = FactoryService.Engrediente();
@@ -23,11 +23,11 @@ public static class FactoryPresenter
         return new PresenterIngrediente(view, servico);
 
     }
-    public static IPresenterEngredienteSabor  EngredienteSabor(Panel painel)
+    public static IPresenterIngredienteSabor  EngredienteSabor(Panel painel)
     {
         var view = FactoryView.CadastroEngredienteSabor(painel);
 
-        return new PresenterEngredienteSabor(view);
+        return new PresenterIngredienteSabor(view);
 
     }
     public static IPresenterSabor CadastroSabor(IViewPrincipal viewPai)

@@ -1,6 +1,7 @@
 ﻿
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,8 +9,6 @@ using System.Windows.Forms;
 
 public interface IViewPadraoCadastro
 {
-
-
     void Show();
     void Close();
 
@@ -21,7 +20,7 @@ public interface IViewPadraoCadastro
     bool VisibilidadeBotaoCancelar { set; }
     bool VisibilidadeckAtivo { set; }
     bool VisibilidadeckInativo { set; }
-    int AlturaTela { set; }
+    Size TamanhoTela { set; }
     bool VisualizarCadastrosAtivo { get; set; }
     bool VisualizarCadastrosInativos { get; set; }
     bool SetarVisiblidadeCKStatus { set; }
@@ -43,6 +42,8 @@ public interface IViewPadraoCadastro
     void EventoCancelar(EventHandler e);
     void EventockAtivo(EventHandler e);
     void EventockInativo(EventHandler e);
+    void SetarTamanhoDaTelaReduzido();
+    void SetarTamanhoMaximoTela();
 
     #endregion
 

@@ -1,7 +1,6 @@
 ﻿using Model.Emumerator;
 using Perron.View;
 using System;
-using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 
 
@@ -14,27 +13,28 @@ namespace Perron.Controller
 
 
 
-        public ControllerTipoFuncionario() : base(ETipoPessoa.Funcionario) {  }
+        public ControllerTipoFuncionario() : base(ETipoPessoa.Funcionario) { }
 
 
-        private UCTipoFuncionario _view;
+        
 
-        private FuncionarioModel funcionario { get {return GetDadosFuncionario();} set { _funcionario = value; } }
+        private FuncionarioModel funcionario { get { return GetDadosFuncionario(); } set { _funcionario = value; } }
         private FuncionarioModel _funcionario { get; set; }
         private FuncionarioModel GetDadosFuncionario()
         {
-           if(_funcionario==null)
-                     _funcionario = new FuncionarioModel();
+            if (_funcionario == null)
+                _funcionario = new FuncionarioModel();
 
-            try 
+            try
             {
+                var view = (UCTipoFuncionario)_view;
                 _funcionario.Id = _pessoal.Id;
-                _funcionario.Salario = _view.Salario;
-                _funcionario.DataAdimissao = _view.DatraContrato;
+                _funcionario.Salario = view.Salario;
+                _funcionario.DataAdimissao = view.DatraContrato;
 
                 return _funcionario;
-            }     
-            catch (Exception ex) 
+            }
+            catch (Exception ex)
             {
                 throw ex;
             }
@@ -54,15 +54,14 @@ namespace Perron.Controller
 
         }
         protected override void ComportamentoNovo()
-        { 
-        
+        {
+
         }
-        protected override void SalvarCadastro(bool ativo)
+        protected override void SalvarCadastro()
         {
             try
             {
                 funcionario.Id = _pessoal.Id;
-                funcionario.Ativo = ativo;
                 _service.Salvar(funcionario);
             }
             catch (Exception Ex)

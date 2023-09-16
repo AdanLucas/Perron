@@ -1,9 +1,5 @@
 ﻿using Model.Emumerator;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Perron.Factory.Controller
@@ -23,12 +19,12 @@ namespace Perron.Factory.Controller
         public ControllerPrincipal(IViewPrincipal view)
         {
             _view = view;
-            
+
             _view.Show();
             DelegarEventos();
-            
+
         }
-            
+
 
         #region Metodos Privados
         private void DelegarEventos()
@@ -59,13 +55,13 @@ namespace Perron.Factory.Controller
         {
             _presenterIngrediente = FactoryPresenter.CadastroIngredientes(_view);
         }
-        private void EventoAbrirCadastroSabor(object o ,EventArgs e)
+        private void EventoAbrirCadastroSabor(object o, EventArgs e)
         {
             _presenterSabor = FactoryPresenter.CadastroSabor(_view);
         }
         private void EventoAbrirCadastroClasse(object o, EventArgs e)
         {
-            _presenterClasse = FactoryPresenter.Classe(_view); 
+            _presenterClasse = FactoryPresenter.Classe(_view);
         }
         private void EventoAbrirCadastroTamanho(object o, EventArgs e)
         {
@@ -77,7 +73,7 @@ namespace Perron.Factory.Controller
         }
         private void EventoAbrirCadastroPessoa(object o, EventArgs e)
         {
-            var CadastroPreco = FactoryPresenter.CadastroPessoa((Form)_view,ETipoPessoa.Pessoa);
+            var CadastroPreco = FactoryPresenter.CadastroPessoa((Form)_view, ETipoPessoa.Pessoa);
         }
 
         #endregion

@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Model.AtribulteClasses;
+using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Drawing;
+using System.Linq;
+using System.Reflection;
 using System.Windows.Forms;
 
 
@@ -9,70 +11,61 @@ using System.Windows.Forms;
 
 public static class ExDataGrid
 {
-    public static void DataSourceCustomizado<T>(this DataGridView grid, List<T> lista)
+    public static void DataSourceCuston<T>(this DataGridView dgv, List<T> List)
     {
-        foreach (var item in lista)
+        if (List == null)
         {
-             PegarTipoLinha<T>(grid, item);
-        }
-    }
-    public static void DataSourceAentity<T>(this DataGridView grid, List<T> Lista)
-    {
-        if(Lista==null)
-             grid.DataSource = Lista;
-
-        else
-        {
-            grid.DataSource = Lista;
-            grid.Columns["Id"].Visible = false;
-            grid.Columns["Ativo"].Visible = false;
-        }
-    }
-    private static void PegarTipoLinha<T>(DataGridView grid, T obj)
-    {
-        if (obj.GetType() == typeof(EngredienteModel))
-             CriarLinhaIngredientes(grid, obj);
-
-        
-            
-
-    }
-    private static void CriarLinhaIngredientes(DataGridView grid, object obj)
-    {
-        var ingrediente = (EngredienteModel)obj;
-
-        var Linha = new DataGridViewRow();
-
-        grid.ColumnCount = 3;
-
-        grid.Columns[0].Name = "Id";
-        grid.Columns[1].Name = "Descricao";
-        grid.Columns[2].Name = "Ativo";
-        
-
-
-        Linha.CreateCells(grid);
-
-        
-
-        Linha.Cells[0].Value = ingrediente.Id;
-        Linha.Cells[1].Value = ingrediente.Descricao;
-        Linha.Cells[2].Value = ingrediente.Ativo;
-
-
-        if (ingrediente.Ativo)
-        {
-            Linha.DefaultCellStyle.BackColor = Color.Green;
-        }
-        else
-        {
-            Linha.DefaultCellStyle.BackColor = Color.Red;
+            dgv.DataSource = null;
+            return;
         }
 
-        grid.Rows.Add(Linha);
+        Type type = typeof(T);
+        dgv.DataSource = List;
+
+        PropertyInfo[] propriedades = type.GetProperties();
+
+        foreach (PropertyInfo prop in propriedades)
+        {
+
+            bool? ExibirNaGrid = PegarValorAtributosClasse(prop, "ExibirNaGrid") as bool?;
+
+            if (ExibirNaGrid != null)
+            {
+                if ((bool)ExibirNaGrid)
+                {
+                    var membro = (string)PegarValorAtributosClasse(prop, "Descricao");
+                    dgv.Columns[$"{prop.Name}"].HeaderText = membro == null ? prop.Name : membro;
+
+                }
+                else
+                {
+                    dgv.Columns[prop.Name].Visible = false;
+
+                }
+
+            }
+            else
+                dgv.Columns[prop.Name].Visible = false;
+
+
+
+        }
+
 
     }
+    private static object PegarValorAtributosClasse(PropertyInfo prop, string membroAtributo)
+    {
+        try
+        {
+            var att = prop.CustomAttributes.Where(atb => atb.AttributeType.Equals(typeof(AtributosClasse))).FirstOrDefault();
 
+            if (att == null)
+                return null;
+
+            return att.NamedArguments.Where(arg => arg.MemberName.Equals(membroAtributo)).FirstOrDefault().TypedValue.Value;
+        }
+        catch { return null; }
+    }
 
 }
 

@@ -1,25 +1,36 @@
 ﻿using Model.Emumerator;
+using Model.Model;
 using Perron.View;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Perron.Controller
 {
     public class ControllerTipoCliente : ControllerCadastroTipoPessoaBase
     {
-        private UCCliente _view;
-        public ControllerTipoCliente(): base(ETipoPessoa.Cliente) { }
+        
+        private ClienteModel _cliente;
+        public ControllerTipoCliente() : base(ETipoPessoa.Cliente) { }
 
-        public override void SetarUserEmTabPage(TabPage page)
+        protected override UserControl IniciarUserControl()
         {
-            _view = new UCCliente();
-            page.Controls.Add( _view );
+            return new UCCliente();
         }
+        protected override void SalvarCadastro()
+        {
+            try
+            {
+                _service.Salvar(_cliente);
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
 
     }
 }

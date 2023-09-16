@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Services.Service
 {
-   public class ServiceTamanho : IServiceTamanho
+    public class ServiceTamanho : IServiceTamanho
     {
-        private readonly IRepositoryTamanho _repo; 
+        private readonly IRepositoryTamanho _repo;
 
-        
+
         public ServiceTamanho(IRepositoryTamanho repo)
         {
             _repo = repo;

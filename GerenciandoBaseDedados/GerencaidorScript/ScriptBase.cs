@@ -1,6 +1,5 @@
 ﻿using Dapper;
 using System.Data;
-using System.Data.Common;
 
 namespace Repository.GerenciadorScript
 {
@@ -13,9 +12,9 @@ namespace Repository.GerenciadorScript
             _connection = connection;
         }
 
-        protected void ExecutarScript(IDbTransaction tran,string Script)
+        protected void ExecutarScript(IDbTransaction tran, string Script)
         {
-            _connection.Execute(Script,transaction: tran);
+            _connection.Execute(Script, transaction: tran);
         }
         protected bool ValidarGUID(string Guid)
         {

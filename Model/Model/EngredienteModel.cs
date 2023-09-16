@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.ComponentModel.DataAnnotations;
 
 public class EngredienteModel : Aentity
 {
@@ -12,12 +6,13 @@ public class EngredienteModel : Aentity
     public string Descricao { get; set; }
     public EUnidadeMedida TipoMedida { get; set; }
 
-    public string DescricaoTipoMedida { 
+    public string DescricaoTipoMedida
+    {
         get
         {
-            return TipoMedida.GetDescription();      
-        } 
-    
+            return TipoMedida.GetDescription();
+        }
+
     }
 
 }

@@ -1,12 +1,6 @@
 ﻿using Perron.View.Forms.Form_Padrao_Cadastro;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Perron.View.Forms
@@ -22,10 +16,10 @@ namespace Perron.View.Forms
         private void ConfigurarBotao()
         {
             btnBuscarClasse.Image = Properties.Resources.Buscar25;
-           btnBuscarClasse.BackgroundImageLayout = ImageLayout.Zoom;
+            btnBuscarClasse.BackgroundImageLayout = ImageLayout.Zoom;
             btnBuscarClasse.FlatStyle = FlatStyle.Popup;
         }
-        
+
         public string DescricaoSabor
         {
             get { return txtDescricaoSabor.Text; }
@@ -62,7 +56,7 @@ namespace Perron.View.Forms
                     return null;
                 }
             }
-        
+
         }
         public void EventoGrid(EventHandler e)
         {
@@ -73,7 +67,7 @@ namespace Perron.View.Forms
         {
             dgvSaboresCadastrados.DataSource = null;
 
-            if(Lista != null)
+            if (Lista != null)
             {
                 dgvSaboresCadastrados.DataSource = Lista;
                 dgvSaboresCadastrados.Columns["Id"].Visible = false;
@@ -81,7 +75,7 @@ namespace Perron.View.Forms
                 dgvSaboresCadastrados.Columns["Classe"].Visible = false;
             }
 
-         
+
         }
     }
 }

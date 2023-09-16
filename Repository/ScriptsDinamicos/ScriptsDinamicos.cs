@@ -1,17 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Repository.ScriptsDinamicos
 {
     public class ScriptsDinamicos<T>
     {
 
-        public  string GetScript()
+        public string GetScript()
         {
-            if(this.GetType() == typeof(ScriptsDinamicos<EngredienteModel>))
+            if (this.GetType() == typeof(ScriptsDinamicos<EngredienteModel>))
             {
                 return "Select * from Engrediente";
             }

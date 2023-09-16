@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 
-    public class ComportamentoTelaEventArgs : EventArgs
-    {
-        public EComportamentoTela StatusTela { get; set; }
-    }
+public class ComportamentoTelaEventArgs : EventArgs
+{
+    public EComportamentoTela StatusTela { get; set; }
+}
 

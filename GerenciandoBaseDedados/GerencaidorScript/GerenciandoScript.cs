@@ -1,15 +1,12 @@
 ﻿using Repository.GerenciadorScript;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Text;
-using Dapper;
 
 namespace GerenciandoBaseDedados.GerencaidorScript
 {
     public static class GerenciandoScript
     {
-       static IDbConnection _conn;
+        static IDbConnection _conn;
 
         private static ScriptCriacaoBase ScriptBase { get; set; }
         private static GerenciarScriptFunction Functions { get; set; }
@@ -17,7 +14,7 @@ namespace GerenciandoBaseDedados.GerencaidorScript
         private static GerenciarScritpConstraint Constraints { get; set; }
         private static GerenciarScriptTabela Tabelas { get; set; }
 
-       
+
 
         public static void IniciarTransacao(IDbConnection conn)
         {
@@ -27,7 +24,7 @@ namespace GerenciandoBaseDedados.GerencaidorScript
             Tabelas = new GerenciarScriptTabela(_conn);
             Procedures = new GerenciarScriptProcedeure(_conn);
         }
-        public static void  CriarBase(IDbConnection connMaster,string nomeBase)
+        public static void CriarBase(IDbConnection connMaster, string nomeBase)
         {
             ScriptBase = new ScriptCriacaoBase(connMaster);
             ScriptBase.CriacaoBase(nomeBase);

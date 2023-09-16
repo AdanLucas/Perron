@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 public interface IViewCadastroPessoa : IViewPadraoCadastro
 {
@@ -14,6 +12,6 @@ public interface IViewCadastroPessoa : IViewPadraoCadastro
     Panel PainelTipoPesso { get; }
     TabControl TabControlTipoPessoa { get; }
     DataGridView GridViewBusca { get; }
-
+    GroupBox GBEndereco { get; }
 }
 

@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Globalization;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Perron.Controller
@@ -13,17 +7,17 @@ namespace Perron.Controller
     public abstract class PresenterPadrao
     {
         #region Propriedades
-        private readonly IViewPadraoCadastro _view; 
+        private readonly IViewPadraoCadastro _view;
 
         protected Aentity Entidade { get { return entidade; } set { AlterandoEntidade(value); } }
         private Aentity entidade { get; set; }
 
-        public EComportamentoTela ComportamentoAtual { get{ return comportamentoAtual; } set { SetarComportamentoTela(value); } }
+        public EComportamentoTela ComportamentoAtual { get { return comportamentoAtual; } set { SetarComportamentoTela(value); } }
         private EComportamentoTela comportamentoAtual { get; set; }
         #endregion
 
         #region Eventos
-        
+
         #endregion
 
         #region Construtor
@@ -36,23 +30,23 @@ namespace Perron.Controller
 
         #region VIRTUAL
 
-           #region Eventos
-        protected virtual void EventoSalvar(object o, EventArgs e) {  }
-        protected virtual void EventoNovo(object o, EventArgs e) {  }
-        protected virtual void EventoCancelar(object o, EventArgs e) {  }
-        protected virtual void EventoRemover(object o, EventArgs e) {  }
-        
-           #endregion
+        #region Eventos
+        protected virtual void EventoSalvar(object o, EventArgs e) { }
+        protected virtual void EventoNovo(object o, EventArgs e) { }
+        protected virtual void EventoCancelar(object o, EventArgs e) { }
+        protected virtual void EventoRemover(object o, EventArgs e) { }
 
-           #region Metodos
+        #endregion
+
+        #region Metodos
 
         protected virtual void ComportamentoInicioTela() { }
-        protected virtual void ComportamentoItemSelecionado() {}
+        protected virtual void ComportamentoItemSelecionado() { }
         protected virtual void ComportamentoCadastrando() { }
         protected virtual void AlterandoComportamentoTela() { }
-        
 
-        protected virtual void AlterarComportamentoTela(EComportamentoTela status) { }
+
+        protected virtual void AlterarComportamentoTela(EComportamentoTela status) { AlterandoComportamentoTela(); }
         protected virtual void AlterarStatusCadastroExibidos(EStatusCadastro status) { }
 
         #endregion
@@ -62,13 +56,13 @@ namespace Perron.Controller
         #region PROTECTED
         protected void MessageDeSucesso(String msg)
         {
-            MessageBox.Show($"{msg}!", "Sucesso!", MessageBoxButtons.OK, MessageBoxIcon.Information,MessageBoxDefaultButton.Button1);
+            MessageBox.Show($"{msg}!", "Sucesso!", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
         }
         protected void MessagemErro(Exception ex)
         {
             ControllerNotificao.MessagemErro(ex);
         }
-        protected void MessagemErro(Exception ex,StackTrace st)
+        protected void MessagemErro(Exception ex, StackTrace st)
         {
             MessageBox.Show(ex.Message + "\n\r" + ex.InnerException + "\n\r" + ex.StackTrace.ToString(), "Ocorreu um erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
@@ -77,7 +71,7 @@ namespace Perron.Controller
         #region Metodos Privados
         private void AlterandoEntidade(Aentity _entidade)
         {
-            if(_entidade.Ativo == false)
+            if (_entidade.Ativo == false)
             {
                 _view.VisibilidadeBotaoDeletar = false;
             }
@@ -170,20 +164,20 @@ namespace Perron.Controller
                     break;
             }
         }
-        private void NotificarEventoAlterarStatusCadastroExibido(EStatusCadastro status) 
+        private void NotificarEventoAlterarStatusCadastroExibido(EStatusCadastro status)
         {
             AlterarStatusCadastroExibidos(status);
         }
         private EStatusCadastro GetstatusDosCadastrados()
         {
-             if (_view.VisualizarCadastrosAtivo && _view.VisualizarCadastrosInativos)
-                                return EStatusCadastro.Todos;
+            if (_view.VisualizarCadastrosAtivo && _view.VisualizarCadastrosInativos)
+                return EStatusCadastro.Todos;
 
             else if (_view.VisualizarCadastrosAtivo)
-                                return EStatusCadastro.Ativo;
+                return EStatusCadastro.Ativo;
 
             else if (_view.VisualizarCadastrosInativos)
-                                 return EStatusCadastro.Inativo;
+                return EStatusCadastro.Inativo;
 
 
             return EStatusCadastro.none;

@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Aentity\Aentity.cs" />
+    <Compile Include="AtribulteClasses\AtributosClasse.cs" />
     <Compile Include="Configuracao\ArqConfiguracao.cs" />
     <Compile Include="Configuracao\ConfiguracaoAPI.cs" />
     <Compile Include="Configuracao\ConfiguracaoConexaoBancoDados.cs" />
@@ -108,7 +109,9 @@
     <Compile Include="Interface\View\IViewPrincipal.cs" />
     <Compile Include="Model\ClasseModel.cs" />
     <Compile Include="Model\ClasseView\PrecoView.cs" />
+    <Compile Include="Model\ClienteModel.cs" />
     <Compile Include="Model\DadosSaborEngredienteModel.cs" />
+    <Compile Include="Model\EnderecoModel.cs" />
     <Compile Include="Model\EngredienteModel.cs" />
     <Compile Include="Model\FuncionarioModel.cs" />
     <Compile Include="Model\PessoaModel.cs" />

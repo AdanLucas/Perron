@@ -1,30 +1,25 @@
-﻿using Model.Emumerator;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Security.AccessControl;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Perron.Controller
 {
-    public class PresenterIngrediente : PresenterPadrao , IPresenterIngrediente
+    public class PresenterIngrediente : PresenterPadrao, IPresenterIngrediente
     {
         private readonly IViewCadastroIngrediente _view;
         private readonly IServiceIngrediente _service;
-        private EngredienteModel ingrediente { get { return GetDadosIngrediente(); } set{ SetEngrediente(value); } }
+        private EngredienteModel ingrediente { get { return GetDadosIngrediente(); } set { SetEngrediente(value); } }
 
         private EngredienteModel _ingrediente;
         private List<EngredienteModel> ListaEngredientesCadastrados;
-        public PresenterIngrediente(IViewCadastroIngrediente view,IServiceIngrediente service) : base(view)
+        public PresenterIngrediente(IViewCadastroIngrediente view, IServiceIngrediente service) : base(view)
         {
             _view = view;
             _view.Show();
             _service = service;
             DelegarEventos();
-              base.ComportamentoAtual = EComportamentoTela.Inicio;
+            base.ComportamentoAtual = EComportamentoTela.Inicio;
             SetListaEngredienteCadastrado(EStatusCadastro.Todos);
         }
 
@@ -40,8 +35,8 @@ namespace Perron.Controller
         protected override void AlterandoComportamentoTela()
         {
             if (ComportamentoAtual.HasFlag(EComportamentoTela.Inicio))
-                                _view.EventoBuscar += EventoBucarPorDescricao;
-            
+                _view.EventoBuscar += EventoBucarPorDescricao;
+
             else
                 _view.EventoBuscar -= EventoBucarPorDescricao;
         }
@@ -68,14 +63,14 @@ namespace Perron.Controller
         private void DelegarEventos()
         {
             _view.EventoGrid(EventoGrid);
-      
+
         }
         private EngredienteModel GetDadosIngrediente()
         {
             _ingrediente.Descricao = _view.DescricaoIngrediente;
             _ingrediente.TipoMedida = _view.TipoMedida;
 
-            return _ingrediente; 
+            return _ingrediente;
         }
         private void SetEngrediente(EngredienteModel ingrediente)
         {
@@ -84,14 +79,14 @@ namespace Perron.Controller
             _view.DescricaoIngrediente = _ingrediente.Descricao;
             _view.TipoMedida = _ingrediente.TipoMedida;
         }
-   
+
         private void AtivarIngredienteInativo(EngredienteModel _engrediente)
         {
             if (_engrediente.Ativo == false)
             {
-                if(MessageBox.Show("Deseja Ativa a Mercadoria?", "Ativar?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show("Deseja Ativa a Mercadoria?", "Ativar?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    _engrediente.Ativo = true; 
+                    _engrediente.Ativo = true;
                 }
             }
         }
@@ -99,15 +94,15 @@ namespace Perron.Controller
         {
             bool ret = true;
 
-            string Erro="";
+            string Erro = "";
 
-            if(ingrediente.Descricao == "")
-            {   
+            if (ingrediente.Descricao == "")
+            {
                 ret = false;
                 Erro += "Infome Uma Decsricao Para o Engrediente;\n";
 
             }
-            if(ingrediente.TipoMedida == 0)
+            if (ingrediente.TipoMedida == 0)
             {
                 ret = false;
                 Erro += "Selecione a Unidade de Medida Do Ingrediente;\n";
@@ -125,7 +120,7 @@ namespace Perron.Controller
         }
         private void SetListaEngredienteCadastrado(EStatusCadastro status)
         {
-            var Lista = _service.GetListaEngredientesCadastroados(); 
+            var Lista = _service.GetListaEngredientesCadastroados();
 
 
             switch (status)
@@ -166,7 +161,7 @@ namespace Perron.Controller
             }
         }
         #endregion
-    
+
         #region Eventos Privados
         private void EventoGrid(object o, EventArgs e)
         {
@@ -191,7 +186,7 @@ namespace Perron.Controller
         {
             try
             {
-                
+
                 ValidarDadosEngrediente();
                 AtivarIngredienteInativo(ingrediente);
                 _service.Salvar(ingrediente);
@@ -206,7 +201,7 @@ namespace Perron.Controller
         }
         protected override void EventoRemover(object o, EventArgs e)
         {
-            if(MessageBox.Show($"Deseja Remover o Ingrendiente {ingrediente.Descricao} ??", "Remover??", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show($"Deseja Remover o Ingrendiente {ingrediente.Descricao} ??", "Remover??", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 ingrediente.Ativo = false;
                 _service.Salvar(ingrediente);
@@ -217,12 +212,12 @@ namespace Perron.Controller
         protected override void EventoCancelar(object o, EventArgs e)
         {
             base.ComportamentoAtual = EComportamentoTela.Inicio;
-        } 
+        }
         #endregion
 
         #endregion
 
-        
+
 
 
 

@@ -1,6 +1,6 @@
-﻿namespace Perron.View
+﻿namespace Perron.Componentes
 {
-    partial class TipoPessoaComponente
+    partial class SelecaoTipoPessoa
     {
         /// <summary> 
         /// Variável de designer necessária.

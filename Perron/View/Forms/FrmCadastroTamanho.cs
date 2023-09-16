@@ -1,13 +1,6 @@
 ﻿using Perron.View.Forms.Form_Padrao_Cadastro;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace Perron.View.Forms
 {
@@ -29,7 +22,7 @@ namespace Perron.View.Forms
         public string DescricaoTamanho
         {
             get { return txtDescricao.Text; }
-            set { txtDescricao.Text= value; }
+            set { txtDescricao.Text = value; }
         }
         public TamanhoModel ItemSelecionadoGrid
         {
@@ -43,7 +36,7 @@ namespace Perron.View.Forms
                 {
 
                     return null;
-                }    
+                }
             }
         }
         public void EventoGrid(EventHandler e)
@@ -52,7 +45,7 @@ namespace Perron.View.Forms
         }
         public void PopularGrid(List<TamanhoModel> Lista)
         {
-            dgvTamanhos.DataSourceAentity(Lista);
+            dgvTamanhos.DataSourceCuston(Lista);
         }
     }
 }

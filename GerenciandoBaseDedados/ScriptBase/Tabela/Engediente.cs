@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Repository.ScriptBase.Tabela
+﻿namespace Repository.ScriptBase.Tabela
 {
     public class Engediente : IScriptTabela
     {
         public string GUID => "E57CDCAE-A9FB-41D3-97D1-89C7450A288E";
 
-        public string NomeTabela =>"Engrediente";
+        public string NomeTabela => "Engrediente";
 
         public string Script
         {

@@ -1,15 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace Model.Interface.View
 {
     public interface IViewCadastroPreco : IViewPadraoCadastro
     {
-  
+
         void SetarListaClasse(List<ClasseModel> ListaClasse);
         void SetarListatamanho(List<TamanhoModel> ListaTamanho);
         void SetarListaPrecosCadastrados(List<PrecoView> ListaPreco);

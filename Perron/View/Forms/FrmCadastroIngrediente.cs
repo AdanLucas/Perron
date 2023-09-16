@@ -1,20 +1,13 @@
 ﻿using Perron.View.Forms.Form_Padrao_Cadastro;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Configuration;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace Perron.View.Forms
 {
     public partial class FrmCadastroIngrediente : FrmPadraoCadastro, IViewCadastroIngrediente
     {
-        protected override Size TamanhoTelaCheia { get { return new Size() { Width = 493, Height = 694 }; } }
+        protected override Size TamanhoTelaCheia { get { return new Size() { Width = 493, Height = 653 }; } }
         protected override Size TamanhoTelaReduzida { get { return new Size() { Width = 493, Height = 160 }; } }
 
 
@@ -25,14 +18,14 @@ namespace Perron.View.Forms
             txtDescricao.TextChanged += EventoBuscar;
         }
 
-        public bool VisibilidadeGroupEngredientes { set { gbEngredientes.Visible = value; }}
-        public bool HabilitaComboTipoMedida { set {cbTipoMedida.Enabled = value; }}
-        
+        public bool VisibilidadeGroupEngredientes { set { gbEngredientes.Visible = value; } }
+        public bool HabilitaComboTipoMedida { set { cbTipoMedida.Enabled = value; } }
+
         public string DescricaoIngrediente
         {
             get { return txtDescricao.Text; }
             set { txtDescricao.Text = value; }
-        
+
         }
         public EngredienteModel IngredienteSelecionado
         {
@@ -50,7 +43,7 @@ namespace Perron.View.Forms
 
 
             }
-        
+
         }
 
         public EUnidadeMedida TipoMedida { get { return GetUnidadeMedida(); } set { SetarUnidadeMedida(value); } }
@@ -65,13 +58,13 @@ namespace Perron.View.Forms
             dgvIngredientes.DataSource = null;
 
 
-            if(Ingredientes != null)
+            if (Ingredientes != null)
             {
                 dgvIngredientes.DataSource = Ingredientes;
                 dgvIngredientes.Columns["Id"].Visible = false;
                 dgvIngredientes.Columns["Ativo"].Visible = false;
                 dgvIngredientes.Columns["TipoMedida"].Visible = false;
-                dgvIngredientes.Columns["Descricao"].HeaderText= "Descrição";
+                dgvIngredientes.Columns["Descricao"].HeaderText = "Descrição";
                 dgvIngredientes.Columns["DescricaoTipoMedida"].HeaderText = "Tipo Medida";
             }
         }
@@ -91,7 +84,7 @@ namespace Perron.View.Forms
         {
             return (EUnidadeMedida)cbTipoMedida.SelectedIndex;
         }
-        
+
 
     }
 }

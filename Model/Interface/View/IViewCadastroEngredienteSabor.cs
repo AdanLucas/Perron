@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 public interface IViewCadastroEngredienteSabor
@@ -29,7 +26,7 @@ public interface IViewCadastroEngredienteSabor
     void PopularGridEngredientesCadastrados(List<EngredienteModel> Lista);
     void PopularGridEngredientesSabor(List<EngredienteModel> Lista);
 
-    EngredienteModel EngredienteSelecionadoGridEngredienteCadastrado { get;}
+    EngredienteModel EngredienteSelecionadoGridEngredienteCadastrado { get; }
     EngredienteModel EngredienteSelecionadoGridEngredienteSabor { get; }
 
     #endregion

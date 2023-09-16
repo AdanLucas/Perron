@@ -1,18 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Dapper;
-namespace Repository.ScriptBase.StoredProcedure
+﻿namespace Repository.ScriptBase.StoredProcedure
 {
     internal class PC_CadastroPessoaTipoFuncionario : IScriptProcedure
     {
         public string GUID { get { return "8AE232B9-270F-4BAB-87FF-5A17F823B687"; } }
         public string Procedure { get { return "PC_CadastroPessoaTipoFuncionario"; } }
 
-        public string ScriptPrcedured 
+        public string ScriptPrcedured
         {
             get
             {
@@ -37,7 +30,7 @@ namespace Repository.ScriptBase.StoredProcedure
                             		select @RET
                             END";
             }
-         
+
         }
     }
 }

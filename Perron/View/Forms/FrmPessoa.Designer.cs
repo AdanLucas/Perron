@@ -34,6 +34,7 @@
             this.pageDados = new System.Windows.Forms.TabPage();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.gbDadosPessoa = new System.Windows.Forms.GroupBox();
+            this.gbEndereco = new System.Windows.Forms.GroupBox();
             this.pnTipoPessoa = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
             this.txtCpfCnpj = new System.Windows.Forms.TextBox();
@@ -60,7 +61,7 @@
             this.tabControl1.Location = new System.Drawing.Point(12, 42);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(447, 228);
+            this.tabControl1.Size = new System.Drawing.Size(447, 512);
             this.tabControl1.TabIndex = 3;
             // 
             // pageBusca
@@ -69,7 +70,7 @@
             this.pageBusca.Location = new System.Drawing.Point(4, 22);
             this.pageBusca.Name = "pageBusca";
             this.pageBusca.Padding = new System.Windows.Forms.Padding(3);
-            this.pageBusca.Size = new System.Drawing.Size(439, 451);
+            this.pageBusca.Size = new System.Drawing.Size(439, 418);
             this.pageBusca.TabIndex = 1;
             this.pageBusca.Text = "Buscar Pessoa";
             this.pageBusca.UseVisualStyleBackColor = true;
@@ -80,7 +81,7 @@
             this.dgvBuscaPessoa.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvBuscaPessoa.Location = new System.Drawing.Point(3, 3);
             this.dgvBuscaPessoa.Name = "dgvBuscaPessoa";
-            this.dgvBuscaPessoa.Size = new System.Drawing.Size(433, 445);
+            this.dgvBuscaPessoa.Size = new System.Drawing.Size(433, 412);
             this.dgvBuscaPessoa.TabIndex = 0;
             // 
             // pageDados
@@ -90,7 +91,7 @@
             this.pageDados.Location = new System.Drawing.Point(4, 22);
             this.pageDados.Name = "pageDados";
             this.pageDados.Padding = new System.Windows.Forms.Padding(3);
-            this.pageDados.Size = new System.Drawing.Size(439, 202);
+            this.pageDados.Size = new System.Drawing.Size(439, 486);
             this.pageDados.TabIndex = 0;
             this.pageDados.Text = "Dados";
             this.pageDados.UseVisualStyleBackColor = true;
@@ -98,14 +99,15 @@
             // tabControl
             // 
             this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl.Location = new System.Drawing.Point(3, 198);
+            this.tabControl.Location = new System.Drawing.Point(3, 489);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(433, 1);
+            this.tabControl.Size = new System.Drawing.Size(433, 0);
             this.tabControl.TabIndex = 5;
             // 
             // gbDadosPessoa
             // 
+            this.gbDadosPessoa.Controls.Add(this.gbEndereco);
             this.gbDadosPessoa.Controls.Add(this.pnTipoPessoa);
             this.gbDadosPessoa.Controls.Add(this.label4);
             this.gbDadosPessoa.Controls.Add(this.txtCpfCnpj);
@@ -118,14 +120,23 @@
             this.gbDadosPessoa.Dock = System.Windows.Forms.DockStyle.Top;
             this.gbDadosPessoa.Location = new System.Drawing.Point(3, 3);
             this.gbDadosPessoa.Name = "gbDadosPessoa";
-            this.gbDadosPessoa.Size = new System.Drawing.Size(433, 195);
+            this.gbDadosPessoa.Size = new System.Drawing.Size(433, 486);
             this.gbDadosPessoa.TabIndex = 4;
             this.gbDadosPessoa.TabStop = false;
             this.gbDadosPessoa.Text = "Dados Pessoa";
             // 
+            // gbEndereco
+            // 
+            this.gbEndereco.Location = new System.Drawing.Point(11, 184);
+            this.gbEndereco.Name = "gbEndereco";
+            this.gbEndereco.Size = new System.Drawing.Size(403, 296);
+            this.gbEndereco.TabIndex = 7;
+            this.gbEndereco.TabStop = false;
+            this.gbEndereco.Text = "Endereco";
+            // 
             // pnTipoPessoa
             // 
-            this.pnTipoPessoa.Location = new System.Drawing.Point(11, 148);
+            this.pnTipoPessoa.Location = new System.Drawing.Point(11, 138);
             this.pnTipoPessoa.Name = "pnTipoPessoa";
             this.pnTipoPessoa.Size = new System.Drawing.Size(403, 34);
             this.pnTipoPessoa.TabIndex = 6;
@@ -198,7 +209,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(471, 273);
+            this.ClientSize = new System.Drawing.Size(471, 557);
             this.Controls.Add(this.tabControl1);
             this.Name = "FrmPessoa";
             this.Text = "FrmPessoa";
@@ -231,5 +242,6 @@
         private System.Windows.Forms.Panel pnTipoPessoa;
         private System.Windows.Forms.TabControl tabControl;
         private System.Windows.Forms.DataGridView dgvBuscaPessoa;
+        private System.Windows.Forms.GroupBox gbEndereco;
     }
 }

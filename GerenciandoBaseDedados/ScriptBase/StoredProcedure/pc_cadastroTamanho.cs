@@ -1,18 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Dapper;
-namespace Repository.ScriptBase.StoredProcedure
+﻿namespace Repository.ScriptBase.StoredProcedure
 {
     internal class pc_cadastroTamanho : IScriptProcedure
     {
-        public string GUID { get { return "37DC2640-7FFF-4C84-A5DF-B2478654F233";}}
+        public string GUID { get { return "37DC2640-7FFF-4C84-A5DF-B2478654F233"; } }
         public string Procedure { get { return "pc_cadastroTamanho"; } }
 
-        public string ScriptPrcedured 
+        public string ScriptPrcedured
         {
             get
             {
@@ -39,7 +32,7 @@ namespace Repository.ScriptBase.StoredProcedure
                             		END
                             END";
             }
-         
+
         }
     }
 }

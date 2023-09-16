@@ -3,22 +3,18 @@ using Perron.Controller;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Perron.Presenter.Cadastro
 {
-    public  class PresenterCadastroPreco :PresenterPadrao, IPresenterCadastroPreco
+    public class PresenterCadastroPreco : PresenterPadrao, IPresenterCadastroPreco
     {
         private readonly IViewCadastroPreco _view;
         private readonly IServiceCadastroPreco _service;
         private List<PrecoModel> _listaPreco;
 
 
-        public PresenterCadastroPreco(IViewCadastroPreco view, IServiceCadastroPreco cadastropreco) :base(view)
+        public PresenterCadastroPreco(IViewCadastroPreco view, IServiceCadastroPreco cadastropreco) : base(view)
         {
             _view = view;
             _service = cadastropreco;
@@ -44,7 +40,7 @@ namespace Perron.Presenter.Cadastro
         }
         private void EventoAddPreco(Object o, EventArgs e)
         {
-            if(_listaPreco == null)
+            if (_listaPreco == null)
                 _listaPreco = new List<PrecoModel>();
 
             var preco = InstanciarPreco();
@@ -58,9 +54,9 @@ namespace Perron.Presenter.Cadastro
             AdicionarPrecoNaLista(preco);
 
         }
-        protected override void EventoSalvar(object o , EventArgs e)
+        protected override void EventoSalvar(object o, EventArgs e)
         {
-            if(_listaPreco==null || _listaPreco.Count == 0)
+            if (_listaPreco == null || _listaPreco.Count == 0)
             {
                 MessagemErro(new Exception("Nao Existe Preco Para cadastrar!"));
             }
@@ -83,8 +79,8 @@ namespace Perron.Presenter.Cadastro
         {
             try
             {
-                  base.ComportamentoAtual = EComportamentoTela.Inicio;
-                  _listaPreco = null;
+                base.ComportamentoAtual = EComportamentoTela.Inicio;
+                _listaPreco = null;
                 _listaPreco = _service.GetPrecoPorClasse((int)_view.ClasseSelecioanda.Id);
                 TransformarEmViewEPopularGrid();
             }
@@ -142,17 +138,17 @@ namespace Perron.Presenter.Cadastro
         }
         public bool VerificarExistenciadePreco()
         {
-            if(_listaPreco ==null)
-                        return false;
+            if (_listaPreco == null)
+                return false;
 
-          return _listaPreco.Any(p => p.Classe.Id == _view.ClasseSelecioanda.Id && p.Tamanho.Id == _view.TamanhoSelecionado.Id);
+            return _listaPreco.Any(p => p.Classe.Id == _view.ClasseSelecioanda.Id && p.Tamanho.Id == _view.TamanhoSelecionado.Id);
 
         }
         private void RemoverOuInativar()
         {
             var preco = _listaPreco.Where(p => p.Classe.Id == _view.ClasseSelecioanda.Id && p.Tamanho.Id == _view.TamanhoSelecionado.Id).FirstOrDefault();
             var Index = _listaPreco.IndexOf(preco);
-            
+
 
             if (preco.Id != 0)
             {
@@ -161,8 +157,8 @@ namespace Perron.Presenter.Cadastro
             }
             else
             {
-                var removeu =  _listaPreco.Remove(preco);
-                     
+                var removeu = _listaPreco.Remove(preco);
+
             }
         }
         private void PopularGridClasse()
@@ -210,7 +206,7 @@ namespace Perron.Presenter.Cadastro
                     _view.VisibilidadePainel = false;
                     _view.HabilitarGridClasse = true;
                     break;
-              
+
                 case EComportamentoTela.Cadastrando:
                     _view.SetarTamanhoMaximoTela();
                     _view.VisibilidadePainel = true;
@@ -225,7 +221,7 @@ namespace Perron.Presenter.Cadastro
                     break;
             }
         }
-        
+
 
     }
 }

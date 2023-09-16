@@ -24,7 +24,7 @@ public class ConfiguracoesGlobais
     {
         _serviceBancodedados = FactoryService.BancoDados();
     }
-    public async Task Iniciar() 
+    public async Task Iniciar()
     {
         try
         {
@@ -40,7 +40,7 @@ public class ConfiguracoesGlobais
 
 
 
-    
+
     }
 }
 

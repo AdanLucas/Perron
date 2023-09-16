@@ -1,11 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Perron
@@ -15,7 +9,7 @@ namespace Perron
         public UserControlEngredienteSabor()
         {
             InitializeComponent();
-            
+
         }
 
         public GroupBox GbEndredientesCadastrados
@@ -95,7 +89,8 @@ namespace Perron
             dgvEngredientesCadastrado.Columns["Id"].Visible = false;
             dgvEngredientesCadastrado.Columns["Ativo"].Visible = false;
         }
-        public void PopularGridEngredientesSabor(List<EngredienteModel> Lista){
+        public void PopularGridEngredientesSabor(List<EngredienteModel> Lista)
+        {
             dgvEngredientesSabor.DataSource = null;
 
             if (Lista != null)

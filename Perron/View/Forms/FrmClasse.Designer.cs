@@ -87,7 +87,7 @@ namespace Perron.View.Forms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(297, 142);
+            this.ClientSize = new System.Drawing.Size(297, 133);
             this.Controls.Add(this.gbClassesCadastradas);
             this.Controls.Add(this.groupBox1);
             this.Margin = new System.Windows.Forms.Padding(2);

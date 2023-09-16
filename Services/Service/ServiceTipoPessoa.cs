@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Services.Service
 {
     public class ServiceTipoPessoa : IServiceTipoPessoa
     {
-        IReposotiryTipoPessoa _repo; 
+        IReposotiryTipoPessoa _repo;
 
         public ServiceTipoPessoa(IReposotiryTipoPessoa repo)
         {
@@ -27,11 +24,9 @@ namespace Services.Service
 
         public int Salvar(object cadastro)
         {
-            
-
             try
             {
-              return _repo.Salvar(cadastro);
+                return _repo.Salvar(cadastro);
             }
             catch (Exception ex)
             {

@@ -50,12 +50,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Componentes\SelecaoTipoPessoa.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Componentes\SelecaoTipoPessoa.designer.cs">
+      <DependentUpon>SelecaoTipoPessoa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controller\ControllerCadastroEndereco.cs" />
     <Compile Include="Controller\ControllerCadastroTipoPessoaBase.cs" />
     <Compile Include="Controller\ControllerNotificao.cs" />
     <Compile Include="Controller\ControllerTipoCliente.cs" />
     <Compile Include="Controller\ControllerTipoEmpresa.cs" />
-    <Compile Include="Controller\ControllerTipoFornecedor.cs" />
     <Compile Include="Controller\ControllerTipoFuncionario.cs" />
+    <Compile Include="Controller\FactoryController.cs" />
     <Compile Include="Global\ConfiguracoesGlobais.cs" />
     <Compile Include="Presenter\Cadastro\PresenterCadastroPessoa.cs" />
     <Compile Include="Presenter\Cadastro\PresenterCadastroPreco.cs" />
@@ -104,6 +111,12 @@
     <Compile Include="View\Forms\FrmPessoa.Designer.cs">
       <DependentUpon>FrmPessoa.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\UCCadastroEndereco.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\UCCadastroEndereco.Designer.cs">
+      <DependentUpon>UCCadastroEndereco.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\UserControl\UCCadastroEmpresa.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -127,12 +140,6 @@
     </Compile>
     <Compile Include="View\UserControl\UCTipoFuncionario.Designer.cs">
       <DependentUpon>UCTipoFuncionario.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\UserControl\TipoPessoaComponente.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="View\UserControl\TipoPessoaComponente.Designer.cs">
-      <DependentUpon>TipoPessoaComponente.cs</DependentUpon>
     </Compile>
     <Compile Include="View\UserControl\UserControlStatusCadastro.cs">
       <SubType>UserControl</SubType>
@@ -194,8 +201,11 @@
     <Compile Include="View\Forms\FrmPrincipal.Designer.cs">
       <DependentUpon>FrmPrincipal.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Componentes\SelecaoTipoPessoa.resx">
+      <DependentUpon>SelecaoTipoPessoa.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
@@ -211,6 +221,9 @@
     <EmbeddedResource Include="View\Forms\FrmPessoa.resx">
       <DependentUpon>FrmPessoa.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\UCCadastroEndereco.resx">
+      <DependentUpon>UCCadastroEndereco.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\UserControl\UCCadastroEmpresa.resx">
       <DependentUpon>UCCadastroEmpresa.cs</DependentUpon>
     </EmbeddedResource>
@@ -222,9 +235,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\UserControl\UCTipoFuncionario.resx">
       <DependentUpon>UCTipoFuncionario.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\UserControl\TipoPessoaComponente.resx">
-      <DependentUpon>TipoPessoaComponente.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\UserControl\UserControlStatusCadastro.resx">
       <DependentUpon>UserControlStatusCadastro.cs</DependentUpon>
@@ -370,6 +380,7 @@
     <Content Include="Resources\cancel2.png" />
     <Content Include="Resources\cancelar.png" />
     <Content Include="Resources\cancelar1.png" />
+    <None Include="Resources\cancelErro.png.bmp" />
     <Content Include="Resources\cancel_25px.png" />
     <Content Include="Resources\carrinho.png" />
     <Content Include="Resources\carrinhoCombustivel.png" />

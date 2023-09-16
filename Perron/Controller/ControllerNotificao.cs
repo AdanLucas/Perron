@@ -1,13 +1,6 @@
 ﻿using Perron.Properties;
 using Perron.View;
 using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Reflection;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
@@ -16,7 +9,7 @@ public static class ControllerNotificao
 
     private static FrmNotificacao _view = new FrmNotificacao();
 
-   static DialogResult dialogResult;
+    static DialogResult dialogResult;
 
     public static DialogResult ValidarCampoVazio(ref string campo)
     {
@@ -42,8 +35,11 @@ public static class ControllerNotificao
 
         _view.TextoPrincipal = ex.Message;
         _view.TextoLongo = ex.StackTrace;
-        _view.TextoRodape = ex.InnerException.Message;
-        _view.BotaoCancelar.Click +=EventoCancelar;
+
+        if (ex.InnerException != null)
+            _view.TextoRodape = ex.InnerException.Message;
+
+        _view.BotaoCancelar.Click += EventoCancelar;
         _view.BotaoOk.Click += EventoOk;
 
         _view.ShowDialog();

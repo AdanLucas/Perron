@@ -2,13 +2,6 @@
 using Perron.View.Forms.Form_Padrao_Cadastro;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace Perron.View.Forms
 {
@@ -77,9 +70,9 @@ namespace Perron.View.Forms
                 }
             }
         }
-        public PrecoView PrecoSelecionado 
+        public PrecoView PrecoSelecionado
         {
-            get 
+            get
             {
                 try
                 {
@@ -87,12 +80,12 @@ namespace Perron.View.Forms
                 }
                 catch
                 {
-                    throw null; 
+                    throw null;
                 }
             }
         }
         public bool VisibilidadePainel { set { pnPreco.Visible = value; } }
-        public bool HabilitarGridClasse { set {dgvClasses.Enabled = value; } }
+        public bool HabilitarGridClasse { set { dgvClasses.Enabled = value; } }
         public void EventoGridClasse(EventHandler e)
         {
             dgvClasses.Click += e;
@@ -104,7 +97,7 @@ namespace Perron.View.Forms
         public void EventoGridTamanho(EventHandler e)
         {
             dgvTamanho.Click += e;
-            
+
         }
         public void SetarListaClasse(List<ClasseModel> ListaClasse)
         {
@@ -126,14 +119,14 @@ namespace Perron.View.Forms
             {
                 dgvPrecos.DataSource = ListaPreco;
                 dgvPrecos.Columns["Index"].Visible = false;
-          
+
             }
         }
         public void SetarListatamanho(List<TamanhoModel> ListaTamanho)
         {
             dgvTamanho.DataSource = null;
 
-            if(ListaTamanho!= null)
+            if (ListaTamanho != null)
             {
                 dgvTamanho.DataSource = ListaTamanho;
                 dgvTamanho.Columns["Id"].Visible = false;
@@ -145,7 +138,7 @@ namespace Perron.View.Forms
         }
         public void EventoAdicionarPreco(EventHandler e)
         {
-            btnAddPreco.Click +=e;
+            btnAddPreco.Click += e;
         }
     }
 }

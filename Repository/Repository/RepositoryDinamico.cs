@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using Dapper;
+﻿using Dapper;
 using Repository.ScriptsDinamicos;
+using System.Collections.Generic;
 
 public class RepositoryDinamico<T>
 {
 
-     
+
 
     public List<T> GetLista()
     {

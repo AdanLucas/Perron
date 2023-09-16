@@ -1,13 +1,9 @@
 ﻿using Perron.Controller;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Perron.Presenter
 {
-   public class PresenterCadastroTamanho :  PresenterPadrao, IPresenterCadastroTamanho
+    public class PresenterCadastroTamanho : PresenterPadrao, IPresenterCadastroTamanho
     {
 
         private readonly IViewCadastroTamanho _view;
@@ -23,7 +19,7 @@ namespace Perron.Presenter
             _view.Show();
             DelegarEventos();
             EstatoInicial();
-        } 
+        }
         #endregion
 
         #region Metodos Privados
@@ -145,12 +141,12 @@ namespace Perron.Presenter
 
 
         }
-        private void EventoGrid(object o,EventArgs e)
+        private void EventoGrid(object o, EventArgs e)
         {
             SetTamanhoSelecionadoGrid();
         }
         #endregion
-     
+
     }
 
 

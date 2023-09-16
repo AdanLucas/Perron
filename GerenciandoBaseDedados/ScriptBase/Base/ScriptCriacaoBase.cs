@@ -1,10 +1,4 @@
-﻿using Model.Interface.BancoDeDados;
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Reflection;
-using System.Runtime.CompilerServices;
+﻿using System.Data;
 
 public class ScriptCriacaoBase
 {
@@ -13,12 +7,12 @@ public class ScriptCriacaoBase
     static IDbConnection _conn;
 
 
-    public ScriptCriacaoBase(IDbConnection conn) 
+    public ScriptCriacaoBase(IDbConnection conn)
     {
         _conn = conn;
     }
 
-    public  void  CriacaoBase(string NomeBase)
+    public void CriacaoBase(string NomeBase)
     {
 
         var dbocommand = _conn.CreateCommand();

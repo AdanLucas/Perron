@@ -7,6 +7,6 @@
 /// <param name="o"></param>
 /// <param name="e">Enum do Tipo EStatusCadastroTela</param>
 public delegate void ComportamentoTelaEventHandler(object o, ComportamentoTelaEventArgs e);
-    
-    
+
+
 

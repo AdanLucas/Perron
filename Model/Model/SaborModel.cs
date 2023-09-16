@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xunit;
 
-public class SaborModel:Aentity
+public class SaborModel : Aentity
 {
     [Required(ErrorMessage = "Descrição é Obrigatório")]
     public string Descricao { get; set; }

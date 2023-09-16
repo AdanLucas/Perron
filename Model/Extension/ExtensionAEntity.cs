@@ -1,24 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 
-    public static class ExAEntity
+public static class ExAEntity
+{
+    public static void AtivarCadastroInativo(this Aentity cadastro)
     {
-        public static void AtivarCadastroInativo(this Aentity cadastro)
+        if (cadastro.Ativo == false)
         {
-            if (cadastro.Ativo == false)
+            if (MessageBox.Show("O Cadastro Está Inativa, Deseja Ativar?", "Cadastro Inativo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                if (MessageBox.Show("O Cadastro Está Inativa, Deseja Ativar?", "Cadastro Inativo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                {
-                    cadastro.Ativo = true;
-                }
-
+                cadastro.Ativo = true;
             }
+
         }
+    }
     public static bool InativarCadastro(this Aentity cadastro)
     {
         if (cadastro.Ativo == true)

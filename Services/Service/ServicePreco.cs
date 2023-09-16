@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 
 namespace Services.Service
@@ -14,8 +11,8 @@ namespace Services.Service
         private readonly IRepositoryClasse _repoClasse;
 
         public ServicePreco(IRepositoryPreco preco
-                                ,IRepositoryTamanho repoTamanho
-                                    ,IRepositoryClasse repoClasse)
+                                , IRepositoryTamanho repoTamanho
+                                    , IRepositoryClasse repoClasse)
         {
             _repoPreco = preco;
             _repoTamanho = repoTamanho;
@@ -41,7 +38,7 @@ namespace Services.Service
         }
         public List<TamanhoModel> GetTamanhos()
         {
-           var listaTamanho = _repoTamanho.GetListaTamanho(EStatusCadastro.Ativo);
+            var listaTamanho = _repoTamanho.GetListaTamanho(EStatusCadastro.Ativo);
 
             if (listaTamanho.Count == 0) throw new Exception("Nao Existem cadastro de Tamanhos Ativos");
 

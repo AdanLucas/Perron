@@ -1,22 +1,22 @@
 ﻿using Dapper;
+using GerenciandoBaseDedados.GerencaidorScript;
 using Model.Emumerator;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using GerenciandoBaseDedados.GerencaidorScript;
 
 namespace Repository.Repository
 
 
 {
-    public class RepositoryBancoDeDados : IRepositoryVerificacaoBancoDedados 
+    public class RepositoryBancoDeDados : IRepositoryVerificacaoBancoDedados
     {
 
         DbSession _session;
 
         string NomeBaseCadastrada = ConfiguracaoInicial.Instancia.Configuracao.ConexaoBancoDados.Banco;
 
-       
+
 
 
         public RepositoryBancoDeDados()
@@ -36,7 +36,7 @@ namespace Repository.Repository
             }
             catch (Exception ex)
             {
-                
+
                 throw ex;
             }
 
@@ -68,9 +68,9 @@ namespace Repository.Repository
         {
             using (_session = new DbSession(ETipoConexao.Master))
             {
-                 var UnitMastar = new UnitOfWork(_session);
+                var UnitMastar = new UnitOfWork(_session);
 
-                     GerenciandoScript.CriarBase(_session.Connection,NomeBaseCadastrada);
+                GerenciandoScript.CriarBase(_session.Connection, NomeBaseCadastrada);
 
                 using (var session = new DbSession())
                 {
@@ -81,7 +81,7 @@ namespace Repository.Repository
                         GerenciandoScript.IniciarTransacao(session.Connection);
                         GerenciandoScript.ExecutarCriacaoBase(session.Transaction);
                         Unit.Commit();
-                        
+
                     }
                     catch (Exception ex)
                     {
@@ -91,7 +91,7 @@ namespace Repository.Repository
                 }
             }
         }
-        
+
         public bool ValidarConexaoComAInstancia()
         {
             try

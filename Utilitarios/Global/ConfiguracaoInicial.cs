@@ -1,13 +1,13 @@
-﻿using System.Xml;
+﻿using Model.Extension;
+using System.Xml;
 using Utilitarios.ArquivoConfiguracao;
 using Utilitarios.Xml;
-using Model.Extension;
 
 
 
 public class ConfiguracaoInicial
 {
-    
+
     private static ConfiguracaoInicial instance;
 
     public static ConfiguracaoInicial Instancia
@@ -44,7 +44,7 @@ public class ConfiguracaoInicial
             else
                 return this.stringConexaoDados;
         }
-    } 
+    }
     #endregion
     #region Privados
     private string stringConexaoMaster
@@ -92,16 +92,16 @@ public class ConfiguracaoInicial
 
         Configuracao = new ArqConfiguracao();
         Configuracao.SetarPropriedades();
-        var xmlConfiguracao = new GerenciadorXml<ArqConfiguracao>(Configuracao.PegarNomeArquivo(),Configuracao);
+        var xmlConfiguracao = new GerenciadorXml<ArqConfiguracao>(Configuracao.PegarNomeArquivo(), Configuracao);
         XmlDocument xml = xmlConfiguracao.GetXMlConfiguracao();
         Configuracao = SerializarObjeto.DeserializarXml<ArqConfiguracao>(xml);
-    } 
+    }
     #endregion
 
 
     public void Iniciar() { }
 
-    
+
 
 
 

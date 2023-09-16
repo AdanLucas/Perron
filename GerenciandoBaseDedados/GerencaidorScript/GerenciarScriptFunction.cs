@@ -7,16 +7,16 @@ using System.Reflection;
 
 namespace Repository.GerenciadorScript
 {
-    public  class GerenciarScriptFunction : ScriptBase
+    public class GerenciarScriptFunction : ScriptBase
     {
 
-        public GerenciarScriptFunction(IDbConnection conn) : base(conn) {}
+        public GerenciarScriptFunction(IDbConnection conn) : base(conn) { }
 
 
         private readonly List<Type> listaClasses = Assembly.GetExecutingAssembly().GetTypes().Where(t => t.GetInterfaces().Contains(typeof(IScriptFunction))).ToList();
         IScriptFunction function;
-        
-        
+
+
         public void ExecutarScritpCriacao(IDbTransaction tran)
         {
             try
@@ -27,7 +27,7 @@ namespace Repository.GerenciadorScript
 
                     if (ValidarGUID(function.GUID))
                     {
-                        ExecutarScript(tran,function.ScriptFunction);
+                        ExecutarScript(tran, function.ScriptFunction);
                     }
                 }
             }

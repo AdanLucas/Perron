@@ -1,11 +1,7 @@
 ﻿using Model.Emumerator;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 
 public static class ExtensionEnum
@@ -69,7 +65,7 @@ public static class ExtensionEnum
     {
         int qnt = 0;
         T[] origem = (T[])Enum.GetValues(tipo.GetType());
-        
+
         int index = 0;
 
         foreach (var item in origem)

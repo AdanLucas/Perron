@@ -1,10 +1,5 @@
 ﻿using Model.Emumerator;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Perron.Controller
@@ -12,23 +7,20 @@ namespace Perron.Controller
     public class ControllerCadastroTipoPessoaBase : IControllerTipoPessoa
     {
 
+        protected virtual UserControl _view;
+
+        public ETipoPessoa TipoController { get; set; }
+        public Func<PessoaModel> GetDadosPessoa { get; set; }
+
         protected PessoaModel _pessoal;
-        protected ETipoPessoa _tipo;
         protected IServiceTipoPessoa _service;
 
         #region Construtor
         protected ControllerCadastroTipoPessoaBase(ETipoPessoa tipo)
         {
-            try
-            {
-                _tipo = tipo;
-                _service = FactoryService.CadastroTipoPessoa(_tipo);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        } 
+            TipoController = tipo;
+            _service = FactoryService.CadastroTipoPessoa(tipo);
+        }
         #endregion
 
         #region Private
@@ -56,32 +48,32 @@ namespace Perron.Controller
                     ComportamentoNone();
                     break;
             }
-        } 
+        }
         #endregion
 
         #region Protected
-        protected virtual void ComportamentoPopularCadastrando() {  }
-        protected virtual void ComportamentoInicio() {  }
-        protected virtual void ComportamentoNovo() {  }         
-        protected virtual void ComportamentoCadastrando() {  }
-        protected virtual void ComportamentoNone() {  }
-        protected virtual void SalvarCadastro(bool ativo) { }
+        protected virtual UserControl IniciarUserControl() { return null; }
+        protected virtual void ComportamentoPopularCadastrando() { }
+        protected virtual void ComportamentoInicio() { }
+        protected virtual void ComportamentoNovo() { }
+        protected virtual void ComportamentoCadastrando() { }
+        protected virtual void ComportamentoNone() { }
+        protected virtual void SalvarCadastro() { }
         #endregion
 
 
         #region public
 
-        public void EventoComportamento(object o, EventArgsGenerico<object[]> e)
+        public void EventoComportamento(EComportamentoTela comportamento)
         {
-            _pessoal = (PessoaModel)e.Item[1];
-            SetarComportamentoTela((EComportamentoTela)e.Item[0]);
+            SetarComportamentoTela(comportamento);
         }
-        public void Salvar(PessoaModel Pessoa, bool ativo) 
+        public void Salvar(PessoaModel Pessoa)
         {
             try
             {
                 _pessoal = Pessoa;
-                SalvarCadastro(ativo);
+                SalvarCadastro();
             }
             catch (Exception ex)
             {
@@ -90,7 +82,50 @@ namespace Perron.Controller
             }
         }
         public virtual void SetarUserEmTabPage(TabPage page) { }
-        
+
+        public void AlterarComportamentoCadastro(EComportamentoTela comportamento)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Iniciar(Control.ControlCollection local)
+        {
+            _view = IniciarUserControl();
+            local.Add(_view);
+            _view.Dock = DockStyle.Fill;
+        }
+
+        public void AlterarStatusCadastro(bool status)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void RemoverTipoCadastro()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void RemoverTipoCadastro(ETipoPessoa tipo)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Salvar()
+        {
+            throw new NotImplementedException();
+        }
+
+
+
+
+
+
+
+
+
+
+
+
         #endregion
     }
 }

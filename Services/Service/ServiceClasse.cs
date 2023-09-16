@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Services.Service
 {
@@ -28,16 +26,16 @@ namespace Services.Service
             switch (statusCadastro)
             {
                 case EStatusCadastro.none:
-                    return null; 
+                    return null;
 
                 case EStatusCadastro.Todos:
                     return Lista;
 
-                    
+
                 case EStatusCadastro.Ativo:
                     return Lista.Where(l => l.Ativo == true).ToList();
 
-                    
+
                 case EStatusCadastro.Inativo:
                     return Lista.Where(l => l.Ativo == false).ToList();
             }

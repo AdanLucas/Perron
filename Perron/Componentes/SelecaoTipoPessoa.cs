@@ -5,19 +5,20 @@ using System.Data;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace Perron.View
+namespace Perron.Componentes
 {
-    public partial class TipoPessoaComponente : UserControl
+    public partial class SelecaoTipoPessoa : UserControl
     {
 
         public ETipoPessoa TipoPessoaSetado { get { return _tipoPessoaSetado; } }
-        public ETipoPessoa TipoPessoaSelecionado { get { return GetTipoPessoa();} set { SetTipoPessoa(value); } }
+        public ETipoPessoa TipoPessoaSelecionado { get { return GetTipoPessoa(); } set { SetTipoPessoa(value); } }
 
 
         private Dictionary<ETipoPessoa, CheckBox> _checkBoxes = new Dictionary<ETipoPessoa, CheckBox>();
         private ETipoPessoa _tipoPessoaSetado { get; set; }
         public bool HabilitarComponentes { set { habilitarDesabilitarComponentes(value); } }
         public event EventHandlerGenerico<ETipoPessoa> EventoAlterandoTipoPessoaSelecionado;
+        public event EventHandlerGenerico<ETipoPessoa> EventoRemovendoTipoPessoa;
         public void RemoverCheck()
         {
             foreach (var item in _checkBoxes)
@@ -25,7 +26,34 @@ namespace Perron.View
                 item.Value.Checked = false;
             }
         }
-        public TipoPessoaComponente(Panel painel,ETipoPessoa tipos)
+        public void AlterarComportamentoCadastro(EComportamentoTela comporamento)
+        {
+            switch (comporamento)
+            {
+                case EComportamentoTela.Inicio:
+
+                    this.Visible = false;
+
+                    break;
+
+
+                case EComportamentoTela.ItemSelecionado:
+
+                    this.Visible = true;
+
+                    break;
+
+
+                case EComportamentoTela.Cadastrando:
+
+                    this.Visible = true;
+
+                    break;
+
+
+            }
+        }
+        public SelecaoTipoPessoa(Panel painel, ETipoPessoa tipos)
         {
             _tipoPessoaSetado = tipos;
             InitializeComponent();
@@ -40,7 +68,7 @@ namespace Perron.View
             foreach (var item in _checkBoxes)
             {
 
-                if(item.Value.Checked == true)
+                if (item.Value.Checked == true)
                 {
                     tipoPessoa |= item.Key;
                 }
@@ -69,11 +97,11 @@ namespace Perron.View
             }
             else
             {
-               value = _tipoPessoaSetado.GetArrayItemEnum<ETipoPessoa>();
-               int qnt = value.Where(t=>!t.HasFlag(ETipoPessoa.Pessoa)).Count();
+                value = _tipoPessoaSetado.GetArrayItemEnum<ETipoPessoa>();
+                int qnt = value.Where(t => !t.HasFlag(ETipoPessoa.Pessoa)).Count();
 
-                if(qnt <= 1)
-                      this.Visible = false;
+                if (qnt <= 1)
+                    this.Visible = false;
 
             }
 
@@ -103,11 +131,33 @@ namespace Perron.View
                 item.Value.Enabled = status;
             }
         }
-        private void NotificarEventoTipoPessoal(object o ,EventArgs e)
+        private ETipoPessoa PegarTipoPeloNome(string nome)
         {
-            if (EventoAlterandoTipoPessoaSelecionado != null)
-                EventoAlterandoTipoPessoaSelecionado(this, new EventArgsGenerico<ETipoPessoa> { Item = GetTipoPessoa()});
+            ETipoPessoa[] value = (ETipoPessoa[])Enum.GetValues(typeof(ETipoPessoa));
+
+
+            foreach (var item in value)
+            {
+                var nomeItemdaVez = Enum.GetName(typeof(ETipoPessoa), item);
+
+                if (nomeItemdaVez == nome)
+                    return item;
+
+            }
+
+            return ETipoPessoa.Pessoa;
+
         }
-        
+        private void NotificarEventoTipoPessoal(object o, EventArgs e)
+        {
+            var ck = (CheckBox)o;
+
+            if (!ck.Checked && EventoRemovendoTipoPessoa != null)
+                EventoRemovendoTipoPessoa(this, new EventArgsGenerico<ETipoPessoa> { Item = PegarTipoPeloNome(ck.Name) });
+
+            if (EventoAlterandoTipoPessoaSelecionado != null)
+                EventoAlterandoTipoPessoaSelecionado(this, new EventArgsGenerico<ETipoPessoa> { Item = GetTipoPessoa() });
+        }
+
     }
 }

@@ -1,23 +1,23 @@
 ﻿using Perron.View.Forms.Form_Padrao_Cadastro;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace Perron.View.Forms
 {
     public partial class FrmClasse : FrmPadraoCadastro, IViewClasse
     {
+
+        protected override Size TamanhoTelaCheia { get { return new Size() { Width = 317, Height = 387 }; } }
+
+        protected override Size TamanhoTelaReduzida { get { return new Size() { Width = 317, Height = 167 }; } }
+
+
         public FrmClasse()
         {
             InitializeComponent();
 
-            
+
         }
 
         public string DescricaoClasse
@@ -25,7 +25,7 @@ namespace Perron.View.Forms
             get { return txtDescricao.Text; }
             set { txtDescricao.Text = value; }
         }
-        public bool VisibilidadeGroupBoxClassesCadastrados { set {gbClassesCadastradas.Visible = value; }} 
+        public bool VisibilidadeGroupBoxClassesCadastrados { set { gbClassesCadastradas.Visible = value; } }
         public ClasseModel ClasseSelecionadaGrid
         {
             get
@@ -34,13 +34,13 @@ namespace Perron.View.Forms
                 {
                     return (ClasseModel)dgvClasse.CurrentRow.DataBoundItem;
                 }
-                catch  
+                catch
                 {
 
                     return null;
                 }
             }
-        
+
         }
 
         public void EventoGrid(EventHandler e)
@@ -50,7 +50,7 @@ namespace Perron.View.Forms
 
         public void PopularGridClasse(List<ClasseModel> Lista)
         {
-            dgvClasse.DataSourceAentity(Lista);
+            dgvClasse.DataSourceCuston(Lista);
         }
 
     }

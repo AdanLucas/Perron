@@ -3,11 +3,11 @@ using System.Threading.Tasks;
 
 namespace Services.Service
 {
-    public class ServiceBancodeDados: IServiceBancoDeDados
+    public class ServiceBancodeDados : IServiceBancoDeDados
     {
 
         private int TentaTivasCriarBanco = 0;
- 
+
 
 
 
@@ -17,33 +17,34 @@ namespace Services.Service
         {
             _repositorio = repositorio;
         }
-       public async Task RealizarVerificacaoBancoDados()
+        public async Task RealizarVerificacaoBancoDados()
         {
-            await Task.Run(() => {
-                                    if (_repositorio.ValidarConexaoComAInstancia())
-                                    {
-                                         if (_repositorio.validarExistenciaBancodeDadosConfigurado())
-                                             return;
+            await Task.Run(() =>
+            {
+                if (_repositorio.ValidarConexaoComAInstancia())
+                {
+                    if (_repositorio.validarExistenciaBancodeDadosConfigurado())
+                        return;
 
-                                            try
-                                            {
-                                                _repositorio.CriarBaseDeDadosDefaut();
-                                                
-                                            }
-                                            catch (Exception ex)
-                                            {
-                                                    throw ex;
-                                            }
-                                        
-                                    }
-                                    else
-                                    {
-                                        throw new Exception("Nao possivel Realizar Conexao com a Instancia!");
-                                    }
-                                });
+                    try
+                    {
+                        _repositorio.CriarBaseDeDadosDefaut();
+
+                    }
+                    catch (Exception ex)
+                    {
+                        throw ex;
+                    }
+
+                }
+                else
+                {
+                    throw new Exception("Nao possivel Realizar Conexao com a Instancia!");
+                }
+            });
 
 
-           
+
         }
 
         private async Task GerenciarTenativa()
@@ -56,7 +57,7 @@ namespace Services.Service
 
 
             if (!_repositorio.validarExistenciaBancodeDadosConfigurado())
-               await  RealizarVerificacaoBancoDados();
+                await RealizarVerificacaoBancoDados();
 
             else
                 return;

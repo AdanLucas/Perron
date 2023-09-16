@@ -1,6 +1,6 @@
 ﻿using Perron;
-using System.Windows.Forms;
 using System.Drawing;
+using System.Windows.Forms;
 
 public class ExibirStatusCadastro
 {
@@ -30,14 +30,14 @@ public class ExibirStatusCadastro
         if (!_painel.Visible)
             _painel.Visible = true;
 
-            _view.Status.BackColor = Color.Green;
+        _view.Status.BackColor = Color.Green;
     }
     private void StatusInativo()
     {
         if (!_painel.Visible)
-                _painel.Visible = true;
+            _painel.Visible = true;
 
-            _view.Status.BackColor = Color.Red;
+        _view.Status.BackColor = Color.Red;
     }
     public void SetarStatus(bool Status)
     {

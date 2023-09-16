@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Repository.ScriptBase.Tabela
+﻿namespace Repository.ScriptBase.Tabela
 {
     public class Sabor_has_Engrediente : IScriptTabela
     {
@@ -29,6 +23,6 @@ namespace Repository.ScriptBase.Tabela
     					) ON [PRIMARY]";
             }
         }
-        
+
     }
 }

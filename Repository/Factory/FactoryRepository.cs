@@ -1,10 +1,6 @@
 ﻿using Model.Emumerator;
 using Repository.Repository;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 
 public static class FactoryRepository
@@ -45,7 +41,7 @@ public static class FactoryRepository
         var _type = Type.GetType(repo);
 
         if (_type == null)
-                throw new Exception("Classe nao Existe");
+            throw new Exception("Classe nao Existe");
 
         return (IReposotiryTipoPessoa)Activator.CreateInstance(_type);
     }

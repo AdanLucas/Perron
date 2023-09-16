@@ -1,16 +1,10 @@
 ﻿using Model.Configuracao;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Model.Extension
 {
     public static class ExtensionXml
     {
-        public static void SetarPropriedades(this  ArqConfiguracao arquivo)
+        public static void SetarPropriedades(this ArqConfiguracao arquivo)
         {
             arquivo.ConexaoBancoDados = new ConfiguracaoConexaoBancoDados();
             arquivo.API = new ConfiguracaoAPI();
@@ -24,7 +18,7 @@ namespace Model.Extension
             arquivo.ConfiguracaoGeral = new ConfiguracoesGerais();
         }
 
-        public static string PegarNomeArquivo( this ArqConfiguracao arquivo)
+        public static string PegarNomeArquivo(this ArqConfiguracao arquivo)
         {
             return "Configuracao.xml";
         }

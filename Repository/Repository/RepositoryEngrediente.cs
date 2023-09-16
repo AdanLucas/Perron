@@ -1,15 +1,13 @@
-﻿using System;
+﻿using Dapper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Dapper;
 
 namespace Repository.Repository
 {
     public class RepositoryEngrediente : IRepositoryEngrediente
     {
-  
+
 
         #region Metodos Privados
         private void pc_cadastroEngrediente(DbSession session, EngredienteModel engrediente)
@@ -18,9 +16,9 @@ namespace Repository.Repository
             {
                 id = engrediente.Id,
                 descricao = engrediente.Descricao,
-                tipoMedida= engrediente.TipoMedida,
+                tipoMedida = engrediente.TipoMedida,
                 ativo = engrediente.Ativo
-                                            }, transaction: session.Transaction);
+            }, transaction: session.Transaction);
         }
         #endregion
 
@@ -57,7 +55,7 @@ namespace Repository.Repository
         }
         public void Salvar(EngredienteModel Item)
         {
-            using (var session  = new DbSession())
+            using (var session = new DbSession())
             {
                 var UnitOfWork = new UnitOfWork(session);
 

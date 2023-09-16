@@ -1,7 +1,4 @@
 ﻿using Model.Interface.BancoDeDados;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace GerenciandoBaseDedados.ScriptBase.Function
 {

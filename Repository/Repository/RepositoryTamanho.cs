@@ -1,9 +1,6 @@
-﻿using System;
+﻿using Dapper;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Dapper;
 
 namespace Repository.Repository
 {
@@ -47,7 +44,7 @@ namespace Repository.Repository
             {
                 pc_cadastroTamanho(session, tamanho);
             }
-        } 
+        }
         #endregion
 
     }

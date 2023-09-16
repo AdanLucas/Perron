@@ -1,15 +1,10 @@
 ﻿using Perron.Presenter;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Perron.Controller
 {
-    public class PresenterSabor : PresenterPadrao,IPresenterSabor 
+    public class PresenterSabor : PresenterPadrao, IPresenterSabor
     {
 
         private readonly IViewCadastroSabor _view;
@@ -18,7 +13,7 @@ namespace Perron.Controller
         private SaborModel _sabor;
 
         private BuscarItemGenerico<ClasseModel> BuscaClasse = new BuscarItemGenerico<ClasseModel>();
-        public PresenterSabor(IViewCadastroSabor view,IServiceSabor service) : base(view)
+        public PresenterSabor(IViewCadastroSabor view, IServiceSabor service) : base(view)
         {
             _view = view;
             _service = service;
@@ -26,7 +21,7 @@ namespace Perron.Controller
             _view.Show();
             DelegarEventos();
             base.ComportamentoAtual = EComportamentoTela.Inicio;
-            
+
         }
         #region Metodos Privados
         private void SetarControllerIngrediente(Panel painel)
@@ -58,13 +53,13 @@ namespace Perron.Controller
             _sabor = _view.ItemSelecionadoGrid;
             SetDadosSdabor();
             _view.VisibilidadeBotao = true;
-        } 
-        
+        }
+
         #endregion
 
         private void BuscarClasse()
         {
-            if(_sabor != null)
+            if (_sabor != null)
             {
 
                 try
@@ -82,7 +77,7 @@ namespace Perron.Controller
         private void SetarClasseNaView()
         {
             if (_sabor != null)
-                 _view.DescricaoClasse = _sabor.Classe.DescricaoClasse;
+                _view.DescricaoClasse = _sabor.Classe.DescricaoClasse;
         }
         private void DelegarEventos()
         {
@@ -105,11 +100,11 @@ namespace Perron.Controller
         }
         private void GetdadosSabor()
         {
-            if(_sabor != null)
+            if (_sabor != null)
             {
                 _sabor.Engredientes = _presenterIngrediente.GetIngredienteSabor();
                 _sabor.Descricao = _view.DescricaoSabor;
-                
+
             }
         }
         private void SetDadosSdabor()
@@ -128,7 +123,7 @@ namespace Perron.Controller
         #endregion
 
         #region Eventos privados
-        protected override void EventoNovo(object o , EventArgs e)
+        protected override void EventoNovo(object o, EventArgs e)
         {
             base.ComportamentoAtual = EComportamentoTela.Novo;
 
@@ -165,7 +160,7 @@ namespace Perron.Controller
         protected override void EventoCancelar(object o, EventArgs e)
         {
             base.ComportamentoAtual = EComportamentoTela.Inicio;
-            
+
         }
 
         private void EventoGrid(object o, EventArgs e)
@@ -185,7 +180,7 @@ namespace Perron.Controller
         {
             _view.PopularGrid(_service.GetListaSabor(status));
         }
-    
+
         #endregion
 
     }

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Perron.Presenter.Outros
@@ -16,7 +12,7 @@ namespace Perron.Presenter.Outros
         Panel _painel;
 
 
-       public PresenterGetEstatusCadastro(Panel painel)
+        public PresenterGetEstatusCadastro(Panel painel)
         {
             _painel = painel;
             InstanciarView(painel);
@@ -40,9 +36,9 @@ namespace Perron.Presenter.Outros
         {
             if (_view.Ativo == true && _view.Inativo == true)
                 return EStatusCadastro.Todos;
-           else if (_view.Ativo == true)
+            else if (_view.Ativo == true)
                 return EStatusCadastro.Ativo;
-           else if (_view.Inativo == true)
+            else if (_view.Inativo == true)
                 return EStatusCadastro.Inativo;
 
 
@@ -79,7 +75,7 @@ namespace Perron.Presenter.Outros
         }
         public void SetStatus(EStatusCadastro status)
         {
-            switch (status) 
+            switch (status)
             {
                 case EStatusCadastro.none:
                     _view.Ativo = false;
@@ -105,7 +101,7 @@ namespace Perron.Presenter.Outros
             }
 
         }
-        private  bool SetarStatusAtivo { set { _view.Ativo = value; } }
+        private bool SetarStatusAtivo { set { _view.Ativo = value; } }
         private bool SetarStatusInativo { set { _view.Inativo = value; } }
         #endregion
     }

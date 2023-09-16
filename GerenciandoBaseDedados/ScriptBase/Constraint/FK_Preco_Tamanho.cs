@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Repository.ScriptBase.Constraint
+﻿namespace Repository.ScriptBase.Constraint
 {
     public class FK_Preco_Tamanho : IScriptConstraint
     {

@@ -4,7 +4,6 @@ using Perron.Controller;
 using Perron.Factory.Controller;
 using Perron.Presenter;
 using Perron.Presenter.Cadastro;
-using System.Net.NetworkInformation;
 using System.Windows.Forms;
 
 public static class FactoryPresenter
@@ -23,7 +22,7 @@ public static class FactoryPresenter
         return new PresenterIngrediente(view, servico);
 
     }
-    public static IPresenterIngredienteSabor  EngredienteSabor(Panel painel)
+    public static IPresenterIngredienteSabor EngredienteSabor(Panel painel)
     {
         var view = FactoryView.CadastroEngredienteSabor(painel);
 
@@ -35,7 +34,7 @@ public static class FactoryPresenter
         var view = FactoryView.CadastroSabor(viewPai);
         var serivce = FactoryService.Sabor();
 
-        return new PresenterSabor(view,serivce);
+        return new PresenterSabor(view, serivce);
 
     }
     public static IPresenterClasse Classe(IViewPrincipal viewPai)
@@ -56,16 +55,16 @@ public static class FactoryPresenter
         var service = FactoryService.CadastroPreco();
 
         return new PresenterCadastroPreco(view, service);
-    } 
+    }
     public static IPresenterCadastroPessoa CadastroPessoa(Form viewPai, ETipoPessoa tipo)
     {
         var _serivce = FactoryService.CadastroTipoPessoa(ETipoPessoa.Pessoa);
         var view = FactoryView.CadastroPessoa(viewPai);
-        return new PresenterCadastroPessoa(tipo,view,_serivce);
+        return new PresenterCadastroPessoa(view, _serivce, tipo);
     }
-    
 
-    
+
+
 
 }
 

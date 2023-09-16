@@ -1,15 +1,13 @@
-﻿using System;
+﻿using Dapper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Dapper;
 namespace Repository.Repository
 {
 
 
 
-    public  class RepositoryClasse: IRepositoryClasse 
+    public class RepositoryClasse : IRepositoryClasse
     {
         private void pc_cadastroClasse(DbSession Session, ClasseModel Classe)
         {
@@ -28,32 +26,32 @@ namespace Repository.Repository
                 throw new Exception(ex.Message);
             }
         }
-        private List<ClasseModel> ScriptGetListaClasse(DbSession session , EStatusCadastro status)
+        private List<ClasseModel> ScriptGetListaClasse(DbSession session, EStatusCadastro status)
         {
             bool ret = false;
 
             if (status.Equals(EStatusCadastro.Todos))
-                    return session.Connection.Query<ClasseModel>("select Id,Descricao as DescricaoClasse,Ativo from Classe").ToList();
+                return session.Connection.Query<ClasseModel>("select Id,Descricao as DescricaoClasse,Ativo from Classe").ToList();
 
             else
             {
                 ret = EStatusCadastro.Ativo.Equals(status);
-                    return session.Connection.Query<ClasseModel>("select Id,Descricao as DescricaoClasse,Ativo from Classe where ativo = @StatusCadastro",param: new { StatusCadastro = ret}).ToList();
+                return session.Connection.Query<ClasseModel>("select Id,Descricao as DescricaoClasse,Ativo from Classe where ativo = @StatusCadastro", param: new { StatusCadastro = ret }).ToList();
 
             }
         }
-        public  List<ClasseModel> GetLista(EStatusCadastro status)
+        public List<ClasseModel> GetLista(EStatusCadastro status)
         {
             using (var Session = new DbSession())
             {
-                return this.ScriptGetListaClasse(Session,status);
+                return this.ScriptGetListaClasse(Session, status);
             }
         }
-        private ClasseModel ScriptGetClassePorID(DbSession session,int id)
+        private ClasseModel ScriptGetClassePorID(DbSession session, int id)
         {
             return session.Connection.Query<ClasseModel>($"select Id,Descricao as DescricaoClasse,Ativo from Classe where id = {id}").FirstOrDefault();
         }
-        public  ClasseModel GetItemPorID(int Id)
+        public ClasseModel GetItemPorID(int Id)
         {
             using (var session = new DbSession())
             {
@@ -67,6 +65,6 @@ namespace Repository.Repository
                 this.pc_cadastroClasse(Session, classe);
             }
         }
-      
+
     }
 }

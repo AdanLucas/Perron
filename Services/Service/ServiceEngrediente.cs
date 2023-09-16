@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Services.Service
 {
@@ -29,7 +26,7 @@ namespace Services.Service
                 _repositorio.Salvar(Engrediente);
 
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
 
                 throw ex;

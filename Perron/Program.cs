@@ -1,8 +1,4 @@
-﻿using Perron.Factory.Controller;
-using Perron.View.Forms;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -14,7 +10,7 @@ namespace Perron
         /// Ponto de entrada principal para o aplicativo.
         /// </summary>
         [STAThread]
-        static  void Main()
+        static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

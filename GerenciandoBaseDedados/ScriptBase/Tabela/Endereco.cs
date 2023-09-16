@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Repository.ScriptBase.Tabela
+﻿namespace Repository.ScriptBase.Tabela
 {
     internal class Endereco : IScriptTabela
     {
@@ -24,7 +18,7 @@ namespace Repository.ScriptBase.Tabela
                             	[Rua] [varchar](300) NULL,
                             	[Numero] [varchar](10) NULL,
                             	[Bairro] [varchar](250) NULL,
-                            	[Complemento] [varchar](250) NULL,
+                                [Cidade] [varchar](50) NULL,
                             	[Ativo] [bit] NULL,
                                              CONSTRAINT [PK_Endereco] PRIMARY KEY CLUSTERED ([Id] ASC) 
                                               WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]

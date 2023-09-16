@@ -54,6 +54,7 @@
     <Compile Include="Repository\RepositoryDinamico.cs" />
     <Compile Include="Repository\RepositoryEngrediente.cs" />
     <Compile Include="Repository\RepositoryPessoa.cs" />
+    <Compile Include="Repository\RepositoryPessoaTipoCliente.cs" />
     <Compile Include="Repository\RepositoryPessoaTipoEmpresa.cs" />
     <Compile Include="Repository\RepositoryPessoaTipoFuncionario.cs" />
     <Compile Include="Repository\RepositorySabor.cs" />

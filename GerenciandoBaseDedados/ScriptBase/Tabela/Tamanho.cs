@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Repository.ScriptBase.Tabela
+﻿namespace Repository.ScriptBase.Tabela
 {
     public class Tamanho : IScriptTabela
     {
@@ -12,9 +6,9 @@ namespace Repository.ScriptBase.Tabela
 
         public string NomeTabela => "Tamanho";
 
-        public string Script 
-        { 
-            get 
+        public string Script
+        {
+            get
             {
                 return $@"CREATE TABLE [dbo].[{NomeTabela}](
     						[Id] [int] IDENTITY(1,1) NOT NULL,
@@ -25,8 +19,8 @@ namespace Repository.ScriptBase.Tabela
     					(
     						[Id] ASC
     					)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-    					) ON [PRIMARY]"; 
-            } 
+    					) ON [PRIMARY]";
+            }
         }
     }
 }

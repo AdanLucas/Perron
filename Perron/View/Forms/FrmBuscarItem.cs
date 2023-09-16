@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace Perron.View.Forms
 {
-    public partial class FrmBuscarItem: Form
+    public partial class FrmBuscarItem : Form
     {
         public FrmBuscarItem()
         {
@@ -20,7 +20,7 @@ namespace Perron.View.Forms
                 dgvItem.Columns["Id"].Visible = false;
                 dgvItem.Columns["Ativo"].Visible = false;
                 dgvItem.ColumnHeadersVisible = false;
-                
+
             }
         }
         public T GetItemSelecionado<T>()
@@ -41,7 +41,7 @@ namespace Perron.View.Forms
 
             this.DialogResult = DialogResult.OK;
             this.Close();
-          
+
         }
     }
 }

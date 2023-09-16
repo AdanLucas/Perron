@@ -1,9 +1,7 @@
-﻿using System;
+﻿using Dapper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Dapper;
 
 namespace Repository.Repository
 {
@@ -12,14 +10,14 @@ namespace Repository.Repository
 
         #region Interfaces
 
-        
+
 
         #endregion
 
-     
+
 
         #region Metodos Privados
-        private int pc_cadastroSabor(DbSession Session,SaborModel sabor)
+        private int pc_cadastroSabor(DbSession Session, SaborModel sabor)
         {
             return Session.Connection.Query<int>("exec pc_cadastroSabor @id,@descricao,@idClasse,@ativo",
                 param: new
@@ -28,11 +26,11 @@ namespace Repository.Repository
                     descricao = sabor.Descricao,
                     idClasse = sabor.Classe.Id,
                     ativo = sabor.Ativo
-                         },transaction: Session.Transaction).FirstOrDefault<int>();
+                }, transaction: Session.Transaction).FirstOrDefault<int>();
 
 
         }
-        private void CadastroEngredienteSabor(DbSession Session,long IDsabor,EngredienteModel Engrediente)
+        private void CadastroEngredienteSabor(DbSession Session, long IDsabor, EngredienteModel Engrediente)
         {
             try
             {
@@ -40,8 +38,8 @@ namespace Repository.Repository
                 {
                     IDSabor = (int)IDsabor,
                     IDEngrediente = Engrediente.Id,
-                     Ativo = Engrediente.Ativo
-                },transaction: Session.Transaction);
+                    Ativo = Engrediente.Ativo
+                }, transaction: Session.Transaction);
 
             }
             catch (Exception ex)
@@ -51,15 +49,15 @@ namespace Repository.Repository
 
 
         }
-        private ClasseModel GetClassePorSabor(DbSession session,int IDClasse)
+        private ClasseModel GetClassePorSabor(DbSession session, int IDClasse)
         {
 
             return session.Connection.Query<ClasseModel>($"Select * from Classe where id = {IDClasse}").FirstOrDefault();
-            
+
         }
         private List<EngredienteModel> GetListaEngredientePorSabor(DbSession session, long IDSabor)
         {
-           return session.Connection.Query<EngredienteModel>($@"SELECT * FROM  FN_GetEngredientePorSabor ({IDSabor})").ToList();
+            return session.Connection.Query<EngredienteModel>($@"SELECT * FROM  FN_GetEngredientePorSabor ({IDSabor})").ToList();
         }
         #endregion
 
@@ -76,7 +74,7 @@ namespace Repository.Repository
                 {
                     long IDclasse = session.Connection.Query<int>($"Select IdClasse From Sabor where Id = {item.Id}").FirstOrDefault();
                     item.Classe = session.Connection.Query<ClasseModel>($"select Id,Descricao as DescricaoClasse,Ativo from Classe where id= {IDclasse}").FirstOrDefault();
-                    item.Engredientes = GetListaEngredientePorSabor(session,item.Id);
+                    item.Engredientes = GetListaEngredientePorSabor(session, item.Id);
                 }
 
                 return Lista;
@@ -89,7 +87,7 @@ namespace Repository.Repository
         {
             using (var session = new DbSession())
             {
-              return session.Connection.Query<SaborModel>($"Select * from Sabor where id = {Id}").FirstOrDefault();
+                return session.Connection.Query<SaborModel>($"Select * from Sabor where id = {Id}").FirstOrDefault();
             }
         }
 
@@ -103,7 +101,7 @@ namespace Repository.Repository
 
                 try
                 {
-                    sabor.Id =  pc_cadastroSabor(Session, sabor);
+                    sabor.Id = pc_cadastroSabor(Session, sabor);
 
                     foreach (var Engrediente in sabor.GetEngredientePorStatus(EStatusCadastro.Todos))
                     {
@@ -117,13 +115,13 @@ namespace Repository.Repository
                 {
                     Unit.RollBack();
                     throw new Exception("Ocorreu Um erro Ao Cadastrar Sabor");
-                    
-                }    
+
+                }
 
 
-                
+
             }
-        } 
+        }
 
         #endregion
     }

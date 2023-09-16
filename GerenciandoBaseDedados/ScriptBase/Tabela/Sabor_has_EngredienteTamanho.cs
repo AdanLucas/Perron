@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Repository.ScriptBase.Tabela
+﻿namespace Repository.ScriptBase.Tabela
 {
     internal class Sabor_has_EngredienteTamanho : IScriptTabela
     {
@@ -12,9 +6,9 @@ namespace Repository.ScriptBase.Tabela
 
         public string NomeTabela => "Sabor_has_EngredienteTamanho";
 
-        public string Script 
-        { 
-            get 
+        public string Script
+        {
+            get
             {
                 return $@"CREATE TABLE [dbo].[{NomeTabela}]
                         (
@@ -25,7 +19,7 @@ namespace Repository.ScriptBase.Tabela
     						[Ativo] [bit] NULL
     					) ON [PRIMARY]"
                  ;
-            } 
+            }
         }
     }
 }

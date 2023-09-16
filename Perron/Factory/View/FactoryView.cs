@@ -1,11 +1,6 @@
 ﻿using Model.Interface.View;
 using Perron;
 using Perron.View.Forms;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 public static class FactoryView
@@ -73,9 +68,9 @@ public static class FactoryView
     }
     public static IViewCadastroPessoa CadastroPessoa(Form viewPrincipal)
     {
-        var view =new FrmPessoa();
+        var view = new FrmPessoa();
         SetarMidParentTelaPrincial(view, viewPrincipal);
-        
+
         return view;
     }
 }

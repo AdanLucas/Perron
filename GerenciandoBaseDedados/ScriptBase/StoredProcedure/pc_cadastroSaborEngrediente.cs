@@ -1,18 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Dapper;
-namespace Repository.ScriptBase.StoredProcedure
+﻿namespace Repository.ScriptBase.StoredProcedure
 {
     internal class pc_cadastroSaborEngrediente : IScriptProcedure
     {
         public string GUID { get { return "84B5EE0B-17E1-49E9-A2FA-A460CDE62B2E"; } }
         public string Procedure { get { return "pc_cadastroSaborEngrediente"; } }
 
-        public string ScriptPrcedured 
+        public string ScriptPrcedured
         {
             get
             {
@@ -35,7 +28,7 @@ namespace Repository.ScriptBase.StoredProcedure
                             	END
                             END";
             }
-         
+
         }
     }
 }

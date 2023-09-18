@@ -8,16 +8,21 @@ namespace Perron.Controller
 
         public static IControllerTipoPessoa GerarControllerTipoPessoa(ETipoPessoa tipo)
         {
-            IControllerTipoPessoa controller = null;
+            try
+            {
 
-            Type type = Type.GetType(tipo.GetDadosController());
+                IControllerTipoPessoa controller = null;
 
-            if (type != null)
-                controller = Activator.CreateInstance(type) as IControllerTipoPessoa;
+                Type type = Type.GetType(tipo.GetDadosController());
 
-            controller.TipoController = tipo;
+                if (type != null)
+                    controller = Activator.CreateInstance(type) as IControllerTipoPessoa;
 
-            return controller;
+                controller.TipoController = tipo;
+
+                return controller;
+            }
+            catch{ return null; }
         }
 
     }

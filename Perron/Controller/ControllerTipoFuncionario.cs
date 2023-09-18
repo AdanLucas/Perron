@@ -1,6 +1,8 @@
 ﻿using Model.Emumerator;
+using Model.Model;
 using Perron.View;
 using System;
+using System.Dynamic;
 using System.Windows.Forms;
 
 
@@ -10,29 +12,28 @@ namespace Perron.Controller
 
     public class ControllerTipoFuncionario : ControllerCadastroTipoPessoaBase
     {
+        public ControllerTipoFuncionario() : base(ETipoPessoa.Funcionario) {}
 
-
-
-        public ControllerTipoFuncionario() : base(ETipoPessoa.Funcionario) { }
-
-
-        
-
-        private FuncionarioModel funcionario { get { return GetDadosFuncionario(); } set { _funcionario = value; } }
-        private FuncionarioModel _funcionario { get; set; }
-        private FuncionarioModel GetDadosFuncionario()
+        protected override Aentity GetDadosEntidade()
         {
-            if (_funcionario == null)
-                _funcionario = new FuncionarioModel();
+            if (entidade == null)
+            {
+                entidade = new FuncionarioModel();
+                entidade.Ativo = true;
+
+            }
+
+              var funcionario = entidade as FuncionarioModel;
+
 
             try
             {
                 var view = (UCTipoFuncionario)_view;
-                _funcionario.Id = _pessoal.Id;
-                _funcionario.Salario = view.Salario;
-                _funcionario.DataAdimissao = view.DatraContrato;
+                funcionario.Id = _pessoa.Id;
+                funcionario.Salario = view.Salario;
+                funcionario.DataAdimissao = view.DatraContrato;
 
-                return _funcionario;
+                return entidade as FuncionarioModel;
             }
             catch (Exception ex)
             {
@@ -40,10 +41,18 @@ namespace Perron.Controller
             }
 
         }
-        public override void SetarUserEmTabPage(TabPage page)
+        protected override void SetDadosEntidade(Aentity _entidade)
         {
-            _view = new UCTipoFuncionario();
-            page.Controls.Add(_view);
+            if (entidade == null)
+                entidade = new FuncionarioModel();
+
+            var view = (UCTipoFuncionario)_view;
+            var entt = _entidade as FuncionarioModel;
+
+            view.Salario = entt.Salario;
+            view.DatraContrato = entt.DataAdimissao;
+
+           entidade = entt;
         }
         protected override void ComportamentoPopularCadastrando()
         {
@@ -61,14 +70,18 @@ namespace Perron.Controller
         {
             try
             {
-                funcionario.Id = _pessoal.Id;
-                _service.Salvar(funcionario);
-            }
-            catch (Exception Ex)
-            {
+                ValidadorModel.ValidarModeloLancaExcecao(Entidade as FuncionarioModel);
+                _service.Salvar(Entidade as FuncionarioModel);
 
-                throw Ex;
             }
+            catch(Exception ex) 
+            {
+                throw ex;
+            }
+        }
+        protected override UserControl IniciarUserControl()
+        {
+            return new UCTipoFuncionario();
         }
 
 

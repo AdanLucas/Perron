@@ -14,9 +14,9 @@
                             BEGIN
                             	DECLARE @RET INT
                             
-                            	IF(EXISTS(SELECT 1 FROM PessoaTipoFuncionario where id = Coalesce(id,0)))
+                            	IF(EXISTS(SELECT 1 FROM Funcionario where id = Coalesce(id,0)))
                             		BEGIN
-                            			UPDATE PessoaTipoFuncionario SET DataAdimissao = @DataAdimissao,Salario =  @Salario,Ativo = @Ativo where id = @id
+                            			UPDATE Funcionario SET DataAdimissao = @DataAdimissao,Salario =  @Salario,Ativo = @Ativo where id = @id
                             
                             			SET @RET = @id
                             		END

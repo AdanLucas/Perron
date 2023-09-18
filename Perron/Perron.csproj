@@ -63,11 +63,11 @@
     <Compile Include="Controller\ControllerTipoEmpresa.cs" />
     <Compile Include="Controller\ControllerTipoFuncionario.cs" />
     <Compile Include="Controller\FactoryController.cs" />
-    <Compile Include="Global\ConfiguracoesGlobais.cs" />
+    <Compile Include="Global\CacheSessao.cs" />
     <Compile Include="Presenter\Cadastro\PresenterCadastroPessoa.cs" />
     <Compile Include="Presenter\Cadastro\PresenterCadastroPreco.cs" />
     <Compile Include="Presenter\Outros\PresenterBuscarItemGenerico.cs" />
-    <Compile Include="Outros\ExibirStatusCadastro.cs" />
+    <Compile Include="Componentes\ExibirStatusCadastro.cs" />
     <Compile Include="Presenter\Cadastro\PresenterCadastroTamanho.cs" />
     <Compile Include="Presenter\Cadastro\PresenterClasse.cs" />
     <Compile Include="Presenter\Cadastro\PresenterEngredienteSabor.cs" />

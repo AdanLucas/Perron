@@ -1,11 +1,12 @@
-﻿using System.Collections;
+﻿
+using System.Collections.Generic;
 
 public interface IReposotiryTipoPessoa
 {
     int Salvar(object cadastro);
-    void SalvarLista(IList lista);
+    void SalvarLista(System.Collections.IList lista);
     object GetCadastroPorId(int Id);
-    IList GetLista();
+    List<T> GetLista<T>();
 
 }
 

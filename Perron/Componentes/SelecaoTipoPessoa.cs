@@ -17,6 +17,7 @@ namespace Perron.Componentes
         private Dictionary<ETipoPessoa, CheckBox> _checkBoxes = new Dictionary<ETipoPessoa, CheckBox>();
         private ETipoPessoa _tipoPessoaSetado { get; set; }
         public bool HabilitarComponentes { set { habilitarDesabilitarComponentes(value); } }
+        public event EventHandler EventoAlterandoTipoPessoa;
         public event EventHandlerGenerico<ETipoPessoa> EventoAlterandoTipoPessoaSelecionado;
         public event EventHandlerGenerico<ETipoPessoa> EventoRemovendoTipoPessoa;
         public void RemoverCheck()
@@ -114,6 +115,7 @@ namespace Perron.Componentes
                     var ckTipo = new CheckBox();
                     ETipoPessoa _tipo = item;
                     ckTipo.Dock = DockStyle.Left;
+                    ckTipo.Name = Enum.GetName(typeof(ETipoPessoa), _tipo);
                     ckTipo.Text = Enum.GetName(typeof(ETipoPessoa), _tipo);
                     ckTipo.Width = ckTipo.Text.Length * 10;
                     pnElemento.Width += ckTipo.Width;
@@ -131,32 +133,26 @@ namespace Perron.Componentes
                 item.Value.Enabled = status;
             }
         }
-        private ETipoPessoa PegarTipoPeloNome(string nome)
+        public ETipoPessoa PegarTipoPeloNome(string nome)
         {
             ETipoPessoa[] value = (ETipoPessoa[])Enum.GetValues(typeof(ETipoPessoa));
 
-
-            foreach (var item in value)
-            {
-                var nomeItemdaVez = Enum.GetName(typeof(ETipoPessoa), item);
-
-                if (nomeItemdaVez == nome)
-                    return item;
-
-            }
-
-            return ETipoPessoa.Pessoa;
+           return value.Where(en=>en.GetNomeItem() == nome).FirstOrDefault();
 
         }
         private void NotificarEventoTipoPessoal(object o, EventArgs e)
         {
-            var ck = (CheckBox)o;
 
-            if (!ck.Checked && EventoRemovendoTipoPessoa != null)
-                EventoRemovendoTipoPessoa(this, new EventArgsGenerico<ETipoPessoa> { Item = PegarTipoPeloNome(ck.Name) });
+            if (EventoAlterandoTipoPessoa != null)
+                     EventoAlterandoTipoPessoa(o, EventArgs.Empty);
 
-            if (EventoAlterandoTipoPessoaSelecionado != null)
-                EventoAlterandoTipoPessoaSelecionado(this, new EventArgsGenerico<ETipoPessoa> { Item = GetTipoPessoa() });
+            //var ck = (CheckBox)o;
+
+                //if (!ck.Checked && EventoRemovendoTipoPessoa != null)
+                //    EventoRemovendoTipoPessoa(o, new EventArgsGenerico<ETipoPessoa> { Item = PegarTipoPeloNome(ck.Name) });
+
+                //if (EventoAlterandoTipoPessoaSelecionado != null)
+                //    EventoAlterandoTipoPessoaSelecionado(o, new EventArgsGenerico<ETipoPessoa> { Item = GetTipoPessoa() });
         }
 
     }

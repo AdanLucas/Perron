@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Repository.Repository
@@ -17,9 +18,9 @@ namespace Repository.Repository
         {
             return _session.Connection.Query<FuncionarioModel>("select * from PessaTipoFuncionario where id = @Id", param: new { Id }).FirstOrDefault();
         }
-        protected override IList ScriptGetListaCadastrado()
+        protected override List<T> ScriptGetListaCadastrado<T>()
         {
-            return _session.Connection.Query<FuncionarioModel>("select * from PessaTipoFuncionario").ToList();
+            return _session.Connection.Query<T>("select * from PessaTipoFuncionario").ToList();
         }
     }
 }

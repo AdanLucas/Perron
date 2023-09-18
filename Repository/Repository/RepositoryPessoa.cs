@@ -3,6 +3,7 @@ using Model.Model;
 using System;
 using System.Activities.Statements;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Repository.Repository
@@ -36,10 +37,19 @@ namespace Repository.Repository
         protected override object ScriptGetCadastroPorID(int Id)
         {
             return _session.Connection.Query<object>("SELECT * FROM PESSOA WHERE ID = @ID", param: new { Id }).FirstOrDefault();
+
+
         }
-        protected override IList ScriptGetListaCadastrado()
+        protected override List<T> ScriptGetListaCadastrado<T>()
         {
-            return _session.Connection.Query<object>("SELECT * FROM PESSOA").ToList();
+            var lista = _session.Connection.Query<T>("SELECT * FROM PESSOA").ToList();
+
+            foreach (var item in lista as List<PessoaModel>)
+            {
+                item.Enderecos = _session.Connection.Query<EnderecoModel>("SELECT * FROM ENDERECO WHERE IDPESSOA = @ID",param: new {ID = item.Id}).ToList();
+            }
+            
+            return lista;
         }
     }
 }

@@ -7,7 +7,7 @@ namespace Perron.View
     {
         public DateTime DatraContrato { get { return tpkDataContratacao.Value; } set { tpkDataContratacao.Value = value; } }
 
-        public decimal Salario
+        public decimal? Salario
         {
             get
             {
@@ -18,7 +18,7 @@ namespace Perron.View
                 catch
                 {
                     txtSalario.Clear();
-                    return -1;
+                    return null;
                 }
             }
             set

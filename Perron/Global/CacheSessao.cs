@@ -1,26 +1,28 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 
 
-public class ConfiguracoesGlobais
+public class CacheSessao
 {
-    public static ConfiguracoesGlobais Instancia
+
+    public List<PessoaModel> ListaPessoa {  get; set; }
+    public static CacheSessao Instancia
     {
         get
         {
             if (instance == null)
-                instance = new ConfiguracoesGlobais();
+                instance = new CacheSessao();
 
 
             return instance;
         }
-
     }
-    private static ConfiguracoesGlobais instance;
+    private static CacheSessao instance;
     private IServiceBancoDeDados _serviceBancodedados;
 
-    private ConfiguracoesGlobais()
+    private CacheSessao()
     {
         _serviceBancodedados = FactoryService.BancoDados();
     }

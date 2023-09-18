@@ -7,12 +7,15 @@ namespace Perron.Controller
     public class ControllerCadastroTipoPessoaBase : IControllerTipoPessoa
     {
 
-        protected virtual UserControl _view;
+        protected  UserControl _view;
+        public Aentity Entidade { get { return GetDadosEntidade(); } set { SetDadosEntidade(value);} }
+        protected Aentity entidade { get; set; }
 
+        
         public ETipoPessoa TipoController { get; set; }
         public Func<PessoaModel> GetDadosPessoa { get; set; }
 
-        protected PessoaModel _pessoal;
+        protected PessoaModel _pessoa;
         protected IServiceTipoPessoa _service;
 
         #region Construtor
@@ -59,6 +62,9 @@ namespace Perron.Controller
         protected virtual void ComportamentoCadastrando() { }
         protected virtual void ComportamentoNone() { }
         protected virtual void SalvarCadastro() { }
+        protected virtual void SetDadosEntidade(Aentity entidade) { }
+        protected virtual Aentity GetDadosEntidade() { return null; }
+
         #endregion
 
 
@@ -68,11 +74,10 @@ namespace Perron.Controller
         {
             SetarComportamentoTela(comportamento);
         }
-        public void Salvar(PessoaModel Pessoa)
+        public void Salvar()
         {
             try
             {
-                _pessoal = Pessoa;
                 SalvarCadastro();
             }
             catch (Exception ex)
@@ -93,6 +98,7 @@ namespace Perron.Controller
             _view = IniciarUserControl();
             local.Add(_view);
             _view.Dock = DockStyle.Fill;
+            _pessoa = GetDadosPessoa();
         }
 
         public void AlterarStatusCadastro(bool status)
@@ -110,10 +116,7 @@ namespace Perron.Controller
             throw new NotImplementedException();
         }
 
-        public void Salvar()
-        {
-            throw new NotImplementedException();
-        }
+      
 
 
 

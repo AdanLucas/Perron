@@ -1,28 +1,26 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using Dapper;
+using Model.Model;
 
 namespace Repository.Repository
 {
-    public class RepositoryPessoaTipoCliente : IReposotiryTipoPessoa
+    public class RepositoryPessoaTipoCliente : RepositoryBaseTipoPessoa
     {
-        public object GetCadastroPorId(int Id)
+        protected override object ScriptGetCadastroPorID(int Id)
         {
-            throw new NotImplementedException();
+            return _session.Connection.Query<ClienteModel>("SELECT * FROM CLIENTE WHERE ID = @Id", param: new { Id }).FirstOrDefault();
         }
-
-        public IList GetLista()
+        protected override int Procedure(object cadastro)
         {
-            throw new NotImplementedException();
+            var _cadastro = cadastro as ClienteModel;
+            return _session.Connection.Query<int>("exec pc_CadastroCliente @id,@Ativo", param: new { _cadastro.Id, _cadastro.Ativo }).FirstOrDefault();
         }
-
-        public int Salvar(object cadastro)
+        protected override List<T> ScriptGetListaCadastrado<T>()
         {
-            throw new NotImplementedException();
-        }
-
-        public void SalvarLista(IList lista)
-        {
-            throw new NotImplementedException();
+            return _session.Connection.Query<T>("SELECT * FROM CLIENTE").ToList();
         }
     }
 }

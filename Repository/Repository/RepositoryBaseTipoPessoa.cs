@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 
 namespace Repository.Repository
 {
@@ -10,7 +11,7 @@ namespace Repository.Repository
 
         protected virtual int Procedure(object cadastro) { return 0; }
         protected virtual object ScriptGetCadastroPorID(int Id) { return null; }
-        protected virtual IList ScriptGetListaCadastrado() { return null; }
+        protected virtual List<T> ScriptGetListaCadastrado<T>() { return null; }
 
 
         public object GetCadastroPorId(int Id)
@@ -20,11 +21,11 @@ namespace Repository.Repository
                 return ScriptGetCadastroPorID(Id);
             }
         }
-        public IList GetLista()
+        public List<T> GetLista<T>()
         {
             using (_session = new DbSession())
             {
-                return ScriptGetListaCadastrado();
+                return ScriptGetListaCadastrado<T>();
             }
         }
         public int Salvar(object cadastro)

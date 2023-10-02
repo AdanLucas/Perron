@@ -16,8 +16,8 @@ namespace Perron.Controller
 
         #region Listas
 
-        private List<EngredienteModel> ListaEngredienteCadastrados;
-        private List<EngredienteModel> ListaEngredienteSabor;
+        private List<IngredienteModel> ListaEngredienteCadastrados;
+        private List<IngredienteModel> ListaEngredienteSabor;
         #endregion
 
 
@@ -38,7 +38,7 @@ namespace Perron.Controller
         #endregion
 
         #region Metodos Publicos
-        public List<EngredienteModel> GetIngredienteSabor()
+        public List<IngredienteModel> GetIngredienteSabor()
         {
             return ListaEngredienteSabor;
 
@@ -84,7 +84,7 @@ namespace Perron.Controller
 
 
         }
-        public void SetListaIngredienteSabor(List<EngredienteModel> Lista)
+        public void SetListaIngredienteSabor(List<IngredienteModel> Lista)
         {
             if (Lista.Count > 0)
             {
@@ -109,7 +109,7 @@ namespace Perron.Controller
         }
         private void SetarListaIngredienteCadastrados()
         {
-            var Lista = ServiceDinamico<EngredienteModel>.GetLista();
+            var Lista = ServiceDinamico<IngredienteModel>.GetLista();
             if (Lista.Count > 0)
                 ListaEngredienteCadastrados = Lista;
         }
@@ -119,7 +119,7 @@ namespace Perron.Controller
             {
                 if (ListaEngredienteCadastrados.Count > 0)
                 {
-                    List<EngredienteModel> Lista;
+                    List<IngredienteModel> Lista;
 
                     if (Busca == "")
                     {
@@ -134,7 +134,7 @@ namespace Perron.Controller
                 }
             }
         }
-        private List<EngredienteModel> FiltrarListaPorStatus(List<EngredienteModel> ListaIn)
+        private List<IngredienteModel> FiltrarListaPorStatus(List<IngredienteModel> ListaIn)
         {
             switch (_status.GetStatus())
             {
@@ -154,9 +154,9 @@ namespace Perron.Controller
             return null;
 
         }
-        private List<EngredienteModel> FiltrarListaPorDescricao(List<EngredienteModel> LinstaIn)
+        private List<IngredienteModel> FiltrarListaPorDescricao(List<IngredienteModel> LinstaIn)
         {
-            var ListOut = new List<EngredienteModel>();
+            var ListOut = new List<IngredienteModel>();
 
             if (ListaEngredienteSabor != null)
             {
@@ -216,16 +216,16 @@ namespace Perron.Controller
         }
         private void ResetListaEngredienteSabor()
         {
-            ListaEngredienteSabor = new List<EngredienteModel>();
+            ListaEngredienteSabor = new List<IngredienteModel>();
             ExibirEngredienteSabor();
 
         }
-        private void AdicionarEngredienteListaSabor(EngredienteModel Engrediente)
+        private void AdicionarEngredienteListaSabor(IngredienteModel Engrediente)
         {
             if (MessageBox.Show($"Deseja Adicionar o Engrediente {Engrediente.Descricao} ao Sabor?", "Adicionar?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 if (ListaEngredienteSabor == null)
-                    ListaEngredienteSabor = new List<EngredienteModel>();
+                    ListaEngredienteSabor = new List<IngredienteModel>();
 
                 ListaEngredienteSabor.Add(Engrediente);
                 _status.SetStatus(EStatusCadastro.Ativo);

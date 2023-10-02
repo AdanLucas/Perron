@@ -14,7 +14,7 @@ namespace Services.Service
         }
         public object GetCadastroPorId(int id)
         {
-            return null;
+          return _repo.GetCadastroPorId(id);
         }
 
         public IList GetListaCadastro(EStatusCadastro status)

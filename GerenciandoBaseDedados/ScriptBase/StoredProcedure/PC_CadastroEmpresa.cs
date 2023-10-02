@@ -14,7 +14,7 @@ namespace GerenciandoBaseDedados.ScriptBase.StoredProcedure
 											AS                                            
 											BEGIN
 											
-												IF(EXISTS(SELECT 1 FROM EMPRESA WHERE ID = COALESCE(@ID,0)
+												IF(EXISTS(SELECT 1 FROM EMPRESA WHERE ID = COALESCE(@ID,0)))
 												BEGIN 
 												UPDATE EMPRESA SET ATIVO = @Ativo WHERE ID = @ID
 												END

@@ -113,7 +113,7 @@
     <Compile Include="Model\DadosSaborEngredienteModel.cs" />
     <Compile Include="Model\EmpresaModel.cs" />
     <Compile Include="Model\EnderecoModel.cs" />
-    <Compile Include="Model\EngredienteModel.cs" />
+    <Compile Include="Model\IngredienteModel.cs" />
     <Compile Include="Model\FuncionarioModel.cs" />
     <Compile Include="Model\PessoaModel.cs" />
     <Compile Include="Model\PessoaTipoEmpresa.cs" />

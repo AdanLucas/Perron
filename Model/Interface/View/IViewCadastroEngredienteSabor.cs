@@ -23,11 +23,11 @@ public interface IViewCadastroEngredienteSabor
 
     #region Grid
 
-    void PopularGridEngredientesCadastrados(List<EngredienteModel> Lista);
-    void PopularGridEngredientesSabor(List<EngredienteModel> Lista);
+    void PopularGridEngredientesCadastrados(List<IngredienteModel> Lista);
+    void PopularGridEngredientesSabor(List<IngredienteModel> Lista);
 
-    EngredienteModel EngredienteSelecionadoGridEngredienteCadastrado { get; }
-    EngredienteModel EngredienteSelecionadoGridEngredienteSabor { get; }
+    IngredienteModel EngredienteSelecionadoGridEngredienteCadastrado { get; }
+    IngredienteModel EngredienteSelecionadoGridEngredienteSabor { get; }
 
     #endregion
 

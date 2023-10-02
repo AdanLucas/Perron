@@ -7,8 +7,8 @@ public interface IViewCadastroIngrediente : IViewPadraoCadastro
 
 
     string DescricaoIngrediente { get; set; }
-    void PopularGridIngredientes(List<EngredienteModel> Ingredientes);
-    EngredienteModel IngredienteSelecionado { get; }
+    void PopularGridIngredientes(List<IngredienteModel> Ingredientes);
+    IngredienteModel IngredienteSelecionado { get; }
     bool VisibilidadeGroupEngredientes { set; }
     EUnidadeMedida TipoMedida { get; set; }
     bool HabilitaComboTipoMedida { set; }

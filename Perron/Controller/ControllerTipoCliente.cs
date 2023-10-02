@@ -15,7 +15,11 @@ namespace Perron.Controller
 
         protected override UserControl IniciarUserControl()
         {
+            if(_view == null)
             return new UCCliente();
+
+
+            return _view;
         }
         protected override void SalvarCadastro()
         {

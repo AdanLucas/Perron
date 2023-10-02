@@ -8,6 +8,7 @@ public class CacheSessao
 {
 
     public List<PessoaModel> ListaPessoa {  get; set; }
+
     public static CacheSessao Instancia
     {
         get
@@ -21,7 +22,6 @@ public class CacheSessao
     }
     private static CacheSessao instance;
     private IServiceBancoDeDados _serviceBancodedados;
-
     private CacheSessao()
     {
         _serviceBancodedados = FactoryService.BancoDados();

@@ -27,13 +27,13 @@ namespace Perron.View.Forms
             set { txtDescricao.Text = value; }
 
         }
-        public EngredienteModel IngredienteSelecionado
+        public IngredienteModel IngredienteSelecionado
         {
             get
             {
                 try
                 {
-                    return (EngredienteModel)dgvIngredientes.CurrentRow.DataBoundItem;
+                    return (IngredienteModel)dgvIngredientes.CurrentRow.DataBoundItem;
                 }
                 catch
                 {
@@ -53,7 +53,7 @@ namespace Perron.View.Forms
             dgvIngredientes.DoubleClick += e;
         }
         public EventHandler EventoBuscar { get; set; }
-        public void PopularGridIngredientes(List<EngredienteModel> Ingredientes)
+        public void PopularGridIngredientes(List<IngredienteModel> Ingredientes)
         {
             dgvIngredientes.DataSource = null;
 

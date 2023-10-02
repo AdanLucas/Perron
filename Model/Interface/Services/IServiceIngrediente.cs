@@ -3,9 +3,9 @@
 
 public interface IServiceIngrediente
 {
-    List<EngredienteModel> GetListaEngredientesCadastroados();
-    void Salvar(EngredienteModel Engrediente);
-    void SalvarLista(List<EngredienteModel> ListaEngrediente);
+    List<IngredienteModel> GetListaEngredientesCadastroados();
+    void Salvar(IngredienteModel Engrediente);
+    void SalvarLista(List<IngredienteModel> ListaEngrediente);
 
 }
 

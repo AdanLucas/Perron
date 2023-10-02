@@ -1,28 +1,28 @@
 ﻿namespace Repository.ScriptBase.StoredProcedure
 {
-    internal class pc_cadastroDadosSaborEngrediente : IScriptProcedure
+    internal class pc_cadastroDadosSaborIngrediente : IScriptProcedure
     {
         public string GUID { get { return "F29D0EEA-EF95-4D2A-A998-1C83F9E53B12"; } }
-        public string Procedure { get { return "pc_cadastroDadosSaborEngrediente"; } }
+        public string Procedure { get { return "pc_cadastroDadosSaborIngrediente"; } }
 
         public string ScriptPrcedured
         {
             get
             {
-                return @"create Procedure pc_cadastroDadosSaborEngrediente(@idSaborEngrediente int, @tamanho int,@qnt decimal(6,2),@unidadeMedida int,@ativo bit)
+                return @"create Procedure pc_cadastroDadosSaborIngrediente(@idSaborEngrediente int, @tamanho int,@qnt decimal(6,2),@unidadeMedida int,@ativo bit)
 						AS
 						
 						BEGIN
 						
-							IF(EXISTS(SELECT 1 FROM Sabor_has_EngredienteTamanho WHERE IdSaborEngrediente = @idSaborEngrediente AND Tamanho = @tamanho))
+							IF(EXISTS(SELECT 1 FROM Sabor_has_IngredienteTamanho WHERE IdSaborEngrediente = @idSaborEngrediente AND Tamanho = @tamanho))
 								BEGIN
 						
-								UPDATE Sabor_has_EngredienteTamanho 
+								UPDATE Sabor_has_IngredienteTamanho 
 								       SET
 									    Quantidade = @QNT,
 										UnidadeMedida = @unidadeMedida,
 										Ativo = @ativo 
-										    WHERE IdSaborEngrediente = @idSaborEngrediente AND Tamanho = @tamanho
+										    WHERE IdSaborIngrediente = @idSaborEngrediente AND Tamanho = @tamanho
 						
 								END
 						

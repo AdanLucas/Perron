@@ -33,6 +33,8 @@ namespace Services.Service
                     }
                     catch (Exception ex)
                     {
+
+
                         throw ex;
                     }
 

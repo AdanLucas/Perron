@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Transactions;
 using System.Windows.Forms;
 using System.Security.AccessControl;
+using System.Diagnostics.Eventing.Reader;
 
 namespace Perron.Presenter.Cadastro
 {
@@ -17,15 +18,15 @@ namespace Perron.Presenter.Cadastro
     {
 
         #region Propriedades
-
+        private List<PessoaModel> ListaPessoa {  get; set; }
         private PessoaModel pessoa { get { return GetDadosPessoa(); } set { SetDadospessoa(value); } }
         private PessoaModel _pessoa;
 
         private ControllerCadastroEndereco controllerEndereco;
 
         private Action<EComportamentoTela> ExecutaAlteracaoComportamento;
-        private Action ExecutarCadastro;
-
+        private Action<PessoaModel> AtualizaDadosEntidade { get; set;}
+        private Action EventoLimparCampos { get; set; }
         private ETipoPessoa TipoPessoaCadastro { get; set; }
         private readonly IViewCadastroPessoa _view;
         private SelecaoTipoPessoa cmpTipoPessoa;
@@ -43,12 +44,18 @@ namespace Perron.Presenter.Cadastro
             SetarNomeTela();
             _service = service;
             cmpTipoPessoa = new SelecaoTipoPessoa(_view.PainelTipoPesso, TipoPessoaCadastro);
-            //cmpTipoPessoa.EventoAlterandoTipoPessoaSelecionado += EventoCriarTabPage;
             cmpTipoPessoa.EventoAlterandoTipoPessoa += EventoAlterandoTipoPessoa;
             GetDadosPessoa();
             controllerEndereco = new ControllerCadastroEndereco(_view.GBEndereco.Controls, ref _pessoa);
+            EventoLimparCampos += controllerEndereco.EventoLimparCampos;
+            AtualizaDadosEntidade += controllerEndereco.EventoAtualizarDadosEntidade;
+
+
+            DelegarEventos();
             ExecutaAlteracaoComportamento += controllerEndereco.AlterarEstadoCadastro;
             base.ComportamentoAtual = EComportamentoTela.Inicio;
+            ListaPessoa = CacheSessao.Instancia.ListaPessoa;
+
         }
         #endregion
 
@@ -63,7 +70,12 @@ namespace Perron.Presenter.Cadastro
 
             return page;
         }
-
+        private void DelegarEventos()
+        {
+            _view.EventoBusca += EventoBuscandoPessoa;
+            _view.EventoGridBusca += EventoSelecionandoPessoaBusca;
+            this.EventoLimparCampos += LimparCampos;
+        }
         private PessoaModel GetDadosPessoa()
         {
             try
@@ -100,18 +112,23 @@ namespace Perron.Presenter.Cadastro
             _view.Telefone = pessoa.Telefone;
             _view.Sobrenome = pessoa.Sobrenome;
             _view.Nome = pessoa.Nome;
+
             cmpTipoPessoa.TipoPessoaSelecionado = pessoa.Tipo;
-
-
+            AtualizaDadosEntidade(_pessoa);
         }
         private bool IniciarCadastroTipoPessoa(ETipoPessoa _tipo)
         {
-            var tipo = _tipo.GetArrayItemEnum().Where(tp => tp.HasFlag(_tipo)).LastOrDefault();  
+            var tipo = _tipo.GetArrayItemEnum().Where(tp => tp.HasFlag(_tipo)).LastOrDefault();
 
             IControllerTipoPessoa _controller = _controllers.Where(ctrl => ctrl.TipoController.HasFlag(tipo)).FirstOrDefault();
 
             if (_controller != null)
+            {
+                if (_controller.Entidade.Ativo == true)
+                    return true;
+
                  _controller.Entidade.Ativo = true;
+            }
                                          
             
             else
@@ -120,10 +137,10 @@ namespace Perron.Presenter.Cadastro
 
                 if (_controller == null)
                                     return false;
-
-                _controller.GetDadosPessoa += GetDadosPessoa;
+                
                 ExecutaAlteracaoComportamento += _controller.AlterarComportamentoCadastro;
-                ExecutarCadastro += _controller.Salvar;
+                EventoLimparCampos += _controller.LimparCampos;
+                AtualizaDadosEntidade += _controller.AtulizarDadosEntidadePessoa;
                 _controllers.Add(_controller);
             }
 
@@ -139,7 +156,6 @@ namespace Perron.Presenter.Cadastro
             {
                 _view.TabControlTipoPessoa.TabPages.RemoveByKey(Tipo.GetNomeItem());
                 var controller = _controllers.Where(x => x.TipoController.Equals(Tipo)).FirstOrDefault();
-                //controller.RemoverTipoCadastro();
                 _controllers.Remove(controller);
                 controller = null;
                 return true;
@@ -147,57 +163,25 @@ namespace Perron.Presenter.Cadastro
 
             return true;
         }
-        private void RemoverTodosControllers()
-        {
-            try
-            {
-                ETipoPessoa tipo = new ETipoPessoa();
-                var tipos = tipo.GetArrayItemEnum();
-
-                foreach (var t in tipos)
-                {
-                    RemoverController(t);
-                }
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
-        }
-        private void ValidarRemoverTipoPessoaCadastro()
-        {
-            try
-            {
-
-                if (_pessoa != null)
-                {
-                    var TipoCadastro = cmpTipoPessoa.TipoPessoaSelecionado;
-
-                    foreach (var item in _pessoa.Tipo.GetListEnumValue<ETipoPessoa>())
-                    {
-                        if (!TipoCadastro.HasFlag(item) && item != ETipoPessoa.Pessoa)
-                        {
-                            var controller = _controllers.Where(ctrl => ctrl.TipoController.HasFlag(item)).FirstOrDefault();
-                            controller.Salvar();
-                            _pessoa.Tipo -= (ETipoPessoa)item;
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
         private void SetarNomeTela()
         {
+            ETipoPessoa[] Itens = null;
+
             string nome = "Cadastro ";
 
-            var Itens = TipoPessoaCadastro.GetListEnumValue<ETipoPessoa>();
+            if (cmpTipoPessoa != null)
+            {
+                Itens = cmpTipoPessoa.TipoPessoaSelecionado.GetListEnumValue<ETipoPessoa>();
+                nome += string.Join(", ", Itens.Select(t => t.GetNomeItem()));
+            }
+
+            else
+                nome += "Pessoa";
 
 
-            nome += string.Join(", ", Itens.Select(t => t.GetNomeItem()));
+
+
+
 
             _view.DescricaoTela = nome;
         }
@@ -206,6 +190,8 @@ namespace Perron.Presenter.Cadastro
         #region Eventos
         private void EventoAlterandoTipoPessoa(object o, EventArgs e)
         {
+            SetarNomeTela();
+
             var ck = (CheckBox)o; 
             var tipo = cmpTipoPessoa.PegarTipoPeloNome(ck.Name);
 
@@ -229,11 +215,19 @@ namespace Perron.Presenter.Cadastro
                 }
             }
         }
-        
-        //private void EventoCriarTabPage(object o, EventArgsGenerico<ETipoPessoa> e)
-        //{
-        //    IniciarCadastroTipoPessoa(e.Item);
-        //}
+        private void EventoBuscandoPessoa(object o, EventArgs e)
+        {
+            _view.ListaPessoaSendoExibidos = ListaPessoa.Where(p=> ValidarBuscarPessoa(p)).ToList();
+        }
+        private void EventoSelecionandoPessoaBusca(object o,EventArgs e)
+        {
+            if(_view.PessaoSelecionada != null)
+            {
+                pessoa = _view.PessaoSelecionada;
+                ComportamentoAtual = EComportamentoTela.ItemSelecionado;
+            }
+        }
+     
         #endregion
 
         #region Override
@@ -242,46 +236,74 @@ namespace Perron.Presenter.Cadastro
         {
             base.ComportamentoAtual = EComportamentoTela.Cadastrando;
         }
-        protected override async void EventoSalvar(object o, EventArgs e)
+        protected override  void EventoSalvar(object o, EventArgs e)
         {
-            await SalvarCadastro();
+             SalvarCadastro();
         }
         protected override void EventoCancelar(object o, EventArgs e)
         {
+            EstadoInicialTela();
             base.ComportamentoAtual = EComportamentoTela.Inicio;
+
         }
         protected override void EventoRemover(object o, EventArgs e)
         {
+            try
+            {
+                if (pessoa != null && (MessageBox.Show($"Deseja Inativar {pessoa.Nome} ??","Inativar??",MessageBoxButtons.YesNo,MessageBoxIcon.Question)==DialogResult.Yes))
+                {
+                    pessoa.Ativo = false;
 
+                    this.SalvarCadastro();
+                }
+            }
+             catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
 
         #endregion
+        private void EstadoInicialTela()
+        {
+            this.EventoLimparCampos();
+            this._controllers.Clear();
+            this._view.TabControlTipoPessoa.TabPages.Clear();
+            pessoa = new PessoaModel();
+            pessoa.Ativo = true;
+        }
+        private void LimparCampos()
+        {
+            _view.CpfCnpj = "";
+            _view.Telefone = "";
+            _view.Nome = "";
+            _view.Sobrenome = "";
+        }
         private void ExecutaAlteracaoComportamentoCadastro(EComportamentoTela comportamento)
         {
             if (ExecutaAlteracaoComportamento != null)
                     ExecutaAlteracaoComportamento(comportamento);
 
         }
-        private async Task SalvarCadastro()
+        private  void SalvarCadastro()
         {
-            await Task.Run(() =>
-            {
+            
                 using (TransactionScope tran = new TransactionScope())
                 {
                     try
                     {
                         ValidarCadastroPessoa();
 
-                        _pessoa.Id = _service.Salvar(pessoa);
-
+                         pessoa.Id = _service.Salvar(pessoa);
+                        AtualizaDadosEntidade(pessoa);
                         foreach (var item in _controllers)
                         { 
                             item.Salvar();
                         }
-
                         tran.Complete();
-
+                        ComportamentoAtual = EComportamentoTela.Inicio;
                         MessageDeSucesso("Cadastrado Com Sucesso!");
                     }
                     catch (Exception ex)
@@ -291,7 +313,7 @@ namespace Perron.Presenter.Cadastro
                         MessagemErro(ex);
                     }
                 }
-            });
+            
         }
         private void ValidarCadastroPessoa()
         {
@@ -305,10 +327,37 @@ namespace Perron.Presenter.Cadastro
                 throw ex;
             }
         }
+        private bool ValidarBuscarPessoa(PessoaModel pessoa)
+        {
+            bool status = false;
+            bool busca;
+            bool Todos = (GetstatusDosCadastrados().HasFlag(EStatusCadastro.Todos));
+
+            if (GetstatusDosCadastrados().HasFlag(EStatusCadastro.Ativo))
+                status = pessoa.Ativo==true;
+
+            else if (GetstatusDosCadastrados().HasFlag(EStatusCadastro.Inativo))
+                status = pessoa.Ativo == false;
+
+
+            else
+                status = false;
+
+
+            busca = pessoa.Nome.ToUpper().Contains(_view.TextoBusca.ToUpper());
+            
+
+            var ret = busca & (Todos || status);
+
+            return ret;
+
+        }
 
         #region Comportamentos Tela
         protected void ComportamentoNovo()
         {
+            EstadoInicialTela();
+
             if (cmpTipoPessoa.TipoPessoaSetado.HasFlag(ETipoPessoa.Pessoa))
             {
                 cmpTipoPessoa.Enabled = true;
@@ -317,7 +366,8 @@ namespace Perron.Presenter.Cadastro
         }
         protected override void ComportamentoInicioTela()
         {
-
+            EventoLimparCampos();
+            pessoa = new PessoaModel();
 
             if (TipoPessoaCadastro.HasFlag(ETipoPessoa.Pessoa))
             {
@@ -345,10 +395,12 @@ namespace Perron.Presenter.Cadastro
             if (TipoPessoaCadastro.HasFlag(ETipoPessoa.Pessoa))
             {
                 cmpTipoPessoa.Enabled = true;
+                _view.SetarTamanhoMaximoTela();
             }
 
         }
-        protected override void AlterandoComportamentoTela(){
+        protected override void AlterandoComportamentoTela()
+        {
             
             ExecutaAlteracaoComportamentoCadastro(base.ComportamentoAtual);
         }

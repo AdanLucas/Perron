@@ -3,13 +3,13 @@
     internal class PC_CadastroPessoaTipoFuncionario : IScriptProcedure
     {
         public string GUID { get { return "8AE232B9-270F-4BAB-87FF-5A17F823B687"; } }
-        public string Procedure { get { return "PC_CadastroPessoaTipoFuncionario"; } }
+        public string Procedure { get { return "PC_CadastroFuncionario"; } }
 
         public string ScriptPrcedured
         {
             get
             {
-                return @"CREATE PROCEDURE PC_CadastroPessoaTipoFuncionario(@id int,@DataAdimissao datetime,@Salario decimal,@Ativo bit)
+                return @"CREATE PROCEDURE PC_CadastroFuncionario(@id int,@DataAdimissao datetime,@Salario decimal,@Ativo bit)
                             as
                             BEGIN
                             	DECLARE @RET INT
@@ -22,7 +22,7 @@
                             		END
                             	ELSE
                             		BEGIN
-                            		INSERT INTO PessoaTipoFuncionario (Id,Salario,DataAdimissao,Ativo)
+                            		INSERT INTO Funcionario (Id,Salario,DataAdimissao,Ativo)
                             		values (@id,@Salario,@DataAdimissao,@Ativo)
                             		Set @RET = @id;
                             		END

@@ -11,10 +11,10 @@ public class SaborModel : Aentity
     public ClasseModel Classe { get; set; }
 
     [Required(ErrorMessage = "Engredientes é Obrigatório")]
-    public List<EngredienteModel> Engredientes { private get; set; }
-    public List<EngredienteModel> GetEngredientePorStatus(EStatusCadastro Status)
+    public List<IngredienteModel> Engredientes { private get; set; }
+    public List<IngredienteModel> GetEngredientePorStatus(EStatusCadastro Status)
     {
-        List<EngredienteModel> ret;
+        List<IngredienteModel> ret;
 
         switch (Status)
         {

@@ -7,7 +7,7 @@ namespace Repository.ScriptsDinamicos
 
         public string GetScript()
         {
-            if (this.GetType() == typeof(ScriptsDinamicos<EngredienteModel>))
+            if (this.GetType() == typeof(ScriptsDinamicos<IngredienteModel>))
             {
                 return "Select * from Engrediente";
             }

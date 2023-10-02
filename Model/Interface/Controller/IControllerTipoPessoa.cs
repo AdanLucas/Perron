@@ -10,8 +10,10 @@ public interface IControllerTipoPessoa
     ETipoPessoa TipoController { get; set; }
     void AlterarComportamentoCadastro(EComportamentoTela comportamento);
     void Iniciar(ControlCollection local);
-    Func<PessoaModel> GetDadosPessoa { get; set; }
     void Salvar();
+    void AtulizarDadosEntidadePessoa(PessoaModel pessoa);
+    void LimparCampos();
+
 
 
 }

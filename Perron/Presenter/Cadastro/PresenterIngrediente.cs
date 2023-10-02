@@ -9,10 +9,10 @@ namespace Perron.Controller
     {
         private readonly IViewCadastroIngrediente _view;
         private readonly IServiceIngrediente _service;
-        private EngredienteModel ingrediente { get { return GetDadosIngrediente(); } set { SetEngrediente(value); } }
+        private IngredienteModel ingrediente { get { return GetDadosIngrediente(); } set { SetEngrediente(value); } }
 
-        private EngredienteModel _ingrediente;
-        private List<EngredienteModel> ListaEngredientesCadastrados;
+        private IngredienteModel _ingrediente;
+        private List<IngredienteModel> ListaEngredientesCadastrados;
         public PresenterIngrediente(IViewCadastroIngrediente view, IServiceIngrediente service) : base(view)
         {
             _view = view;
@@ -65,14 +65,14 @@ namespace Perron.Controller
             _view.EventoGrid(EventoGrid);
 
         }
-        private EngredienteModel GetDadosIngrediente()
+        private IngredienteModel GetDadosIngrediente()
         {
             _ingrediente.Descricao = _view.DescricaoIngrediente;
             _ingrediente.TipoMedida = _view.TipoMedida;
 
             return _ingrediente;
         }
-        private void SetEngrediente(EngredienteModel ingrediente)
+        private void SetEngrediente(IngredienteModel ingrediente)
         {
             _ingrediente = ingrediente;
             _ingrediente = _view.IngredienteSelecionado;
@@ -80,7 +80,7 @@ namespace Perron.Controller
             _view.TipoMedida = _ingrediente.TipoMedida;
         }
 
-        private void AtivarIngredienteInativo(EngredienteModel _engrediente)
+        private void AtivarIngredienteInativo(IngredienteModel _engrediente)
         {
             if (_engrediente.Ativo == false)
             {
@@ -113,7 +113,7 @@ namespace Perron.Controller
         }
         private void EstadoInicial()
         {
-            _ingrediente = new EngredienteModel();
+            _ingrediente = new IngredienteModel();
             _ingrediente.Ativo = true;
             _view.DescricaoIngrediente = null;
             _view.TipoMedida = EUnidadeMedida.Nd;
@@ -126,7 +126,7 @@ namespace Perron.Controller
             switch (status)
             {
                 case EStatusCadastro.none:
-                    ListaEngredientesCadastrados = new List<EngredienteModel>();
+                    ListaEngredientesCadastrados = new List<IngredienteModel>();
                     break;
                     ;
                 case EStatusCadastro.Todos:

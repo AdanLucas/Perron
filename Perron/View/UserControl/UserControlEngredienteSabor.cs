@@ -32,13 +32,13 @@ namespace Perron
         {
             get { return txtBuscaEngredientesVinculados.Text; }
         }
-        public EngredienteModel EngredienteSelecionadoGridEngredienteCadastrado
+        public IngredienteModel EngredienteSelecionadoGridEngredienteCadastrado
         {
             get
             {
                 try
                 {
-                    return (EngredienteModel)dgvEngredientesCadastrado.CurrentRow.DataBoundItem;
+                    return (IngredienteModel)dgvEngredientesCadastrado.CurrentRow.DataBoundItem;
                 }
                 catch
                 {
@@ -48,13 +48,13 @@ namespace Perron
 
 
         }
-        public EngredienteModel EngredienteSelecionadoGridEngredienteSabor
+        public IngredienteModel EngredienteSelecionadoGridEngredienteSabor
         {
             get
             {
                 try
                 {
-                    return (EngredienteModel)dgvEngredientesSabor.CurrentRow.DataBoundItem;
+                    return (IngredienteModel)dgvEngredientesSabor.CurrentRow.DataBoundItem;
 
                 }
                 catch
@@ -81,7 +81,7 @@ namespace Perron
         {
             dgvEngredientesSabor.DoubleClick += e;
         }
-        public void PopularGridEngredientesCadastrados(List<EngredienteModel> Lista)
+        public void PopularGridEngredientesCadastrados(List<IngredienteModel> Lista)
         {
             dgvEngredientesCadastrado.DataSource = null;
 
@@ -89,7 +89,7 @@ namespace Perron
             dgvEngredientesCadastrado.Columns["Id"].Visible = false;
             dgvEngredientesCadastrado.Columns["Ativo"].Visible = false;
         }
-        public void PopularGridEngredientesSabor(List<EngredienteModel> Lista)
+        public void PopularGridEngredientesSabor(List<IngredienteModel> Lista)
         {
             dgvEngredientesSabor.DataSource = null;
 

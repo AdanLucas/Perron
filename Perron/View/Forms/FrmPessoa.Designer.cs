@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.pageBusca = new System.Windows.Forms.TabPage();
-            this.dgvBuscaPessoa = new System.Windows.Forms.DataGridView();
             this.pageDados = new System.Windows.Forms.TabPage();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.gbDadosPessoa = new System.Windows.Forms.GroupBox();
@@ -44,11 +42,14 @@
             this.txtTelefone = new System.Windows.Forms.TextBox();
             this.txtSobrenome = new System.Windows.Forms.TextBox();
             this.txtNome = new System.Windows.Forms.TextBox();
+            this.pageBusca = new System.Windows.Forms.TabPage();
+            this.dgvBuscaPessoa = new System.Windows.Forms.DataGridView();
+            this.txtBuscar = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
-            this.pageBusca.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvBuscaPessoa)).BeginInit();
             this.pageDados.SuspendLayout();
             this.gbDadosPessoa.SuspendLayout();
+            this.pageBusca.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvBuscaPessoa)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -63,26 +64,6 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(447, 512);
             this.tabControl1.TabIndex = 3;
-            // 
-            // pageBusca
-            // 
-            this.pageBusca.Controls.Add(this.dgvBuscaPessoa);
-            this.pageBusca.Location = new System.Drawing.Point(4, 22);
-            this.pageBusca.Name = "pageBusca";
-            this.pageBusca.Padding = new System.Windows.Forms.Padding(3);
-            this.pageBusca.Size = new System.Drawing.Size(439, 418);
-            this.pageBusca.TabIndex = 1;
-            this.pageBusca.Text = "Buscar Pessoa";
-            this.pageBusca.UseVisualStyleBackColor = true;
-            // 
-            // dgvBuscaPessoa
-            // 
-            this.dgvBuscaPessoa.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvBuscaPessoa.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvBuscaPessoa.Location = new System.Drawing.Point(3, 3);
-            this.dgvBuscaPessoa.Name = "dgvBuscaPessoa";
-            this.dgvBuscaPessoa.Size = new System.Drawing.Size(433, 412);
-            this.dgvBuscaPessoa.TabIndex = 0;
             // 
             // pageDados
             // 
@@ -205,6 +186,40 @@
             this.txtNome.Size = new System.Drawing.Size(172, 20);
             this.txtNome.TabIndex = 0;
             // 
+            // pageBusca
+            // 
+            this.pageBusca.Controls.Add(this.txtBuscar);
+            this.pageBusca.Controls.Add(this.dgvBuscaPessoa);
+            this.pageBusca.Location = new System.Drawing.Point(4, 22);
+            this.pageBusca.Name = "pageBusca";
+            this.pageBusca.Padding = new System.Windows.Forms.Padding(3);
+            this.pageBusca.Size = new System.Drawing.Size(439, 486);
+            this.pageBusca.TabIndex = 1;
+            this.pageBusca.Text = "Buscar Pessoa";
+            this.pageBusca.UseVisualStyleBackColor = true;
+            // 
+            // dgvBuscaPessoa
+            // 
+            this.dgvBuscaPessoa.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.dgvBuscaPessoa.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvBuscaPessoa.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dgvBuscaPessoa.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvBuscaPessoa.Location = new System.Drawing.Point(3, 32);
+            this.dgvBuscaPessoa.MultiSelect = false;
+            this.dgvBuscaPessoa.Name = "dgvBuscaPessoa";
+            this.dgvBuscaPessoa.ReadOnly = true;
+            this.dgvBuscaPessoa.Size = new System.Drawing.Size(433, 451);
+            this.dgvBuscaPessoa.TabIndex = 0;
+            this.dgvBuscaPessoa.DoubleClick += new System.EventHandler(this.dgvBuscaPessoa_DoubleClick);
+            // 
+            // txtBuscar
+            // 
+            this.txtBuscar.Location = new System.Drawing.Point(271, 6);
+            this.txtBuscar.Name = "txtBuscar";
+            this.txtBuscar.Size = new System.Drawing.Size(162, 20);
+            this.txtBuscar.TabIndex = 2;
+            // 
             // FrmPessoa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -215,11 +230,12 @@
             this.Text = "FrmPessoa";
             this.Controls.SetChildIndex(this.tabControl1, 0);
             this.tabControl1.ResumeLayout(false);
-            this.pageBusca.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvBuscaPessoa)).EndInit();
             this.pageDados.ResumeLayout(false);
             this.gbDadosPessoa.ResumeLayout(false);
             this.gbDadosPessoa.PerformLayout();
+            this.pageBusca.ResumeLayout(false);
+            this.pageBusca.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvBuscaPessoa)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -228,7 +244,6 @@
         #endregion
 
         private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage pageBusca;
         private System.Windows.Forms.TabPage pageDados;
         private System.Windows.Forms.GroupBox gbDadosPessoa;
         private System.Windows.Forms.Label label4;
@@ -241,7 +256,9 @@
         private System.Windows.Forms.TextBox txtNome;
         private System.Windows.Forms.Panel pnTipoPessoa;
         private System.Windows.Forms.TabControl tabControl;
-        private System.Windows.Forms.DataGridView dgvBuscaPessoa;
         private System.Windows.Forms.GroupBox gbEndereco;
+        private System.Windows.Forms.TabPage pageBusca;
+        private System.Windows.Forms.DataGridView dgvBuscaPessoa;
+        private System.Windows.Forms.TextBox txtBuscar;
     }
 }

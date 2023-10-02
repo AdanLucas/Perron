@@ -2,11 +2,11 @@
 
 
 
-public interface IRepositoryEngrediente : IRepositoryBase<EngredienteModel>
+public interface IRepositoryEngrediente : IRepositoryBase<IngredienteModel>
 {
-    EngredienteModel GetEngredientePorId(int Id);
+    IngredienteModel GetEngredientePorId(int Id);
     List<EngredienteDTO> GetListaEngredienteDTO();
-    List<EngredienteModel> GetListaEngredientePorSabor(int IDSabor);
+    List<IngredienteModel> GetListaEngredientePorSabor(int IDSabor);
 
 }
 

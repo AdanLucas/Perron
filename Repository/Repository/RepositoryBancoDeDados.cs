@@ -66,32 +66,46 @@ namespace Repository.Repository
         }
         private void CriarTabelasProcFunctionConstraint()
         {
-            using (_session = new DbSession(ETipoConexao.Master))
+            try
             {
-                var UnitMastar = new UnitOfWork(_session);
-
-                GerenciandoScript.CriarBase(_session.Connection, NomeBaseCadastrada);
-
-                using (var session = new DbSession())
+                using (_session = new DbSession(ETipoConexao.Master))
                 {
-                    var Unit = new UnitOfWork(session);
-                    try
-                    {
-                        Unit.BeginTran();
-                        GerenciandoScript.IniciarTransacao(session.Connection);
-                        GerenciandoScript.ExecutarCriacaoBase(session.Transaction);
-                        Unit.Commit();
 
-                    }
-                    catch (Exception ex)
+                    var UnitMastar = new UnitOfWork(_session);
+
+                    GerenciandoScript.CriarBase(_session.Connection, NomeBaseCadastrada);
+
+                    using (var session = new DbSession())
                     {
-                        Unit.RollBack();
-                        throw ex;
+                        var Unit = new UnitOfWork(session);
+                        try
+                        {
+                            Unit.BeginTran();
+                            GerenciandoScript.IniciarTransacao(session.Connection);
+                            GerenciandoScript.ExecutarCriacaoBase(session.Transaction);
+                            Unit.Commit();
+
+                        }
+                        catch
+                        {
+                            UnitMastar.RollBack();
+                            Unit.RollBack();
+                        }
                     }
                 }
+
+            }
+            catch
+            {
+                using (_session = new DbSession(ETipoConexao.Master))
+                {
+                    GerenciandoScript.DropDataBase(_session.Connection, NomeBaseCadastrada); 
+                }
+
             }
         }
-
+            
+        
         public bool ValidarConexaoComAInstancia()
         {
             try

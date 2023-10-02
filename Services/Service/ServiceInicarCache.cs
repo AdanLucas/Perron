@@ -11,19 +11,13 @@ namespace Services.Service
     {
         public void Dispose(){}
 
-        public Task IniciarCachePessoa(List<PessoaModel> pessoa)
+        public List<PessoaModel> IniciarCachePessoa()
         {
-           return Task.Run(() =>
-           {
-
-               using (DbSession session = new DbSession())
-               {
-                   var repositorioPessoa = FactoryRepository.TipoPessoa(Model.Emumerator.ETipoPessoa.Pessoa);
-                   var resultado = repositorioPessoa.GetLista<PessoaModel>();
-
-                   
-               }
-           });
+            using (DbSession session = new DbSession())
+            {
+                var repositorioPessoa = FactoryRepository.TipoPessoa(Model.Emumerator.ETipoPessoa.Pessoa);
+                return repositorioPessoa.GetLista<PessoaModel>();
+            }
         }
 
     }

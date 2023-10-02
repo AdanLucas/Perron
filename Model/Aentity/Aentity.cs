@@ -5,7 +5,7 @@ public abstract class Aentity
 {
 
     [AtributosClasse(ExibirNaGrid = false)]
-    public long Id { get; set; }
+    public long? Id { get; set; }
 
 
     [AtributosClasse(ExibirNaGrid = false)]

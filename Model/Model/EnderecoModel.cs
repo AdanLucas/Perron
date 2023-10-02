@@ -7,7 +7,7 @@ namespace Model.Model
     {
         
 
-        public Int64 IdPessoal { get; set; }
+        public Int64? IdPessoal { get; set; }
 
         [AtribulteClasses.AtributosClasse(Descricao = "Descrição", ExibirNaGrid = true)]
         [Required(ErrorMessage = "Descrição é Obrigatório")]

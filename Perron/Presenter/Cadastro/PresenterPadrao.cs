@@ -168,7 +168,7 @@ namespace Perron.Controller
         {
             AlterarStatusCadastroExibidos(status);
         }
-        private EStatusCadastro GetstatusDosCadastrados()
+        protected EStatusCadastro GetstatusDosCadastrados()
         {
             if (_view.VisualizarCadastrosAtivo && _view.VisualizarCadastrosInativos)
                 return EStatusCadastro.Todos;

@@ -12,22 +12,21 @@ namespace Perron
         /// Ponto de entrada principal para o aplicativo.
         /// </summary>
         [STAThread]
-       static  void Main()
+       static   void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             try
             {
-                List<Task> Tarefas = new List<Task>() { new ServiceInicarCache().IniciarCachePessoa(CacheSessao.Instancia.ListaPessoa), CacheSessao.Instancia.Iniciar() };
-                 Task.WhenAll(Tarefas);
+                
+                Task.WaitAll(CacheSessao.Instancia.Iniciar());
+                CacheSessao.Instancia.ListaPessoa =  new ServiceInicarCache().IniciarCachePessoa();
+
                 FactoryPresenter.Principal();
                 Application.Run();
 
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Erro!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            catch {}
         }
     }
 }

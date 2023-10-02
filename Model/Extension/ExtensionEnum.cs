@@ -8,9 +8,17 @@ public static class ExtensionEnum
 {
     public static string GetDescription(this Enum value)
     {
-        var fieldInfo = value.GetType().GetField(value.ToString());
-        var attributes = fieldInfo.GetCustomAttributes(typeof(DescriptionAttribute), false) as DescriptionAttribute[];
-        return attributes.Length > 0 ? attributes[0].Description : value.ToString();
+        try
+        {
+            var fieldInfo = value.GetType().GetField(value.ToString());
+            var attributes = fieldInfo.GetCustomAttributes(typeof(DescriptionAttribute), false) as DescriptionAttribute[];
+            return attributes.Length > 0 ? attributes[0].Description : value.ToString();
+        }
+        catch (Exception)
+        {
+
+            return "";
+        }
     }
     public static T[] GetArrayItemEnum<T>(this T tipo) where T : Enum
     {

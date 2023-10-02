@@ -4,8 +4,8 @@
 public interface IPresenterIngredienteSabor
 {
 
-    List<EngredienteModel> GetIngredienteSabor();
-    void SetListaIngredienteSabor(List<EngredienteModel> Lista);
+    List<IngredienteModel> GetIngredienteSabor();
+    void SetListaIngredienteSabor(List<IngredienteModel> Lista);
     void EventoAtualizarStatusCadastro(EComportamentoTela status);
 }
 

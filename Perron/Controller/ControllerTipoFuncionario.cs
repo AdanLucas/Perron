@@ -81,7 +81,10 @@ namespace Perron.Controller
         }
         protected override UserControl IniciarUserControl()
         {
-            return new UCTipoFuncionario();
+            if (_view == null)
+                return new UCTipoFuncionario();
+
+            return _view;
         }
 
 

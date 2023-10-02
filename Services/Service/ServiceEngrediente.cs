@@ -15,11 +15,11 @@ namespace Services.Service
             _repositorio = repositorio;
         }
 
-        public List<EngredienteModel> GetListaEngredientesCadastroados()
+        public List<IngredienteModel> GetListaEngredientesCadastroados()
         {
             return _repositorio.GetLista(EStatusCadastro.Todos);
         }
-        public void Salvar(EngredienteModel Engrediente)
+        public void Salvar(IngredienteModel Engrediente)
         {
             try
             {
@@ -32,7 +32,7 @@ namespace Services.Service
                 throw ex;
             }
         }
-        public void SalvarLista(List<EngredienteModel> ListaEngrediente)
+        public void SalvarLista(List<IngredienteModel> ListaEngrediente)
         {
             throw new NotSupportedException();
         }

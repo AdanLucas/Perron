@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-public class EngredienteModel : Aentity
+public class IngredienteModel : Aentity
 {
     [Required(ErrorMessage = "Descrição é Obrigatório")]
     public string Descricao { get; set; }

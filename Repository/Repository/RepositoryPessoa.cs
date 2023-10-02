@@ -11,7 +11,7 @@ namespace Repository.Repository
     public class RepositoryPessoa : RepositoryBaseTipoPessoa
     {
 
-        private void PC_CadatroEndereco(Int64 IdPessoa ,EnderecoModel endereco)
+        private void PC_CadatroEndereco(Int64? IdPessoa ,EnderecoModel endereco)
         {
             _session.Connection.Execute("PC_CadastroEndereco @ID,@IDPessoa,@Descricao,@Rua,@Numero, @Bairro,@Cidade,@Ativo"
                 , param: new {ID = endereco.Id,IdPessoa,endereco.Descricao,endereco.Rua,endereco.Numero,endereco.Bairro,endereco.Cidade,endereco.Ativo});

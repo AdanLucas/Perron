@@ -45,6 +45,11 @@ namespace GerenciandoBaseDedados.GerencaidorScript
                 throw ex;
             }
         }
+        public static void DropDataBase(IDbConnection connMaster, string nomeBase)
+        {
+            ScriptBase = new ScriptCriacaoBase(connMaster);
+            ScriptBase.DropBase(nomeBase);
+        }
 
     }
 }

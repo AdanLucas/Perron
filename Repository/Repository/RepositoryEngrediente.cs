@@ -10,7 +10,7 @@ namespace Repository.Repository
 
 
         #region Metodos Privados
-        private void pc_cadastroEngrediente(DbSession session, EngredienteModel engrediente)
+        private void pc_cadastroEngrediente(DbSession session, IngredienteModel engrediente)
         {
             session.Connection.Execute("exec pc_cadastroEngrediente @id,@descricao,@tipoMedida,@ativo", param: new
             {
@@ -25,25 +25,25 @@ namespace Repository.Repository
 
 
         #region metodos Publicos
-        public List<EngredienteModel> GetListaEngredientePorSabor(int IDSabor)
+        public List<IngredienteModel> GetListaEngredientePorSabor(int IDSabor)
         {
             using (var session = new DbSession())
             {
-                return session.Connection.Query<EngredienteModel>($"select * from Engrediente where id IN (select Engrediente from Sabor_has_Engrediente where Sabor = {IDSabor})").ToList();
+                return session.Connection.Query<IngredienteModel>($"select * from Engrediente where id IN (select Engrediente from Sabor_has_Engrediente where Sabor = {IDSabor})").ToList();
             }
         }
-        public EngredienteModel GetItemPorID(int Id)
+        public IngredienteModel GetItemPorID(int Id)
         {
             using (var session = new DbSession())
             {
-                return session.Connection.Query<EngredienteModel>($"select * From Engrediente where Id = {Id}").FirstOrDefault();
+                return session.Connection.Query<IngredienteModel>($"select * From Engrediente where Id = {Id}").FirstOrDefault();
             }
         }
-        public List<EngredienteModel> GetLista(EStatusCadastro status)
+        public List<IngredienteModel> GetLista(EStatusCadastro status)
         {
             using (var session = new DbSession())
             {
-                return session.Connection.Query<EngredienteModel>("select * from Engrediente").ToList();
+                return session.Connection.Query<IngredienteModel>("select * from Engrediente").ToList();
             }
         }
         public List<EngredienteDTO> GetListaEngredienteDTO()
@@ -53,7 +53,7 @@ namespace Repository.Repository
                 return Session.Connection.Query<EngredienteDTO>("select id,Descricao, case Ativo when 1 then 'Ativo'  when 0 then 'Inativo' end Status  from Engrediente").ToList();
             }
         }
-        public void Salvar(EngredienteModel Item)
+        public void Salvar(IngredienteModel Item)
         {
             using (var session = new DbSession())
             {
@@ -72,7 +72,7 @@ namespace Repository.Repository
 
             }
         }
-        public EngredienteModel GetEngredientePorId(int Id)
+        public IngredienteModel GetEngredientePorId(int Id)
         {
             throw new NotImplementedException();
         }

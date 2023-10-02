@@ -13,7 +13,7 @@ namespace Perron.Controller
 
         
         public ETipoPessoa TipoController { get; set; }
-        public Func<PessoaModel> GetDadosPessoa { get; set; }
+        
 
         protected PessoaModel _pessoa;
         protected IServiceTipoPessoa _service;
@@ -23,6 +23,8 @@ namespace Perron.Controller
         {
             TipoController = tipo;
             _service = FactoryService.CadastroTipoPessoa(tipo);
+
+
         }
         #endregion
 
@@ -67,13 +69,25 @@ namespace Perron.Controller
 
         #endregion
 
-
         #region public
-
-        public void EventoComportamento(EComportamentoTela comportamento)
+        public void AtulizarDadosEntidadePessoa(PessoaModel pessoa)
         {
-            SetarComportamentoTela(comportamento);
+            _pessoa = pessoa;
+
+            if(_pessoa.Id == null)
+                        LimparCampos();
+
+            else
+            {
+                Entidade = _service.GetCadastroPorId((int)_pessoa.Id) as Aentity;
+                Entidade.Ativo = true;
+
+            }
+
+            
+
         }
+        
         public void Salvar()
         {
             try
@@ -90,33 +104,22 @@ namespace Perron.Controller
 
         public void AlterarComportamentoCadastro(EComportamentoTela comportamento)
         {
-            throw new NotImplementedException();
+            SetarComportamentoTela(comportamento);
         }
 
         public void Iniciar(Control.ControlCollection local)
         {
+           
             _view = IniciarUserControl();
             local.Add(_view);
             _view.Dock = DockStyle.Fill;
-            _pessoa = GetDadosPessoa();
+            
+
         }
 
-        public void AlterarStatusCadastro(bool status)
-        {
-            throw new NotImplementedException();
-        }
+        public virtual void LimparCampos(){ }
 
-        public void RemoverTipoCadastro()
-        {
-            throw new NotImplementedException();
-        }
 
-        public void RemoverTipoCadastro(ETipoPessoa tipo)
-        {
-            throw new NotImplementedException();
-        }
-
-      
 
 
 

@@ -13,7 +13,8 @@ public static class ExDataGrid
 {
     public static void DataSourceCuston<T>(this DataGridView dgv, List<T> List)
     {
-        if (List == null)
+
+        if (List == null || List.Count < 1)
         {
             dgv.DataSource = null;
             return;
@@ -26,32 +27,31 @@ public static class ExDataGrid
 
         foreach (PropertyInfo prop in propriedades)
         {
-
-            bool? ExibirNaGrid = PegarValorAtributosClasse(prop, "ExibirNaGrid") as bool?;
-
-            if (ExibirNaGrid != null)
+            try
             {
-                if ((bool)ExibirNaGrid)
+
+                bool? ExibirNaGrid = PegarValorAtributosClasse(prop, "ExibirNaGrid") as bool?;
+
+                if (ExibirNaGrid != null)
                 {
-                    var membro = (string)PegarValorAtributosClasse(prop, "Descricao");
-                    dgv.Columns[$"{prop.Name}"].HeaderText = membro == null ? prop.Name : membro;
+                    if ((bool)ExibirNaGrid)
+                    {
+                        var membro = (string)PegarValorAtributosClasse(prop, "Descricao");
+                        dgv.Columns[$"{prop.Name}"].HeaderText = membro == null ? prop.Name : membro;
+
+                    }
+                    else
+                    {
+                        dgv.Columns[prop.Name].Visible = false;
+
+                    }
 
                 }
                 else
-                {
                     dgv.Columns[prop.Name].Visible = false;
-
-                }
-
             }
-            else
-                dgv.Columns[prop.Name].Visible = false;
-
-
-
+            catch {}
         }
-
-
     }
     private static object PegarValorAtributosClasse(PropertyInfo prop, string membroAtributo)
     {

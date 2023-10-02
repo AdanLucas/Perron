@@ -1,4 +1,5 @@
 ﻿using System.Data;
+using System.Data.Common;
 
 public class ScriptCriacaoBase
 {
@@ -12,6 +13,30 @@ public class ScriptCriacaoBase
         _conn = conn;
     }
 
+    public void DropBase(string NomeBase)
+    {
+        var dbocommand = _conn.CreateCommand();
+        dbocommand.Connection = _conn;
+
+        var sqlmatarconexao = $@"DECLARE @killCommand NVARCHAR(MAX) = '';
+                                SELECT @killCommand = @killCommand + 'KILL ' + CAST(spid AS NVARCHAR) + ';'
+                                FROM sys.sysprocesses
+                                WHERE DB_NAME(dbid) = '{NomeBase}';
+                                
+                                EXEC sp_executesql @killCommand;";
+
+
+        dbocommand.CommandText = sqlmatarconexao;
+        dbocommand.ExecuteNonQuery();
+
+
+
+        var sql = $@"	DROP DATABASE [{NomeBase}]";
+
+        dbocommand.CommandText = sql;
+        dbocommand.ExecuteNonQuery();
+        dbocommand.Dispose();
+    }
     public void CriacaoBase(string NomeBase)
     {
 

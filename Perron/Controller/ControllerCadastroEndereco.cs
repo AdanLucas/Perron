@@ -15,15 +15,19 @@ namespace Perron.Controller
 
         UCCadastroEndereco _view;
 
+       public Action EventoLimparCampos { get; set; }
+       public Action<PessoaModel> EventoAtualizarDadosEntidade { get; set; }
         EnderecoModel Endereco { get { return GetDadosEndereco(); } set { SetDadosEndereco(value); } }
 
         EnderecoModel _endereco;
+
+        PessoaModel Pessoa { get { return _pessoa; } set { SetDadsoPessoa(value); } }
 
         PessoaModel _pessoa;
 
         public ControllerCadastroEndereco(ControlCollection control, ref PessoaModel pessoa)
         {
-            _pessoa = pessoa;
+            Pessoa = pessoa;
             _view = new UCCadastroEndereco();
             control.Add(_view);
             _view.Dock = DockStyle.Fill;
@@ -31,12 +35,28 @@ namespace Perron.Controller
 
 
         }
+        private void SetDadsoPessoa(PessoaModel pessoa)
+        { 
+            _pessoa = pessoa;
+
+            ExibirEnderecos();
+        }
+
 
         private void DelegarEventos()
         {
             _view.EventoAdd += EventoAddEndereco;
             _view.EventoRemove += EventoRemoverEndereco;
             _view.EventoGrid += EventoGridEndereco;
+            this.EventoLimparCampos += LimparCampos;
+            this.EventoAtualizarDadosEntidade += AtualizarDadosEntidade;
+
+        }
+        private void AtualizarDadosEntidade(PessoaModel pessoa)
+        {
+            Pessoa = pessoa;
+
+
         }
         private void ValidarDadosEndereco(EnderecoModel endereco)
         {
@@ -115,7 +135,23 @@ namespace Perron.Controller
         }
         private void ExibirEnderecos()
         {
-            _view.PopularGrid(_pessoa.Enderecos.Where(end => end.Ativo == true).ToList());
+            try
+            {
+                _view.PopularGrid(_pessoa.Enderecos.Where(end => end.Ativo == true).ToList());
+            }
+            catch {  }
+        }
+        private void LimparCampos()
+        {
+            Endereco = new EnderecoModel();
+            Endereco.Numero = "";
+            Endereco.Ativo = true;
+            Endereco.Rua = "";
+            Endereco.Descricao = "";
+            Endereco.Bairro = "";
+            Endereco.Cidade = "";
+            Endereco.IdPessoal = Pessoa.Id;
+            _view.PopularGrid(null);
         }
 
         #region Eventos
@@ -162,7 +198,7 @@ namespace Perron.Controller
                     _view.EnderecoSelecionado.Ativo = false;
 
 
-                    ExibirEnderecos();
+                    ExibirEnderecos(); 
                 }
             }
         }

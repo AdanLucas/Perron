@@ -1,4 +1,6 @@
 ﻿using Perron.View.Forms.Form_Padrao_Cadastro;
+using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -12,8 +14,11 @@ namespace Perron.View.Forms
         public FrmPessoa()
         {
             InitializeComponent();
+            this.txtBuscar.TextChanged += txtBuscar_TextChanged;
         }
-
+        public EventHandler EventoGridBusca { get; set; }
+        public EventHandler EventoBusca { get; set; }
+        public List<PessoaModel> ListaPessoaSendoExibidos { set { SetarListGrid(value); } }
         public GroupBox GBEndereco { get { return this.gbEndereco; } }
         public string Nome { get { return txtNome.Text; } set { txtNome.Text = value; } }
         public string Sobrenome { get { return txtSobrenome.Text; } set { txtSobrenome.Text = value; } }
@@ -23,5 +28,35 @@ namespace Perron.View.Forms
         public TabControl TabControlTipoPessoa { get { return this.tabControl; } }
         public DataGridView GridViewBusca { get { return dgvBuscaPessoa; } }
         public string DescricaoTela { set { this.Text = value; } }
+
+        public PessoaModel PessaoSelecionada
+        { get
+            {
+                try
+                {
+                    return (PessoaModel)dgvBuscaPessoa.CurrentRow.DataBoundItem;
+                }
+                catch
+                {
+                    return null;
+                }
+            } 
+        }
+        public string TextoBusca { get { return txtBuscar.Text; } }
+        private void SetarListGrid(List<PessoaModel> lista)
+        {
+            dgvBuscaPessoa.DataSourceCuston(lista);
+        }
+        private void txtBuscar_TextChanged(object sender, EventArgs e)
+        {
+            if (EventoBusca != null)
+                this.EventoBusca(sender, EventArgs.Empty);
+        }
+
+        private void dgvBuscaPessoa_DoubleClick(object sender, EventArgs e)
+        {
+            if (EventoGridBusca != null)
+                this.EventoGridBusca(sender, EventArgs.Empty);
+        }
     }
 }

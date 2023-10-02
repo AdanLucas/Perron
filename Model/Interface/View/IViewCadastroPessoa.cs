@@ -1,9 +1,15 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 public interface IViewCadastroPessoa : IViewPadraoCadastro
 {
 
-
+    EventHandler EventoGridBusca { get; set; }
+    EventHandler EventoBusca { get; set; }
+    List<PessoaModel> ListaPessoaSendoExibidos { set; }
+    PessoaModel PessaoSelecionada { get; }
+    string TextoBusca { get; }
     string DescricaoTela { set; }
     string Nome { get; set; }
     string Sobrenome { get; set; }

@@ -12,7 +12,11 @@ namespace Perron.Controller
 
         protected override UserControl IniciarUserControl()
         {
+
+            if(_view == null)
             return new UCCadastroEmpresa();
+
+            return _view;
 
         }
         protected override Aentity GetDadosEntidade()
@@ -73,7 +77,9 @@ namespace Perron.Controller
         protected override void SalvarCadastro()
         {
             try
-            {   
+            {
+                
+
                 ValidadorModel.ValidarModeloLancaExcecao(Entidade as EmpresaModel);
                 _service.Salvar(Entidade as EmpresaModel);
             }

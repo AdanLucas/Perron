@@ -48,6 +48,7 @@
     <Compile Include="Connection\Session\DbSession.cs" />
     <Compile Include="Factory\FactoryRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\BuscaDinamico\RepositoryBuscaClasse.cs" />
     <Compile Include="Repository\BuscaDinamico\RepositoryBuscaIngredientes.cs" />
     <Compile Include="Repository\BuscaDinamico\RepositoryBuscaMercadoria.cs" />
     <Compile Include="Repository\BuscaDinamico\RepositoryBuscaDinamicoBase.cs" />

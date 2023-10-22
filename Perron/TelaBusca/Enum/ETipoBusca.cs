@@ -16,7 +16,7 @@ namespace Perron.TelaBusca.Enum
         [AtributoTipoBusca(Tipo = typeof(PessoaModel))]
         PESSOA,
 
-        [AtributoTipoBusca(Tipo = typeof(ClasseModel))]
+        [AtributoTipoBusca(Tipo = typeof(TelaBuscaClasse))]
         CLASSE,
 
         [AtributoTipoBusca(Tipo = typeof(TelaBuscaIngrediente))]

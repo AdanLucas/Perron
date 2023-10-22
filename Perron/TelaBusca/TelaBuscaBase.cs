@@ -143,7 +143,6 @@ namespace Perron.TelaBusca
             }
             return list;
         }
-
         public List<object> ObterItemSelecionado()
         {
             try

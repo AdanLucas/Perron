@@ -91,6 +91,7 @@
     </Compile>
     <Compile Include="TelaBusca\Enum\ETipoBusca.cs" />
     <Compile Include="TelaBusca\TelaBuscaBase.cs" />
+    <Compile Include="TelaBusca\TelaBuscaClasse.cs" />
     <Compile Include="TelaBusca\TelaBuscaIngrediente.cs" />
     <Compile Include="View\FrmNotificacao.cs">
       <SubType>Form</SubType>

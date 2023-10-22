@@ -1,4 +1,5 @@
 ﻿using Model.Interface.Repository;
+using Model.Model;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,7 +11,6 @@ namespace Services.Service
 {
     public class ServiceTelaBuscaDinamico
     {
-        
 
         private readonly IRepositoryBuscaDinamico _repo;
 
@@ -19,11 +19,11 @@ namespace Services.Service
             _repo = FactoryRepository.BuscaDinamico(tipo);
         }
 
-        public IList ObterTodos()
+        public List<EntidadeBuscaModel> ObterTodos()
         {
-            return _repo.ObterTodos() as IList;
+            return _repo.ObterTodos();
         }
-        public object ObterPoId(int id) 
+        public EntidadeBuscaModel ObterPoId(int id) 
         { 
            return _repo.ObterPorId(id);
         }

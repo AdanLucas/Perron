@@ -1,5 +1,7 @@
 ﻿using Model.Emumerator;
+using Perron.Extensions;
 using Perron.Presenter;
+using Perron.TelaBusca.Enum;
 using System;
 using System.Linq;
 using System.Windows.Forms;
@@ -70,7 +72,7 @@ namespace Perron.Controller
             {
                 try
                 {
-                    _sabor.Classe = Busca.IniciarBuscar(ETipoBusca.CLASSE).ObterItemSelecionado() as ClasseModel;
+                    _sabor.Classe = (ClasseModel)Busca.IniciarBuscar(ETipoBusca.CLASSE).ObterItemSelecionado().ObterUnico<ClasseModel>();
 
                 }
                 catch 

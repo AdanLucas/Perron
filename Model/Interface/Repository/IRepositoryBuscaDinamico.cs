@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Model.Model;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,10 +11,9 @@ namespace Model.Interface.Repository
     public interface IRepositoryBuscaDinamico
     {
          Type TipoRepositorio{ get;}
+        EntidadeBuscaModel ObterPorId(int Id);
 
-        object ObterPorId(int Id);
-
-        object ObterTodos();
+        List<EntidadeBuscaModel> ObterTodos();
 
     }
 }

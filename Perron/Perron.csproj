@@ -63,6 +63,8 @@
     <Compile Include="Controller\ControllerTipoEmpresa.cs" />
     <Compile Include="Controller\ControllerTipoFuncionario.cs" />
     <Compile Include="Controller\FactoryController.cs" />
+    <Compile Include="Extensions\ExEnum.cs" />
+    <Compile Include="Extensions\ExLista.cs" />
     <Compile Include="Global\CacheSessao.cs" />
     <Compile Include="Presenter\Cadastro\PresenterCadastroPessoa.cs" />
     <Compile Include="Presenter\Cadastro\PresenterCadastroPreco.cs" />
@@ -87,6 +89,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="TelaBusca\Enum\ETipoBusca.cs" />
     <Compile Include="TelaBusca\TelaBuscaBase.cs" />
     <Compile Include="TelaBusca\TelaBuscaIngrediente.cs" />
     <Compile Include="View\FrmNotificacao.cs">

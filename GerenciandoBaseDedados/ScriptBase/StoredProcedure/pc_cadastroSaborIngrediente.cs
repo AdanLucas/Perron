@@ -14,19 +14,20 @@
                             BEGIN
                             declare @ret int
                             
-                            	IF(EXISTS(SELECT 1 FROM Sabor_has_Ingrediente WHERE Sabor = @IDSabor AND Engrediente = @IDEngrediente))
+                            	IF(EXISTS(SELECT 1 FROM Sabor_has_Ingrediente WHERE Sabor = @IDSabor AND Ingrediente = @IDIngrediente))
                             	    BEGIN
-                            	        UPDATE Sabor_has_Ingrediente SET Ativo = @Ativo  WHERE Sabor = @IDSabor AND Engrediente = @IDEngrediente
+                            	        UPDATE Sabor_has_Ingrediente SET Ativo = @Ativo  WHERE Sabor = @IDSabor AND Ingrediente = @IDIngrediente
                             	    END
                             	ELSE
                             
                             	BEGIN
                             	IF(@Ativo = 1)
                             		BEGIN
-                            			INSERT INTO Sabor_has_Ingrediente (Sabor,Engrediente,Ativo) VALUES (@IDSabor,@IDEngrediente,@Ativo)
+                            			INSERT INTO Sabor_has_Ingrediente (Sabor,Ingrediente,Ativo) VALUES (@IDSabor,@IDIngrediente,@Ativo)
                             		END
                             	END
-                            END";
+                            END
+";
             }
 
         }

@@ -6,8 +6,9 @@
 
         public string Script =>
                         $@"ALTER TABLE [dbo].[Sabor_has_Ingrediente]  WITH CHECK ADD  CONSTRAINT [{NomeConstraint}] FOREIGN KEY([Ingrediente])
-    					REFERENCES [dbo].[Ingrediente] ([Id])
+    					REFERENCES [dbo].[Mercadoria] ([Id])
     					
-    					ALTER TABLE [dbo].[Sabor_has_Ingrediente] CHECK CONSTRAINT [{NomeConstraint}]";
+    					ALTER TABLE [dbo].[Sabor_has_Ingrediente] CHECK CONSTRAINT [{NomeConstraint}]
+";
     }
 }

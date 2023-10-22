@@ -52,11 +52,13 @@ public static class FactoryRepository
     {
         List<Type> listaClasses = Assembly.GetExecutingAssembly().GetTypes().Where(t => t.GetInterfaces().Contains(typeof(IRepositoryBuscaDinamico))).ToList();
 
-        foreach (IRepositoryBuscaDinamico t in listaClasses)
+        foreach (var t in listaClasses)
         {
-            if (t.TipoRepositorio.Equals(tipo))
-                                    return t;
-            
+            IRepositoryBuscaDinamico repo = (IRepositoryBuscaDinamico)Activator.CreateInstance(t);
+
+            if(repo.TipoRepositorio.Equals(tipo))
+                                        return repo;
+
         }
         return null;
 

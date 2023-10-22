@@ -9,12 +9,12 @@
         {
             get
             {
-                return @"create Procedure pc_cadastroDadosSaborIngrediente(@idSaborEngrediente int, @tamanho int,@qnt decimal(6,2),@unidadeMedida int,@ativo bit)
+                return @"CREATE PROCEDURE pc_cadastroDadosSaborIngrediente(@idSaborIngrediente int, @tamanho int,@qnt decimal(6,2),@unidadeMedida int,@ativo bit)
 						AS
 						
 						BEGIN
 						
-							IF(EXISTS(SELECT 1 FROM Sabor_has_IngredienteTamanho WHERE IdSaborEngrediente = @idSaborEngrediente AND Tamanho = @tamanho))
+							IF(EXISTS(SELECT 1 FROM Sabor_has_IngredienteTamanho WHERE IdSaborIngrediente = @idSaborIngrediente AND Tamanho = @tamanho))
 								BEGIN
 						
 								UPDATE Sabor_has_IngredienteTamanho 
@@ -22,7 +22,7 @@
 									    Quantidade = @QNT,
 										UnidadeMedida = @unidadeMedida,
 										Ativo = @ativo 
-										    WHERE IdSaborIngrediente = @idSaborEngrediente AND Tamanho = @tamanho
+										    WHERE IdSaborIngrediente = @idSaborIngrediente AND Tamanho = @tamanho
 						
 								END
 						
@@ -30,7 +30,7 @@
 						
 								BEGIN
 						
-									INSERT INTO Sabor_has_EngredienteTamanho (Tamanho,Quantidade,UnidadeMedida,Ativo)
+									INSERT INTO Sabor_has_IngredienteTamanho (Tamanho,Quantidade,UnidadeMedida,Ativo)
 															      VALUES (@tamanho,@qnt,@unidadeMedida,@ativo)
 								END
 								

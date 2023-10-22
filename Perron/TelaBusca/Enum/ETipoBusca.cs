@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Model.Emumerator
+namespace Perron.TelaBusca.Enum
 {
     public enum ETipoBusca
     {
@@ -19,7 +19,7 @@ namespace Model.Emumerator
         [AtributoTipoBusca(Tipo = typeof(ClasseModel))]
         CLASSE,
 
-        [AtributoTipoBusca(Tipo = typeof(IngredienteModel))]
+        [AtributoTipoBusca(Tipo = typeof(TelaBuscaIngrediente))]
         INGREDIENTE
     }
 }

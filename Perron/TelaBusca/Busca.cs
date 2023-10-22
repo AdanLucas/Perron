@@ -1,12 +1,9 @@
-﻿using Model.Emumerator;
-using Perron.TelaBusca;
+﻿using Perron.TelaBusca;
+using Perron.TelaBusca.Enum;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Perron.Extensions;
 
-    public static class Busca
+public static class Busca
     {
         private static TelaBuscaBase busca;
 

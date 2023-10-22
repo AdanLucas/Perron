@@ -19,7 +19,6 @@ namespace Perron.TelaBusca
         public bool MultiSelecao { set { multiSelecao = value; } }
 
         private List<EntidadeBuscaModel> ListaGrid;
-        private List<object> ListaEnidade;
         private DataGridView DataItem = new DataGridView();
         private FrmBuscarItem _view = new FrmBuscarItem();
         private ServiceTelaBuscaDinamico _service;
@@ -32,7 +31,6 @@ namespace Perron.TelaBusca
         public TelaBuscaBase(Type tipo)
         {
             _service = new ServiceTelaBuscaDinamico(tipo);
-            ConfigurarGrid();
             _view.Painel.Controls.Add(DataItem);
             DataItem.Dock = DockStyle.Fill;
             DataItem.KeyDown += EventoFechar;
@@ -74,11 +72,7 @@ namespace Perron.TelaBusca
 
             DataItem.Columns.Add(textoCell);
 
-
-
-            ListaEnidade = _service.ObterTodos() as List<object>;
-
-            IniciarListaBusca();
+            ListaGrid = _service.ObterTodos();
 
             DataItem.DataSource = ListaGrid;
 
@@ -116,12 +110,7 @@ namespace Perron.TelaBusca
         #region Metodos Protected
         protected abstract EntidadeBuscaModel CriandoListaGrid(object Entidade);
 
-        private void IniciarListaBusca()
-        {
-            ListaGrid = ListaEnidade.Select(ent=> CriandoListaGrid(ent)).ToList();
-        }
-
-        private object ObterMultiSelecao()
+        private List<object> ObterMultiSelecao()
         {
             var lista = new List<object>();
 
@@ -138,26 +127,29 @@ namespace Perron.TelaBusca
             return lista;
 
         }
-        private object ObterSelecaoUnica()
+        private List<object> ObterSelecaoUnica()
         {
+            List<object> list = new List<object>(); 
+
             for (int i = 0; i < DataItem.Rows.Count; i++)
             {
                 if (DataItem.Rows[i].Selected)
                 {
                     EntidadeBuscaModel entidade = DataItem.Rows[i].DataBoundItem as EntidadeBuscaModel;
 
-                    return entidade.DataItem;
+                    list.Add(entidade.DataItem);
                 }
-                return null;
-
+               
             }
-            return null;
+            return list;
         }
 
-        public object ObterItemSelecionado()
+        public List<object> ObterItemSelecionado()
         {
             try
             {
+                ConfigurarGrid();
+
                 if (_view.ShowDialog() == DialogResult.OK)
                 {
                     if (multiSelecao)

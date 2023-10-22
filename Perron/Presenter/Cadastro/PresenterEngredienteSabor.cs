@@ -1,6 +1,7 @@
-﻿using Model.Emumerator;
-using Perron.TelaBusca;
+﻿using Perron.Extensions;
+using Perron.TelaBusca.Enum;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Perron.Controller
@@ -115,7 +116,7 @@ namespace Perron.Controller
         {
             if (eventArgs.KeyChar.Equals('\u0001')) /*Buscar CTRL + A */
             {
-                _cadastroSabor.Sabor.Ingredientes = Busca.IniciarBuscar(ETipoBusca.INGREDIENTE,true).ObterItemSelecionado() as List<IngredienteModel>;
+                _cadastroSabor.Sabor.Ingredientes = Busca.IniciarBuscar(ETipoBusca.INGREDIENTE, true).ObterItemSelecionado().Converter<IngredienteModel>();
                 ExibirEngredienteSabor();
             }
         }

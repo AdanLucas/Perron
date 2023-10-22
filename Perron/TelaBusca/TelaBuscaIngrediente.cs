@@ -15,7 +15,8 @@ namespace Perron.TelaBusca
 
         protected override EntidadeBuscaModel CriandoListaGrid(object Entidade)
         {
-            var entidade = Entidade as IngredienteModel;
+            
+            IngredienteModel entidade = (IngredienteModel)Entidade;
 
             return new EntidadeBuscaModel() {Descricao = entidade.Descricao,DataItem = entidade };
         }

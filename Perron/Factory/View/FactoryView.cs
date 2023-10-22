@@ -38,7 +38,7 @@ public static class FactoryView
         var userControl = new UserControlEngredienteSabor();
 
         painel.Controls.Add(userControl);
-
+        userControl.Dock = DockStyle.Fill;
         return userControl;
 
     }

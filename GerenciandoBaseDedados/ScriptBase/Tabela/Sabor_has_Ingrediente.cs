@@ -16,7 +16,7 @@
     						[Sabor] [int] NULL,
     						[Ingrediente] [int] NULL,
     						[Ativo] [bit] NULL,
-    					 CONSTRAINT [PK_Sabor_has_Ingrediente] PRIMARY KEY CLUSTERED 
+    					 CONSTRAINT [PK_Sabor_has_Mercadoria] PRIMARY KEY CLUSTERED 
     					(
     						[Id] ASC
     					)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]

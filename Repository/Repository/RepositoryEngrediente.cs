@@ -12,7 +12,7 @@ namespace Repository.Repository
         #region Metodos Privados
         private void pc_cadastroEngrediente(DbSession session, IngredienteModel engrediente)
         {
-            session.Connection.Execute("exec pc_cadastroEngrediente @id,@descricao,@tipoMedida,@ativo", param: new
+            session.Connection.Execute("exec pc_cadastroMercadoria @id,@descricao,@tipoMedida,@ativo", param: new
             {
                 id = engrediente.Id,
                 descricao = engrediente.Descricao,
@@ -29,28 +29,28 @@ namespace Repository.Repository
         {
             using (var session = new DbSession())
             {
-                return session.Connection.Query<IngredienteModel>($"select * from Engrediente where id IN (select Engrediente from Sabor_has_Engrediente where Sabor = {IDSabor})").ToList();
+                return session.Connection.Query<IngredienteModel>($"select * from Mercadoria where id IN (select Engrediente from Sabor_has_Engrediente where Sabor = {IDSabor})").ToList();
             }
         }
         public IngredienteModel GetItemPorID(int Id)
         {
             using (var session = new DbSession())
             {
-                return session.Connection.Query<IngredienteModel>($"select * From Engrediente where Id = {Id}").FirstOrDefault();
+                return session.Connection.Query<IngredienteModel>($"select * From Mercadoria where Id = {Id}").FirstOrDefault();
             }
         }
         public List<IngredienteModel> GetLista(EStatusCadastro status)
         {
             using (var session = new DbSession())
             {
-                return session.Connection.Query<IngredienteModel>("select * from Engrediente").ToList();
+                return session.Connection.Query<IngredienteModel>("select * from Mercadoria").ToList();
             }
         }
         public List<EngredienteDTO> GetListaEngredienteDTO()
         {
             using (var Session = new DbSession())
             {
-                return Session.Connection.Query<EngredienteDTO>("select id,Descricao, case Ativo when 1 then 'Ativo'  when 0 then 'Inativo' end Status  from Engrediente").ToList();
+                return Session.Connection.Query<EngredienteDTO>("select id,Descricao, case Ativo when 1 then 'Ativo'  when 0 then 'Inativo' end Status  from Mercadoria").ToList();
             }
         }
         public void Salvar(IngredienteModel Item)

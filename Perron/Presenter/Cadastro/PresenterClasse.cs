@@ -137,10 +137,10 @@ namespace Perron.Presenter
         {
             base.ComportamentoAtual = EComportamentoTela.ItemSelecionado;
         }
-        protected override void AlterarComportamentoTela(EComportamentoTela status)
+        protected override void AlterandoComportamentoTela()
         {
 
-            switch (status)
+            switch (ComportamentoAtual)
             {
 
                 case EComportamentoTela.Inicio:

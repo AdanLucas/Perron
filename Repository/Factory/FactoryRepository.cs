@@ -1,7 +1,10 @@
 ﻿using Model.Emumerator;
+using Model.Interface.Repository;
 using Repository.Repository;
 using System;
-
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 
 public static class FactoryRepository
 {
@@ -45,6 +48,20 @@ public static class FactoryRepository
 
         return (IReposotiryTipoPessoa)Activator.CreateInstance(_type);
     }
+    public static IRepositoryBuscaDinamico BuscaDinamico(Type tipo)
+    {
+        List<Type> listaClasses = Assembly.GetExecutingAssembly().GetTypes().Where(t => t.GetInterfaces().Contains(typeof(IRepositoryBuscaDinamico))).ToList();
+
+        foreach (IRepositoryBuscaDinamico t in listaClasses)
+        {
+            if (t.TipoRepositorio.Equals(tipo))
+                                    return t;
+            
+        }
+        return null;
+
+    }
+
 
 }
 

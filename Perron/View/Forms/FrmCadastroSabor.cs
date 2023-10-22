@@ -11,6 +11,7 @@ namespace Perron.View.Forms
         {
             InitializeComponent();
             ConfigurarBotao();
+            this.tabControl1.KeyPress += this.NotificarEventoTeclapressionada;
         }
 
         private void ConfigurarBotao()
@@ -19,16 +20,24 @@ namespace Perron.View.Forms
             btnBuscarClasse.BackgroundImageLayout = ImageLayout.Zoom;
             btnBuscarClasse.FlatStyle = FlatStyle.Popup;
         }
+        private void NotificarEventoTeclapressionada(object sender,KeyPressEventArgs args)
+        {
+            if (EventoTeclaPressionada != null)
+                EventoTeclaPressionada(sender, args);
 
+        }
+
+
+        public KeyPressEventHandler EventoTeclaPressionada { get; set; }
         public string DescricaoSabor
         {
             get { return txtDescricaoSabor.Text; }
             set { txtDescricaoSabor.Text = value; }
 
         }
-        public Panel PainelEngredienteSabor
+        public TabControl TabControl
         {
-            get { return painelEngredienteSabor; }
+            get { return this.tabControl1; }
         }
         public string DescricaoClasse
         {

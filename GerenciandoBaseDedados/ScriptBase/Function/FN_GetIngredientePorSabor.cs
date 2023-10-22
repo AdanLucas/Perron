@@ -18,7 +18,7 @@ namespace GerenciandoBaseDedados.ScriptBase.Function
                             Ingrediente.Id
                             ,Ingrediente.Descricao
                             ,SaborIngrediente.Ativo 
-                            from Engrediente AS Ingrediente
+                            from Mercadoria AS Ingrediente
                                      JOIN  Sabor_has_Ingrediente as SaborIngrediente ON(Ingrediente.Id = SaborIngrediente.Ingrediente)
                                           where SaborIngrediente.Sabor = @sabor)";
             }

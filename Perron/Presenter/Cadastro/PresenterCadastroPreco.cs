@@ -13,7 +13,6 @@ namespace Perron.Presenter.Cadastro
         private readonly IServiceCadastroPreco _service;
         private List<PrecoModel> _listaPreco;
 
-
         public PresenterCadastroPreco(IViewCadastroPreco view, IServiceCadastroPreco cadastropreco) : base(view)
         {
             _view = view;
@@ -23,7 +22,6 @@ namespace Perron.Presenter.Cadastro
             DelegarEventos();
             this.ComportamentoAtual = EComportamentoTela.Inicio;
         }
-
 
         #region Eventos Privados
         private void EventoGridClasse(object o, EventArgs e)
@@ -195,9 +193,9 @@ namespace Perron.Presenter.Cadastro
                 MessageBox.Show(ex.Message, "Atenção!");
             }
         }
-        protected override void AlterarComportamentoTela(EComportamentoTela status)
+        protected override void AlterandoComportamentoTela()
         {
-            switch (status)
+            switch (ComportamentoAtual)
             {
                 case EComportamentoTela.None:
                     break;

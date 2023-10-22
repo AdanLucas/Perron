@@ -1,4 +1,5 @@
-﻿using Model.Emumerator;
+﻿using Model.AtribulteClasses;
+using Model.Emumerator;
 using System;
 using System.ComponentModel;
 using System.Reflection;
@@ -97,6 +98,19 @@ public static class ExtensionEnum
 
 
         return destino;
+    }
+    public static Type GetTipoBuscar(this ETipoBusca tipo)
+    {
+        FieldInfo elemento = tipo.GetType().GetField(tipo.ToString());
+
+        if (elemento != null)
+        {
+            object[] custons = elemento.GetCustomAttributes(typeof(AtributoTipoBusca), false);
+
+            return custons.Length == 0 ? null : ((AtributoTipoBusca)custons[0]).Tipo;
+
+        }
+        return null;
     }
 
 }

@@ -1,5 +1,7 @@
-﻿using Perron.Presenter;
+﻿using Model.Emumerator;
+using Perron.Presenter;
 using System;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Perron.Controller
@@ -7,26 +9,31 @@ namespace Perron.Controller
     public class PresenterSabor : PresenterPadrao, IPresenterSabor
     {
 
-        private readonly IViewCadastroSabor _view;
-        private IPresenterIngredienteSabor _presenterIngrediente;
-        private readonly IServiceSabor _service;
-        private SaborModel _sabor;
+        public TabControl TabControl{ get { return _view.TabControl; } }
 
-        private BuscarItemGenerico<ClasseModel> BuscaClasse = new BuscarItemGenerico<ClasseModel>();
+        public SaborModel Sabor { get { return _sabor; } }
+        public KeyPressEventHandler EventoTeclaPressionada { get { return this._view.EventoTeclaPressionada; } set { _view.EventoTeclaPressionada += value; } }
+
+        private SaborModel _sabor;
+        private readonly IViewCadastroSabor _view;
+        private readonly IServiceSabor _service;
+
+        
         public PresenterSabor(IViewCadastroSabor view, IServiceSabor service) : base(view)
         {
             _view = view;
             _service = service;
-            SetarControllerIngrediente(_view.PainelEngredienteSabor);
+            _sabor = new SaborModel();
+            SetarControllerIngrediente();
             _view.Show();
             DelegarEventos();
             base.ComportamentoAtual = EComportamentoTela.Inicio;
 
         }
         #region Metodos Privados
-        private void SetarControllerIngrediente(Panel painel)
+        private void SetarControllerIngrediente()
         {
-            _presenterIngrediente = FactoryPresenter.EngredienteSabor(painel);
+           FactoryPresenter.EngredienteSabor(this);
 
         }
 
@@ -34,7 +41,7 @@ namespace Perron.Controller
         #region Comportamento Tela
         protected override void ComportamentoInicioTela()
         {
-            _sabor = null;
+            _sabor = new SaborModel();
             _view.VisibilidadeBotao = false;
             _view.DescricaoClasse = "";
             _view.DescricaoSabor = "";
@@ -50,7 +57,7 @@ namespace Perron.Controller
         }
         protected override void ComportamentoItemSelecionado()
         {
-            _sabor = _view.ItemSelecionadoGrid;
+             _sabor = _view.ItemSelecionadoGrid;
             SetDadosSdabor();
             _view.VisibilidadeBotao = true;
         }
@@ -61,15 +68,13 @@ namespace Perron.Controller
         {
             if (_sabor != null)
             {
-
                 try
                 {
-                    _sabor.Classe = BuscaClasse.Get();
-                }
-                catch (Exception ex)
-                {
+                    _sabor.Classe = Busca.IniciarBuscar(ETipoBusca.CLASSE).ObterItemSelecionado() as ClasseModel;
 
-                    MessagemErro(ex);
+                }
+                catch 
+                {
                 }
 
             }
@@ -102,17 +107,13 @@ namespace Perron.Controller
         {
             if (_sabor != null)
             {
-                _sabor.Engredientes = _presenterIngrediente.GetIngredienteSabor();
                 _sabor.Descricao = _view.DescricaoSabor;
-
             }
         }
         private void SetDadosSdabor()
         {
             _view.DescricaoSabor = _sabor.Descricao;
             SetarClasseNaView();
-            var Lista = _sabor.GetEngredientePorStatus(EStatusCadastro.Todos);
-            _presenterIngrediente.SetListaIngredienteSabor(Lista);
         }
 
 
@@ -172,8 +173,17 @@ namespace Perron.Controller
         }
         private void EventoBuscarClasse(object o, EventArgs e)
         {
-            BuscarClasse();
-            SetarClasseNaView();
+            try
+            {
+                BuscarClasse();
+                SetarClasseNaView();
+            }
+            catch { }
+        }
+
+        protected override void AlterandoComportamentoTela()
+        {
+            
         }
 
         protected override void AlterarStatusCadastroExibidos(EStatusCadastro status)

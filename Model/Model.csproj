@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Aentity\Aentity.cs" />
+    <Compile Include="AtribulteClasses\AtributoTipoBusca.cs" />
     <Compile Include="AtribulteClasses\AtributosClasse.cs" />
     <Compile Include="Configuracao\ArqConfiguracao.cs" />
     <Compile Include="Configuracao\ConfiguracaoAPI.cs" />
@@ -64,9 +65,11 @@
     <Compile Include="Delegates\StatusCadastro\StatusCadastroExibidoEventArgs.cs" />
     <Compile Include="Delegates\StatusCadastro\StatusCadastroExibidoEventHandler.cs" />
     <Compile Include="DTO\EngredienteDTO.cs" />
+    <Compile Include="DTO\MercadoriaDTO.cs" />
     <Compile Include="Emumerator\Attribute\EComando.cs" />
     <Compile Include="Emumerator\EStatusCadastro.cs" />
     <Compile Include="Emumerator\EComportamentoTela.cs" />
+    <Compile Include="Emumerator\ETipoBusca.cs" />
     <Compile Include="Emumerator\ETipoConexao.cs" />
     <Compile Include="Emumerator\ETipoPessoa.cs" />
     <Compile Include="Emumerator\EUnidadeMedida.cs" />
@@ -85,6 +88,7 @@
     <Compile Include="Interface\Repository\IRepositoryClasse.cs" />
     <Compile Include="Interface\Repository\IRepositoryDadosEngredienteSabor.cs" />
     <Compile Include="Interface\Repository\IRepositoryBase.cs" />
+    <Compile Include="Interface\Repository\IRepositoryBuscaDinamico.cs" />
     <Compile Include="Interface\Repository\IRepositoryEngrediente.cs" />
     <Compile Include="Interface\Repository\IRepositoryPreco.cs" />
     <Compile Include="Interface\Repository\IRepositorySabor.cs" />
@@ -113,6 +117,7 @@
     <Compile Include="Model\DadosSaborEngredienteModel.cs" />
     <Compile Include="Model\EmpresaModel.cs" />
     <Compile Include="Model\EnderecoModel.cs" />
+    <Compile Include="Model\EntidadeBuscaModel.cs" />
     <Compile Include="Model\IngredienteModel.cs" />
     <Compile Include="Model\FuncionarioModel.cs" />
     <Compile Include="Model\PessoaModel.cs" />

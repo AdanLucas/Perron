@@ -4,7 +4,7 @@
     {
         public string GUID => "E57CDCAE-A9FB-41D3-97D1-89C7450A288E";
 
-        public string NomeTabela => "Ingrediente";
+        public string NomeTabela => "Mercadoria";
 
         public string Script
         {
@@ -16,7 +16,7 @@
     						[Descricao] [varchar](50) NULL,
                             [TipoMedida] [int] NULL,
     						[Ativo] [bit] NULL,
-    					 CONSTRAINT [PK_Ingrediente] PRIMARY KEY CLUSTERED 
+    					 CONSTRAINT [PK_Mercadoria] PRIMARY KEY CLUSTERED 
     					(
     						[Id] ASC
     					)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]

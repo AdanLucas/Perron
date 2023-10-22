@@ -1,58 +1,31 @@
-﻿using Perron.Presenter.Outros;
-using Services.Service;
-using System;
+﻿using Model.Emumerator;
+using Perron.TelaBusca;
 using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace Perron.Controller
 {
     public class PresenterIngredienteSabor : IPresenterIngredienteSabor
     {
-        private readonly IViewCadastroEngredienteSabor _view;
-        private readonly PresenterGetEstatusCadastro _status;
-
-        private EComportamentoTela _statusCadastro;
-
-        #region Listas
-
-        private List<IngredienteModel> ListaEngredienteCadastrados;
-        private List<IngredienteModel> ListaEngredienteSabor;
-        #endregion
-
-
-
+        private PresenterSabor _cadastroSabor;
+        private readonly UserControlEngredienteSabor _view = new UserControlEngredienteSabor();
+        
 
         #region Construtor
-        public PresenterIngredienteSabor(IViewCadastroEngredienteSabor view)
+        public PresenterIngredienteSabor(PresenterSabor cadastroSabor)
         {
-            _view = view;
-
-            SetarListaIngredienteCadastrados();
-            ExibirIngredienteCadastrados("");
-            _status = new PresenterGetEstatusCadastro(_view.PainelStatus);
+            _cadastroSabor = cadastroSabor;
+            IniciarTabPage();
             DelegarEventos();
-            _status.Visibilidade(true);
+            
         }
 
         #endregion
 
         #region Metodos Publicos
-        public List<IngredienteModel> GetIngredienteSabor()
+        private void AlterandoComportamento()
         {
-            return ListaEngredienteSabor;
-
-        }
-
-        public void StatusCadastro(EComportamentoTela status)
-        {
-            _statusCadastro = status;
-            Setstatus();
-        }
-
-        private void Setstatus()
-        {
-            switch (_statusCadastro)
+            switch (_cadastroSabor.ComportamentoAtual)
             {
 
                 case EComportamentoTela.None:
@@ -84,249 +57,68 @@ namespace Perron.Controller
 
 
         }
-        public void SetListaIngredienteSabor(List<IngredienteModel> Lista)
-        {
-            if (Lista.Count > 0)
-            {
-                ListaEngredienteSabor = Lista;
-                _status.SetStatus(EStatusCadastro.Ativo);
-                ExibirEngredienteSabor();
-            }
-        }
+ 
         #endregion
 
 
         #region Metodos Privados
+        private void IniciarTabPage()
+        {
+            var page = new TabPage();
+
+            page.Text = "Ingredientes";
+
+            page.Controls.Add(_view);
+            _view.Dock = DockStyle.Fill;
+            _cadastroSabor.TabControl.TabPages.Add(page);
+
+        }
         private void DelegarEventos()
         {
-            _view.EventoBuscaEngredienteCadastrados(this.EventoBuscaIngredienteCadastrado);
-            _view.EventoBuscaEngredienteSabor(this.EventoBuscaEngredienteSabor);
-            _view.EventoGridEngredientesCadastrados(this.EventoGridIngredientesCadastrado);
-            _view.EventoGridEngredientesSabor(this.EventoGridIngredientesSabor);
-            _status.EventoStatus += EventoStatusCadastroView;
-
-
-        }
-        private void SetarListaIngredienteCadastrados()
-        {
-            var Lista = ServiceDinamico<IngredienteModel>.GetLista();
-            if (Lista.Count > 0)
-                ListaEngredienteCadastrados = Lista;
-        }
-        private void ExibirIngredienteCadastrados(String Busca)
-        {
-            if (ListaEngredienteCadastrados != null)
-            {
-                if (ListaEngredienteCadastrados.Count > 0)
-                {
-                    List<IngredienteModel> Lista;
-
-                    if (Busca == "")
-                    {
-                        Lista = ListaEngredienteCadastrados;
-                    }
-                    else
-                    {
-                        Lista = ListaEngredienteCadastrados.Where(c => c.Descricao.Contains(Busca) && c.Ativo == true).ToList();
-                    }
-
-                    _view.PopularGridEngredientesCadastrados(Lista);
-                }
-            }
-        }
-        private List<IngredienteModel> FiltrarListaPorStatus(List<IngredienteModel> ListaIn)
-        {
-            switch (_status.GetStatus())
-            {
-                case EStatusCadastro.none:
-                    return null;
-
-                case EStatusCadastro.Todos:
-                    return ListaIn;
-
-                case EStatusCadastro.Ativo:
-                    return ListaIn.Where(E => E.Ativo == true).ToList();
-
-                case EStatusCadastro.Inativo:
-                    return ListaIn.Where(E => E.Ativo == false).ToList();
-            }
-
-            return null;
-
-        }
-        private List<IngredienteModel> FiltrarListaPorDescricao(List<IngredienteModel> LinstaIn)
-        {
-            var ListOut = new List<IngredienteModel>();
-
-            if (ListaEngredienteSabor != null)
-            {
-                var Busca = _view.BuscarEngredientesSabor;
-
-                if (ListaEngredienteSabor.Count > 0)
-                {
-
-
-                    if (Busca == "")
-                    {
-                        return LinstaIn;
-                    }
-                    else
-                    {
-                        return LinstaIn.Where(c => c.Descricao.Contains(Busca) && c.Ativo).ToList();
-                    }
-
-                }
-
-            }
-            else
-            {
-
-                throw new Exception("Lista Completa esta Nula");
-
-            }
-
-            return null;
+            _cadastroSabor.EventoTeclaPressionada += EventoAdicionarIngrediente;
+            _cadastroSabor.EventoAlterarComportamento += AlterandoComportamento;
         }
         private void StatusDeCadastroInicial()
         {
-            _view.GbEndredientesCadastrados.Visible = true;
-            _view.GbEndredientesSabor.Visible = false;
-            _view.GbEndredientesCadastrados.Dock = System.Windows.Forms.DockStyle.Fill;
-            _status.Visibilidade(false);
+            
+            
             ResetListaEngredienteSabor();
 
-        }
-        private void StatusDeCadastroSelecionado()
-        {
-            _view.GbEndredientesCadastrados.Visible = false;
-            _view.GbEndredientesSabor.Visible = true;
-            _view.GbEndredientesSabor.Dock = System.Windows.Forms.DockStyle.Fill;
-            _status.Visibilidade(true);
         }
         private void StatusCadastroEditandoCadastrando()
         {
             ResetListaEngredienteSabor();
-            _view.GbEndredientesCadastrados.Visible = true;
-            _view.GbEndredientesSabor.Visible = true;
-            _view.GbEndredientesCadastrados.Dock = System.Windows.Forms.DockStyle.Top;
-            _view.GbEndredientesSabor.Dock = System.Windows.Forms.DockStyle.Top;
-            _status.Visibilidade(false);
-
-
         }
         private void ResetListaEngredienteSabor()
         {
-            ListaEngredienteSabor = new List<IngredienteModel>();
+            if (_cadastroSabor.Sabor.Ingredientes == null)
+                         _cadastroSabor.Sabor.Ingredientes = new List<IngredienteModel>(); 
+            
             ExibirEngredienteSabor();
-
-        }
-        private void AdicionarEngredienteListaSabor(IngredienteModel Engrediente)
-        {
-            if (MessageBox.Show($"Deseja Adicionar o Engrediente {Engrediente.Descricao} ao Sabor?", "Adicionar?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            {
-                if (ListaEngredienteSabor == null)
-                    ListaEngredienteSabor = new List<IngredienteModel>();
-
-                ListaEngredienteSabor.Add(Engrediente);
-                _status.SetStatus(EStatusCadastro.Ativo);
-                ExibirEngredienteSabor();
-            }
-        }
-        private void InativarEngredienteLista()
-        {
-            int Indice = ListaEngredienteSabor.IndexOf(_view.EngredienteSelecionadoGridEngredienteSabor);
-            ListaEngredienteSabor[Indice].InativarCadastro();
-            if (ListaEngredienteSabor[Indice].Ativo == false)
-            {
-                MessageBox.Show("Engrediente Inativado com Sucesso", "Sucesso!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-        }
-        private void AtivarEngredienteLista()
-        {
-            int Indice = ListaEngredienteSabor.IndexOf(_view.EngredienteSelecionadoGridEngredienteSabor);
-
-            ListaEngredienteSabor[Indice].AtivarCadastroInativo();
-
-            if (ListaEngredienteSabor[Indice].Ativo == true)
-            {
-                MessageBox.Show("Engrediente Ativo Com Sucesso!", "Sucesso!", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification, true);
-            }
-
 
         }
         private void ExibirEngredienteSabor()
         {
-
-            var LIstaPorStatus = FiltrarListaPorStatus(ListaEngredienteSabor);
-            var ListaPorDescricao = FiltrarListaPorDescricao(LIstaPorStatus);
-            _view.PopularGridEngredientesSabor(ListaPorDescricao);
-
-
+            try
+            {
+                
+                _view.DataItem.DataSource = _cadastroSabor.Sabor.Ingredientes;
+                
+            }
+            catch{ }
         }
-
-
-
-
         #endregion
 
 
         #region Eventos Privados
-
-        private void EventoGridIngredientesCadastrado(object o, EventArgs e)
+        private void EventoAdicionarIngrediente(object o, KeyPressEventArgs eventArgs)
         {
-            if (_view.EngredienteSelecionadoGridEngredienteCadastrado != null)
+            if (eventArgs.KeyChar.Equals('\u0001')) /*Buscar CTRL + A */
             {
-                if (_statusCadastro.Equals(EComportamentoTela.Novo) || _statusCadastro.Equals(EComportamentoTela.Cadastrando) || _statusCadastro.Equals(EComportamentoTela.ItemSelecionado))
-                {
-                    var Engrediente = _view.EngredienteSelecionadoGridEngredienteCadastrado;
-                    this.AdicionarEngredienteListaSabor(Engrediente);
-                }
-            }
-        }
-        private void EventoGridIngredienteSabor(object o, EventArgs e)
-        {
-            if (_view.EngredienteSelecionadoGridEngredienteSabor != null && (_statusCadastro != EComportamentoTela.Novo))
-            {
-                InativarEngredienteLista();
-            }
-
-
-
-        }
-        private void EventoBuscaIngredienteCadastrado(object o, EventArgs e)
-        {
-            this.ExibirIngredienteCadastrados(_view.BuscarEngredientesCadastrados);
-        }
-        private void EventoBuscaEngredienteSabor(object o, EventArgs e)
-        {
-            ExibirEngredienteSabor();
-        }
-        private void EventoGridIngredientesSabor(object o, EventArgs e)
-        {
-            if (_statusCadastro == EComportamentoTela.ItemSelecionado)
-            {
-                InativarEngredienteLista();
+                _cadastroSabor.Sabor.Ingredientes = Busca.IniciarBuscar(ETipoBusca.INGREDIENTE,true).ObterItemSelecionado() as List<IngredienteModel>;
                 ExibirEngredienteSabor();
             }
         }
-        private void EventoStatusCadastroView(object o, StatusCadastroExibidoEventArgs e)
-        {
-            this.ExibirEngredienteSabor();
-        }
-
-        #endregion
-
-
-        #region Eventos Publicos
-
-
-        public void EventoAtualizarStatusCadastro(EComportamentoTela status)
-        {
-            _statusCadastro = status;
-            Setstatus();
-
-        }
-
         #endregion
     }
 }

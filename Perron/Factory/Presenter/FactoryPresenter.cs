@@ -22,11 +22,10 @@ public static class FactoryPresenter
         return new PresenterIngrediente(view, servico);
 
     }
-    public static IPresenterIngredienteSabor EngredienteSabor(Panel painel)
+    public static IPresenterIngredienteSabor EngredienteSabor(params object[] paramentro)
     {
-        var view = FactoryView.CadastroEngredienteSabor(painel);
-
-        return new PresenterIngredienteSabor(view);
+        PresenterSabor presenterSabor = paramentro[0] as PresenterSabor;
+        return new PresenterIngredienteSabor(presenterSabor);
 
     }
     public static IPresenterSabor CadastroSabor(IViewPrincipal viewPai)

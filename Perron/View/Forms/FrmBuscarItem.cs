@@ -1,47 +1,38 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using System.Windows.Forms;
 
 namespace Perron.View.Forms
 {
     public partial class FrmBuscarItem : Form
     {
+        public Panel Painel { get { return this.painelGrid; } }
+        public EventHandler EventoBusca {  get; set; }
         public FrmBuscarItem()
         {
             InitializeComponent();
-            dgvItem.DoubleClick += EventoGrid;
+            
         }
-        public void PopularLista<T>(List<T> lista)
+
+        private void dgvItem_KeyDown(object sender, KeyEventArgs e)
         {
-            if (lista != null)
+            if (e.KeyCode.Equals(Keys.Enter))
             {
-
-                dgvItem.DataSource = lista;
-                dgvItem.Columns["Id"].Visible = false;
-                dgvItem.Columns["Ativo"].Visible = false;
-                dgvItem.ColumnHeadersVisible = false;
-
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+            }
+            if (e.KeyCode.Equals(Keys.Escape))
+            {
+                this.DialogResult = DialogResult.Cancel;
+                this.Close();
             }
         }
-        public T GetItemSelecionado<T>()
+
+        private void txtBusca_TextChanged(object sender, EventArgs e)
         {
-            try
-            {
-                return (T)dgvItem.CurrentRow.DataBoundItem;
-
-            }
-            catch
-            {
-
-                throw new Exception("Item Não Selecionado");
-            }
-        }
-        public void EventoGrid(object o, EventArgs e)
-        {
-
-            this.DialogResult = DialogResult.OK;
-            this.Close();
-
+            if(EventoBusca != null)
+                    EventoBusca(txtBusca.Text, EventArgs.Empty);
         }
     }
 }

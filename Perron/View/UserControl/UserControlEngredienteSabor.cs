@@ -6,99 +6,14 @@ namespace Perron
 {
     public partial class UserControlEngredienteSabor : UserControl, IViewCadastroEngredienteSabor
     {
+
+        public DataGridView DataItem { get { return dgvIngrendiente; } }
+
+        public Panel Painel { get {return panelGrid;} }
+
         public UserControlEngredienteSabor()
         {
             InitializeComponent();
-
-        }
-
-        public GroupBox GbEndredientesCadastrados
-        {
-            get { return gbEngredientesCadastrados; }
-        }
-        public GroupBox GbEndredientesSabor
-        {
-            get { return gbEngredientesSabor; }
-        }
-        public Panel PainelStatus
-        {
-            get { return painelStatus; }
-        }
-        public string BuscarEngredientesCadastrados
-        {
-            get { return txtBuscaEngredientesCadastrados.Text; }
-        }
-        public string BuscarEngredientesSabor
-        {
-            get { return txtBuscaEngredientesVinculados.Text; }
-        }
-        public IngredienteModel EngredienteSelecionadoGridEngredienteCadastrado
-        {
-            get
-            {
-                try
-                {
-                    return (IngredienteModel)dgvEngredientesCadastrado.CurrentRow.DataBoundItem;
-                }
-                catch
-                {
-                    return null;
-                }
-            }
-
-
-        }
-        public IngredienteModel EngredienteSelecionadoGridEngredienteSabor
-        {
-            get
-            {
-                try
-                {
-                    return (IngredienteModel)dgvEngredientesSabor.CurrentRow.DataBoundItem;
-
-                }
-                catch
-                {
-                    return null;
-                }
-            }
-
-
-        }
-        public void EventoBuscaEngredienteCadastrados(EventHandler e)
-        {
-            txtBuscaEngredientesCadastrados.TextChanged += e;
-        }
-        public void EventoBuscaEngredienteSabor(EventHandler e)
-        {
-            txtBuscaEngredientesVinculados.TextChanged += e;
-        }
-        public void EventoGridEngredientesCadastrados(EventHandler e)
-        {
-            dgvEngredientesCadastrado.DoubleClick += e;
-        }
-        public void EventoGridEngredientesSabor(EventHandler e)
-        {
-            dgvEngredientesSabor.DoubleClick += e;
-        }
-        public void PopularGridEngredientesCadastrados(List<IngredienteModel> Lista)
-        {
-            dgvEngredientesCadastrado.DataSource = null;
-
-            dgvEngredientesCadastrado.DataSource = Lista;
-            dgvEngredientesCadastrado.Columns["Id"].Visible = false;
-            dgvEngredientesCadastrado.Columns["Ativo"].Visible = false;
-        }
-        public void PopularGridEngredientesSabor(List<IngredienteModel> Lista)
-        {
-            dgvEngredientesSabor.DataSource = null;
-
-            if (Lista != null)
-            {
-                dgvEngredientesSabor.DataSource = Lista;
-                dgvEngredientesSabor.Columns["Id"].Visible = false;
-                dgvEngredientesSabor.Columns["Ativo"].Visible = false;
-            }
         }
     }
 }

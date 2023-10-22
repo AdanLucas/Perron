@@ -74,7 +74,7 @@ namespace Repository.Repository
                 {
                     long IDclasse = session.Connection.Query<int>($"Select IdClasse From Sabor where Id = {item.Id}").FirstOrDefault();
                     item.Classe = session.Connection.Query<ClasseModel>($"select Id,Descricao as DescricaoClasse,Ativo from Classe where id= {IDclasse}").FirstOrDefault();
-                    item.Engredientes = GetListaEngredientePorSabor(session, item.Id);
+                    item.Ingredientes = GetListaEngredientePorSabor(session, item.Id);
                 }
 
                 return Lista;
@@ -103,7 +103,7 @@ namespace Repository.Repository
                 {
                     sabor.Id = pc_cadastroSabor(Session, sabor);
 
-                    foreach (var Engrediente in sabor.GetEngredientePorStatus(EStatusCadastro.Todos))
+                    foreach (var Engrediente in sabor.Ingredientes)
                     {
                         CadastroEngredienteSabor(Session, sabor.Id, Engrediente);
                     }

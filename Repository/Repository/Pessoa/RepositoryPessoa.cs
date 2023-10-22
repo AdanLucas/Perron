@@ -5,6 +5,7 @@ using System.Activities.Statements;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Repository.Repository
 {
@@ -37,8 +38,6 @@ namespace Repository.Repository
         protected override object ScriptGetCadastroPorID(int Id)
         {
             return _session.Connection.Query<object>("SELECT * FROM PESSOA WHERE ID = @ID", param: new { Id }).FirstOrDefault();
-
-
         }
         protected override List<T> ScriptGetListaCadastrado<T>()
         {
@@ -49,6 +48,8 @@ namespace Repository.Repository
                 item.Enderecos = _session.Connection.Query<EnderecoModel>("SELECT * FROM ENDERECO WHERE IDPESSOA = @ID",param: new {ID = item.Id}).ToList();
             }
             
+            
+
             return lista;
         }
     }

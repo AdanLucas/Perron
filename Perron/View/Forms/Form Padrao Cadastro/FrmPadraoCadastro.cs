@@ -8,11 +8,11 @@ namespace Perron.View.Forms.Form_Padrao_Cadastro
     {
         protected virtual Size TamanhoTelaReduzida { get { return this.Size; } }
         protected virtual Size TamanhoTelaCheia { get { return this.Size; } }
-
         public FrmPadraoCadastro()
         {
             InitializeComponent();
             ConfigurarImagemBotao();
+            
         }
 
 

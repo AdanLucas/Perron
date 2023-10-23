@@ -55,7 +55,7 @@
     <Compile Include="Repository\RepositoryBancoDeDados.cs" />
     <Compile Include="Repository\RepositoryCadastroPreco.cs" />
     <Compile Include="Repository\RepositoryClasse.cs" />
-    <Compile Include="Repository\RepositoryEngrediente.cs" />
+    <Compile Include="Repository\RepositoryMercadoria.cs" />
     <Compile Include="Repository\Pessoa\RepositoryPessoa.cs" />
     <Compile Include="Repository\Pessoa\RepositoryPessoaTipoCliente.cs" />
     <Compile Include="Repository\Pessoa\RepositoryPessoaTipoEmpresa.cs" />

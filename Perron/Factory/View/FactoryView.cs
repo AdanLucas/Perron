@@ -15,9 +15,9 @@ public static class FactoryView
     {
         return new FrmPrincipal();
     }
-    public static IViewCadastroIngrediente CadastroIngrediente(IViewPrincipal viewPrincipal)
+    public static IViewCadastroMercadoria CadastroMercadoria(IViewPrincipal viewPrincipal)
     {
-        var viewIngrediente = new FrmCadastroIngrediente();
+        var viewIngrediente = new FrmCadastroMercadoria();
 
         SetarMidParentTelaPrincial(viewIngrediente, (Form)viewPrincipal);
 

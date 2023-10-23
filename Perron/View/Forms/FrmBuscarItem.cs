@@ -8,6 +8,7 @@ namespace Perron.View.Forms
     public partial class FrmBuscarItem : Form
     {
         public Panel Painel { get { return this.painelGrid; } }
+        public DataGridView DataItem { get {return dgvItem; } } 
         public EventHandler EventoBusca {  get; set; }
         public FrmBuscarItem()
         {

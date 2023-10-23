@@ -72,7 +72,7 @@ namespace Perron.Controller
             {
                 try
                 {
-                    _sabor.Classe = (ClasseModel)Busca.IniciarBuscar(ETipoBusca.CLASSE).ObterItemSelecionado().ObterUnico<ClasseModel>();
+                    _sabor.Classe = Busca.IniciarBuscar(ETipoBusca.CLASSE).ObterSelecionado<ClasseModel>();
 
                 }
                 catch 

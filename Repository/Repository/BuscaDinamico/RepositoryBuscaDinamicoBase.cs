@@ -24,7 +24,7 @@ namespace Repository.Repository.BuscaDinamico
         }
 
         protected abstract object MetodoObterPorId(IDbConnection Conn, int id);
-        protected abstract List<object> MetodoObterTodos(IDbConnection conn);
+        protected abstract IList MetodoObterTodos(IDbConnection conn);
         protected abstract EntidadeBuscaModel FiltrarPorEntidade(object obj);
 
         public EntidadeBuscaModel ObterPorId(int Id)
@@ -39,8 +39,19 @@ namespace Repository.Repository.BuscaDinamico
         {
             using (_session = new DbSession())
             {
-                var listaRetorno = MetodoObterTodos(_session.Connection);
-                return listaRetorno.Select(obj => FiltrarPorEntidade(obj)).ToList();
+                List<EntidadeBuscaModel> listaRetorno = new List<EntidadeBuscaModel>();
+                var listaTipo = MetodoObterTodos(_session.Connection);
+
+                foreach ( var tipo in listaTipo)
+                {
+                    var entidade = FiltrarPorEntidade(tipo);
+                    listaRetorno.Add(entidade);
+                }
+
+                listaRetorno.Capacity = listaRetorno.Count;
+
+                return listaRetorno;
+
             }
         }
 

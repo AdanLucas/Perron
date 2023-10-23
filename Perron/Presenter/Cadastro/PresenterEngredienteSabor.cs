@@ -93,7 +93,7 @@ namespace Perron.Controller
         private void ResetListaEngredienteSabor()
         {
             if (_cadastroSabor.Sabor.Ingredientes == null)
-                         _cadastroSabor.Sabor.Ingredientes = new List<IngredienteModel>(); 
+                         _cadastroSabor.Sabor.Ingredientes = new List<MercadoriaModel>(); 
             
             ExibirEngredienteSabor();
 
@@ -116,7 +116,7 @@ namespace Perron.Controller
         {
             if (eventArgs.KeyChar.Equals('\u0001')) /*Buscar CTRL + A */
             {
-                _cadastroSabor.Sabor.Ingredientes = Busca.IniciarBuscar(ETipoBusca.INGREDIENTE, true).ObterItemSelecionado().Converter<IngredienteModel>();
+                _cadastroSabor.Sabor.Ingredientes = Busca.IniciarBuscar(ETipoBusca.INGREDIENTE).ObterSelecaoMultipla<MercadoriaModel>();
                 ExibirEngredienteSabor();
             }
         }

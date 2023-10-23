@@ -10,7 +10,7 @@ namespace Perron.Factory.Controller
         private readonly IViewPrincipal _view;
 
         #region Presenters
-        IPresenterIngrediente _presenterIngrediente;
+        IPresenterMercadoria _presenterIngrediente;
         IPresenterSabor _presenterSabor;
         IPresenterClasse _presenterClasse;
         IPresenterCadastroTamanho _presenterTamanho;
@@ -53,7 +53,7 @@ namespace Perron.Factory.Controller
         }
         private void EventoAbrirCadastroIngrediente(object o, EventArgs e)
         {
-            _presenterIngrediente = FactoryPresenter.CadastroIngredientes(_view);
+            _presenterIngrediente = FactoryPresenter.CadastroMercadoria(_view);
         }
         private void EventoAbrirCadastroSabor(object o, EventArgs e)
         {

@@ -1,12 +1,12 @@
 ﻿using Model.AtribulteClasses;
 using System.ComponentModel.DataAnnotations;
 
-public class IngredienteModel : Aentity
+public class MercadoriaModel : Aentity
 {
     [Required(ErrorMessage = "Descrição é Obrigatório")]
 
 
-    [AtributosClasse(ExibirNaGrid = true,Descricao ="Engrediente")]
+    [AtributosClasse(ExibirNaGrid = true,Descricao ="Mercadoria")]
     public string Descricao { get; set; }
 
     [AtributosClasse(ExibirNaGrid = false)]

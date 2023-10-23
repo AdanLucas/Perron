@@ -5,11 +5,11 @@ using Services.Service;
 public static class FactoryService
 {
 
-    public static IServiceIngrediente Engrediente()
+    public static IServiceMercadoria Mercadoria()
     {
-        var repo = FactoryRepository.Engrediente();
+        var repo = FactoryRepository.Mercadoria();
 
-        return new ServiceEngrediente(repo);
+        return new ServiceMercadoria(repo);
     }
     public static IServiceSabor Sabor()
     {

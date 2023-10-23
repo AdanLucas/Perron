@@ -11,7 +11,7 @@ public class SaborModel : Aentity
     public ClasseModel Classe { get; set; }
 
     [Required(ErrorMessage = "Engredientes é Obrigatório")]
-    public List<IngredienteModel> Ingredientes { get; set; }
+    public List<MercadoriaModel> Ingredientes { get; set; }
     
 
 

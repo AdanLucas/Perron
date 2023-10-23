@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 
 
-public interface IViewCadastroIngrediente : IViewPadraoCadastro
+public interface IViewCadastroMercadoria : IViewPadraoCadastro
 {
 
 
-    string DescricaoIngrediente { get; set; }
-    void PopularGridIngredientes(List<IngredienteModel> Ingredientes);
-    IngredienteModel IngredienteSelecionado { get; }
+    string DescricaoMercadoria { get; set; }
+    void PopularGridIngredientes(List<MercadoriaModel> Ingredientes);
+    MercadoriaModel MercadoriaSelecionado { get; }
     bool VisibilidadeGroupEngredientes { set; }
     EUnidadeMedida TipoMedida { get; set; }
     bool HabilitaComboTipoMedida { set; }

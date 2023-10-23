@@ -1,6 +1,7 @@
 ﻿using Dapper;
 using Model.Model;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -24,9 +25,9 @@ namespace Repository.Repository.BuscaDinamico
             return Conn.Query<ClasseModel>($"select Id,Descricao as DescricaoClasse,Ativo from Classe where Id= {id} Ativo = 1").FirstOrDefault();
         }
 
-        protected override List<object> MetodoObterTodos(IDbConnection conn)
+        protected override IList MetodoObterTodos(IDbConnection conn)
         {
-            return conn.Query<ClasseModel>("select Id,Descricao as DescricaoClasse,Ativo from Classe where Ativo = 1").ToList<object>();
+            return conn.Query<ClasseModel>("select Id,Descricao as DescricaoClasse,Ativo from Classe where Ativo = 1").ToList();
         }
     }
 }

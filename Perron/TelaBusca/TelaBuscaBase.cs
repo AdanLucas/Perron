@@ -4,6 +4,7 @@ using Services.Service;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -16,10 +17,9 @@ namespace Perron.TelaBusca
     {
         #region Propriedades
         
-        public bool MultiSelecao { set { multiSelecao = value; } }
-
+        
         private List<EntidadeBuscaModel> ListaGrid;
-        private DataGridView DataItem = new DataGridView();
+        private EntidadeBuscaModel entidadeSelecionado { get; set; }
         private FrmBuscarItem _view = new FrmBuscarItem();
         private ServiceTelaBuscaDinamico _service;
 
@@ -31,66 +31,82 @@ namespace Perron.TelaBusca
         public TelaBuscaBase(Type tipo)
         {
             _service = new ServiceTelaBuscaDinamico(tipo);
-            _view.Painel.Controls.Add(DataItem);
-            DataItem.Dock = DockStyle.Fill;
-            DataItem.KeyDown += EventoFechar;
+            _view.Painel.Controls.Add(_view.DataItem);
+            _view.DataItem.Dock = DockStyle.Fill;
             _view.EventoBusca += EventoFiltrandoBusca;
+            this.ConfigurarGrid();
+
         }
         #endregion
         
         #region Metodos Privados
         private void ConfigurarGrid()
         {
-            DataItem.AutoGenerateColumns = false; ;
-            DataItem.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            DataItem.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            DataItem.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-            DataItem.DefaultCellStyle.SelectionBackColor = Color.Green;
-            DataItem.DefaultCellStyle.SelectionForeColor = Color.Black;
-
-            if (multiSelecao)
-            {
-                var ckCell = new DataGridViewCheckBoxColumn();
-                ckCell.AutoSizeMode = DataGridViewAutoSizeColumnMode.NotSet;
-                ckCell.DataPropertyName = "Selecionado";
-                ckCell.Width = 20;
-                ckCell.ReadOnly = false;
-                ckCell.Frozen = false;
-                ckCell.Name = "Selecionado";
-                ckCell.HeaderText = "";
-                DataItem.Columns.Add(ckCell);
-            }
-
+            _view.DataItem.AutoGenerateColumns = false; 
+            _view.DataItem.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            _view.DataItem.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            _view.DataItem.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            _view.DataItem.DefaultCellStyle.SelectionBackColor = Color.Green;
+            _view.DataItem.DefaultCellStyle.SelectionForeColor = Color.Black;
 
             var textoCell = new DataGridViewTextBoxColumn();
-            textoCell.Name = "Descrição";
-            textoCell.AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
+            textoCell.Name = "Descricao";
+            textoCell.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             textoCell.DataPropertyName = "Descricao";
             textoCell.ReadOnly = true;
-            textoCell.Name = "Descricao";
+            textoCell.HeaderText = "Descrição";
             textoCell.Frozen = false;
 
-            DataItem.Columns.Add(textoCell);
+            _view.DataItem.Columns.Add(textoCell);
 
             ListaGrid = _service.ObterTodos();
 
-            DataItem.DataSource = ListaGrid;
+            _view.DataItem.DataSource = ListaGrid;
 
-        } 
+        }
+        private void ConfiguracaoMultiSelecaoGrid()
+        {
+            _view.DataItem.KeyDown += EventoFechar;
+
+            var ckCell = new DataGridViewCheckBoxColumn();
+            ckCell.AutoSizeMode = DataGridViewAutoSizeColumnMode.NotSet;
+            ckCell.DataPropertyName = "Selecionado";
+            ckCell.Width = 20;
+            ckCell.ReadOnly = false;
+            ckCell.Frozen = false;
+            ckCell.Name = "Selecionado";
+            ckCell.HeaderText = "";
+            _view.DataItem.Columns.Add(ckCell);
+        }
+        private void ConfiguraSelecaoUnicaGrid()
+        {
+            _view.DataItem.DoubleClick += EventoDoubleClickDataGridView;
+        }
         #endregion
 
-        
+
+
 
         #region Eventos
+        private void EventoDoubleClickDataGridView(object sender,EventArgs args)
+        {
+            this.entidadeSelecionado = ((DataGridView)sender).CurrentRow.DataBoundItem as EntidadeBuscaModel;
+
+            _view.DialogResult = DialogResult.OK;
+            _view.Close();
+        }
         private void EventoFiltrandoBusca(object sender,EventArgs args)
         {
-            var texto = sender.ToString();
+            var texto = sender.ToString().ToUpper();
 
             if(texto.Equals(""))
-                DataItem.DataSource = ListaGrid;
+                _view.DataItem.DataSource = ListaGrid;
 
-                         else
-                             DataItem.DataSource = ListaGrid.Where(busca=>busca.Descricao.Contains(texto));
+            else
+            {
+                var Filtrado = ListaGrid.Where(busca => busca.Descricao.ToUpper().Contains(texto)).ToList();
+                _view.DataItem.DataSource = Filtrado;
+            }
         }
         private void EventoFechar(object sender, KeyEventArgs e)
         {
@@ -110,53 +126,33 @@ namespace Perron.TelaBusca
         #region Metodos Protected
         protected abstract EntidadeBuscaModel CriandoListaGrid(object Entidade);
 
-        private List<object> ObterMultiSelecao()
+        private List<T> ObterMultiSelecao<T>()
         {
-            var lista = new List<object>();
+            var lista = new List<T>();
 
-            for (int i = 0; i < DataItem.Rows.Count; i++)
+            for (int i = 0; i < _view.DataItem.Rows.Count; i++)
             {
-                EntidadeBuscaModel entidade  = DataItem.Rows[i].DataBoundItem as EntidadeBuscaModel;
+                EntidadeBuscaModel entidade  = _view.DataItem.Rows[i].DataBoundItem as EntidadeBuscaModel;
 
                 if(entidade.Selecionado)
                 {
-                    lista.Add(entidade.DataItem);
+                    lista.Add((T)entidade.DataItem);
                 }
             }
 
             return lista;
 
         }
-        private List<object> ObterSelecaoUnica()
-        {
-            List<object> list = new List<object>(); 
-
-            for (int i = 0; i < DataItem.Rows.Count; i++)
-            {
-                if (DataItem.Rows[i].Selected)
-                {
-                    EntidadeBuscaModel entidade = DataItem.Rows[i].DataBoundItem as EntidadeBuscaModel;
-
-                    list.Add(entidade.DataItem);
-                }
-               
-            }
-            return list;
-        }
-        public List<object> ObterItemSelecionado()
+        
+        public List<T> ObterSelecaoMultipla<T>()
         {
             try
             {
-                ConfigurarGrid();
+                this.ConfiguracaoMultiSelecaoGrid();
 
                 if (_view.ShowDialog() == DialogResult.OK)
                 {
-                    if (multiSelecao)
-                      return  ObterMultiSelecao();
-
-                                else
-                                    return ObterSelecaoUnica();
-
+                    return ObterMultiSelecao<T>();
                 }
                 else
                 {
@@ -169,6 +165,27 @@ namespace Perron.TelaBusca
             }
 
         }
+        public T ObterSelecionado<T>()
+        {
+            try
+            {
+                this.ConfiguraSelecaoUnicaGrid();
+
+                if (_view.ShowDialog() == DialogResult.OK)
+                {
+                    return (T)entidadeSelecionado.DataItem;
+                }
+                return default;
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            } 
+        }
+
+
         #endregion
 
     }

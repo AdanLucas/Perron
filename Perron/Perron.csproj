@@ -73,7 +73,7 @@
     <Compile Include="Presenter\Cadastro\PresenterCadastroTamanho.cs" />
     <Compile Include="Presenter\Cadastro\PresenterClasse.cs" />
     <Compile Include="Presenter\Cadastro\PresenterEngredienteSabor.cs" />
-    <Compile Include="Presenter\Cadastro\PresenterIngrediente.cs" />
+    <Compile Include="Presenter\Cadastro\PresenterMercadoria.cs" />
     <Compile Include="Presenter\Cadastro\PresenterPadrao.cs" />
     <Compile Include="Presenter\Outros\PresenterGetEstatusCadastro.cs" />
     <Compile Include="Presenter\Principal\PresenterPrincipal.cs" />
@@ -189,11 +189,11 @@
     <Compile Include="View\Forms\Form Padrao Cadastro\FrmPadraoCadastro.Designer.cs">
       <DependentUpon>FrmPadraoCadastro.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Forms\FrmCadastroIngrediente.cs">
+    <Compile Include="View\Forms\FrmCadastroMercadoria.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\Forms\FrmCadastroIngrediente.Designer.cs">
-      <DependentUpon>FrmCadastroIngrediente.cs</DependentUpon>
+    <Compile Include="View\Forms\FrmCadastroMercadoria.Designer.cs">
+      <DependentUpon>FrmCadastroMercadoria.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Forms\FrmCadastroSabor.cs">
       <SubType>Form</SubType>
@@ -257,8 +257,8 @@
     <EmbeddedResource Include="View\Forms\Form Padrao Cadastro\FrmPadraoCadastro.resx">
       <DependentUpon>FrmPadraoCadastro.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\Forms\FrmCadastroIngrediente.resx">
-      <DependentUpon>FrmCadastroIngrediente.cs</DependentUpon>
+    <EmbeddedResource Include="View\Forms\FrmCadastroMercadoria.resx">
+      <DependentUpon>FrmCadastroMercadoria.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Forms\FrmCadastroSabor.resx">
       <DependentUpon>FrmCadastroSabor.cs</DependentUpon>

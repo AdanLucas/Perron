@@ -11,12 +11,12 @@ namespace Perron.TelaBusca
     public class TelaBuscaIngrediente : TelaBuscaBase
     {
 
-        public TelaBuscaIngrediente() : base( typeof(IngredienteModel)) { }
+        public TelaBuscaIngrediente() : base( typeof(MercadoriaModel)) { }
 
         protected override EntidadeBuscaModel CriandoListaGrid(object Entidade)
         {
             
-            IngredienteModel entidade = (IngredienteModel)Entidade;
+            MercadoriaModel entidade = (MercadoriaModel)Entidade;
 
             return new EntidadeBuscaModel() {Descricao = entidade.Descricao,DataItem = entidade };
         }

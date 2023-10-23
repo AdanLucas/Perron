@@ -5,13 +5,13 @@ using System.Drawing;
 
 namespace Perron.View.Forms
 {
-    public partial class FrmCadastroIngrediente : FrmPadraoCadastro, IViewCadastroIngrediente
+    public partial class FrmCadastroMercadoria : FrmPadraoCadastro, IViewCadastroMercadoria
     {
         protected override Size TamanhoTelaCheia { get { return new Size() { Width = 493, Height = 653 }; } }
         protected override Size TamanhoTelaReduzida { get { return new Size() { Width = 493, Height = 160 }; } }
 
 
-        public FrmCadastroIngrediente()
+        public FrmCadastroMercadoria()
         {
             InitializeComponent();
 
@@ -21,19 +21,19 @@ namespace Perron.View.Forms
         public bool VisibilidadeGroupEngredientes { set { gbEngredientes.Visible = value; } }
         public bool HabilitaComboTipoMedida { set { cbTipoMedida.Enabled = value; } }
 
-        public string DescricaoIngrediente
+        public string DescricaoMercadoria
         {
             get { return txtDescricao.Text; }
             set { txtDescricao.Text = value; }
 
         }
-        public IngredienteModel IngredienteSelecionado
+        public MercadoriaModel MercadoriaSelecionado
         {
             get
             {
                 try
                 {
-                    return (IngredienteModel)dgvIngredientes.CurrentRow.DataBoundItem;
+                    return (MercadoriaModel)dgvMercadoria.CurrentRow.DataBoundItem;
                 }
                 catch
                 {
@@ -50,22 +50,22 @@ namespace Perron.View.Forms
 
         public void EventoGrid(EventHandler e)
         {
-            dgvIngredientes.DoubleClick += e;
+            dgvMercadoria.DoubleClick += e;
         }
         public EventHandler EventoBuscar { get; set; }
-        public void PopularGridIngredientes(List<IngredienteModel> Ingredientes)
+        public void PopularGridIngredientes(List<MercadoriaModel> Ingredientes)
         {
-            dgvIngredientes.DataSource = null;
+            dgvMercadoria.DataSource = null;
 
 
             if (Ingredientes != null)
             {
-                dgvIngredientes.DataSource = Ingredientes;
-                dgvIngredientes.Columns["Id"].Visible = false;
-                dgvIngredientes.Columns["Ativo"].Visible = false;
-                dgvIngredientes.Columns["TipoMedida"].Visible = false;
-                dgvIngredientes.Columns["Descricao"].HeaderText = "Descrição";
-                dgvIngredientes.Columns["DescricaoTipoMedida"].HeaderText = "Tipo Medida";
+                dgvMercadoria.DataSource = Ingredientes;
+                dgvMercadoria.Columns["Id"].Visible = false;
+                dgvMercadoria.Columns["Ativo"].Visible = false;
+                dgvMercadoria.Columns["TipoMedida"].Visible = false;
+                dgvMercadoria.Columns["Descricao"].HeaderText = "Descrição";
+                dgvMercadoria.Columns["DescricaoTipoMedida"].HeaderText = "Tipo Medida";
             }
         }
         private void FrmCadastroIngrediente_Load(object sender, EventArgs e)

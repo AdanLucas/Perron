@@ -26,7 +26,7 @@ namespace Repository.Repository.BuscaDinamico
         {
             return null;    
         }
-        protected override List<object> MetodoObterTodos(IDbConnection conn)
+        protected override IList MetodoObterTodos(IDbConnection conn)
         {
             return null;
         }

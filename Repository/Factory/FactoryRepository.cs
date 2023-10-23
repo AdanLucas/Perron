@@ -16,9 +16,9 @@ public static class FactoryRepository
     {
         return new RepositoryTamanho();
     }
-    public static IRepositoryEngrediente Engrediente()
+    public static IRepositoryMercadoria Mercadoria()
     {
-        return new RepositoryEngrediente();
+        return new RepositoryMercadoria();
     }
     public static IRepositoryDadosEngredienteSabor DadosEngredienteSabor()
     {

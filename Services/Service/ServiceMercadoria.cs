@@ -3,27 +3,27 @@ using System.Collections.Generic;
 
 namespace Services.Service
 {
-    public class ServiceEngrediente : IServiceIngrediente
+    public class ServiceMercadoria : IServiceMercadoria
     {
-        private readonly IRepositoryEngrediente _repositorio;
+        private readonly IRepositoryMercadoria _repositorio;
 
 
 
 
-        public ServiceEngrediente(IRepositoryEngrediente repositorio)
+        public ServiceMercadoria(IRepositoryMercadoria repositorio)
         {
             _repositorio = repositorio;
         }
 
-        public List<IngredienteModel> GetListaEngredientesCadastroados()
+        public List<MercadoriaModel> GetListaMercadoriaCadastrados()
         {
             return _repositorio.GetLista(EStatusCadastro.Todos);
         }
-        public void Salvar(IngredienteModel Engrediente)
+        public void Salvar(MercadoriaModel mercadoria)
         {
             try
             {
-                _repositorio.Salvar(Engrediente);
+                _repositorio.Salvar(mercadoria);
 
             }
             catch (Exception ex)
@@ -32,7 +32,7 @@ namespace Services.Service
                 throw ex;
             }
         }
-        public void SalvarLista(List<IngredienteModel> ListaEngrediente)
+        public void SalvarLista(List<MercadoriaModel> ListaMercadoria)
         {
             throw new NotSupportedException();
         }

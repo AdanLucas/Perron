@@ -30,7 +30,7 @@ namespace Repository.Repository
 
 
         }
-        private void CadastroEngredienteSabor(DbSession Session, long? IDsabor, IngredienteModel Engrediente)
+        private void CadastroEngredienteSabor(DbSession Session, long? IDsabor, MercadoriaModel Engrediente)
         {
             try
             {
@@ -55,9 +55,9 @@ namespace Repository.Repository
             return session.Connection.Query<ClasseModel>($"Select * from Classe where id = {IDClasse}").FirstOrDefault();
 
         }
-        private List<IngredienteModel> GetListaEngredientePorSabor(DbSession session, long? IDSabor)
+        private List<MercadoriaModel> GetListaEngredientePorSabor(DbSession session, long? IDSabor)
         {
-            return session.Connection.Query<IngredienteModel>($@"SELECT * FROM  FN_GetEngredientePorSabor ({IDSabor})").ToList();
+            return session.Connection.Query<MercadoriaModel>($@"SELECT * FROM  FN_GetEngredientePorSabor ({IDSabor})").ToList();
         }
         #endregion
 

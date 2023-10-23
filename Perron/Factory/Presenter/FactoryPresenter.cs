@@ -13,13 +13,13 @@ public static class FactoryPresenter
         var view = FactoryView.Principal();
         return new ControllerPrincipal(view);
     }
-    public static IPresenterIngrediente CadastroIngredientes(IViewPrincipal viewPai)
+    public static IPresenterMercadoria CadastroMercadoria(IViewPrincipal viewPai)
     {
-        var view = FactoryView.CadastroIngrediente(viewPai);
-        var servico = FactoryService.Engrediente();
+        var view = FactoryView.CadastroMercadoria(viewPai);
+        var servico = FactoryService.Mercadoria();
 
 
-        return new PresenterIngrediente(view, servico);
+        return new PresenterMercadoria(view, servico);
 
     }
     public static IPresenterIngredienteSabor EngredienteSabor(params object[] paramentro)

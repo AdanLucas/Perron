@@ -10,10 +10,8 @@ public interface IViewPrincipal
 
     #region Eventos
     void EventoFechar(FormClosedEventHandler e);
-    //void EventoAbrirTela(EventHandler e);
-
     void EventoAbrirTelaIngredientes(EventHandler e);
-    void EventoAbrirTelaCadastroSabor(EventHandler e);
+    void EventoAbrirTelaCadastroProduto(EventHandler e);
     void EventoAbrirtelaCadastroClasse(EventHandler e);
     void EventoAbrirtelaCadastroTAmanho(EventHandler e);
     void EventoAbrirTelaCadastroPreco(EventHandler e);

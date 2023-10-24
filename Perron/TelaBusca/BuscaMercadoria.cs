@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace Perron.TelaBusca
 {
-    public class TelaBuscaIngrediente : TelaBuscaBase
+    public class BuscaMercadoria : TelaBuscaBase
     {
 
-        public TelaBuscaIngrediente() : base( typeof(MercadoriaModel)) { }
+        public BuscaMercadoria() : base( typeof(MercadoriaModel)) { }
 
         protected override EntidadeBuscaModel CriandoListaGrid(object Entidade)
         {

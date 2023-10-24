@@ -12,10 +12,11 @@ namespace Repository.Repository
         #region Metodos Privados
         private void pc_cadastroMercadoria(DbSession session, MercadoriaModel mercadoria)
         {
-            session.Connection.Execute("exec pc_cadastroMercadoria @id,@descricao,@tipoMedida,@ativo", param: new
+            session.Connection.Execute("exec pc_cadastroMercadoria @id,@descricao,@tipoMercadoria,@tipoMedida,@ativo", param: new
             {
                 id = mercadoria.Id,
                 descricao = mercadoria.Descricao,
+                tipoMercadoria = mercadoria.TipoMercadoria,
                 tipoMedida = mercadoria.TipoMedida,
                 ativo = mercadoria.Ativo
             }, transaction: session.Transaction);
@@ -25,7 +26,7 @@ namespace Repository.Repository
 
 
         #region metodos Publicos
-        public List<MercadoriaModel> GetListaMercadoriaPorSabor(int IDSabor)
+        public List<MercadoriaModel> GetListaMercadoriaPorProduto(int IDSabor)
         {
             using (var session = new DbSession())
             {

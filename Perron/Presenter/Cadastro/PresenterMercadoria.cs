@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Model.Emumerator;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
@@ -9,7 +10,7 @@ namespace Perron.Controller
     {
         private readonly IViewCadastroMercadoria _view;
         private readonly IServiceMercadoria _service;
-        private MercadoriaModel mercadoria { get { return GetDadosMercadoria(); } set { SetMercadoria(value); } }
+        
 
         private MercadoriaModel _mercadoria;
         private List<MercadoriaModel> ListaMercadoriaCadastrados;
@@ -21,16 +22,22 @@ namespace Perron.Controller
             DelegarEventos();
             base.ComportamentoAtual = EComportamentoTela.Inicio;
             SetListaMercadoriaCadastrado(EStatusCadastro.Todos);
+            _view.SelecaoTipoMedida.DataSource = EUnidadeMedida.Nd.GetArrayItemEnum();
+            _view.SelecaoTipoMercadoria.DataSource = ETipoMercadoria.None.GetArrayItemEnum();
+            
         }
 
+
+        
 
         #region metodos Privados
 
         #region override
+        
         protected override void AlterarStatusCadastroExibidos(EStatusCadastro status)
         {
             SetListaMercadoriaCadastrado(status);
-            FiltrarListaPorNome(_view.DescricaoMercadoria);
+            FiltrarListaPorNome(_view.TxtDescricao.Text);
         }
         protected override void AlterandoComportamentoTela()
         {
@@ -43,19 +50,22 @@ namespace Perron.Controller
         protected override void ComportamentoInicioTela()
         {
             _view.SetarTamanhoMaximoTela();
-            _view.HabilitaComboTipoMedida = false;
+            _view.SelecaoTipoMedida.Enabled = false;
+            _view.SelecaoTipoMercadoria.Enabled = false;
             SetListaMercadoriaCadastrado(EStatusCadastro.none);
             EstadoInicial();
         }
         protected override void ComportamentoCadastrando()
         {
             _view.SetarTamanhoDaTelaReduzido();
-            _view.HabilitaComboTipoMedida = true;
-            _view.DescricaoMercadoria = "";
+            _view.SelecaoTipoMedida.Enabled = true;
+            _view.SelecaoTipoMercadoria.Enabled = true;
+            _view.TxtDescricao.Text = "";
         }
         protected override void ComportamentoItemSelecionado()
         {
-            _view.HabilitaComboTipoMedida = true;
+            _view.SelecaoTipoMedida.Enabled = true;
+            _view.SelecaoTipoMercadoria.Enabled = true;
         }
         #endregion
 
@@ -67,8 +77,9 @@ namespace Perron.Controller
         }
         private MercadoriaModel GetDadosMercadoria()
         {
-            _mercadoria.Descricao = _view.DescricaoMercadoria;
-            _mercadoria.TipoMedida = _view.TipoMedida;
+            _mercadoria.Descricao = _view.TxtDescricao.Text;
+            _mercadoria.TipoMedida = _view.SelecaoTipoMedida.SelectedItem as EUnidadeMedida?;
+            _mercadoria.TipoMercadoria = _view.SelecaoTipoMercadoria.SelectedItem as ETipoMercadoria?;
 
             return _mercadoria;
         }
@@ -76,8 +87,9 @@ namespace Perron.Controller
         {
             _mercadoria = mercadoria;
             _mercadoria = _view.MercadoriaSelecionado;
-            _view.DescricaoMercadoria = _mercadoria.Descricao;
-            _view.TipoMedida = _mercadoria.TipoMedida;
+            _view.TxtDescricao.Text = _mercadoria.Descricao;
+            _view.SelecaoTipoMedida.SelectedItem = _mercadoria.TipoMedida;
+            _view.SelecaoTipoMercadoria.SelectedItem = _mercadoria.TipoMercadoria;
         }
 
         private void AtivarMercadoriaInativo(MercadoriaModel _engrediente)
@@ -96,13 +108,13 @@ namespace Perron.Controller
 
             string Erro = "";
 
-            if (mercadoria.Descricao == "")
+            if (_mercadoria.Descricao == "")
             {
                 ret = false;
                 Erro += "Infome Uma Decsricao Para o mercadoria;\n";
 
             }
-            if (mercadoria.TipoMedida == 0)
+            if (_mercadoria.TipoMedida == 0)
             {
                 ret = false;
                 Erro += "Selecione a Unidade de Medida Do mercadoria;\n";
@@ -115,8 +127,9 @@ namespace Perron.Controller
         {
             _mercadoria = new MercadoriaModel();
             _mercadoria.Ativo = true;
-            _view.DescricaoMercadoria = null;
-            _view.TipoMedida = EUnidadeMedida.Nd;
+            _view.TxtDescricao.Text = null;
+            _view.SelecaoTipoMercadoria.SelectedItem = EUnidadeMedida.Nd;
+            _view.SelecaoTipoMercadoria.SelectedItem = ETipoMercadoria.None;
         }
         private void SetListaMercadoriaCadastrado(EStatusCadastro status)
         {
@@ -167,13 +180,14 @@ namespace Perron.Controller
         {
             if (_view.MercadoriaSelecionado != null)
             {
-                mercadoria = _view.MercadoriaSelecionado;
+                _mercadoria = _view.MercadoriaSelecionado;
+                SetMercadoria(_mercadoria);
                 base.ComportamentoAtual = EComportamentoTela.ItemSelecionado;
             }
         }
         private void EventoBucarPorDescricao(object o, EventArgs e)
         {
-            FiltrarListaPorNome(_view.DescricaoMercadoria);
+            FiltrarListaPorNome(_view.TxtDescricao.Text);
         }
 
 
@@ -186,12 +200,12 @@ namespace Perron.Controller
         {
             try
             {
-
+                _mercadoria =  GetDadosMercadoria();
                 ValidarDadosMercadoria();
-                AtivarMercadoriaInativo(mercadoria);
-                _service.Salvar(mercadoria);
+                AtivarMercadoriaInativo(_mercadoria);
+                _service.Salvar(_mercadoria);
                 base.ComportamentoAtual = EComportamentoTela.Inicio;
-                base.MessageDeSucesso($"Mercadoria {mercadoria.Descricao} Cadastrado com Sucesso!");
+                base.MessageDeSucesso($"Mercadoria {_mercadoria.Descricao} Cadastrado com Sucesso!");
 
             }
             catch (Exception ex)
@@ -201,10 +215,10 @@ namespace Perron.Controller
         }
         protected override void EventoRemover(object o, EventArgs e)
         {
-            if (MessageBox.Show($"Deseja Remover o Mercadoria {mercadoria.Descricao} ??", "Remover??", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show($"Deseja Remover o Mercadoria {_mercadoria.Descricao} ??", "Remover??", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                mercadoria.Ativo = false;
-                _service.Salvar(mercadoria);
+                _mercadoria.Ativo = false;
+                _service.Salvar(_mercadoria);
                 ComportamentoAtual = EComportamentoTela.Inicio;
             }
 

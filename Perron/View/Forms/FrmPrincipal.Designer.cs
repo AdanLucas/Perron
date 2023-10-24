@@ -33,7 +33,7 @@ namespace Perron.View.Forms
             this.cadastroToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemIngrediente = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemClasse = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuItemSabor = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemProduto = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemTamanho = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemCadastroPreco = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemCadastroPessoa = new System.Windows.Forms.ToolStripMenuItem();
@@ -52,76 +52,76 @@ namespace Perron.View.Forms
             this.vendaToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(2, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1330, 31);
+            this.menuStrip1.Size = new System.Drawing.Size(1773, 36);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // cadastroToolStripMenuItem
             // 
             this.cadastroToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuItemIngrediente,
             this.menuItemClasse,
-            this.menuItemSabor,
             this.menuItemTamanho,
+            this.menuItemIngrediente,
+            this.menuItemProduto,
             this.menuItemCadastroPreco,
             this.menuItemCadastroPessoa});
             this.cadastroToolStripMenuItem.Font = new System.Drawing.Font("Arial", 15F);
             this.cadastroToolStripMenuItem.Name = "cadastroToolStripMenuItem";
-            this.cadastroToolStripMenuItem.Size = new System.Drawing.Size(103, 27);
+            this.cadastroToolStripMenuItem.Size = new System.Drawing.Size(128, 32);
             this.cadastroToolStripMenuItem.Text = "Cadastro";
             // 
             // menuItemIngrediente
             // 
             this.menuItemIngrediente.Name = "menuItemIngrediente";
-            this.menuItemIngrediente.Size = new System.Drawing.Size(180, 28);
-            this.menuItemIngrediente.Text = "Ingrediente";
+            this.menuItemIngrediente.Size = new System.Drawing.Size(224, 32);
+            this.menuItemIngrediente.Text = "Mecadoria";
             // 
             // menuItemClasse
             // 
             this.menuItemClasse.Name = "menuItemClasse";
-            this.menuItemClasse.Size = new System.Drawing.Size(180, 28);
+            this.menuItemClasse.Size = new System.Drawing.Size(224, 32);
             this.menuItemClasse.Text = "Classe";
             // 
-            // menuItemSabor
+            // menuItemProduto
             // 
-            this.menuItemSabor.Name = "menuItemSabor";
-            this.menuItemSabor.Size = new System.Drawing.Size(180, 28);
-            this.menuItemSabor.Text = "Sabor";
+            this.menuItemProduto.Name = "menuItemProduto";
+            this.menuItemProduto.Size = new System.Drawing.Size(224, 32);
+            this.menuItemProduto.Text = "Produto";
             // 
             // menuItemTamanho
             // 
             this.menuItemTamanho.Name = "menuItemTamanho";
-            this.menuItemTamanho.Size = new System.Drawing.Size(180, 28);
+            this.menuItemTamanho.Size = new System.Drawing.Size(224, 32);
             this.menuItemTamanho.Text = "Tamanho";
             // 
             // menuItemCadastroPreco
             // 
             this.menuItemCadastroPreco.Name = "menuItemCadastroPreco";
-            this.menuItemCadastroPreco.Size = new System.Drawing.Size(180, 28);
+            this.menuItemCadastroPreco.Size = new System.Drawing.Size(224, 32);
             this.menuItemCadastroPreco.Text = "Preço";
             // 
             // menuItemCadastroPessoa
             // 
             this.menuItemCadastroPessoa.Name = "menuItemCadastroPessoa";
-            this.menuItemCadastroPessoa.Size = new System.Drawing.Size(180, 28);
+            this.menuItemCadastroPessoa.Size = new System.Drawing.Size(224, 32);
             this.menuItemCadastroPessoa.Text = "Pessoa";
             // 
             // vendaToolStripMenuItem
             // 
             this.vendaToolStripMenuItem.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.vendaToolStripMenuItem.Name = "vendaToolStripMenuItem";
-            this.vendaToolStripMenuItem.Size = new System.Drawing.Size(77, 27);
+            this.vendaToolStripMenuItem.Size = new System.Drawing.Size(98, 32);
             this.vendaToolStripMenuItem.Text = "Venda";
             // 
             // FrmPrincipal
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1330, 829);
+            this.ClientSize = new System.Drawing.Size(1773, 1020);
             this.Controls.Add(this.menuStrip1);
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Pizzaria Perron";
@@ -136,7 +136,7 @@ namespace Perron.View.Forms
 
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem cadastroToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem menuItemSabor;
+        private System.Windows.Forms.ToolStripMenuItem menuItemProduto;
         private System.Windows.Forms.ToolStripMenuItem menuItemTamanho;
         private System.Windows.Forms.ToolStripMenuItem menuItemCadastroPreco;
         private System.Windows.Forms.ToolStripMenuItem menuItemIngrediente;

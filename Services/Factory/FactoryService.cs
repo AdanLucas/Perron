@@ -11,7 +11,7 @@ public static class FactoryService
 
         return new ServiceMercadoria(repo);
     }
-    public static IServiceSabor Sabor()
+    public static IServiceProduto Sabor()
     {
         var repo = FactoryRepository.Sabor();
         return new ServiceSabor(repo);

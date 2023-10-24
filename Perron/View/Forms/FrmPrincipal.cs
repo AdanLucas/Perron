@@ -16,9 +16,9 @@ namespace Perron.View.Forms
         {
             this.menuItemClasse.Click += e;
         }
-        public void EventoAbrirTelaCadastroSabor(EventHandler e)
+        public void EventoAbrirTelaCadastroProduto(EventHandler e)
         {
-            menuItemSabor.Click += e;
+            menuItemProduto.Click += e;
         }
         public void EventoAbrirtelaCadastroTAmanho(EventHandler e)
         {

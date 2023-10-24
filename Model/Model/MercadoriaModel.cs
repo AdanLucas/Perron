@@ -1,4 +1,5 @@
 ﻿using Model.AtribulteClasses;
+using Model.Emumerator;
 using System.ComponentModel.DataAnnotations;
 
 public class MercadoriaModel : Aentity
@@ -10,7 +11,7 @@ public class MercadoriaModel : Aentity
     public string Descricao { get; set; }
 
     [AtributosClasse(ExibirNaGrid = false)]
-    public EUnidadeMedida TipoMedida { get; set; }
+    public EUnidadeMedida? TipoMedida { get; set; }
 
     [AtributosClasse(ExibirNaGrid = true, Descricao = "Descrição Unidade Medida")]
     public string DescricaoTipoMedida
@@ -21,6 +22,9 @@ public class MercadoriaModel : Aentity
         }
 
     }
+
+    public ETipoMercadoria? TipoMercadoria { get; set; }
+
 
 }
 

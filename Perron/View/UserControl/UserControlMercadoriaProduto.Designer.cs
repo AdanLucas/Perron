@@ -1,7 +1,7 @@
 ﻿
 namespace Perron
 {
-    partial class UserControlEngredienteSabor
+    partial class UserControlMercadoriaProduto
     {
         /// <summary> 
         /// Variável de designer necessária.

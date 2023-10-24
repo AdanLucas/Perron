@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-public interface IViewCadastroEngredienteSabor
+public interface IViewCadastroMercadoriaProduto
 {
     Panel Painel { get; }
 }

@@ -22,18 +22,18 @@ public static class FactoryPresenter
         return new PresenterMercadoria(view, servico);
 
     }
-    public static IPresenterIngredienteSabor EngredienteSabor(params object[] paramentro)
+    public static IPresenterMercadoriaProduto MercadoriaProduto(params object[] paramentro)
     {
-        PresenterSabor presenterSabor = paramentro[0] as PresenterSabor;
-        return new PresenterIngredienteSabor(presenterSabor);
+        PresenterProduto presenterSabor = paramentro[0] as PresenterProduto;
+        return new PresenterMercadoriaProduto(presenterSabor);
 
     }
-    public static IPresenterSabor CadastroSabor(IViewPrincipal viewPai)
+    public static IPresenterProduto CadastroProduto(IViewPrincipal viewPai)
     {
-        var view = FactoryView.CadastroSabor(viewPai);
+        var view = FactoryView.CadastroProduto(viewPai);
         var serivce = FactoryService.Sabor();
 
-        return new PresenterSabor(view, serivce);
+        return new PresenterProduto(view, serivce);
 
     }
     public static IPresenterClasse Classe(IViewPrincipal viewPai)

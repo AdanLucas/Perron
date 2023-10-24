@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Repository.Repository
 {
-    public class RepositorySabor : IRepositorySabor
+    public class RepositorySabor : IRepositoryProduto
     {
 
         #region Interfaces
@@ -17,7 +17,7 @@ namespace Repository.Repository
 
 
         #region Metodos Privados
-        private int pc_cadastroSabor(DbSession Session, SaborModel sabor)
+        private int pc_cadastroSabor(DbSession Session, ProdutoModel sabor)
         {
             return Session.Connection.Query<int>("exec pc_cadastroSabor @id,@descricao,@idClasse,@ativo",
                 param: new
@@ -64,11 +64,11 @@ namespace Repository.Repository
 
 
         #region Metodos Publicos
-        public List<SaborModel> GetLista(EStatusCadastro status)
+        public List<ProdutoModel> GetLista(EStatusCadastro status)
         {
             using (var session = new DbSession())
             {
-                var Lista = session.Connection.Query<SaborModel>("Select * from Sabor").ToList();
+                var Lista = session.Connection.Query<ProdutoModel>("Select * from Sabor").ToList();
 
                 foreach (var item in Lista)
                 {
@@ -83,15 +83,15 @@ namespace Repository.Repository
 
         }
 
-        public SaborModel GetItemPorID(int Id)
+        public ProdutoModel GetItemPorID(int Id)
         {
             using (var session = new DbSession())
             {
-                return session.Connection.Query<SaborModel>($"Select * from Sabor where id = {Id}").FirstOrDefault();
+                return session.Connection.Query<ProdutoModel>($"Select * from Sabor where id = {Id}").FirstOrDefault();
             }
         }
 
-        public void Salvar(SaborModel sabor)
+        public void Salvar(ProdutoModel sabor)
         {
             using (var Session = new DbSession())
             {

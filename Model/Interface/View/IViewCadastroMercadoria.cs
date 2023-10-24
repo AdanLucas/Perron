@@ -1,17 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using System.Windows.Forms;
 
 public interface IViewCadastroMercadoria : IViewPadraoCadastro
 {
 
 
-    string DescricaoMercadoria { get; set; }
+    
     void PopularGridIngredientes(List<MercadoriaModel> Ingredientes);
     MercadoriaModel MercadoriaSelecionado { get; }
-    bool VisibilidadeGroupEngredientes { set; }
-    EUnidadeMedida TipoMedida { get; set; }
-    bool HabilitaComboTipoMedida { set; }
+    TextBox TxtDescricao { get; }
+
+    ComboBox SelecaoTipoMedida { get; }
+    ComboBox SelecaoTipoMercadoria { get; }
 
     void EventoGrid(EventHandler e);
     EventHandler EventoBuscar { get; set; }

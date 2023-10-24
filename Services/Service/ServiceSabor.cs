@@ -4,18 +4,18 @@ using System.Linq;
 
 namespace Services.Service
 {
-    class ServiceSabor : IServiceSabor
+    class ServiceSabor : IServiceProduto
     {
 
-        private readonly IRepositorySabor _repo;
+        private readonly IRepositoryProduto _repo;
 
 
-        public ServiceSabor(IRepositorySabor repo)
+        public ServiceSabor(IRepositoryProduto repo)
         {
             _repo = repo;
         }
 
-        public List<SaborModel> GetListaSabor(EStatusCadastro status)
+        public List<ProdutoModel> GetListaProduto(EStatusCadastro status)
         {
             var Lista = _repo.GetLista(EStatusCadastro.Todos);
 
@@ -39,12 +39,12 @@ namespace Services.Service
 
         }
 
-        public SaborModel GetporID(int Id)
+        public ProdutoModel GetporID(int Id)
         {
             return _repo.GetItemPorID(Id);
         }
 
-        public void Salvar(SaborModel sabor)
+        public void Salvar(ProdutoModel sabor)
         {
             try
             {

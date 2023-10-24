@@ -72,12 +72,12 @@
     <Compile Include="Componentes\ExibirStatusCadastro.cs" />
     <Compile Include="Presenter\Cadastro\PresenterCadastroTamanho.cs" />
     <Compile Include="Presenter\Cadastro\PresenterClasse.cs" />
-    <Compile Include="Presenter\Cadastro\PresenterEngredienteSabor.cs" />
+    <Compile Include="Presenter\Cadastro\PresenterMercadoriaProduto.cs" />
     <Compile Include="Presenter\Cadastro\PresenterMercadoria.cs" />
     <Compile Include="Presenter\Cadastro\PresenterPadrao.cs" />
     <Compile Include="Presenter\Outros\PresenterGetEstatusCadastro.cs" />
     <Compile Include="Presenter\Principal\PresenterPrincipal.cs" />
-    <Compile Include="Presenter\Cadastro\PresenterSabor.cs" />
+    <Compile Include="Presenter\Cadastro\PresenterProduto.cs" />
     <Compile Include="Factory\Presenter\FactoryPresenter.cs" />
     <Compile Include="Factory\View\FactoryView.cs" />
     <Compile Include="Outros\Extensoes\ExComboBox.cs" />
@@ -92,7 +92,7 @@
     <Compile Include="TelaBusca\Enum\ETipoBusca.cs" />
     <Compile Include="TelaBusca\TelaBuscaBase.cs" />
     <Compile Include="TelaBusca\TelaBuscaClasse.cs" />
-    <Compile Include="TelaBusca\TelaBuscaIngrediente.cs" />
+    <Compile Include="TelaBusca\BuscaMercadoria.cs" />
     <Compile Include="View\FrmNotificacao.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -177,11 +177,11 @@
     <Compile Include="View\Forms\FrmClasse.Designer.cs">
       <DependentUpon>FrmClasse.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\UserControl\UserControlEngredienteSabor.cs">
+    <Compile Include="View\UserControl\UserControlMercadoriaProduto.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="View\UserControl\UserControlEngredienteSabor.Designer.cs">
-      <DependentUpon>UserControlEngredienteSabor.cs</DependentUpon>
+    <Compile Include="View\UserControl\UserControlMercadoriaProduto.Designer.cs">
+      <DependentUpon>UserControlMercadoriaProduto.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Forms\Form Padrao Cadastro\FrmPadraoCadastro.cs">
       <SubType>Form</SubType>
@@ -195,11 +195,11 @@
     <Compile Include="View\Forms\FrmCadastroMercadoria.Designer.cs">
       <DependentUpon>FrmCadastroMercadoria.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Forms\FrmCadastroSabor.cs">
+    <Compile Include="View\Forms\FrmCadastroProduto.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\Forms\FrmCadastroSabor.Designer.cs">
-      <DependentUpon>FrmCadastroSabor.cs</DependentUpon>
+    <Compile Include="View\Forms\FrmCadastroProduto.Designer.cs">
+      <DependentUpon>FrmCadastroProduto.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Forms\FrmPrincipal.cs">
       <SubType>Form</SubType>
@@ -260,8 +260,8 @@
     <EmbeddedResource Include="View\Forms\FrmCadastroMercadoria.resx">
       <DependentUpon>FrmCadastroMercadoria.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\Forms\FrmCadastroSabor.resx">
-      <DependentUpon>FrmCadastroSabor.cs</DependentUpon>
+    <EmbeddedResource Include="View\Forms\FrmCadastroProduto.resx">
+      <DependentUpon>FrmCadastroProduto.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Forms\FrmClasse.resx">
       <DependentUpon>FrmClasse.cs</DependentUpon>
@@ -269,8 +269,8 @@
     <EmbeddedResource Include="View\Forms\FrmPrincipal.resx">
       <DependentUpon>FrmPrincipal.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\UserControl\UserControlEngredienteSabor.resx">
-      <DependentUpon>UserControlEngredienteSabor.cs</DependentUpon>
+    <EmbeddedResource Include="View\UserControl\UserControlMercadoriaProduto.resx">
+      <DependentUpon>UserControlMercadoriaProduto.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

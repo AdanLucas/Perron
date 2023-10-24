@@ -4,14 +4,14 @@ using System.Windows.Forms;
 
 namespace Perron
 {
-    public partial class UserControlEngredienteSabor : UserControl, IViewCadastroEngredienteSabor
+    public partial class UserControlMercadoriaProduto : UserControl, IViewCadastroMercadoriaProduto
     {
 
         public DataGridView DataItem { get { return dgvIngrendiente; } }
 
         public Panel Painel { get {return panelGrid;} }
 
-        public UserControlEngredienteSabor()
+        public UserControlMercadoriaProduto()
         {
             InitializeComponent();
         }

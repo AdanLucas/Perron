@@ -23,23 +23,14 @@ public static class FactoryView
 
         return viewIngrediente;
     }
-    public static IViewCadastroSabor CadastroSabor(IViewPrincipal viewPrincipal)
+    public static IViewCadastroProduto CadastroProduto(IViewPrincipal viewPrincipal)
     {
-        var viewCadastroSabor = new FrmCadastroSabor();
+        var viewCadastroProduto = new FrmCadastroProduto();
 
-        viewCadastroSabor.MdiParent = (FrmPrincipal)viewPrincipal;
+        viewCadastroProduto.MdiParent = (FrmPrincipal)viewPrincipal;
 
-        return viewCadastroSabor;
+        return viewCadastroProduto;
 
-
-    }
-    public static IViewCadastroEngredienteSabor CadastroEngredienteSabor(Panel painel)
-    {
-        var userControl = new UserControlEngredienteSabor();
-
-        painel.Controls.Add(userControl);
-        userControl.Dock = DockStyle.Fill;
-        return userControl;
 
     }
     public static IViewClasse CadastroClasse(IViewPrincipal viewPrincipal)

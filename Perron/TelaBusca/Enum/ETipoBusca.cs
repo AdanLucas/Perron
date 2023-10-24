@@ -10,7 +10,7 @@ namespace Perron.TelaBusca.Enum
 {
     public enum ETipoBusca
     {
-        [AtributoTipoBusca(Tipo = typeof(MercadoriaDTO))]
+        [AtributoTipoBusca(Tipo = typeof(BuscaMercadoria))]
         MERCADORIA,
 
         [AtributoTipoBusca(Tipo = typeof(PessoaModel))]
@@ -19,7 +19,7 @@ namespace Perron.TelaBusca.Enum
         [AtributoTipoBusca(Tipo = typeof(TelaBuscaClasse))]
         CLASSE,
 
-        [AtributoTipoBusca(Tipo = typeof(TelaBuscaIngrediente))]
+        
         INGREDIENTE
     }
 }

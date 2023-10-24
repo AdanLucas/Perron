@@ -8,7 +8,7 @@ using System.Reflection;
 
 public static class FactoryRepository
 {
-    public static IRepositorySabor Sabor()
+    public static IRepositoryProduto Sabor()
     {
         return new RepositorySabor();
     }
@@ -19,10 +19,6 @@ public static class FactoryRepository
     public static IRepositoryMercadoria Mercadoria()
     {
         return new RepositoryMercadoria();
-    }
-    public static IRepositoryDadosEngredienteSabor DadosEngredienteSabor()
-    {
-        return null;
     }
     public static IRepositoryClasse Classe()
     {

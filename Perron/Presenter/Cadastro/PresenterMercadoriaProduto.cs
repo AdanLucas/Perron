@@ -1,4 +1,5 @@
-﻿using Perron.Extensions;
+﻿using Model.Model;
+using Perron.Extensions;
 using Perron.TelaBusca.Enum;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,16 +7,16 @@ using System.Windows.Forms;
 
 namespace Perron.Controller
 {
-    public class PresenterIngredienteSabor : IPresenterIngredienteSabor
+    public class PresenterMercadoriaProduto : IPresenterMercadoriaProduto
     {
-        private PresenterSabor _cadastroSabor;
-        private readonly UserControlEngredienteSabor _view = new UserControlEngredienteSabor();
+        private PresenterProduto _cadastroProduto;
+        private readonly UserControlMercadoriaProduto _view = new UserControlMercadoriaProduto();
         
 
         #region Construtor
-        public PresenterIngredienteSabor(PresenterSabor cadastroSabor)
+        public PresenterMercadoriaProduto(PresenterProduto cadastroProduto)
         {
-            _cadastroSabor = cadastroSabor;
+            _cadastroProduto = cadastroProduto;
             IniciarTabPage();
             DelegarEventos();
             
@@ -26,7 +27,7 @@ namespace Perron.Controller
         #region Metodos Publicos
         private void AlterandoComportamento()
         {
-            switch (_cadastroSabor.ComportamentoAtual)
+            switch (_cadastroProduto.ComportamentoAtual)
             {
 
                 case EComportamentoTela.None:
@@ -67,33 +68,30 @@ namespace Perron.Controller
         {
             var page = new TabPage();
 
-            page.Text = "Ingredientes";
+            page.Text = "Mercadoria";
 
             page.Controls.Add(_view);
             _view.Dock = DockStyle.Fill;
-            _cadastroSabor.TabControl.TabPages.Add(page);
+            _cadastroProduto.TabControl.TabPages.Add(page);
 
         }
         private void DelegarEventos()
         {
-            _cadastroSabor.EventoTeclaPressionada += EventoAdicionarIngrediente;
-            _cadastroSabor.EventoAlterarComportamento += AlterandoComportamento;
+            _cadastroProduto.EventoTeclaPressionada += EventoAdicionarIngrediente;
+            _cadastroProduto.EventoAlterarComportamento += AlterandoComportamento;
         }
         private void StatusDeCadastroInicial()
         {
-            
-            
-            ResetListaEngredienteSabor();
-
+            ResetListaMercadoriaProduto();
         }
         private void StatusCadastroEditandoCadastrando()
         {
-            ResetListaEngredienteSabor();
+            ResetListaMercadoriaProduto();
         }
-        private void ResetListaEngredienteSabor()
+        private void ResetListaMercadoriaProduto()
         {
-            if (_cadastroSabor.Sabor.Ingredientes == null)
-                         _cadastroSabor.Sabor.Ingredientes = new List<MercadoriaModel>(); 
+            if (_cadastroProduto.Produto.Ingredientes == null)
+                _cadastroProduto.Produto.Ingredientes = new List<IngredienteModel>(); 
             
             ExibirEngredienteSabor();
 
@@ -103,7 +101,7 @@ namespace Perron.Controller
             try
             {
                 
-                _view.DataItem.DataSource = _cadastroSabor.Sabor.Ingredientes;
+                _view.DataItem.DataSource = _cadastroProduto.Produto.Ingredientes;
                 
             }
             catch{ }
@@ -116,7 +114,7 @@ namespace Perron.Controller
         {
             if (eventArgs.KeyChar.Equals('\u0001')) /*Buscar CTRL + A */
             {
-                _cadastroSabor.Sabor.Ingredientes = Busca.IniciarBuscar(ETipoBusca.INGREDIENTE).ObterSelecaoMultipla<MercadoriaModel>();
+                _cadastroProduto.Produto.Ingredientes = Busca.IniciarBuscar(ETipoBusca.INGREDIENTE).ObterSelecaoMultipla<IngredienteModel>();
                 ExibirEngredienteSabor();
             }
         }

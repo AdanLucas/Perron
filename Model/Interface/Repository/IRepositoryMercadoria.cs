@@ -5,7 +5,7 @@
 public interface IRepositoryMercadoria : IRepositoryBase<MercadoriaModel>
 {
     MercadoriaModel GetMercadoriaPorId(int Id);
-    List<MercadoriaModel> GetListaMercadoriaPorSabor(int IDSabor);
+    List<MercadoriaModel> GetListaMercadoriaPorProduto(int IdProduto);
 
 }
 

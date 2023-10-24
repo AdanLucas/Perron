@@ -5,9 +5,9 @@ using System.Windows.Forms;
 
 namespace Perron.View.Forms
 {
-    public partial class FrmCadastroSabor : FrmPadraoCadastro, IViewCadastroSabor
+    public partial class FrmCadastroProduto : FrmPadraoCadastro, IViewCadastroProduto
     {
-        public FrmCadastroSabor()
+        public FrmCadastroProduto()
         {
             InitializeComponent();
             ConfigurarBotao();
@@ -29,10 +29,10 @@ namespace Perron.View.Forms
 
 
         public KeyPressEventHandler EventoTeclaPressionada { get; set; }
-        public string DescricaoSabor
+        public string DescricaoProduto
         {
-            get { return txtDescricaoSabor.Text; }
-            set { txtDescricaoSabor.Text = value; }
+            get { return txtDescricaoProduto.Text; }
+            set { txtDescricaoProduto.Text = value; }
 
         }
         public TabControl TabControl
@@ -51,13 +51,13 @@ namespace Perron.View.Forms
         {
             set { btnBuscarClasse.Visible = value; }
         }
-        public SaborModel ItemSelecionadoGrid
+        public ProdutoModel ItemSelecionadoGrid
         {
             get
             {
                 try
                 {
-                    return (SaborModel)dgvSaboresCadastrados.CurrentRow.DataBoundItem;
+                    return (ProdutoModel)dgvProdutosCadastrados.CurrentRow.DataBoundItem;
                 }
                 catch
                 {
@@ -69,19 +69,19 @@ namespace Perron.View.Forms
         }
         public void EventoGrid(EventHandler e)
         {
-            dgvSaboresCadastrados.DoubleClick += e;
+            dgvProdutosCadastrados.DoubleClick += e;
         }
 
-        public void PopularGrid(List<SaborModel> Lista)
+        public void PopularGrid(List<ProdutoModel> Lista)
         {
-            dgvSaboresCadastrados.DataSource = null;
+            dgvProdutosCadastrados.DataSource = null;
 
             if (Lista != null)
             {
-                dgvSaboresCadastrados.DataSource = Lista;
-                dgvSaboresCadastrados.Columns["Id"].Visible = false;
-                dgvSaboresCadastrados.Columns["Ativo"].Visible = false;
-                dgvSaboresCadastrados.Columns["Classe"].Visible = false;
+                dgvProdutosCadastrados.DataSource = Lista;
+                dgvProdutosCadastrados.Columns["Id"].Visible = false;
+                dgvProdutosCadastrados.Columns["Ativo"].Visible = false;
+                dgvProdutosCadastrados.Columns["Classe"].Visible = false;
             }
 
 

@@ -1,6 +1,6 @@
 ﻿namespace Repository.ScriptBase.Tabela
 {
-    public class Ingediente : IScriptTabela
+    public class Mercadoria : IScriptTabela
     {
         public string GUID => "E57CDCAE-A9FB-41D3-97D1-89C7450A288E";
 
@@ -14,6 +14,7 @@
                         (
     						[Id] [int] IDENTITY(1,1) NOT NULL,
     						[Descricao] [varchar](50) NULL,
+                            [TipoMercadoria] [int] NULL,
                             [TipoMedida] [int] NULL,
     						[Ativo] [bit] NULL,
     					 CONSTRAINT [PK_Mercadoria] PRIMARY KEY CLUSTERED 

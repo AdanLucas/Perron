@@ -63,7 +63,7 @@ namespace Perron.Presenter.Cadastro
                 try
                 {
                     _service.SalvarListaPrecos(_listaPreco);
-                    MessageDeSucesso("Sabores Cadastrado Com sucesso!!");
+                    MessageDeSucesso("Produtos Cadastrado Com sucesso!!");
                     base.ComportamentoAtual = EComportamentoTela.Inicio;
                 }
                 catch (Exception ex)

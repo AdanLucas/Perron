@@ -1,33 +1,33 @@
 ﻿namespace Repository.ScriptBase.StoredProcedure
 {
-    internal class pc_cadastroSaborIngrediente : IScriptProcedure
+    internal class PC_CadastroProdutoMercadoria : IScriptProcedure
     {
         public string GUID { get { return "84B5EE0B-17E1-49E9-A2FA-A460CDE62B2E"; } }
-        public string Procedure { get { return "pc_CadastroSaborIngrediente"; } }
+        public string Procedure { get { return "PC_CadastroProdutoMercadoria"; } }
 
         public string ScriptPrcedured
         {
             get
             {
-                return @"CREATE PROCEDURE [dbo].[pc_cadastroSaborIngrediente](@IDSabor int,@IDIngrediente int,@Ativo bit)
+                return @"CREATE PROCEDURE [dbo].[PC_CadastroProdutoMercadoria](@IDProduto int,@IdMercadoria int,@Ativo bit)
                             AS
                             BEGIN
                             declare @ret int
                             
-                            	IF(EXISTS(SELECT 1 FROM Sabor_has_Ingrediente WHERE Sabor = @IDSabor AND Ingrediente = @IDIngrediente))
+                            	IF(EXISTS(SELECT 1 FROM Produto_has_Mercadoria WHERE Produto = @IDProduto AND Mercadoria = @IdMercadoria))
                             	    BEGIN
-                            	        UPDATE Sabor_has_Ingrediente SET Ativo = @Ativo  WHERE Sabor = @IDSabor AND Ingrediente = @IDIngrediente
+                            	        UPDATE Produto_has_Mercadoria SET Ativo = @Ativo  WHERE Produto = @IDProduto AND Mercadoria = @IdMercadoria
                             	    END
                             	ELSE
                             
                             	BEGIN
                             	IF(@Ativo = 1)
                             		BEGIN
-                            			INSERT INTO Sabor_has_Ingrediente (Sabor,Ingrediente,Ativo) VALUES (@IDSabor,@IDIngrediente,@Ativo)
+                            			INSERT INTO Produto_has_Mercadoria (Produto,Mercadoria,Ativo) VALUES (@IDProduto,@IdMercadoria,@Ativo)
                             		END
                             	END
                             END
-";
+                                ";
             }
 
         }

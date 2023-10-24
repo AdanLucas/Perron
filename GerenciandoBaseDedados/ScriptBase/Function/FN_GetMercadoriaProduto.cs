@@ -2,25 +2,25 @@
 
 namespace GerenciandoBaseDedados.ScriptBase.Function
 {
-    internal class FN_GetIngredientePorSabor : IScriptFunction
+    internal class FN_GetMercadoriaProduto : IScriptFunction
     {
         public string GUID { get => "B1E5EF24-E1DE-408D-A11C-71C32D7762C7"; }
-        public string Function { get => "FN_GetIngredientePorSabor"; }
+        public string Function { get => "FN_GetMercadoriaProduto"; }
 
         public string ScriptFunction
         {
             get
             {
-                return $@"CREATE FUNCTION FN_GetIngredientePorSabor (@sabor int)
+                return $@"CREATE FUNCTION FN_GetMercadoriaProduto (@produto int)
                            returns table return 
                            (
                            select
                             Ingrediente.Id
                             ,Ingrediente.Descricao
-                            ,SaborIngrediente.Ativo 
+                            ,MercadoriaProduto.Ativo 
                             from Mercadoria AS Ingrediente
-                                     JOIN  Sabor_has_Ingrediente as SaborIngrediente ON(Ingrediente.Id = SaborIngrediente.Ingrediente)
-                                          where SaborIngrediente.Sabor = @sabor)";
+                                     JOIN  Produto_has_Mercadoria as MercadoriaProduto ON(Ingrediente.Id = MercadoriaProduto.Ingrediente)
+                                          where MercadoriaProduto.Produto = @produto)";
             }
         }
     }

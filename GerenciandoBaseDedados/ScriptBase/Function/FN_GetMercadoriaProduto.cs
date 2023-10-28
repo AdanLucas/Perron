@@ -19,7 +19,7 @@ namespace GerenciandoBaseDedados.ScriptBase.Function
                             ,Ingrediente.Descricao
                             ,MercadoriaProduto.Ativo 
                             from Mercadoria AS Ingrediente
-                                     JOIN  Produto_has_Mercadoria as MercadoriaProduto ON(Ingrediente.Id = MercadoriaProduto.Ingrediente)
+                                     JOIN  Produto_has_Mercadoria as MercadoriaProduto ON(Ingrediente.Id = MercadoriaProduto.Mercadoria)
                                           where MercadoriaProduto.Produto = @produto)";
             }
         }

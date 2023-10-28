@@ -9,6 +9,6 @@ namespace Model.Model
     public class DadosIngredienteModel
     {
        public TamanhoModel Tamanho { get; set; }
-       public decimal Quantidade { get;}
+       public decimal Quantidade { get; set; }
     }
 }

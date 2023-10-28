@@ -5,10 +5,10 @@
         public string NomeConstraint => "FK_Produto_has_Mercadoria_Mercadoria";
 
         public string Script =>
-                        $@"ALTER TABLE [dbo].[Prduto_has_Mercadoria]  WITH CHECK ADD  CONSTRAINT [{NomeConstraint}] FOREIGN KEY([Mercadoria])
+                        $@"ALTER TABLE [dbo].[Produto_has_Mercadoria]  WITH CHECK ADD  CONSTRAINT [{NomeConstraint}] FOREIGN KEY([Mercadoria])
     					REFERENCES [dbo].[Mercadoria] ([Id])
     					
-    					ALTER TABLE [dbo].[Prduto_has_Mercadoria] CHECK CONSTRAINT [{NomeConstraint}]
+    					ALTER TABLE [dbo].[Produto_has_Mercadoria] CHECK CONSTRAINT [{NomeConstraint}]
 ";
     }
 }

@@ -24,14 +24,14 @@ public static class FactoryPresenter
     }
     public static IPresenterMercadoriaProduto MercadoriaProduto(params object[] paramentro)
     {
-        PresenterProduto presenterSabor = paramentro[0] as PresenterProduto;
-        return new PresenterMercadoriaProduto(presenterSabor);
+        PresenterProduto presenterProduto = paramentro[0] as PresenterProduto;
+        return new PresenterMercadoriaProduto(presenterProduto);
 
     }
     public static IPresenterProduto CadastroProduto(IViewPrincipal viewPai)
     {
         var view = FactoryView.CadastroProduto(viewPai);
-        var serivce = FactoryService.Sabor();
+        var serivce = FactoryService.Produto();
 
         return new PresenterProduto(view, serivce);
 

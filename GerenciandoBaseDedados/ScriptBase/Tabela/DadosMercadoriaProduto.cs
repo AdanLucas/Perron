@@ -14,8 +14,7 @@
                         (
     						[IdProdutoMercadoria] [int] NULL,
     						[Tamanho] [int] NULL,
-    						[Quantidade] [decimal](6, 2) NULL,
-    						[Ativo] [bit] NULL
+    						[Quantidade] [decimal](6, 2) NULL
     					) ON [PRIMARY]"
                  ;
             }

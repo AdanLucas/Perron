@@ -9,7 +9,7 @@
         {
             get
             {
-                return @"CREATE PROCEDURE PC_CadastroDadosMercadoriaProduto (@IdProdutoMercadoria int, @tamanho int,@qnt decimal(6,2),@ativo bit)
+                return @"CREATE PROCEDURE PC_CadastroDadosMercadoriaProduto (@IdProdutoMercadoria int, @tamanho int,@quantidade decimal(6,2))
 						AS
 						
 						BEGIN
@@ -19,8 +19,8 @@
 						
 								UPDATE DadosMercadoriaProduto 
 								       SET
-									    Quantidade = @QNT,
-										Ativo = @ativo 
+									    Quantidade = @quantidade
+										
 										    WHERE IdProdutoMercadoria = @IdProdutoMercadoria AND Tamanho = @tamanho
 						
 								END
@@ -29,8 +29,8 @@
 						
 								BEGIN
 						
-									INSERT INTO DadosMercadoriaProduto (Tamanho,Quantidade,Ativo)
-															      VALUES (@tamanho,@qnt,@ativo)
+									INSERT INTO DadosMercadoriaProduto (IdProdutoMercadoria,Tamanho,Quantidade)
+															      VALUES (@IdProdutoMercadoria,@tamanho,@quantidade)
 								END
 								
 						

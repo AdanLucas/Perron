@@ -10,6 +10,6 @@ namespace Model.Model
     {
         public MercadoriaModel Ingrediente { get; set; }
 
-        public List<DadosIngredienteModel> dadosIngrediente;
+        public List<DadosIngredienteModel> DadosIngrediente;
     }
 }

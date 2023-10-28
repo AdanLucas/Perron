@@ -8,9 +8,9 @@ using System.Reflection;
 
 public static class FactoryRepository
 {
-    public static IRepositoryProduto Sabor()
+    public static IRepositoryProduto Produto()
     {
-        return new RepositorySabor();
+        return new RepositoryProduto();
     }
     public static IRepositoryTamanho Tamanho()
     {

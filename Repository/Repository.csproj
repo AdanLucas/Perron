@@ -60,7 +60,7 @@
     <Compile Include="Repository\Pessoa\RepositoryPessoaTipoCliente.cs" />
     <Compile Include="Repository\Pessoa\RepositoryPessoaTipoEmpresa.cs" />
     <Compile Include="Repository\Pessoa\RepositoryPessoaTipoFuncionario.cs" />
-    <Compile Include="Repository\RepositorySabor.cs" />
+    <Compile Include="Repository\RepositoryProduto.cs" />
     <Compile Include="Repository\RepositoryTamanho.cs" />
     <Compile Include="Repository\Pessoa\RepositoryBaseTipoPessoa.cs" />
     <Compile Include="Transaction\UnitOfWork.cs" />

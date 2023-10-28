@@ -64,6 +64,7 @@
     </Compile>
     <Compile Include="Controller\ControllerCadastroEndereco.cs" />
     <Compile Include="Controller\ControllerCadastroTipoPessoaBase.cs" />
+    <Compile Include="Controller\ControllerCadastroVinculoPrecoTamanhoComProduto.cs" />
     <Compile Include="Controller\ControllerComponenteIngrediente.cs" />
     <Compile Include="Controller\ControllerNotificao.cs" />
     <Compile Include="Controller\ControllerTipoCliente.cs" />
@@ -79,7 +80,7 @@
     <Compile Include="Componentes\ExibirStatusCadastro.cs" />
     <Compile Include="Presenter\Cadastro\PresenterCadastroTamanho.cs" />
     <Compile Include="Presenter\Cadastro\PresenterClasse.cs" />
-    <Compile Include="Presenter\Cadastro\PresenterMercadoriaProduto.cs" />
+    <Compile Include="Controller\ControllerMercadoriaProduto.cs" />
     <Compile Include="Presenter\Cadastro\PresenterMercadoria.cs" />
     <Compile Include="Presenter\Cadastro\PresenterPadrao.cs" />
     <Compile Include="Presenter\Outros\PresenterGetEstatusCadastro.cs" />
@@ -96,6 +97,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="TelaBusca\BuscaIngrediente.cs" />
     <Compile Include="TelaBusca\Enum\ETipoBusca.cs" />
     <Compile Include="TelaBusca\TelaBuscaBase.cs" />
     <Compile Include="TelaBusca\TelaBuscaClasse.cs" />
@@ -129,6 +131,12 @@
     </Compile>
     <Compile Include="View\UCCadastroEndereco.Designer.cs">
       <DependentUpon>UCCadastroEndereco.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\UCCadastroTamanhoPreco_Produto.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\UCCadastroTamanhoPreco_Produto.Designer.cs">
+      <DependentUpon>UCCadastroTamanhoPreco_Produto.cs</DependentUpon>
     </Compile>
     <Compile Include="View\UserControl\UCCadastroEmpresa.cs">
       <SubType>UserControl</SubType>
@@ -239,6 +247,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\UCCadastroEndereco.resx">
       <DependentUpon>UCCadastroEndereco.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\UCCadastroTamanhoPreco_Produto.resx">
+      <DependentUpon>UCCadastroTamanhoPreco_Produto.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\UserControl\UCCadastroEmpresa.resx">
       <DependentUpon>UCCadastroEmpresa.cs</DependentUpon>

@@ -12,7 +12,6 @@
             {
                 return $@"CREATE TABLE [dbo].[Preco](
                         	[Id] [int] IDENTITY(1,1) NOT NULL,
-                        	[IDClasse] [int] NULL,
                         	[IDTamanho] [int] NULL,
                         	[Preco] [decimal](6, 2) NULL,
                         	[Ativo] [bit] NULL,

@@ -9,22 +9,33 @@
         {
             get
             {
-                return @"CREATE PROCEDURE PC_CadastroPreco(@id int,@Idclasse int,@IDTamanho int,@Preco Decimal,@Ativo bit)
-                    as
-                    BEGIN
-                    
-                    
-                    	IF(EXISTS(SELECT 1 FROM Preco where IDClasse = @Idclasse and IDTamanho = @IDTamanho))
-                    	BEGIN
-                    
-                    	UPDATE PRECO SET ATIVO = 0 WHERE ID IN (SELECT TOP 1 ID FROM Preco where IDClasse = @Idclasse and IDTamanho = @IDTamanho ORDER BY ID desc)
-                    
-                    	END
-                    
-                    	INSERT INTO PRECO (IDClasse,IDTamanho,Preco,Ativo)
-                    				Values (@Idclasse,@IDTamanho,@Preco,@Ativo)
-                    
-                    END";
+                return @"CREATE PROCEDURE PC_CadastroPreco (@Id int,@IdTamanho int,@Preco decimal(6,2),@Ativo bit)
+						AS
+						BEGIN
+						
+						DECLARE @RET INT
+						
+							IF(EXISTS(SELECT 1 FROM Preco WHERE ID = COALESCE(@Id,0)))
+							 BEGIN
+							
+								UPDATE Preco SET IDTamanho = @IdTamanho,Preco = @Preco,Ativo = @Ativo WHERE ID = @Id
+						
+								SET @RET = @Id;
+							 END
+						
+							ELSE
+							 BEGIN
+								 INSERT INTO Preco (IDTamanho,Preco,Ativo)
+								 VALUES (@IdTamanho,@Preco,@Ativo)
+						
+								 SET @RET = SCOPE_IDENTITY();
+						
+							 END
+						
+							SELECT @RET;
+						
+						
+						END";
             }
 
         }

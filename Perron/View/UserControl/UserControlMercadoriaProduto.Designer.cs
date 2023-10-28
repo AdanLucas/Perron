@@ -34,6 +34,7 @@ namespace Perron
             // 
             // panelGrid
             // 
+            this.panelGrid.AutoScroll = true;
             this.panelGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelGrid.Location = new System.Drawing.Point(0, 0);
             this.panelGrid.Name = "panelGrid";

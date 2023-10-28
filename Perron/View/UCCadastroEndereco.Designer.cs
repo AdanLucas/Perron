@@ -60,7 +60,7 @@
             this.tableLayoutPanelE.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 67.61364F));
             this.tableLayoutPanelE.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 32.38636F));
             this.tableLayoutPanelE.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 85F));
-            this.tableLayoutPanelE.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 143F));
+            this.tableLayoutPanelE.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 144F));
             this.tableLayoutPanelE.Controls.Add(this.label2, 3, 0);
             this.tableLayoutPanelE.Controls.Add(this.label1, 2, 0);
             this.tableLayoutPanelE.Controls.Add(this.label3, 0, 0);
@@ -85,7 +85,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(458, 0);
+            this.label2.Location = new System.Drawing.Point(457, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(40, 13);
             this.label2.TabIndex = 17;
@@ -94,7 +94,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(373, 0);
+            this.label1.Location = new System.Drawing.Point(372, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(34, 13);
             this.label1.TabIndex = 16;
@@ -122,16 +122,16 @@
             // 
             this.txtCidade.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtCidade.Location = new System.Drawing.Point(458, 22);
+            this.txtCidade.Location = new System.Drawing.Point(457, 22);
             this.txtCidade.Name = "txtCidade";
-            this.txtCidade.Size = new System.Drawing.Size(138, 20);
+            this.txtCidade.Size = new System.Drawing.Size(139, 20);
             this.txtCidade.TabIndex = 12;
             // 
             // txtBairro
             // 
             this.txtBairro.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBairro.Location = new System.Drawing.Point(373, 22);
+            this.txtBairro.Location = new System.Drawing.Point(372, 22);
             this.txtBairro.Name = "txtBairro";
             this.txtBairro.Size = new System.Drawing.Size(79, 20);
             this.txtBairro.TabIndex = 12;
@@ -142,7 +142,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtNumero.Location = new System.Drawing.Point(253, 22);
             this.txtNumero.Name = "txtNumero";
-            this.txtNumero.Size = new System.Drawing.Size(114, 20);
+            this.txtNumero.Size = new System.Drawing.Size(113, 20);
             this.txtNumero.TabIndex = 10;
             // 
             // txtDescricao

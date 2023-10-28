@@ -25,7 +25,7 @@ public static class FactoryPresenter
     public static IPresenterMercadoriaProduto MercadoriaProduto(params object[] paramentro)
     {
         PresenterProduto presenterProduto = paramentro[0] as PresenterProduto;
-        return new PresenterMercadoriaProduto(presenterProduto);
+        return new ControllerMercadoriaProduto(presenterProduto);
 
     }
     public static IPresenterProduto CadastroProduto(IViewPrincipal viewPai)

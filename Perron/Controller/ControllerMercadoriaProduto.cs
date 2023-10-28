@@ -9,14 +9,16 @@ using System.Windows.Forms;
 
 namespace Perron.Controller
 {
-    public class PresenterMercadoriaProduto : IPresenterMercadoriaProduto
+    public class ControllerMercadoriaProduto : IPresenterMercadoriaProduto
     {
         private PresenterProduto _cadastroProduto;
         private readonly UserControlMercadoriaProduto _view = new UserControlMercadoriaProduto();
         private Action AtualizarDadosComponetes { get; set; }
 
+        private KeyEventHandler EventoNotificarComponentesIngrediente { get; set;}
+
         #region Construtor
-        public PresenterMercadoriaProduto(PresenterProduto cadastroProduto)
+        public ControllerMercadoriaProduto(PresenterProduto cadastroProduto)
         {
             _cadastroProduto = cadastroProduto;
             IniciarTabPage();
@@ -102,23 +104,30 @@ namespace Perron.Controller
         {
             try
             {
-                _view.DataItem.DataSource = _cadastroProduto.Produto.Ingredientes;
+                foreach (var ingrediente in _cadastroProduto.Produto.Ingredientes)
+                {
+                    IniciarComponenteIngrediente(ingrediente);
+                } ;
                 
             }
             catch{ }
+        }
+        private void NotificarEventoComponenteIngrediente(IngredienteModel componenteIngrediente,Keys tipo)
+        {
+            if (componenteIngrediente != null && EventoNotificarComponentesIngrediente != null)
+                            EventoNotificarComponentesIngrediente(componenteIngrediente, new KeyEventArgs(tipo));
         }
         #endregion
         private void IniciarComponenteIngrediente(IngredienteModel ingrediente)
         {
             DadosMercadoriaComponente componente = new DadosMercadoriaComponente(ingrediente);
             _view.Painel.Controls.Add(componente);
-            componente.Dock = DockStyle.Fill;
+            componente.Dock = DockStyle.Top;
 
                 componente.EventoAdicionarDadosIngrediente += AdicionarDadosIngrediente;
                 componente.EventoRemoverIngrediente += RemoverIngrediente;
-                AtualizarDadosComponetes += componente.AtualiarTela; 
-
-
+                AtualizarDadosComponetes += componente.AtualiarTela;
+                EventoNotificarComponentesIngrediente += componente.EventoNotificao;
         }
 
         #region Eventos Privados
@@ -142,6 +151,7 @@ namespace Perron.Controller
                 ExibirEngredienteSabor();
             }
         }
+        
         #endregion
     }
 }

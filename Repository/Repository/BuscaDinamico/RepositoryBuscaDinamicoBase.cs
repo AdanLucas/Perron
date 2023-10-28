@@ -36,6 +36,7 @@ namespace Repository.Repository.BuscaDinamico
             }
         }
         public List<EntidadeBuscaModel> ObterTodos()
+
         {
             using (_session = new DbSession())
             {

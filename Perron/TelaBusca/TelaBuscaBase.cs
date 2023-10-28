@@ -134,7 +134,7 @@ namespace Perron.TelaBusca
             {
                 EntidadeBuscaModel entidade  = _view.DataItem.Rows[i].DataBoundItem as EntidadeBuscaModel;
 
-                if(entidade.Selecionado)
+                if (entidade.Selecionado)
                 {
                     lista.Add((T)entidade.DataItem);
                 }

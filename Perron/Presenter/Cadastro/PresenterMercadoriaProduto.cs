@@ -1,6 +1,8 @@
 ﻿using Model.Model;
+using Perron.Componentes;
 using Perron.Extensions;
 using Perron.TelaBusca.Enum;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
@@ -11,7 +13,7 @@ namespace Perron.Controller
     {
         private PresenterProduto _cadastroProduto;
         private readonly UserControlMercadoriaProduto _view = new UserControlMercadoriaProduto();
-        
+        private Action AtualizarDadosComponetes { get; set; }
 
         #region Construtor
         public PresenterMercadoriaProduto(PresenterProduto cadastroProduto)
@@ -100,16 +102,38 @@ namespace Perron.Controller
         {
             try
             {
-                
                 _view.DataItem.DataSource = _cadastroProduto.Produto.Ingredientes;
                 
             }
             catch{ }
         }
         #endregion
+        private void IniciarComponenteIngrediente(IngredienteModel ingrediente)
+        {
+            DadosMercadoriaComponente componente = new DadosMercadoriaComponente(ingrediente);
+            _view.Painel.Controls.Add(componente);
+            componente.Dock = DockStyle.Fill;
 
+                componente.EventoAdicionarDadosIngrediente += AdicionarDadosIngrediente;
+                componente.EventoRemoverIngrediente += RemoverIngrediente;
+                AtualizarDadosComponetes += componente.AtualiarTela; 
+
+
+        }
 
         #region Eventos Privados
+        private void RemoverIngrediente(object sender, EventArgs args)
+        {
+            DadosMercadoriaComponente componente = (DadosMercadoriaComponente)sender;
+
+
+        }
+        private void AdicionarDadosIngrediente(object sender, EventArgs args)
+        {
+            IngredienteModel ingrediente = (IngredienteModel)sender;
+
+
+        }
         private void EventoAdicionarIngrediente(object o, KeyPressEventArgs eventArgs)
         {
             if (eventArgs.KeyChar.Equals('\u0001')) /*Buscar CTRL + A */

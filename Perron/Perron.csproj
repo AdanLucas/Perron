@@ -50,6 +50,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Componentes\DadosMercadoriaComponente.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Componentes\DadosMercadoriaComponente.Designer.cs">
+      <DependentUpon>DadosMercadoriaComponente.cs</DependentUpon>
+    </Compile>
     <Compile Include="Componentes\SelecaoTipoPessoa.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -58,6 +64,7 @@
     </Compile>
     <Compile Include="Controller\ControllerCadastroEndereco.cs" />
     <Compile Include="Controller\ControllerCadastroTipoPessoaBase.cs" />
+    <Compile Include="Controller\ControllerComponenteIngrediente.cs" />
     <Compile Include="Controller\ControllerNotificao.cs" />
     <Compile Include="Controller\ControllerTipoCliente.cs" />
     <Compile Include="Controller\ControllerTipoEmpresa.cs" />
@@ -207,6 +214,9 @@
     <Compile Include="View\Forms\FrmPrincipal.Designer.cs">
       <DependentUpon>FrmPrincipal.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Componentes\DadosMercadoriaComponente.resx">
+      <DependentUpon>DadosMercadoriaComponente.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Componentes\SelecaoTipoPessoa.resx">
       <DependentUpon>SelecaoTipoPessoa.cs</DependentUpon>
     </EmbeddedResource>

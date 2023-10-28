@@ -30,33 +30,19 @@ namespace Perron
         private void InitializeComponent()
         {
             this.panelGrid = new System.Windows.Forms.Panel();
-            this.dgvIngrendiente = new System.Windows.Forms.DataGridView();
-            this.panelGrid.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvIngrendiente)).BeginInit();
             this.SuspendLayout();
             // 
             // panelGrid
             // 
-            this.panelGrid.Controls.Add(this.dgvIngrendiente);
             this.panelGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelGrid.Location = new System.Drawing.Point(0, 0);
             this.panelGrid.Name = "panelGrid";
             this.panelGrid.Size = new System.Drawing.Size(295, 391);
             this.panelGrid.TabIndex = 0;
             // 
-            // dgvIngrendiente
+            // UserControlMercadoriaProduto
             // 
-            this.dgvIngrendiente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvIngrendiente.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvIngrendiente.Location = new System.Drawing.Point(0, 0);
-            this.dgvIngrendiente.Name = "dgvIngrendiente";
-            this.dgvIngrendiente.RowHeadersWidth = 51;
-            this.dgvIngrendiente.Size = new System.Drawing.Size(295, 391);
-            this.dgvIngrendiente.TabIndex = 0;
-            // 
-            // UserControlEngredienteSabor
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
@@ -65,10 +51,8 @@ namespace Perron
             this.Cursor = System.Windows.Forms.Cursors.Default;
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.Name = "UserControlEngredienteSabor";
+            this.Name = "UserControlMercadoriaProduto";
             this.Size = new System.Drawing.Size(295, 391);
-            this.panelGrid.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvIngrendiente)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -76,6 +60,5 @@ namespace Perron
         #endregion
 
         private System.Windows.Forms.Panel panelGrid;
-        private System.Windows.Forms.DataGridView dgvIngrendiente;
     }
 }

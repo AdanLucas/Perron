@@ -1,4 +1,6 @@
 ﻿using Dapper;
+using Model.DTO;
+using Repository.ScriptBase.Tabela;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,82 +10,68 @@ namespace Repository.Repository
     public class RepositoryCadastroPreco : IRepositoryPreco
     {
         #region Metodos Privados
-        private void SetarPropriedades(DbSession session, PrecoModel preco)
-        {
-            try
-            {
-                preco.Tamanho = session.Connection.Query<TamanhoModel>($@"SELECT tm.* FROM Tamanho AS tm JOIN Preco AS pr ON (pr.idTamanho = tm.Id) WHERE pr.id = {preco.Id}").FirstOrDefault();
-                preco.Classe = session.Connection.Query<ClasseModel>($@"SELECT cl.* FROM Classe AS cl JOIN Preco AS pr ON (pr.idClasse = cl.Id) WHERE pr.id = {preco.Id}").FirstOrDefault();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+        
+        DbSession _session;
 
-
-        }
-        private void SetarPropriedadeLista(DbSession Session, List<PrecoModel> lista)
+        private TamanhoModel ObterTamanhoModel(PrecoDTO dto)
         {
-            foreach (var preco in lista)
-            {
-                SetarPropriedades(Session, preco);
-            }
+           return _session.Connection.Query<TamanhoModel>(String.Format(@"select Id,Descricao,Quantidade,UnidadeMedida,Ativo from Tamanho where id = {0}", dto.IdTamanho)).FirstOrDefault();
         }
-        private void PC_CadastroPreco(DbSession session, PrecoModel preco)
+        private PrecoModel ConverterPrecoModel(PrecoDTO dto)
         {
-            session.Connection.Execute("PC_CadastroPreco @Id,@IdClasse,@IDTamanho,@Preco,@Ativo", param: new
+            return new PrecoModel() { Id = dto.Id, Ativo = dto.Ativo,Preco = dto.Preco,Tamanho = ObterTamanhoModel(dto) };
+        }    
+         
+        private Int64 PC_CadastroPreco(PrecoModel preco)
+        {
+           return _session.Connection.Query<int>("PC_CadastroPreco @Id,@IdClasse,@IDTamanho,@Preco,@Ativo", param: new
             {
-                preco.Id
-                                                                                                                                  ,
-                IdClasse = preco.Classe.Id
-                                                                                                                                  ,
-                IDTamanho = preco.Tamanho.Id
-                                                                                                                                  ,
-                preco.Preco
-                                                                                                                                  ,
+                preco.Id,
+                IDTamanho = preco.Tamanho.Id,
+                preco.Preco,
                 preco.Ativo
-            }, transaction: session.Transaction);
+            }, transaction: _session.Transaction).FirstOrDefault();
         }
         #endregion
 
         #region Metodos Publicos
         public List<PrecoModel> GetListaPreco(EStatusCadastro status)
         {
-            using (var session = new DbSession())
+            using (_session = new DbSession())
             {
-                List<PrecoModel> listaPreco;
+                List<PrecoModel> listaPreco = _session.Connection.Query<PrecoDTO>("Select * from Preco").ToList().Select(dto => ConverterPrecoModel(dto)).ToList();
 
                 if (EStatusCadastro.Todos.Equals(status))
                 {
-                    listaPreco = session.Connection.Query<PrecoModel>("Select * from Preco").ToList();
+                    return listaPreco;
+
+                    
                 }
                 else
                 {
                     bool ret = EStatusCadastro.Ativo.Equals(status);
 
-                    listaPreco = session.Connection.Query<PrecoModel>("Select * from Preco where Ativo = ret", param: new { ret }).ToList();
+                    
                 }
 
-                foreach (var item in listaPreco)
-                {
-                    SetarPropriedades(session, item);
-                }
-
-                return listaPreco;
+                 
 
             }
         }
+        private void SalvarVinculoPrecoClasse(Int64? idClasse,Int64? IdPreco)
+        {
+            _session.Connection.Execute(String.Format(@"Insert INTO Classe_has_preco (Idclasse,IdPreco)
+                                                                        Values ({0},{1})", idClasse, IdPreco));
+        }
         public List<PrecoModel> GetListaPrecoPorClasse(int IDClasse)
         {
-            using (var session = new DbSession())
+            using (_session = new DbSession())
             {
                 var ListaPreco = new List<PrecoModel>();
 
                 try
                 {
-                    ListaPreco = session.Connection.Query<PrecoModel>("Select * from Preco where Ativo = 1 And IDClasse = IDClasse", param: new { IDClasse }).ToList();
-                    SetarPropriedadeLista(session, ListaPreco);
-
+                    ListaPreco = _session.Connection.Query<PrecoModel>("Select * from Preco where Ativo = 1 And IDClasse = IDClasse", param: new { IDClasse }).ToList();
                 }
                 catch (Exception ex)
                 {
@@ -93,19 +81,27 @@ namespace Repository.Repository
                 return ListaPreco;
             }
         }
-        public void SalvarListaPreco(List<PrecoModel> Lista)
+        public void SalvarListaPreco(params object[] parametro)
         {
             using (var session = new DbSession())
             {
                 var UnitOfWork = new UnitOfWork(session);
-
                 UnitOfWork.BeginTran();
+
+                List<PrecoModel> ListaPreco = parametro[0] as List<PrecoModel>;
+                ClasseModel Classe = parametro.Length > 1 ? parametro[1] as ClasseModel : null;
+
 
                 try
                 {
-                    foreach (var Item in Lista)
+                    foreach (var Item in ListaPreco)
                     {
-                        PC_CadastroPreco(session, Item);
+                        Item.Id = PC_CadastroPreco(Item);
+
+                        if(Classe != null)
+                        {
+                            SalvarVinculoPrecoClasse(Classe.Id, Item.Id);
+                        }
                     }
 
                     UnitOfWork.Commit();
@@ -124,7 +120,7 @@ namespace Repository.Repository
             {
                 try
                 {
-                    PC_CadastroPreco(session, preco);
+                    PC_CadastroPreco(preco);
                 }
                 catch (Exception ex)
                 {

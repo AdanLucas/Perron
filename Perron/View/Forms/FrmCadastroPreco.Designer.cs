@@ -28,32 +28,35 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dgvTamanho = new System.Windows.Forms.DataGridView();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.dgvPrecos = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.dgvClasses = new System.Windows.Forms.DataGridView();
-            this.DescricaoClasse = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnPreco = new System.Windows.Forms.Panel();
             this.btnAddPreco = new System.Windows.Forms.Button();
             this.txtPreco = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.menuBotaoDireitoClasse = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.menuBotaoDireitoAdicionarClasse = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuBotaoDireitoRemoverClasse = new System.Windows.Forms.ToolStripMenuItem();
+            this.txtDescricaoClasse = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTamanho)).BeginInit();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPrecos)).BeginInit();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvClasses)).BeginInit();
             this.pnPreco.SuspendLayout();
+            this.menuBotaoDireitoClasse.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.dgvTamanho);
-            this.groupBox2.Location = new System.Drawing.Point(9, 175);
+            this.groupBox2.Location = new System.Drawing.Point(9, 107);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(313, 84);
+            this.groupBox2.Size = new System.Drawing.Size(313, 152);
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Tamanho";
@@ -69,7 +72,7 @@
             this.dgvTamanho.Name = "dgvTamanho";
             this.dgvTamanho.ReadOnly = true;
             this.dgvTamanho.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvTamanho.Size = new System.Drawing.Size(307, 65);
+            this.dgvTamanho.Size = new System.Drawing.Size(307, 133);
             this.dgvTamanho.TabIndex = 0;
             // 
             // groupBox3
@@ -99,37 +102,16 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.dgvClasses);
-            this.groupBox1.Location = new System.Drawing.Point(9, 42);
+            this.groupBox1.ContextMenuStrip = this.menuBotaoDireitoClasse;
+            this.groupBox1.Controls.Add(this.txtDescricaoClasse);
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Location = new System.Drawing.Point(9, 53);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(316, 120);
+            this.groupBox1.Size = new System.Drawing.Size(313, 48);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Classes";
-            // 
-            // dgvClasses
-            // 
-            this.dgvClasses.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvClasses.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.dgvClasses.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            this.dgvClasses.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvClasses.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.DescricaoClasse});
-            this.dgvClasses.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvClasses.Location = new System.Drawing.Point(3, 16);
-            this.dgvClasses.MultiSelect = false;
-            this.dgvClasses.Name = "dgvClasses";
-            this.dgvClasses.ReadOnly = true;
-            this.dgvClasses.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvClasses.Size = new System.Drawing.Size(310, 101);
-            this.dgvClasses.TabIndex = 1;
-            // 
-            // DescricaoClasse
-            // 
-            this.DescricaoClasse.DataPropertyName = "DescricaoClasse";
-            this.DescricaoClasse.HeaderText = "Descricão Classe";
-            this.DescricaoClasse.Name = "DescricaoClasse";
-            this.DescricaoClasse.ReadOnly = true;
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // pnPreco
             // 
@@ -172,6 +154,39 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "R$:";
             // 
+            // menuBotaoDireitoClasse
+            // 
+            this.menuBotaoDireitoClasse.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuBotaoDireitoAdicionarClasse,
+            this.menuBotaoDireitoRemoverClasse});
+            this.menuBotaoDireitoClasse.Name = "menuBotaoDireitoClasse";
+            this.menuBotaoDireitoClasse.Size = new System.Drawing.Size(126, 48);
+            // 
+            // menuBotaoDireitoAdicionarClasse
+            // 
+            this.menuBotaoDireitoAdicionarClasse.Image = global::Perron.Properties.Resources.add;
+            this.menuBotaoDireitoAdicionarClasse.Name = "menuBotaoDireitoAdicionarClasse";
+            this.menuBotaoDireitoAdicionarClasse.Size = new System.Drawing.Size(125, 22);
+            this.menuBotaoDireitoAdicionarClasse.Text = "Adicionar";
+            // 
+            // menuBotaoDireitoRemoverClasse
+            // 
+            this.menuBotaoDireitoRemoverClasse.Image = global::Perron.Properties.Resources.Remover;
+            this.menuBotaoDireitoRemoverClasse.Name = "menuBotaoDireitoRemoverClasse";
+            this.menuBotaoDireitoRemoverClasse.Size = new System.Drawing.Size(125, 22);
+            this.menuBotaoDireitoRemoverClasse.Text = "Remover";
+            this.menuBotaoDireitoRemoverClasse.Visible = false;
+            // 
+            // txtDescricaoClasse
+            // 
+            this.txtDescricaoClasse.AutoSize = true;
+            this.txtDescricaoClasse.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDescricaoClasse.Location = new System.Drawing.Point(28, 22);
+            this.txtDescricaoClasse.Name = "txtDescricaoClasse";
+            this.txtDescricaoClasse.Size = new System.Drawing.Size(35, 13);
+            this.txtDescricaoClasse.TabIndex = 0;
+            this.txtDescricaoClasse.Text = "label2";
+            // 
             // FrmCadastroPreco
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -193,9 +208,10 @@
             this.groupBox3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPrecos)).EndInit();
             this.groupBox1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvClasses)).EndInit();
+            this.groupBox1.PerformLayout();
             this.pnPreco.ResumeLayout(false);
             this.pnPreco.PerformLayout();
+            this.menuBotaoDireitoClasse.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -207,11 +223,13 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.DataGridView dgvPrecos;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.DataGridView dgvClasses;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DescricaoClasse;
         private System.Windows.Forms.Panel pnPreco;
         private System.Windows.Forms.Button btnAddPreco;
         private System.Windows.Forms.TextBox txtPreco;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ContextMenuStrip menuBotaoDireitoClasse;
+        private System.Windows.Forms.ToolStripMenuItem menuBotaoDireitoAdicionarClasse;
+        private System.Windows.Forms.ToolStripMenuItem menuBotaoDireitoRemoverClasse;
+        private System.Windows.Forms.Label txtDescricaoClasse;
     }
 }

@@ -35,12 +35,12 @@ namespace Perron.Presenter
                 _tamanho.Ativo = true;
             }
             _tamanho.Descricao = _view.DescricaoTamanho;
-            _tamanho.QntPedacos = _view.QuantidadePedaco;
+            _tamanho.Quantidade = _view.Quantidade;
         }
         private void SetDadostela()
         {
             _view.DescricaoTamanho = _tamanho.Descricao;
-            _view.QuantidadePedaco = _tamanho.QntPedacos;
+            _view.Quantidade = _tamanho.Quantidade;
         }
         private void SetTamanhoSelecionadoGrid()
         {
@@ -61,7 +61,7 @@ namespace Perron.Presenter
             this._tamanho = new TamanhoModel();
             _tamanho.Ativo = true;
             base.ComportamentoAtual = EComportamentoTela.Inicio;
-            _view.QuantidadePedaco = 0;
+            _view.Quantidade = 0;
             _view.DescricaoTamanho = "";
 
         }
@@ -76,7 +76,7 @@ namespace Perron.Presenter
                 ret = false;
                 msg += "- Descrição\n";
             }
-            if (_tamanho.QntPedacos == 0)
+            if (_tamanho.Quantidade == 0)
             {
                 ret = false;
                 msg += "- Quantidade\n";

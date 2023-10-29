@@ -2,6 +2,7 @@
 using Perron.View.Forms.Form_Padrao_Cadastro;
 using System;
 using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace Perron.View.Forms
 {
@@ -36,23 +37,8 @@ namespace Perron.View.Forms
 
 
         }
-        public ClasseModel ClasseSelecioanda
-        {
-            get
-            {
-                try
-                {
-                    return (ClasseModel)dgvClasses.CurrentRow.DataBoundItem;
-                }
-                catch (Exception)
-                {
-
-                    return null;
-                }
-            }
-
-
-        }
+        
+        public string DescricaoClasse { set { } }
         public decimal PrecoInformado
         {
             get
@@ -70,6 +56,7 @@ namespace Perron.View.Forms
                 }
             }
         }
+        public ContextMenuStrip BotaoDireito { get {return this.menuBotaoDireitoClasse;} }
         public PrecoView PrecoSelecionado
         {
             get
@@ -85,7 +72,7 @@ namespace Perron.View.Forms
             }
         }
         public bool VisibilidadePainel { set { pnPreco.Visible = value; } }
-        public bool HabilitarGridClasse { set { dgvClasses.Enabled = value; } }
+        
         public void EventoGridClasse(EventHandler e)
         {
             dgvClasses.Click += e;
@@ -99,17 +86,7 @@ namespace Perron.View.Forms
             dgvTamanho.Click += e;
 
         }
-        public void SetarListaClasse(List<ClasseModel> ListaClasse)
-        {
-            dgvClasses.DataSource = null;
-
-            if (ListaClasse != null)
-            {
-                dgvClasses.DataSource = ListaClasse;
-                dgvClasses.Columns["Id"].Visible = false;
-                dgvClasses.Columns["Ativo"].Visible = false;
-            }
-        }
+        
         public void SetarListaPrecosCadastrados(List<PrecoView> ListaPreco)
         {
             dgvPrecos.DataSource = null;
@@ -139,6 +116,11 @@ namespace Perron.View.Forms
         public void EventoAdicionarPreco(EventHandler e)
         {
             btnAddPreco.Click += e;
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }

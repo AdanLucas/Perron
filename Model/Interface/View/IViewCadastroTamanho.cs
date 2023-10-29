@@ -7,7 +7,7 @@ public interface IViewCadastroTamanho : IViewPadraoCadastro
 
 
     #region Propriedades
-    int QuantidadePedaco { get; set; }
+    int Quantidade { get; set; }
     string DescricaoTamanho { get; set; }
     #endregion
 

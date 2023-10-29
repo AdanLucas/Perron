@@ -67,6 +67,7 @@
     <Compile Include="DTO\DadosProdutoMercadoriaDTO.cs" />
     <Compile Include="DTO\EngredienteDTO.cs" />
     <Compile Include="DTO\MercadoriaDTO.cs" />
+    <Compile Include="DTO\PrecoDTO.cs" />
     <Compile Include="DTO\ProdutoDTO.cs" />
     <Compile Include="DTO\ProdutoMercadoriaDTO.cs" />
     <Compile Include="Emumerator\Attribute\EComando.cs" />

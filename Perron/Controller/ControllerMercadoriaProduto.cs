@@ -37,11 +37,9 @@ namespace Perron.Controller
                 case EComportamentoTela.None:
                     break;
 
-
                 case EComportamentoTela.Inicio:
                     this.StatusDeCadastroInicial();
                     break;
-
 
                 case EComportamentoTela.Novo:
                     this.StatusCadastroEditandoCadastrando();
@@ -54,7 +52,6 @@ namespace Perron.Controller
                 case EComportamentoTela.ItemSelecionado:
                     this.StatusCadastroEditandoCadastrando();
                     break;
-
 
                 default:
                     break;

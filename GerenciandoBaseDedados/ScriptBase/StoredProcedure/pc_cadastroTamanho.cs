@@ -9,16 +9,16 @@
         {
             get
             {
-                return @"CREATE PROCEDURE [dbo].[pc_cadastroTamanho] (@id int,@descricao varchar (50),@qntPedacos int,@ativo bit)
+                return @"CREATE PROCEDURE [dbo].[pc_cadastroTamanho] (@id int,@descricao varchar (50),@Quantidade,@UnidadeMedida,@ativo bit)
                             AS
                             
                             BEGIN
                             
-                            	IF(EXISTS(SELECT 1 FROM TAMANHO WHERE ID = @id))
+                            	IF(EXISTS(SELECT 1 From Tamanho Where ID = Coalesce(@id,0)))
                             
                             		BEGIN
                             
-                            		UPDATE TAMANHO SET DESCRICAO = @descricao,QNTPEDACOS = @qntPedacos,ATIVO = @ativo WHERE ID = @id
+                            		UPDATE Tamanho SET Descricao = @descricao,Quantidade = @Quantidade, UnidadeMedida = @UnidadeMedida,ATIVO = @ativo WHERE ID = @id
                             
                             		END
                             
@@ -26,8 +26,8 @@
                             
                             		BEGIN
                             
-                            		INSERT INTO TAMANHO (DESCRICAO,QNTPEDACOS,ATIVO)
-                            					  VALUES(@descricao,@qntPedacos,@ativo)
+                            		INSERT INTO Tamanho (Descricao,Quantidade,UnidadeMedida,ATIVO)
+                            					                 VALUES(@descricao,@Quantidade,@UnidadeMedida,@ativo)
                             
                             		END
                             END";

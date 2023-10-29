@@ -13,7 +13,8 @@
                 return $@"CREATE TABLE [dbo].[{NomeTabela}](
     						[Id] [int] IDENTITY(1,1) NOT NULL,
     						[Descricao] [varchar](50) NULL,
-    						[QntPedacos] [int] NULL,
+    						[Quantidade] [int] NULL,
+                            [UnidadeMedidaQuantidade] [int] NULL,
     						[Ativo] [bit] NULL,
     					 CONSTRAINT [PK_Tamanho] PRIMARY KEY CLUSTERED 
     					(

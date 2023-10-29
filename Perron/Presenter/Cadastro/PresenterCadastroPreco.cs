@@ -12,6 +12,7 @@ namespace Perron.Presenter.Cadastro
         private readonly IViewCadastroPreco _view;
         private readonly IServiceCadastroPreco _service;
         private List<PrecoModel> _listaPreco;
+        private ClasseModel _classe;
 
         public PresenterCadastroPreco(IViewCadastroPreco view, IServiceCadastroPreco cadastropreco) : base(view)
         {
@@ -28,7 +29,6 @@ namespace Perron.Presenter.Cadastro
         {
             try
             {
-                _listaPreco = _service.GetPrecoPorClasse((int)_view.ClasseSelecioanda.Id);
                 TransformarEmViewEPopularGrid();
             }
             catch (Exception ex)
@@ -79,7 +79,6 @@ namespace Perron.Presenter.Cadastro
             {
                 base.ComportamentoAtual = EComportamentoTela.Inicio;
                 _listaPreco = null;
-                _listaPreco = _service.GetPrecoPorClasse((int)_view.ClasseSelecioanda.Id);
                 TransformarEmViewEPopularGrid();
             }
             catch (Exception ex)
@@ -96,19 +95,45 @@ namespace Perron.Presenter.Cadastro
 
         private void DelegarEventos()
         {
-            _view.EventoGridClasse(EventoGridClasse);
             _view.EventoAdicionarPreco(EventoAddPreco);
         }
         private PrecoModel InstanciarPreco()
         {
             var model = new PrecoModel();
             model.Ativo = true;
-            model.Classe = _view.ClasseSelecioanda;
             model.Tamanho = _view.TamanhoSelecionado;
             model.Preco = _view.PrecoInformado;
 
             return model;
 
+        }
+        private void Remover()
+        {
+            if (ComportamentoAtual.Equals(EComportamentoTela.ItemSelecionado))
+                                 _service.RemoverTodosVinculoDeClasseComPrecos(_classe.Id);
+
+            _classe = null;
+
+            if(_classe == null)
+            {
+                _view.BotaoDireito.Items["menuBotaoDireitoAdicionarClasse"].Visible = true;
+                _view.BotaoDireito.Items["menuBotaoDireitoRemoverClasse"].Visible = false;
+
+            }
+
+            _view.DescricaoClasse = "";
+
+        }
+        private void AdicionarClasse()
+        {
+            _classe = Busca.IniciarBuscar(TelaBusca.Enum.ETipoBusca.CLASSE).ObterSelecionado<ClasseModel>();
+
+            if(_classe != null)
+            {
+                _view.BotaoDireito.Items["menuBotaoDireitoAdicionarClasse"].Visible = false;
+                _view.BotaoDireito.Items["menuBotaoDireitoRemoverClasse"].Visible = true;
+
+            }
         }
         private void AdicionarPrecoNaLista(PrecoModel preco)
         {
@@ -133,42 +158,6 @@ namespace Perron.Presenter.Cadastro
 
             _view.SetarListaPrecosCadastrados(Lista);
 
-        }
-        public bool VerificarExistenciadePreco()
-        {
-            if (_listaPreco == null)
-                return false;
-
-            return _listaPreco.Any(p => p.Classe.Id == _view.ClasseSelecioanda.Id && p.Tamanho.Id == _view.TamanhoSelecionado.Id);
-
-        }
-        private void RemoverOuInativar()
-        {
-            var preco = _listaPreco.Where(p => p.Classe.Id == _view.ClasseSelecioanda.Id && p.Tamanho.Id == _view.TamanhoSelecionado.Id).FirstOrDefault();
-            var Index = _listaPreco.IndexOf(preco);
-
-
-            if (preco.Id != 0)
-            {
-                _listaPreco[Index].Ativo = false;
-
-            }
-            else
-            {
-                var removeu = _listaPreco.Remove(preco);
-
-            }
-        }
-        private void PopularGridClasse()
-        {
-            try
-            {
-                _view.SetarListaClasse(_service.GetClasses());
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
         }
         private void PopularGridTamanho()
         {
@@ -202,13 +191,13 @@ namespace Perron.Presenter.Cadastro
                 case EComportamentoTela.Inicio:
                     _view.SetarTamanhoDaTelaReduzido();
                     _view.VisibilidadePainel = false;
-                    _view.HabilitarGridClasse = true;
+                    
                     break;
 
                 case EComportamentoTela.Cadastrando:
                     _view.SetarTamanhoMaximoTela();
                     _view.VisibilidadePainel = true;
-                    _view.HabilitarGridClasse = false;
+                    
                     break;
 
                 case EComportamentoTela.ItemSelecionado:

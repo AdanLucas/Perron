@@ -14,7 +14,7 @@ namespace Perron.View.Forms
 
 
 
-        public int QuantidadePedaco
+        public int Quantidade
         {
             get { return (int)numQnt.Value; }
             set { numQnt.Value = value; }

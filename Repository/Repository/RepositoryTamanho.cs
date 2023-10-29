@@ -10,14 +10,15 @@ namespace Repository.Repository
         #region Metodos Privados
         private void pc_cadastroTamanho(DbSession session, TamanhoModel tamanho)
         {
-            session.Connection.Execute("exec pc_cadastroTamanho @id,@descricao,@qntPedacos,@ativo",
+            session.Connection.Execute("exec pc_cadastroTamanho @Id,@Descricao,@Quantidade,@Ativo",
                 param: new
                 {
-                    id = tamanho.Id,
-                    descricao = tamanho.Descricao,
-                    qntPedacos = tamanho.QntPedacos,
-                    ativo = tamanho.Ativo
-                }, transaction: session.Transaction);
+                    tamanho.Id,
+                    tamanho.Descricao,
+                    tamanho.Quantidade,
+                    tamanho.UnidadeMedida,
+                    tamanho.Ativo
+                                            },transaction: session.Transaction);
         }
         #endregion
 

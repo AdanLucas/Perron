@@ -45,11 +45,33 @@ namespace Services.Service
             return listaTamanho;
 
         }
-        public void SalvarListaPrecos(List<PrecoModel> ListaPreco)
+        public void SalvarListaPrecos(params object[] parametro)
         {
             try
             {
-                _repoPreco.SalvarListaPreco(ListaPreco);
+                _repoPreco.SalvarListaPreco(parametro);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public void RemoverTodosVinculoDeClasseComPrecos(Int64? IdClasse)
+        {
+            try
+            {
+                _repoPreco.RemoverTodosVinculoClassePreco(IdClasse);
+    }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public void RemoverVinculoPrecoComClasse(Int64? IdClasse,Int64? IdPreco)
+        {
+            try
+            {
+                _repoPreco.RemoverVinculoPrecoClasse(IdClasse, IdPreco);
             }
             catch (Exception ex)
             {

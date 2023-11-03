@@ -9,6 +9,8 @@ public enum EUnidadeMedida
     Kg = 1,
     [Description("Unidade")]
     Un = 2,
+    [Description("Pedaço")]
+    Pedaco = 3,
 
 
 }

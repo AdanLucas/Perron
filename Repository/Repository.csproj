@@ -52,6 +52,7 @@
     <Compile Include="Repository\BuscaDinamico\RepositoryBuscaIngrediente.cs" />
     <Compile Include="Repository\BuscaDinamico\RepositoryBuscaMercadoria.cs" />
     <Compile Include="Repository\BuscaDinamico\RepositoryBuscaDinamicoBase.cs" />
+    <Compile Include="Repository\BuscaDinamico\RepositoryBuscaTamanho.cs" />
     <Compile Include="Repository\RepositoryBancoDeDados.cs" />
     <Compile Include="Repository\RepositoryCadastroPreco.cs" />
     <Compile Include="Repository\RepositoryClasse.cs" />

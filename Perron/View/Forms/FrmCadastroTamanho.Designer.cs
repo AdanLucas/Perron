@@ -36,7 +36,7 @@ namespace Perron.View.Forms
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboTipoQuantidade = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.numQnt)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTamanhos)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -48,7 +48,7 @@ namespace Perron.View.Forms
             // 
             this.numQnt.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.numQnt.Location = new System.Drawing.Point(7, 21);
-            this.numQnt.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.numQnt.Margin = new System.Windows.Forms.Padding(2);
             this.numQnt.Maximum = new decimal(new int[] {
             9999,
             0,
@@ -63,7 +63,7 @@ namespace Perron.View.Forms
             // 
             this.txtDescricao.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDescricao.Location = new System.Drawing.Point(7, 21);
-            this.txtDescricao.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtDescricao.Margin = new System.Windows.Forms.Padding(2);
             this.txtDescricao.Name = "txtDescricao";
             this.txtDescricao.Size = new System.Drawing.Size(356, 23);
             this.txtDescricao.TabIndex = 4;
@@ -74,7 +74,7 @@ namespace Perron.View.Forms
             this.dgvTamanhos.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvTamanhos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvTamanhos.Location = new System.Drawing.Point(7, 206);
-            this.dgvTamanhos.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dgvTamanhos.Margin = new System.Windows.Forms.Padding(2);
             this.dgvTamanhos.MultiSelect = false;
             this.dgvTamanhos.Name = "dgvTamanhos";
             this.dgvTamanhos.ReadOnly = true;
@@ -119,7 +119,7 @@ namespace Perron.View.Forms
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.comboBox1);
+            this.groupBox3.Controls.Add(this.comboTipoQuantidade);
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.Location = new System.Drawing.Point(184, 108);
             this.groupBox3.Name = "groupBox3";
@@ -128,15 +128,15 @@ namespace Perron.View.Forms
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Unidade Medida";
             // 
-            // comboBox1
+            // comboTipoQuantidade
             // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(6, 20);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(185, 24);
-            this.comboBox1.TabIndex = 0;
+            this.comboTipoQuantidade.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboTipoQuantidade.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboTipoQuantidade.FormattingEnabled = true;
+            this.comboTipoQuantidade.Location = new System.Drawing.Point(6, 20);
+            this.comboTipoQuantidade.Name = "comboTipoQuantidade";
+            this.comboTipoQuantidade.Size = new System.Drawing.Size(185, 24);
+            this.comboTipoQuantidade.TabIndex = 0;
             // 
             // FrmCadastroTamanho
             // 
@@ -148,7 +148,7 @@ namespace Perron.View.Forms
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dgvTamanhos);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.Name = "FrmCadastroTamanho";
             this.Text = "Cadastro de Tamanho";
@@ -177,6 +177,6 @@ namespace Perron.View.Forms
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboTipoQuantidade;
     }
 }

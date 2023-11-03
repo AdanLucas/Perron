@@ -8,19 +8,16 @@ namespace Model.Interface.View
     {
 
         string DescricaoClasse { set; }
+        string DescricaoTamanho { set; }
 
-         ContextMenuStrip BotaoDireito { get; }
-        
-        void SetarListatamanho(List<TamanhoModel> ListaTamanho);
-        void SetarListaPrecosCadastrados(List<PrecoView> ListaPreco);
-        TamanhoModel TamanhoSelecionado { get; }
-        
-        PrecoView PrecoSelecionado { get; }
+        ContextMenuStrip BotaoDireitoClasse { get; }
+        ContextMenuStrip BotaoDireitoTamanho { get; }
+
+        DataGridView GridPrecos { get; }
         decimal PrecoInformado { get; }
-        bool VisibilidadePainel { set; }
-        
-        void EventoGridTamanho(EventHandler e);
-        void EventoGridPrecos(EventHandler e);
+        GroupBox GbDadosCadastro { get; }
+        GroupBox GbPrecosCadastrados { get; }
+
         void EventoAdicionarPreco(EventHandler e);
 
 

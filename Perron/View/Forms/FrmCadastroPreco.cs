@@ -20,25 +20,10 @@ namespace Perron.View.Forms
             base.VisibilidadeckAtivo = false;
             base.VisibilidadeckInativo = false;
         }
-        public TamanhoModel TamanhoSelecionado
-        {
-            get
-            {
-                try
-                {
-                    return (TamanhoModel)dgvTamanho.CurrentRow.DataBoundItem;
-                }
-                catch (Exception)
-                {
-
-                    return null;
-                }
-            }
-
-
-        }
         
-        public string DescricaoClasse { set { } }
+        
+        public string DescricaoClasse { set { txtDescricaoClasse.Text = value; } }
+        public string DescricaoTamanho { set { txtDescricaoClasse.Text = value; } }
         public decimal PrecoInformado
         {
             get
@@ -56,68 +41,15 @@ namespace Perron.View.Forms
                 }
             }
         }
-        public ContextMenuStrip BotaoDireito { get {return this.menuBotaoDireitoClasse;} }
-        public PrecoView PrecoSelecionado
-        {
-            get
-            {
-                try
-                {
-                    return (PrecoView)dgvPrecos.CurrentRow.DataBoundItem;
-                }
-                catch
-                {
-                    throw null;
-                }
-            }
-        }
-        public bool VisibilidadePainel { set { pnPreco.Visible = value; } }
-        
-        public void EventoGridClasse(EventHandler e)
-        {
-            dgvClasses.Click += e;
-        }
-        public void EventoGridPrecos(EventHandler e)
-        {
-            dgvPrecos.Click += e;
-        }
-        public void EventoGridTamanho(EventHandler e)
-        {
-            dgvTamanho.Click += e;
-
-        }
-        
-        public void SetarListaPrecosCadastrados(List<PrecoView> ListaPreco)
-        {
-            dgvPrecos.DataSource = null;
-
-
-            if (ListaPreco != null)
-            {
-                dgvPrecos.DataSource = ListaPreco;
-                dgvPrecos.Columns["Index"].Visible = false;
-
-            }
-        }
-        public void SetarListatamanho(List<TamanhoModel> ListaTamanho)
-        {
-            dgvTamanho.DataSource = null;
-
-            if (ListaTamanho != null)
-            {
-                dgvTamanho.DataSource = ListaTamanho;
-                dgvTamanho.Columns["Id"].Visible = false;
-                dgvTamanho.Columns["Ativo"].Visible = false;
-                dgvTamanho.Columns["QntPedacos"].HeaderText = "Quantidade de Pedaços";
-                dgvTamanho.Columns["Descricao"].HeaderText = "Descrição";
-
-            }
-        }
+        public ContextMenuStrip BotaoDireitoClasse { get {return this.menuBotaoDireitoClasse;} }
+        public ContextMenuStrip BotaoDireitoTamanho { get { return this.menuBotaoDireitoTamanho; } }
+        public DataGridView GridPrecos { get { return dgvPrecos; } }
+        public GroupBox GbDadosCadastro { get { return gbDadosCadastro; } }
+        public GroupBox GbPrecosCadastrados { get { return gbPrecosCadastrados;} }
         public void EventoAdicionarPreco(EventHandler e)
         {
             btnAddPreco.Click += e;
         }
-
         private void groupBox1_Enter(object sender, EventArgs e)
         {
 

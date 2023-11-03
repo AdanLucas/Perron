@@ -10,5 +10,6 @@ public interface IServiceCadastroPreco
     void SalvarListaPrecos(params object[] parametro);
     void RemoverTodosVinculoDeClasseComPrecos(Int64? IdClasse);
     void RemoverVinculoPrecoComClasse(Int64? IdClasse, Int64? IdPreco);
+    List<PrecoModel> GetListaPreco();
 }
 

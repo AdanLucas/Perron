@@ -20,6 +20,12 @@ namespace Perron.TelaBusca.Enum
         CLASSE,
 
         [AtributoTipoBusca(Tipo = typeof(BuscaIngrediente))]
-        INGREDIENTE
+        INGREDIENTE,
+
+
+        [AtributoTipoBusca(Tipo = typeof(BuscaTamanho))]
+        TAMANHO
+
+
     }
 }

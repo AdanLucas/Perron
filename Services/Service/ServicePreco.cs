@@ -36,11 +36,15 @@ namespace Services.Service
 
             return ListaPreco;
         }
+        public List<PrecoModel> GetListaPreco()
+        {
+            return _repoPreco.GetListaPreco(EStatusCadastro.Ativo);
+        }
         public List<TamanhoModel> GetTamanhos()
         {
             var listaTamanho = _repoTamanho.GetListaTamanho(EStatusCadastro.Ativo);
 
-            if (listaTamanho.Count == 0) throw new Exception("Nao Existem cadastro de Tamanhos Ativos");
+            //if (listaTamanho.Count == 0) throw new Exception("Nao Existem cadastro de Tamanhos Ativos");
 
             return listaTamanho;
 

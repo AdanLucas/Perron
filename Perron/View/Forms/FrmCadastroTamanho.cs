@@ -1,6 +1,7 @@
 ﻿using Perron.View.Forms.Form_Padrao_Cadastro;
 using System;
 using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace Perron.View.Forms
 {
@@ -11,9 +12,11 @@ namespace Perron.View.Forms
             InitializeComponent();
         }
 
+        public ComboBox ComboTIpoQuantidade { get { return comboTipoQuantidade; } }
+        public DataGridView GridTamanho { get {return dgvTamanhos; } }
 
 
-
+        
         public int Quantidade
         {
             get { return (int)numQnt.Value; }

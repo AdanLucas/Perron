@@ -1,5 +1,7 @@
 ﻿using Perron.Controller;
 using System;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace Perron.Presenter
 {
@@ -19,10 +21,16 @@ namespace Perron.Presenter
             _view.Show();
             DelegarEventos();
             EstatoInicial();
+            IniciarComponentes();
+            ConfigurarGrid();
         }
         #endregion
 
         #region Metodos Privados
+        private void IniciarComponentes()
+        {
+            _view.ComboTIpoQuantidade.DataSource = EUnidadeMedida.Nd.GetArrayItemEnum();
+        }
         private void DelegarEventos()
         {
             _view.EventoGrid(this.EventoGrid);
@@ -36,11 +44,13 @@ namespace Perron.Presenter
             }
             _tamanho.Descricao = _view.DescricaoTamanho;
             _tamanho.Quantidade = _view.Quantidade;
+            _tamanho.TipoQuantidade = _view.ComboTIpoQuantidade.SelectedItem as EUnidadeMedida?;
         }
         private void SetDadostela()
         {
             _view.DescricaoTamanho = _tamanho.Descricao;
             _view.Quantidade = _tamanho.Quantidade;
+            _view.ComboTIpoQuantidade.SelectedItem = _tamanho.TipoQuantidade;
         }
         private void SetTamanhoSelecionadoGrid()
         {
@@ -87,6 +97,34 @@ namespace Perron.Presenter
                 throw new Exception("Valide as Informações a Baixa:\n\r" + msg);
             }
         }
+        private void ConfigurarGrid()
+        {
+
+            _view.GridTamanho.AutoGenerateColumns = false;
+            _view.GridTamanho.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            _view.GridTamanho.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            _view.GridTamanho.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            _view.GridTamanho.DefaultCellStyle.SelectionBackColor = Color.Green;
+            _view.GridTamanho.DefaultCellStyle.SelectionForeColor = Color.Black;
+
+
+            var colunaDescricao = new DataGridViewTextBoxColumn();
+            colunaDescricao.Name = "Descricao";
+            colunaDescricao.HeaderText = "Descrição";
+            colunaDescricao.DataPropertyName = "Descricao";
+            colunaDescricao.ReadOnly = true;
+            colunaDescricao.Width = 200;
+            _view.GridTamanho.Columns.Add(colunaDescricao);
+
+            var colunaQuantidade = new DataGridViewTextBoxColumn();
+            colunaQuantidade.Name = "Quantidade";
+            colunaQuantidade.HeaderText = "Quantidade";
+            colunaQuantidade.DataPropertyName = "DescricaoQuantidade";
+            colunaQuantidade.ReadOnly = true;
+            colunaQuantidade.Width = 200;
+            _view.GridTamanho.Columns.Add(colunaQuantidade);
+
+        }
         private void Salvar()
         {
             ValidarDadosTamanho();
@@ -99,7 +137,7 @@ namespace Perron.Presenter
         #region Metodos override
         protected override void AlterarStatusCadastroExibidos(EStatusCadastro status)
         {
-            _view.PopularGrid(_service.GetListaTamanho(status));
+            _view.GridTamanho.DataSource = _service.GetListaTamanho(status);
         }
 
         #endregion

@@ -14,7 +14,7 @@
     						[Id] [int] IDENTITY(1,1) NOT NULL,
     						[Descricao] [varchar](50) NULL,
     						[Quantidade] [int] NULL,
-                            [UnidadeMedidaQuantidade] [int] NULL,
+                            [TipoQuantidade] [int] NULL,
     						[Ativo] [bit] NULL,
     					 CONSTRAINT [PK_Tamanho] PRIMARY KEY CLUSTERED 
     					(

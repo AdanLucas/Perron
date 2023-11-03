@@ -98,6 +98,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="TelaBusca\BuscaIngrediente.cs" />
+    <Compile Include="TelaBusca\BuscaTamanho.cs" />
     <Compile Include="TelaBusca\Enum\ETipoBusca.cs" />
     <Compile Include="TelaBusca\TelaBuscaBase.cs" />
     <Compile Include="TelaBusca\TelaBuscaClasse.cs" />

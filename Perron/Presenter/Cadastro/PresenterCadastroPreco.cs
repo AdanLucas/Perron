@@ -4,6 +4,7 @@ using Perron.Extensions;
 using Perron.Properties;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -60,14 +61,31 @@ namespace Perron.Presenter.Cadastro
             }
 
         }
+        private void EstadoInicial()
+        {
+            this.SetarClasse(null);
+            this.SetarTamanho(null);
+            this.AlterarVisibilidadeMenuBotaoDireitoCadastroClasse(true, false);
+            this.AlterarVisibilidadeMenuBotaoDireitoCadastroTamanho(true, false);
+            _view.PrecoInformado = 0;
+        }
 
 
 
         #region Eventos Privados
         private void EventoAddPreco(Object o, EventArgs e)
         {
-            var preco = InstanciarPreco();
-            AdicionarPrecoNaLista(preco);
+            try
+            {
+                var preco = InstanciarPreco();
+                ValidarDadosPreco(preco);
+                AdicionarPrecoNaLista(preco);
+                EstadoInicial();
+            }
+            catch (SyntaxErrorException ex)
+            {
+                MessagemErro(ex);
+            }
 
         }
         private void EventoAdicionarClasse(object sender,EventArgs args)
@@ -96,6 +114,7 @@ namespace Perron.Presenter.Cadastro
                         this.ComportamentoAtual = EComportamentoTela.ItemSelecionado;
         }
 
+
         protected override void EventoSalvar(object o, EventArgs e)
         {
             if (_listaPreco == null || _listaPreco.Count == 0)
@@ -109,6 +128,7 @@ namespace Perron.Presenter.Cadastro
                     _service.SalvarListaPrecos(_listaPreco,_classe);
                     MessageDeSucesso("Produtos Cadastrado Com sucesso!!");
                     base.ComportamentoAtual = EComportamentoTela.Inicio;
+                    EstadoInicial();
                 }
                 catch (Exception ex)
                 {
@@ -124,6 +144,7 @@ namespace Perron.Presenter.Cadastro
                 base.ComportamentoAtual = EComportamentoTela.Inicio;
                 _listaPreco = _service.GetListaPreco();
                 PopularListaPrecos();
+                EstadoInicial();
             }
             catch (Exception ex)
             {
@@ -146,7 +167,15 @@ namespace Perron.Presenter.Cadastro
         {
             this._listaPreco = _service.GetListaPreco();
         }
-        
+        private void ValidarDadosPreco(PrecoModel preco)
+        {
+            if (preco.Preco <= 0)
+                throw new SyntaxErrorException("Informe Um valor maior que 0");
+
+            if (preco.Tamanho == null)
+                throw new SyntaxErrorException("Selecione Um Tamanho para Vincular ao Preco");
+
+        }
         private void ConfigurarGridPreco()
         {
             _view.GridPrecos.AutoGenerateColumns = false;
@@ -185,13 +214,12 @@ namespace Perron.Presenter.Cadastro
         }
         private PrecoModel InstanciarPreco()
         {
-            var model = new PrecoModel();
-            model.Ativo = true;
-            model.Tamanho = tamanho;
-            model.Preco = _view.PrecoInformado;
+                var model = new PrecoModel();
+                model.Ativo = true;
+                model.Tamanho = tamanho;
+                model.Preco = _view.PrecoInformado;
 
-            return model;
-
+                return model;
         }
         private void RemoverClasse()
         {
@@ -246,10 +274,23 @@ namespace Perron.Presenter.Cadastro
         {
             tamanho = null;
         }
+        private void ValidarPrecoCadastrado(PrecoModel preco)
+        {
+            if (_listaPreco.Any(Item => preco.Tamanho.Id.Equals(Item.Tamanho.Id)))
+                     throw new SyntaxErrorException("Já existem Preco Com esse tamanho Vinculado");
+        }
         private void AdicionarPrecoNaLista(PrecoModel preco)
         {
-            _listaPreco.Add(preco);
-            PopularListaPrecos();
+            try
+            {
+                ValidarPrecoCadastrado(preco);
+                _listaPreco.Add(preco);
+                PopularListaPrecos();
+            }
+            catch (SyntaxErrorException ex)
+            {
+                MessagemErro(ex);
+            }
         }
         private void PopularListaPrecos()
         {

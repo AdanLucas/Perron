@@ -14,6 +14,7 @@ public interface IViewCadastroMercadoria : IViewPadraoCadastro
     ComboBox SelecaoTipoMedida { get; }
     ComboBox SelecaoTipoMercadoria { get; }
 
+    DataGridView DgvMercadoria { get; }
     void EventoGrid(EventHandler e);
     EventHandler EventoBuscar { get; set; }
 }

@@ -130,19 +130,52 @@ namespace Perron.Controller
         #region Eventos Privados
         private void RemoverIngrediente(object sender, EventArgs args)
         {
-            DadosMercadoriaComponente componente = (DadosMercadoriaComponente)sender;
+            try
+            {
+                DadosMercadoriaComponente componente = (DadosMercadoriaComponente)sender;
+
+                var ingrediente = _cadastroProduto.Produto.Ingredientes.Where(ingre => ingre.Equals(componente.Ingrediente)).FirstOrDefault();
 
 
+                if (ingrediente.Id == null)
+                    _cadastroProduto.Produto.Ingredientes.Remove(ingrediente);
+
+                else
+                {
+                    ingrediente.Ativo = false;
+                }
+
+                componente.Dispose();
+            }
+            catch
+            {
+
+                
+            }
         }
         private void AdicionarDadosIngrediente(object sender, EventArgs args)
         {
             IngredienteModel ingrediente = (IngredienteModel)sender;
 
+            var dados = new DadosIngredienteModel();
 
+            dados.Tamanho = Busca.IniciarBuscar(ETipoBusca.TAMANHO).ObterSelecionado<TamanhoModel>();
+
+            if (dados.Tamanho == null)
+                return;
+
+            if (ingrediente.DadosIngrediente == null)
+                     ingrediente.DadosIngrediente = new List<DadosIngredienteModel>();
+
+
+            ingrediente.DadosIngrediente.Add(dados);
+
+            AtualizarDadosComponetes();
         }
         private void EventoAdicionarIngrediente(object o, KeyPressEventArgs eventArgs)
         {
-            if (eventArgs.KeyChar.Equals('\u0001')) /*Buscar CTRL + A */
+            if ((_cadastroProduto.ComportamentoAtual.Equals(EComportamentoTela.Cadastrando) || _cadastroProduto.ComportamentoAtual.Equals(EComportamentoTela.Novo) || _cadastroProduto.ComportamentoAtual.Equals(EComportamentoTela.ItemSelecionado)) 
+                && eventArgs.KeyChar.Equals('\u0001')) /*Buscar CTRL + A */
             {
                 _cadastroProduto.Produto.Ingredientes = Busca.IniciarBuscar(ETipoBusca.INGREDIENTE).ObterSelecaoMultipla<IngredienteModel>();
                 ExibirEngredienteSabor();

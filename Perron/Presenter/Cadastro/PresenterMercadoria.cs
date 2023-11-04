@@ -1,6 +1,7 @@
 ﻿using Model.Emumerator;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -18,6 +19,7 @@ namespace Perron.Controller
         {
             _view = view;
             _view.Show();
+            this.ConfigurarGrid(_view.DgvMercadoria);
             _service = service;
             DelegarEventos();
             base.ComportamentoAtual = EComportamentoTela.Inicio;
@@ -91,7 +93,40 @@ namespace Perron.Controller
             _view.SelecaoTipoMedida.SelectedItem = _mercadoria.TipoMedida;
             _view.SelecaoTipoMercadoria.SelectedItem = _mercadoria.TipoMercadoria;
         }
+        private void ConfigurarGrid(DataGridView view)
+        {
+            view.AutoGenerateColumns = false;
+            view.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            view.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            view.DefaultCellStyle.SelectionBackColor = Color.Green;
+            view.DefaultCellStyle.SelectionForeColor = Color.Black;
 
+
+            var columDescricao = new DataGridViewTextBoxColumn();
+            columDescricao.Name = "Descrição Mercadoria";
+            columDescricao.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            columDescricao.DataPropertyName = "Descricao";
+            columDescricao.ReadOnly = true;
+            columDescricao.Frozen = false;
+            view.Columns.Add(columDescricao);
+
+            var columDescricaoUnidadeMedida = new DataGridViewTextBoxColumn();
+            columDescricaoUnidadeMedida.Name = "Descrição Unidade Medida";
+            columDescricaoUnidadeMedida.DataPropertyName = "DescricaoTipoMedida";
+            columDescricaoUnidadeMedida.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            columDescricaoUnidadeMedida.ReadOnly = true;
+            columDescricaoUnidadeMedida.Frozen = false;
+            view.Columns.Add(columDescricaoUnidadeMedida);
+
+            var columDescricaoTipoMercadoria = new DataGridViewTextBoxColumn();
+            columDescricaoTipoMercadoria.Name = "Descrição Tipo Mercadoria";
+            columDescricaoTipoMercadoria.DataPropertyName = "DescricaoTipoMercadoria";
+            columDescricaoTipoMercadoria.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            columDescricaoTipoMercadoria.ReadOnly = true;
+            columDescricaoTipoMercadoria.Frozen = false;
+            view.Columns.Add(columDescricaoTipoMercadoria);
+
+        }
         private void AtivarMercadoriaInativo(MercadoriaModel _engrediente)
         {
             if (_engrediente.Ativo == false)

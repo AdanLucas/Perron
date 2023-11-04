@@ -10,5 +10,11 @@ namespace Model.Model
     {
        public TamanhoModel Tamanho { get; set; }
        public decimal Quantidade { get; set; }
+
+        public string DescricaoTamanho { get{ return $"{Tamanho.Descricao}"; } }
+
+        
+
     }
+
 }

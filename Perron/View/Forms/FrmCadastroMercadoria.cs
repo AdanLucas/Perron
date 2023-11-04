@@ -41,6 +41,7 @@ namespace Perron.View.Forms
         }
 
 
+        public DataGridView DgvMercadoria { get { return this.dgvMercadoria; } }
         public void EventoGrid(EventHandler e)
         {
             dgvMercadoria.DoubleClick += e;
@@ -49,17 +50,8 @@ namespace Perron.View.Forms
         public void PopularGridIngredientes(List<MercadoriaModel> Ingredientes)
         {
             dgvMercadoria.DataSource = null;
-
-
-            if (Ingredientes != null)
-            {
-                dgvMercadoria.DataSource = Ingredientes;
-                dgvMercadoria.Columns["Id"].Visible = false;
-                dgvMercadoria.Columns["Ativo"].Visible = false;
-                dgvMercadoria.Columns["TipoMedida"].Visible = false;
-                dgvMercadoria.Columns["Descricao"].HeaderText = "Descrição";
-                dgvMercadoria.Columns["DescricaoTipoMedida"].HeaderText = "Tipo Medida";
-            }
+            dgvMercadoria.DataSource = Ingredientes;
+        
         }
     
   

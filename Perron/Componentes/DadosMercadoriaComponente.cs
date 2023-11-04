@@ -28,6 +28,7 @@ namespace Perron.Componentes
             ConfigurarDataGridView();
             SetarDadosTela();
             DelegarEventos();
+            
         }
 
         #region Privados
@@ -37,6 +38,7 @@ namespace Perron.Componentes
             this.menuRemover.Click += RemoverIngrediente;
             this.menuRemoverDados.Click += RemoverDados;
             AtualiarTela += AtulizarDados;
+            this.dgvDadosIngrediente.DoubleClick += AdicionadoValordadosIngrediente;
         }
         private void SetarDadosTela()
         {
@@ -44,6 +46,7 @@ namespace Perron.Componentes
             {
                 this.txtDescricao.Text = Ingrediente.Ingrediente.Descricao;
                 this.txtUnidadeMedida.Text = Ingrediente.Ingrediente.DescricaoTipoMedida;
+                this.dgvDadosIngrediente.DataSource = null;
                 this.dgvDadosIngrediente.DataSource = Ingrediente.DadosIngrediente;
 
             }
@@ -60,7 +63,7 @@ namespace Perron.Componentes
             var descricaoCell = new DataGridViewTextBoxColumn();
             descricaoCell.Name = "Tamanho Cadastrado";
             descricaoCell.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            descricaoCell.DataPropertyName = "Tamanho.Descricao";
+            descricaoCell.DataPropertyName = "DescricaoTamanho";
             descricaoCell.ReadOnly = true;
             descricaoCell.HeaderText = "Tamanho Cadastrado";
             descricaoCell.Frozen = false;
@@ -103,6 +106,17 @@ namespace Perron.Componentes
         {
             if (ingrediente.Equals(this.Ingrediente)) this.Visible = true;
                                                                     else this.Visible = false;
+        }
+        private void AdicionadoValordadosIngrediente(object sender,EventArgs args)
+        {
+            if (Ingrediente.DadosIngrediente == null || Ingrediente.DadosIngrediente.Count <= 0) 
+                return;
+
+            var dadosIngrediente = dgvDadosIngrediente.CurrentRow.DataBoundItem as DadosIngredienteModel;
+
+            dadosIngrediente.Quantidade = InformandoValorComponente.ObterValor();
+
+            this.AtulizarDados();
         }
         #endregion
 

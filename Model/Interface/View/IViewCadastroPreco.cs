@@ -14,7 +14,7 @@ namespace Model.Interface.View
         ContextMenuStrip BotaoDireitoTamanho { get; }
 
         DataGridView GridPrecos { get; }
-        decimal PrecoInformado { get; }
+        decimal PrecoInformado { get; set; }
         GroupBox GbDadosCadastro { get; }
         GroupBox GbPrecosCadastrados { get; }
 

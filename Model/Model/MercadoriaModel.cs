@@ -20,10 +20,18 @@ public class MercadoriaModel : Aentity
         {
             return TipoMedida.GetDescription();
         }
-
     }
 
     public ETipoMercadoria? TipoMercadoria { get; set; }
+
+
+    public string DescricaoTipoMercadoria
+    {
+        get
+        {
+            return TipoMercadoria.GetDescription();
+        }
+    }
 
 
 }

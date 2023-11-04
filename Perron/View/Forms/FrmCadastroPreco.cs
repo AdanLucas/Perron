@@ -40,6 +40,7 @@ namespace Perron.View.Forms
                     return 0;
                 }
             }
+            set { txtPreco.Text = value.ToString(); }
         }
         public ContextMenuStrip BotaoDireitoClasse { get {return this.menuBotaoDireitoClasse;} }
         public ContextMenuStrip BotaoDireitoTamanho { get { return this.menuBotaoDireitoTamanho; } }

@@ -143,7 +143,7 @@ namespace Repository.Repository
         {
             using (var session = new DbSession())
             {
-                var Lista = session.Connection.Query<ProdutoDTO>("Select * from Sabor where ativo = 1").ToList();
+                var Lista = session.Connection.Query<ProdutoDTO>("Select * from Produto where ativo = 1").ToList();
                 return Lista.Select(dto=> ObterProdutoModel(dto)).ToList();
             }
 

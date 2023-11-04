@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using Model.Interface.Repository;
 using Model.Model;
 using System;
 using System.Collections;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Repository.Repository.BuscaDinamico
 {
-    internal class RepositoryBuscaClasse : RepositoryBuscaDinamicoBase
+    internal class RepositoryBuscaClasse : RepositoryBuscaDinamicoBase, IRepositoryBuscaDinamico
     {
         public RepositoryBuscaClasse() : base(typeof(ClasseModel)) { }
 

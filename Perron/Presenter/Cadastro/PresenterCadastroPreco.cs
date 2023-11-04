@@ -17,7 +17,7 @@ namespace Perron.Presenter.Cadastro
         private readonly IViewCadastroPreco _view;
         private readonly IServiceCadastroPreco _service;
         private List<PrecoModel> _listaPreco = new List<PrecoModel>();
-        
+        private PrecoModel precoSelecionado { get; set; }
         private TamanhoModel tamanho { get {return _tamanho;}set { SetarTamanho(value); } }
         private ClasseModel classe { get { return _classe; } set { SetarClasse(value); } }
 
@@ -36,8 +36,11 @@ namespace Perron.Presenter.Cadastro
         private void SetarTamanho(TamanhoModel tamanho)
         {
             if(tamanho == null)
+            {
+                _tamanho = null;
                 _view.DescricaoTamanho ="";
-
+                
+            }
             else
             {
                 _tamanho = tamanho;
@@ -77,11 +80,20 @@ namespace Perron.Presenter.Cadastro
         }
         private void EventoAdicionarTamanho(object sender,EventArgs args)
         {
-
+            AdicioarTamanho();
+            AlterarVisibilidadeMenuBotaoDireitoCadastroTamanho(false, true);
         }
         private void EventoRemoverTamanho(object sender, EventArgs args)
         {
+            RemoverTamanho();
+            AlterarVisibilidadeMenuBotaoDireitoCadastroTamanho(true, false);
+        }
+        private void EventoGridPrecos(object sender , EventArgs args)
+        {
+            this.precoSelecionado = _view.GridPrecos.CurrentRow.DataBoundItem as PrecoModel;
 
+            if (this.precoSelecionado != null)
+                        this.ComportamentoAtual = EComportamentoTela.ItemSelecionado;
         }
 
         protected override void EventoSalvar(object o, EventArgs e)
@@ -110,7 +122,7 @@ namespace Perron.Presenter.Cadastro
             try
             {
                 base.ComportamentoAtual = EComportamentoTela.Inicio;
-                _listaPreco = new List<PrecoModel>();
+                _listaPreco = _service.GetListaPreco();
                 PopularListaPrecos();
             }
             catch (Exception ex)
@@ -123,7 +135,12 @@ namespace Perron.Presenter.Cadastro
         {
             base.ComportamentoAtual = EComportamentoTela.Cadastrando;
         }
+        protected override void EventoRemover(object o, EventArgs e)
+        {
+            precoSelecionado.Ativo = false;
+            this.PopularListaPrecos();
 
+        }
         #endregion
         private void IniciarListaTamanhos()
         {
@@ -163,6 +180,7 @@ namespace Perron.Presenter.Cadastro
             _view.BotaoDireitoClasse.Items["menuBotaoDireitoRemoverClasse"].Click += EventoRemoverClasse;
             _view.BotaoDireitoTamanho.Items["menuBotaoDireitoAdicionarTamanho"].Click += EventoAdicionarTamanho;
             _view.BotaoDireitoTamanho.Items["menuBotaoDireitoRemoverTamanho"].Click += EventoRemoverTamanho;
+            _view.GridPrecos.DoubleClick += EventoGridPrecos;
 
         }
         private PrecoModel InstanciarPreco()
@@ -205,19 +223,22 @@ namespace Perron.Presenter.Cadastro
                _view.DescricaoClasse = _classe.DescricaoClasse;
             }
         }
-        private void AdicioarTamanho()
+        private bool AdicioarTamanho()
         {
             var tamanhoSelecionado = Busca.IniciarBuscar(TelaBusca.Enum.ETipoBusca.TAMANHO).ObterSelecionado<TamanhoModel>();
 
 
             if (_listaPreco.Any(preco => preco.Tamanho.Equals(tamanhoSelecionado)))
+            {
                         MessageBox.Show("Ja existe Preco cadastrado para Esse Tamanho", "Cadastro Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                         return false;
+            }
 
 
             else
             {
                 tamanho = tamanhoSelecionado;
-                AlterarVisibilidadeMenuBotaoDireitoCadastroTamanho(false, true);
+                return true;
             }
 
         }
@@ -233,7 +254,7 @@ namespace Perron.Presenter.Cadastro
         private void PopularListaPrecos()
         {
             _view.GridPrecos.DataSource = null;
-            _view.GridPrecos.DataSource = _listaPreco;
+            _view.GridPrecos.DataSource = _listaPreco.Where(preco=>preco.Ativo.Equals(true)).ToList();
             
         }
         private void AbrirTela()

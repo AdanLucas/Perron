@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace Repository.Repository.BuscaDinamico
 {
-    internal class RepositoryBuscaIngrediente : RepositoryBuscaDinamicoBase
+    internal class RepositoryBuscaIngrediente : RepositoryBuscaDinamicoBase, IRepositoryBuscaDinamico
     {
         public RepositoryBuscaIngrediente() : base(typeof(IngredienteModel)) { }
 

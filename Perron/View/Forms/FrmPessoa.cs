@@ -45,7 +45,8 @@ namespace Perron.View.Forms
         public string TextoBusca { get { return txtBuscar.Text; } }
         private void SetarListGrid(List<PessoaModel> lista)
         {
-            dgvBuscaPessoa.DataSourceCuston(lista);
+            dgvBuscaPessoa.DataSource = null;
+            dgvBuscaPessoa.DataSource = lista;
         }
         private void txtBuscar_TextChanged(object sender, EventArgs e)
         {

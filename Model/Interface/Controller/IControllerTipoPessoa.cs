@@ -11,7 +11,8 @@ public interface IControllerTipoPessoa
     void AlterarComportamentoCadastro(EComportamentoTela comportamento);
     void Iniciar(ControlCollection local);
     void Salvar();
-    void AtulizarDadosEntidadePessoa(PessoaModel pessoa);
+    void AtulizarDadosEntidadePessoaParaSalvar(PessoaModel pessoa);
+    void PopularDadosEntidade(PessoaModel pessoa);
     void LimparCampos();
 
 

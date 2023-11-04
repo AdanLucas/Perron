@@ -1,4 +1,5 @@
 ﻿using Model.Model;
+using Perron.Presenter.Cadastro;
 using Perron.View;
 using System;
 using System.Linq;
@@ -10,24 +11,22 @@ namespace Perron.Controller
     public class ControllerCadastroEndereco
     {
 
-        
+        private PresenterCadastroPessoa _presenderPessoa { get; set; }
 
 
         UCCadastroEndereco _view;
 
        public Action EventoLimparCampos { get; set; }
-       public Action<PessoaModel> EventoAtualizarDadosEntidade { get; set; }
+       public Action<PessoaModel> EventoExibirDadosEntidade { get; set; }
         EnderecoModel Endereco { get { return GetDadosEndereco(); } set { SetDadosEndereco(value); } }
 
         EnderecoModel _endereco;
 
-        PessoaModel Pessoa { get { return _pessoa; } set { SetDadsoPessoa(value); } }
+        
 
-        PessoaModel _pessoa;
-
-        public ControllerCadastroEndereco(ControlCollection control, ref PessoaModel pessoa)
+        public ControllerCadastroEndereco(ControlCollection control, PresenterCadastroPessoa presenderPessoa)
         {
-            Pessoa = pessoa;
+            _presenderPessoa = presenderPessoa;
             _view = new UCCadastroEndereco();
             control.Add(_view);
             _view.Dock = DockStyle.Fill;
@@ -35,28 +34,18 @@ namespace Perron.Controller
 
 
         }
-        private void SetDadsoPessoa(PessoaModel pessoa)
-        { 
-            _pessoa = pessoa;
-
-            ExibirEnderecos();
-        }
-
-
         private void DelegarEventos()
         {
             _view.EventoAdd += EventoAddEndereco;
             _view.EventoRemove += EventoRemoverEndereco;
             _view.EventoGrid += EventoGridEndereco;
             this.EventoLimparCampos += LimparCampos;
-            this.EventoAtualizarDadosEntidade += AtualizarDadosEntidade;
+            this.EventoExibirDadosEntidade += CarregarDadosEntidade;
 
         }
-        private void AtualizarDadosEntidade(PessoaModel pessoa)
+        private void CarregarDadosEntidade(PessoaModel pessoa)
         {
-            Pessoa = pessoa;
-
-
+            ExibirEnderecos();
         }
         private void ValidarDadosEndereco(EnderecoModel endereco)
         {
@@ -73,7 +62,7 @@ namespace Perron.Controller
         private void NovoCadastro()
         {
             var Endereco = new EnderecoModel();
-            Endereco.IdPessoal = _pessoa.Id;
+            Endereco.IdPessoal = _presenderPessoa.pessoa.Id;
             Endereco.Ativo = true;
             this.Endereco = Endereco;
 
@@ -137,7 +126,7 @@ namespace Perron.Controller
         {
             try
             {
-                _view.PopularGrid(_pessoa.Enderecos.Where(end => end.Ativo == true).ToList());
+                _view.PopularGrid(_presenderPessoa.pessoa.Enderecos.Where(end => end.Ativo == true).ToList());
             }
             catch {  }
         }
@@ -150,7 +139,7 @@ namespace Perron.Controller
             Endereco.Descricao = "";
             Endereco.Bairro = "";
             Endereco.Cidade = "";
-            Endereco.IdPessoal = Pessoa.Id;
+            Endereco.IdPessoal = _presenderPessoa.pessoa.Id;
             _view.PopularGrid(null);
         }
 
@@ -167,7 +156,7 @@ namespace Perron.Controller
             try
             {
                 ValidarDadosEndereco(Endereco);
-                _pessoa.Enderecos.Add(Endereco);
+                _presenderPessoa.pessoa.Enderecos.Add(Endereco);
                 ExibirEnderecos();
                 NovoCadastro();
 
@@ -191,7 +180,7 @@ namespace Perron.Controller
                 if (MessageBox.Show("Remover Endereço ??", "Remover?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     if(_view.EnderecoSelecionado.Id == 0)
-                       _pessoa.Enderecos.Remove(_view.EnderecoSelecionado);
+                       _presenderPessoa.pessoa.Enderecos.Remove(_view.EnderecoSelecionado);
 
 
                     else

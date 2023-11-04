@@ -8,11 +8,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Text;
 using System.CodeDom;
+using Model.Interface.Repository;
 
 namespace Repository.Repository.BuscaDinamico
 {
 
-    internal class RepositoryBuscaTamanho : RepositoryBuscaDinamicoBase
+    public class RepositoryBuscaTamanho : RepositoryBuscaDinamicoBase , IRepositoryBuscaDinamico
     {
         public RepositoryBuscaTamanho() : base(typeof(TamanhoModel)){}
 

@@ -43,16 +43,23 @@ namespace Perron.Controller
         }
         protected override void SetDadosEntidade(Aentity _entidade)
         {
-            if (entidade == null)
+            try
+            {
+                if (entidade == null)
+                    entidade = new FuncionarioModel();
+
+                var view = (UCTipoFuncionario)_view;
+                var entt = _entidade as FuncionarioModel;
+
+                view.Salario = entt.Salario;
+                view.DatraContrato = entt.DataAdimissao;
+
+                entidade = entt;
+            }
+            catch
+            {
                 entidade = new FuncionarioModel();
-
-            var view = (UCTipoFuncionario)_view;
-            var entt = _entidade as FuncionarioModel;
-
-            view.Salario = entt.Salario;
-            view.DatraContrato = entt.DataAdimissao;
-
-           entidade = entt;
+            }
         }
         protected override void ComportamentoPopularCadastrando()
         {
@@ -87,6 +94,6 @@ namespace Perron.Controller
             return _view;
         }
 
-
+        
     }
 }

@@ -46,13 +46,20 @@ namespace Perron.Controller
         }
         protected override void SetDadosEntidade(Aentity _entidade)
         {
-            if (entidade == null)
+            try
+            {
+                if (entidade == null)
+                    entidade = new EmpresaModel();
+
+                var view = (UCCadastroEmpresa)_view;
+                var entt = _entidade as EmpresaModel;
+
+                entidade = entt;
+            }
+            catch
+            {
                 entidade = new EmpresaModel();
-
-            var view = (UCCadastroEmpresa)_view;
-            var entt = _entidade as EmpresaModel;
-
-            entidade = entt;
+            }
         }
         protected override void ComportamentoCadastrando()
         {
@@ -89,6 +96,6 @@ namespace Perron.Controller
             }
         }
 
-
+        
     }
 }

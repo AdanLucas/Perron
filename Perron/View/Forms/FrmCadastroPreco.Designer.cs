@@ -37,24 +37,26 @@
             this.dgvPrecos = new System.Windows.Forms.DataGridView();
             this.gbPrecosCadastrados = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.menuBotaoDireitoTamanho = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.menuBotaoDireitoAdicionarTamanho = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuBotaoDireitoRemoverTamanho = new System.Windows.Forms.ToolStripMenuItem();
             this.txtTamanho = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.btnAddPreco = new System.Windows.Forms.Button();
             this.txtPreco = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.gbDadosCadastro = new System.Windows.Forms.GroupBox();
-            this.menuBotaoDireitoTamanho = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.menuBaotaoDireitoTamanhoAdicionar = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuBaotaoDireitoTamanhoRemover = new System.Windows.Forms.ToolStripMenuItem();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
             this.menuBotaoDireitoClasse.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPrecos)).BeginInit();
             this.gbPrecosCadastrados.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.menuBotaoDireitoTamanho.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.gbDadosCadastro.SuspendLayout();
-            this.menuBotaoDireitoTamanho.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -116,16 +118,16 @@
             this.dgvPrecos.Name = "dgvPrecos";
             this.dgvPrecos.ReadOnly = true;
             this.dgvPrecos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvPrecos.Size = new System.Drawing.Size(261, 280);
+            this.dgvPrecos.Size = new System.Drawing.Size(261, 274);
             this.dgvPrecos.TabIndex = 9;
             // 
             // gbPrecosCadastrados
             // 
             this.gbPrecosCadastrados.Controls.Add(this.dgvPrecos);
             this.gbPrecosCadastrados.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbPrecosCadastrados.Location = new System.Drawing.Point(12, 277);
+            this.gbPrecosCadastrados.Location = new System.Drawing.Point(8, 252);
             this.gbPrecosCadastrados.Name = "gbPrecosCadastrados";
-            this.gbPrecosCadastrados.Size = new System.Drawing.Size(267, 299);
+            this.gbPrecosCadastrados.Size = new System.Drawing.Size(267, 293);
             this.gbPrecosCadastrados.TabIndex = 10;
             this.gbPrecosCadastrados.TabStop = false;
             this.gbPrecosCadastrados.Text = "Preços Cadastrados";
@@ -144,6 +146,29 @@
             this.groupBox2.TabIndex = 7;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Tamanho";
+            // 
+            // menuBotaoDireitoTamanho
+            // 
+            this.menuBotaoDireitoTamanho.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuBotaoDireitoAdicionarTamanho,
+            this.menuBotaoDireitoRemoverTamanho});
+            this.menuBotaoDireitoTamanho.Name = "menuBotaoDireitoClasse";
+            this.menuBotaoDireitoTamanho.Size = new System.Drawing.Size(126, 48);
+            // 
+            // menuBotaoDireitoAdicionarTamanho
+            // 
+            this.menuBotaoDireitoAdicionarTamanho.Image = global::Perron.Properties.Resources.add;
+            this.menuBotaoDireitoAdicionarTamanho.Name = "menuBotaoDireitoAdicionarTamanho";
+            this.menuBotaoDireitoAdicionarTamanho.Size = new System.Drawing.Size(125, 22);
+            this.menuBotaoDireitoAdicionarTamanho.Text = "Adicionar";
+            // 
+            // menuBotaoDireitoRemoverTamanho
+            // 
+            this.menuBotaoDireitoRemoverTamanho.Image = global::Perron.Properties.Resources.Remover;
+            this.menuBotaoDireitoRemoverTamanho.Name = "menuBotaoDireitoRemoverTamanho";
+            this.menuBotaoDireitoRemoverTamanho.Size = new System.Drawing.Size(125, 22);
+            this.menuBotaoDireitoRemoverTamanho.Text = "Remover";
+            this.menuBotaoDireitoRemoverTamanho.Visible = false;
             // 
             // txtTamanho
             // 
@@ -171,14 +196,15 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Classes";
             // 
-            // label1
+            // label2
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(28, 22);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(0, 13);
-            this.label1.TabIndex = 0;
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(17, 32);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(41, 24);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "R$:";
             // 
             // btnAddPreco
             // 
@@ -201,62 +227,46 @@
             this.txtPreco.Size = new System.Drawing.Size(100, 26);
             this.txtPreco.TabIndex = 3;
             // 
-            // label2
+            // label1
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(17, 32);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(41, 24);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "R$:";
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(28, 22);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(0, 13);
+            this.label1.TabIndex = 0;
             // 
             // gbDadosCadastro
             // 
             this.gbDadosCadastro.Controls.Add(this.groupBox1);
             this.gbDadosCadastro.Controls.Add(this.groupBox4);
             this.gbDadosCadastro.Controls.Add(this.groupBox2);
-            this.gbDadosCadastro.Location = new System.Drawing.Point(9, 45);
+            this.gbDadosCadastro.Location = new System.Drawing.Point(8, 19);
             this.gbDadosCadastro.Name = "gbDadosCadastro";
             this.gbDadosCadastro.Size = new System.Drawing.Size(267, 226);
             this.gbDadosCadastro.TabIndex = 11;
             this.gbDadosCadastro.TabStop = false;
             // 
-            // menuBotaoDireitoTamanho
+            // groupBox3
             // 
-            this.menuBotaoDireitoTamanho.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuBaotaoDireitoTamanhoAdicionar,
-            this.menuBaotaoDireitoTamanhoRemover});
-            this.menuBotaoDireitoTamanho.Name = "menuBotaoDireitoClasse";
-            this.menuBotaoDireitoTamanho.Size = new System.Drawing.Size(126, 48);
-            // 
-            // menuBaotaoDireitoTamanhoAdicionar
-            // 
-            this.menuBaotaoDireitoTamanhoAdicionar.Image = global::Perron.Properties.Resources.add;
-            this.menuBaotaoDireitoTamanhoAdicionar.Name = "menuBaotaoDireitoTamanhoAdicionar";
-            this.menuBaotaoDireitoTamanhoAdicionar.Size = new System.Drawing.Size(180, 22);
-            this.menuBaotaoDireitoTamanhoAdicionar.Text = "Adicionar";
-            // 
-            // menuBaotaoDireitoTamanhoRemover
-            // 
-            this.menuBaotaoDireitoTamanhoRemover.Image = global::Perron.Properties.Resources.Remover;
-            this.menuBaotaoDireitoTamanhoRemover.Name = "menuBaotaoDireitoTamanhoRemover";
-            this.menuBaotaoDireitoTamanhoRemover.Size = new System.Drawing.Size(125, 22);
-            this.menuBaotaoDireitoTamanhoRemover.Text = "Remover";
-            this.menuBaotaoDireitoTamanhoRemover.Visible = false;
+            this.groupBox3.Controls.Add(this.gbDadosCadastro);
+            this.groupBox3.Controls.Add(this.gbPrecosCadastrados);
+            this.groupBox3.Location = new System.Drawing.Point(0, 42);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(282, 551);
+            this.groupBox3.TabIndex = 12;
+            this.groupBox3.TabStop = false;
             // 
             // FrmCadastroPreco
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(287, 583);
-            this.Controls.Add(this.gbDadosCadastro);
-            this.Controls.Add(this.gbPrecosCadastrados);
+            this.ClientSize = new System.Drawing.Size(285, 595);
+            this.Controls.Add(this.groupBox3);
             this.MaximizeBox = false;
             this.Name = "FrmCadastroPreco";
             this.Text = "Cadastrando Preço";
-            this.Controls.SetChildIndex(this.gbPrecosCadastrados, 0);
-            this.Controls.SetChildIndex(this.gbDadosCadastro, 0);
+            this.Controls.SetChildIndex(this.groupBox3, 0);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.menuBotaoDireitoClasse.ResumeLayout(false);
@@ -264,10 +274,11 @@
             this.gbPrecosCadastrados.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.menuBotaoDireitoTamanho.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.gbDadosCadastro.ResumeLayout(false);
-            this.menuBotaoDireitoTamanho.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -290,7 +301,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox gbDadosCadastro;
         private System.Windows.Forms.ContextMenuStrip menuBotaoDireitoTamanho;
-        private System.Windows.Forms.ToolStripMenuItem menuBaotaoDireitoTamanhoAdicionar;
-        private System.Windows.Forms.ToolStripMenuItem menuBaotaoDireitoTamanhoRemover;
+        private System.Windows.Forms.ToolStripMenuItem menuBotaoDireitoAdicionarTamanho;
+        private System.Windows.Forms.ToolStripMenuItem menuBotaoDireitoRemoverTamanho;
+        private System.Windows.Forms.GroupBox groupBox3;
     }
 }

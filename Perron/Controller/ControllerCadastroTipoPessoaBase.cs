@@ -16,6 +16,7 @@ namespace Perron.Controller
         
 
         protected PessoaModel _pessoa;
+
         protected IServiceTipoPessoa _service;
 
         #region Construtor
@@ -23,8 +24,6 @@ namespace Perron.Controller
         {
             TipoController = tipo;
             _service = FactoryService.CadastroTipoPessoa(tipo);
-
-
         }
         #endregion
 
@@ -55,7 +54,7 @@ namespace Perron.Controller
             }
         }
         #endregion
-
+         
         #region Protected
         protected virtual UserControl IniciarUserControl() { return null; }
         protected virtual void ComportamentoPopularCadastrando() { }
@@ -66,28 +65,21 @@ namespace Perron.Controller
         protected virtual void SalvarCadastro() { }
         protected virtual void SetDadosEntidade(Aentity entidade) { }
         protected virtual Aentity GetDadosEntidade() { return null; }
-
+        
         #endregion
 
         #region public
-        public void AtulizarDadosEntidadePessoa(PessoaModel pessoa)
+        public void PopularDadosEntidade(PessoaModel pessoa)
+        {
+            Entidade = _service.GetCadastroPorId((int)pessoa.Id) as Aentity;
+        }
+        public void AtulizarDadosEntidadePessoaParaSalvar(PessoaModel pessoa)
         {
             _pessoa = pessoa;
-
-            if(_pessoa.Id == null)
-                        LimparCampos();
-
-            else
-            {
-                Entidade = _service.GetCadastroPorId((int)_pessoa.Id) as Aentity;
-                Entidade.Ativo = true;
-
-            }
-
-            
-
         }
         
+
+
         public void Salvar()
         {
             try

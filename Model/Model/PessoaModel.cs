@@ -40,7 +40,14 @@ public class PessoaModel : Aentity
 
 
     [AtributosClasse(ExibirNaGrid = true,Descricao ="Tipo De Cadastro")]
-    public string DescricaoTipoPessoa { get {return Tipo.GetDescription(); } }
+    public string DescricaoTipoPessoa 
+    { 
+        get 
+        {
+            var lista = Tipo.GetListEnumValue();
+            return string.Join(" | ", lista);
+        } 
+    }
 
 
     [AtributosClasse(ExibirNaGrid = true,Descricao ="Endereços Cadastrados")]

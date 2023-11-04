@@ -70,10 +70,10 @@ public static class ExtensionEnum
     {
         return Enum.GetName(typeof(ETipoPessoa), tipo);
     }
-    public static T[] GetListEnumValue<T>(this ETipoPessoa tipo) where T : Enum
+    public static ETipoPessoa[] GetListEnumValue(this ETipoPessoa tipo)
     {
         int qnt = 0;
-        T[] origem = (T[])Enum.GetValues(tipo.GetType());
+        ETipoPessoa[] origem = (ETipoPessoa[])Enum.GetValues(tipo.GetType());
 
         int index = 0;
 
@@ -85,7 +85,7 @@ public static class ExtensionEnum
             }
         }
 
-        T[] destino = new T[qnt];
+        ETipoPessoa[] destino = new ETipoPessoa[qnt];
 
         foreach (var item in origem)
         {
@@ -95,7 +95,6 @@ public static class ExtensionEnum
                 index++;
             }
         }
-
 
         return destino;
     }

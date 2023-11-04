@@ -11,6 +11,7 @@ using System.Transactions;
 using System.Windows.Forms;
 using System.Security.AccessControl;
 using System.Diagnostics.Eventing.Reader;
+using System.Drawing;
 
 namespace Perron.Presenter.Cadastro
 {
@@ -19,17 +20,20 @@ namespace Perron.Presenter.Cadastro
 
         #region Propriedades
         private List<PessoaModel> ListaPessoa {  get; set; }
-        private PessoaModel pessoa { get { return GetDadosPessoa(); } set { SetDadospessoa(value); } }
+        public PessoaModel pessoa { get { return _pessoa; }set{ _pessoa = value; } }
+
         private PessoaModel _pessoa;
 
         private ControllerCadastroEndereco controllerEndereco;
 
         private Action<EComportamentoTela> ExecutaAlteracaoComportamento;
-        private Action<PessoaModel> AtualizaDadosEntidade { get; set;}
+        private Action<PessoaModel> AtualizaDadosEntidadeParaSalvar { get; set;}
+        private Action<PessoaModel> CarregarDadosEntidade { get; set; }
         private Action EventoLimparCampos { get; set; }
         private ETipoPessoa TipoPessoaCadastro { get; set; }
         private readonly IViewCadastroPessoa _view;
         private SelecaoTipoPessoa cmpTipoPessoa;
+
         private readonly IServiceTipoPessoa _service;
         private ICollection<IControllerTipoPessoa> _controllers = new List<IControllerTipoPessoa>();
 
@@ -43,15 +47,14 @@ namespace Perron.Presenter.Cadastro
             _view.Show();
             SetarNomeTela();
             _service = service;
+            ReiniciarEntidadePessoal();
             cmpTipoPessoa = new SelecaoTipoPessoa(_view.PainelTipoPesso, TipoPessoaCadastro);
             cmpTipoPessoa.EventoAlterandoTipoPessoa += EventoAlterandoTipoPessoa;
-            GetDadosPessoa();
-            controllerEndereco = new ControllerCadastroEndereco(_view.GBEndereco.Controls, ref _pessoa);
+            controllerEndereco = new ControllerCadastroEndereco(_view.GBEndereco.Controls,this);
             EventoLimparCampos += controllerEndereco.EventoLimparCampos;
-            AtualizaDadosEntidade += controllerEndereco.EventoAtualizarDadosEntidade;
-
-
+            CarregarDadosEntidade += controllerEndereco.EventoExibirDadosEntidade;
             DelegarEventos();
+            ConfigurarGridBuscaPessoa();
             ExecutaAlteracaoComportamento += controllerEndereco.AlterarEstadoCadastro;
             base.ComportamentoAtual = EComportamentoTela.Inicio;
             ListaPessoa = CacheSessao.Instancia.ListaPessoa;
@@ -60,6 +63,13 @@ namespace Perron.Presenter.Cadastro
         #endregion
 
         #region Controller Tipo Pessoa
+      
+        private void ReiniciarEntidadePessoal()
+        {
+            _pessoa = new PessoaModel();
+            _pessoa.Ativo = true;
+            _pessoa.Enderecos = new List<EnderecoModel>();
+        }
         private TabPage CiarTabPage(Enum tipo)
         {
             var nomeTabPage = Enum.GetName(typeof(ETipoPessoa), tipo);
@@ -76,27 +86,15 @@ namespace Perron.Presenter.Cadastro
             _view.EventoGridBusca += EventoSelecionandoPessoaBusca;
             this.EventoLimparCampos += LimparCampos;
         }
-        private PessoaModel GetDadosPessoa()
+        private void SetarDadosEntidadePartirDaTela()
         {
             try
             {
-                if (_pessoa == null)
-                {
-                    _pessoa = new PessoaModel();
-                    _pessoa.Ativo = true;
-                    _pessoa.Enderecos = new List<EnderecoModel>();
-                    
-                }
-
                 _pessoa.Nome = _view.Nome;
                 _pessoa.Sobrenome = _view.Sobrenome;
                 _pessoa.CpfCnpj = _view.CpfCnpj;
                 _pessoa.Tipo = cmpTipoPessoa.TipoPessoaSelecionado;
                 _pessoa.Telefone = _view.Telefone;
-
-
-                return _pessoa;
-
             }
             catch (Exception ex)
             {
@@ -104,17 +102,15 @@ namespace Perron.Presenter.Cadastro
                 throw ex;
             }
         }
-        private void SetDadospessoa(PessoaModel pessoa)
+        private void SetarDadosTelaApatirDaEntidade(PessoaModel pessoa)
         {
-            _pessoa = pessoa;
-
             _view.CpfCnpj = pessoa.CpfCnpj;
             _view.Telefone = pessoa.Telefone;
             _view.Sobrenome = pessoa.Sobrenome;
             _view.Nome = pessoa.Nome;
 
             cmpTipoPessoa.TipoPessoaSelecionado = pessoa.Tipo;
-            AtualizaDadosEntidade(_pessoa);
+            
         }
         private bool IniciarCadastroTipoPessoa(ETipoPessoa _tipo)
         {
@@ -129,8 +125,6 @@ namespace Perron.Presenter.Cadastro
 
                  _controller.Entidade.Ativo = true;
             }
-                                         
-            
             else
             {
                 _controller = FactoryController.GerarControllerTipoPessoa(tipo);
@@ -140,7 +134,8 @@ namespace Perron.Presenter.Cadastro
                 
                 ExecutaAlteracaoComportamento += _controller.AlterarComportamentoCadastro;
                 EventoLimparCampos += _controller.LimparCampos;
-                AtualizaDadosEntidade += _controller.AtulizarDadosEntidadePessoa;
+                AtualizaDadosEntidadeParaSalvar += _controller.AtulizarDadosEntidadePessoaParaSalvar;
+                CarregarDadosEntidade += _controller.PopularDadosEntidade;
                 _controllers.Add(_controller);
             }
 
@@ -171,7 +166,7 @@ namespace Perron.Presenter.Cadastro
 
             if (cmpTipoPessoa != null)
             {
-                Itens = cmpTipoPessoa.TipoPessoaSelecionado.GetListEnumValue<ETipoPessoa>();
+                Itens = cmpTipoPessoa.TipoPessoaSelecionado.GetListEnumValue();
                 nome += string.Join(", ", Itens.Select(t => t.GetNomeItem()));
             }
 
@@ -217,13 +212,16 @@ namespace Perron.Presenter.Cadastro
         }
         private void EventoBuscandoPessoa(object o, EventArgs e)
         {
+            
             _view.ListaPessoaSendoExibidos = ListaPessoa.Where(p=> ValidarBuscarPessoa(p)).ToList();
         }
         private void EventoSelecionandoPessoaBusca(object o,EventArgs e)
         {
             if(_view.PessaoSelecionada != null)
             {
-                pessoa = _view.PessaoSelecionada;
+                _pessoa = _view.PessaoSelecionada;
+                SetarDadosTelaApatirDaEntidade(_pessoa);
+                CarregarDadosEntidade(_pessoa);
                 ComportamentoAtual = EComportamentoTela.ItemSelecionado;
             }
         }
@@ -234,6 +232,8 @@ namespace Perron.Presenter.Cadastro
 
         protected override void EventoNovo(object o, EventArgs e)
         {
+            ReiniciarEntidadePessoal();
+
             base.ComportamentoAtual = EComportamentoTela.Cadastrando;
         }
         protected override  void EventoSalvar(object o, EventArgs e)
@@ -266,13 +266,51 @@ namespace Perron.Presenter.Cadastro
 
 
         #endregion
+        private void ConfigurarGridBuscaPessoa()
+        {
+
+            _view.GridViewBusca.AutoGenerateColumns = false;
+            _view.GridViewBusca.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            _view.GridViewBusca.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            _view.GridViewBusca.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            _view.GridViewBusca.DefaultCellStyle.SelectionBackColor = Color.Green;
+            _view.GridViewBusca.DefaultCellStyle.SelectionForeColor = Color.Black;
+
+            var columNome = new DataGridViewTextBoxColumn();
+            columNome.Name = "Nome";
+            columNome.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            columNome.DataPropertyName = "Nome";
+            columNome.ReadOnly = true;
+            columNome.HeaderText = "Nome";
+            columNome.Frozen = false;
+            _view.GridViewBusca.Columns.Add(columNome);
+
+            var columDescricaoTipoPessoa = new DataGridViewTextBoxColumn();
+            columDescricaoTipoPessoa.Name = "Tipo De Cadastro";
+            columDescricaoTipoPessoa.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            columDescricaoTipoPessoa.DataPropertyName = "DescricaoTipoPessoa";
+            columDescricaoTipoPessoa.ReadOnly = true;
+            columDescricaoTipoPessoa.HeaderText = "Tipo De Cadastro";
+            columDescricaoTipoPessoa.Frozen = false;
+            _view.GridViewBusca.Columns.Add(columDescricaoTipoPessoa);
+
+            var columDescricaoEndereco = new DataGridViewTextBoxColumn();
+            columDescricaoEndereco.Name = "Enderecos";
+            columDescricaoEndereco.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            columDescricaoEndereco.DataPropertyName = "EnderecosCadatrados";
+            columDescricaoEndereco.ReadOnly = true;
+            columDescricaoEndereco.HeaderText = "Enderecos";
+            columDescricaoEndereco.Frozen = false;
+            _view.GridViewBusca.Columns.Add(columDescricaoEndereco);
+
+        }
         private void EstadoInicialTela()
         {
+            this.LimparCampos();
             this.EventoLimparCampos();
             this._controllers.Clear();
             this._view.TabControlTipoPessoa.TabPages.Clear();
-            pessoa = new PessoaModel();
-            pessoa.Ativo = true;
+            ReiniciarEntidadePessoal();
         }
         private void LimparCampos()
         {
@@ -294,10 +332,10 @@ namespace Perron.Presenter.Cadastro
                 {
                     try
                     {
+                        SetarDadosEntidadePartirDaTela();
                         ValidarCadastroPessoa();
-
-                         pessoa.Id = _service.Salvar(pessoa);
-                        AtualizaDadosEntidade(pessoa);
+                         _pessoa.Id = _service.Salvar(_pessoa);
+                        AtualizaDadosEntidadeParaSalvar(pessoa);
                         foreach (var item in _controllers)
                         { 
                             item.Salvar();
@@ -309,7 +347,6 @@ namespace Perron.Presenter.Cadastro
                     catch (Exception ex)
                     {
                         tran.Dispose();
-
                         MessagemErro(ex);
                     }
                 }
@@ -366,15 +403,11 @@ namespace Perron.Presenter.Cadastro
         }
         protected override void ComportamentoInicioTela()
         {
-            EventoLimparCampos();
-            pessoa = new PessoaModel();
-
             if (TipoPessoaCadastro.HasFlag(ETipoPessoa.Pessoa))
             {
                 _view.SetarTamanhoDaTelaReduzido();
                 cmpTipoPessoa.Enabled = false;
                 cmpTipoPessoa.RemoverCheck();
-
             }
             else
                 _view.SetarTamanhoMaximoTela();

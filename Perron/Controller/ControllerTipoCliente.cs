@@ -60,15 +60,22 @@ namespace Perron.Controller
         }
         protected override void SetDadosEntidade(Aentity _entidade)
         {
-            if (entidade == null)
+            try
+            {
+                if (entidade == null)
+                    entidade = new ClienteModel();
+
+                var view = (UCCliente)_view;
+                var entt = _entidade as ClienteModel;
+
+                entidade = entt;
+            }
+            catch
+            {
                 entidade = new ClienteModel();
-
-            var view = (UCCliente)_view;
-            var entt = _entidade as ClienteModel;
-
-            entidade = entt;
+            }
         }
-        
 
+        
     }
 }

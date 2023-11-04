@@ -23,7 +23,7 @@ namespace Perron.View.Forms
         
         
         public string DescricaoClasse { set { txtDescricaoClasse.Text = value; } }
-        public string DescricaoTamanho { set { txtDescricaoClasse.Text = value; } }
+        public string DescricaoTamanho { set { txtTamanho.Text = value; } }
         public decimal PrecoInformado
         {
             get

@@ -12,7 +12,7 @@ using System.Xml.Linq;
 
 namespace Repository.Repository.BuscaDinamico
 {
-    public abstract class RepositoryBuscaDinamicoBase: IRepositoryBuscaDinamico
+    public abstract class RepositoryBuscaDinamicoBase
     {
         public Type TipoRepositorio { get; private set; }
 

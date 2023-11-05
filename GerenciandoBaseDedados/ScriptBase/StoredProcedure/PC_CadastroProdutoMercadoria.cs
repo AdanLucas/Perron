@@ -9,14 +9,16 @@
         {
             get
             {
-                return @"CREATE PROCEDURE [dbo].[PC_CadastroProdutoMercadoria](@IDProduto int,@IdMercadoria int,@Ativo bit)
+                return @"CREATE PROCEDURE [dbo].[PC_CadastroProdutoMercadoria](@Id bigint, @IDProduto int,@IdMercadoria int,@Ativo bit)
                             AS
                             BEGIN
                             declare @ret int
                             
-                            	IF(EXISTS(SELECT 1 FROM Produto_has_Mercadoria WHERE Produto = @IDProduto AND Mercadoria = @IdMercadoria))
+                            	IF(EXISTS(SELECT 1 FROM Produto_has_Mercadoria WHERE Id = Coalesce(@id,0)))
                             	    BEGIN
                             	        UPDATE Produto_has_Mercadoria SET Ativo = @Ativo  WHERE Produto = @IDProduto AND Mercadoria = @IdMercadoria
+
+									set @ret = @id
                             	    END
                             	ELSE
                             
@@ -24,8 +26,14 @@
                             	IF(@Ativo = 1)
                             		BEGIN
                             			INSERT INTO Produto_has_Mercadoria (Produto,Mercadoria,Ativo) VALUES (@IDProduto,@IdMercadoria,@Ativo)
+
+										set @ret  = SCOPE_IDENTITY();
+
                             		END
                             	END
+
+								select @ret;
+
                             END
                                 ";
             }

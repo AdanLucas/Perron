@@ -17,9 +17,9 @@ namespace Perron.TelaBusca
 
             MercadoriaModel mercadoria = (MercadoriaModel)Entidade;
 
-            ingrediente.Ingrediente = mercadoria;
+            ingrediente.Mercadoria = mercadoria;
 
-            return new EntidadeBuscaModel() { Descricao = ingrediente.Ingrediente.Descricao, DataItem = ingrediente };
+            return new EntidadeBuscaModel() { Descricao = ingrediente.Mercadoria.Descricao, DataItem = ingrediente };
         }
 
     }

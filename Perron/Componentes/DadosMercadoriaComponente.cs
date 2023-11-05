@@ -44,8 +44,8 @@ namespace Perron.Componentes
         {
             if (Ingrediente != null)
             {
-                this.txtDescricao.Text = Ingrediente.Ingrediente.Descricao;
-                this.txtUnidadeMedida.Text = Ingrediente.Ingrediente.DescricaoTipoMedida;
+                this.txtDescricao.Text = Ingrediente.Mercadoria.Descricao;
+                this.txtUnidadeMedida.Text = Ingrediente.Mercadoria.DescricaoTipoMedida;
                 this.dgvDadosIngrediente.DataSource = null;
                 this.dgvDadosIngrediente.DataSource = Ingrediente.DadosIngrediente;
 
@@ -120,11 +120,11 @@ namespace Perron.Componentes
         }
         #endregion
 
-        #region Publicos
+        #region Eventos Publicos
         public void EventoNotificao(object sender , KeyEventArgs e)
         {
 
-            IngredienteModel ingrediente = (IngredienteModel)sender;
+            IngredienteModel ingrediente = sender as IngredienteModel;
 
 
             switch (e.KeyCode)
@@ -133,7 +133,8 @@ namespace Perron.Componentes
                     ValidarEAlteraVisiblidade(ingrediente);
                     break;
 
-                case Keys.B:
+                case Keys.Clear:
+                    this.Dispose();
                     break;
 
 

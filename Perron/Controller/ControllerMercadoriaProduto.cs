@@ -14,7 +14,8 @@ namespace Perron.Controller
         private PresenterProduto _cadastroProduto;
         private readonly UserControlMercadoriaProduto _view = new UserControlMercadoriaProduto();
         private Action AtualizarDadosComponetes { get; set; }
-
+        
+        
         private KeyEventHandler EventoNotificarComponentesIngrediente { get; set;}
 
         #region Construtor
@@ -23,12 +24,17 @@ namespace Perron.Controller
             _cadastroProduto = cadastroProduto;
             IniciarTabPage();
             DelegarEventos();
-            
+            _cadastroProduto.NotificarAteracaoComportamentoTela += AlterandoComportamento;
         }
 
         #endregion
 
         #region Metodos Publicos
+ 
+        #endregion
+
+
+        #region Metodos Privados
         private void AlterandoComportamento()
         {
             switch (_cadastroProduto.ComportamentoAtual)
@@ -42,11 +48,11 @@ namespace Perron.Controller
                     break;
 
                 case EComportamentoTela.Novo:
-                    this.StatusCadastroEditandoCadastrando();
+                    this.StatusDeCadastroInicial();
                     break;
 
                 case EComportamentoTela.Cadastrando:
-                    this.StatusCadastroEditandoCadastrando();
+                    this.StatusDeCadastroInicial();
                     break;
 
                 case EComportamentoTela.ItemSelecionado:
@@ -60,11 +66,10 @@ namespace Perron.Controller
 
 
         }
- 
-        #endregion
-
-
-        #region Metodos Privados
+        private void FinalilzarComponentes()
+        {
+            NotificarEventoComponenteIngrediente(null, Keys.Clear);
+        }
         private void IniciarTabPage()
         {
             var page = new TabPage();
@@ -79,11 +84,11 @@ namespace Perron.Controller
         private void DelegarEventos()
         {
             _cadastroProduto.EventoTeclaPressionada += EventoAdicionarIngrediente;
-            _cadastroProduto.EventoAlterarComportamento += AlterandoComportamento;
         }
         private void StatusDeCadastroInicial()
         {
             ResetListaMercadoriaProduto();
+            FinalilzarComponentes();
         }
         private void StatusCadastroEditandoCadastrando()
         {
@@ -111,7 +116,7 @@ namespace Perron.Controller
         }
         private void NotificarEventoComponenteIngrediente(IngredienteModel componenteIngrediente,Keys tipo)
         {
-            if (componenteIngrediente != null && EventoNotificarComponentesIngrediente != null)
+            if (EventoNotificarComponentesIngrediente != null)
                             EventoNotificarComponentesIngrediente(componenteIngrediente, new KeyEventArgs(tipo));
         }
         #endregion

@@ -8,7 +8,7 @@ namespace Model.Model
 {
     public class IngredienteModel : Aentity
     {
-        public MercadoriaModel Ingrediente { get; set; }
+        public MercadoriaModel Mercadoria { get; set; }
 
         public List<DadosIngredienteModel> DadosIngrediente;
 

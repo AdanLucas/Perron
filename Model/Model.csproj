@@ -73,6 +73,7 @@
     <Compile Include="Emumerator\Attribute\EComando.cs" />
     <Compile Include="Emumerator\EStatusCadastro.cs" />
     <Compile Include="Emumerator\EComportamentoTela.cs" />
+    <Compile Include="Emumerator\ETipoArgumentoEvento.cs" />
     <Compile Include="Emumerator\ETipoConexao.cs" />
     <Compile Include="Emumerator\ETipoMercadoria.cs" />
     <Compile Include="Emumerator\ETipoPessoa.cs" />

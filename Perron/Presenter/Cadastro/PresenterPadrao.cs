@@ -9,7 +9,7 @@ namespace Perron.Controller
         #region Propriedades
         private readonly IViewPadraoCadastro _view;
 
-        public Action EventoAlterarComportamento {  get; set; }
+        
         public Aentity Entidade { get { return entidade; } set { AlterandoEntidade(value); } }
         private Aentity entidade { get; set; }
 
@@ -46,16 +46,6 @@ namespace Perron.Controller
         protected virtual void ComportamentoItemSelecionado() { }
         protected virtual void ComportamentoCadastrando() { }
         protected virtual void AlterandoComportamentoTela() { }
-
-
-        private void AlterarComportamentoTela() 
-        {
-            if (EventoAlterarComportamento != null)
-                                EventoAlterarComportamento();
-
-
-            AlterandoComportamentoTela(); 
-        }
         protected virtual void AlterarStatusCadastroExibidos(EStatusCadastro status) { }
 
         #endregion
@@ -104,8 +94,7 @@ namespace Perron.Controller
         {
             comportamentoAtual = status;
             EstadoBotoes();
-
-            AlterarComportamentoTela();
+            AlterandoComportamentoTela();
         }
         private void EstadoBotoes()
         {

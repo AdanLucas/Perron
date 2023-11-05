@@ -7,7 +7,6 @@ public class ProdutoModel : Aentity
 {
     public string Descricao { get; set; }
     public ClasseModel Classe { get; set; }
-
     public List<PrecoModel> Precos { get; set; }
     public List<IngredienteModel> Ingredientes { get; set; }
 }

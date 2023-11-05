@@ -2,8 +2,10 @@
 using Model.DTO;
 using Model.Extension;
 using Model.Model;
+using Repository.ScriptBase.Tabela;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Linq;
 using static System.Collections.Specialized.BitVector32;
 
@@ -36,12 +38,13 @@ namespace Repository.Repository
 
 
         }
-        private int PC_CadastroProdutoMercadoria(ProdutoMercadoriaDTO produtoMercadoriaDTO)
+        private long PC_CadastroProdutoMercadoria(ProdutoMercadoriaDTO produtoMercadoriaDTO)
         {
             try
             {
-                return _session.Connection.Query<int>("Exec PC_CadastroProdutoMercadoria @IdProduto,@IdMercadoria,@Ativo", param: new
+                return _session.Connection.Query<long>("Exec PC_CadastroProdutoMercadoria @Id,@IdProduto,@IdMercadoria,@Ativo", param: new
                 {
+                    produtoMercadoriaDTO.Id,
                     IdProduto = produtoMercadoriaDTO.Produto,
                     IdMercadoria = produtoMercadoriaDTO.Mercadoria,
                     produtoMercadoriaDTO.Ativo
@@ -73,25 +76,39 @@ namespace Repository.Repository
         } 
         #endregion
 
+        private List<ProdutoMercadoriaDTO> ObterProdutomercadoria(long? idProduto)
+        {
+           return _session.Connection.Query<ProdutoMercadoriaDTO>(@"select HAS.Id,Produto.id as Produto,Mercadoria.Id as Mercadoria,HAS.Ativo from Mercadoria as Mercadoria
+                                                                     INNER JOIN Produto_has_Mercadoria AS HAS on (HAS.Mercadoria = Mercadoria.Id)
+                                                                     INNER JOIN Produto on (HAS.Produto = Produto.Id)
+                                                                     where Produto = @Produto and has.Ativo = 1",param: new {Produto = idProduto},transaction : _session.Transaction).ToList();
+        }
+        private List<DadosProdutoMercadoriaDTO> ObterDadosProdutoMercadoriaDTO(long? idProdutoMercadoriaDTO)
+        {
+            return _session.Connection.Query<DadosProdutoMercadoriaDTO>($"select IdProdutoMercadoria,Tamanho,Quantidade from DadosMercadoriaProduto where IdProdutoMercadoria = @id",param: new {Id = idProdutoMercadoriaDTO}).ToList();
+        }
+        private List<DadosIngredienteModel> ObterDadosMercadoriaModel(long? idProdutoMercadoria)
+        {
+            var dadosDTO = ObterDadosProdutoMercadoriaDTO(idProdutoMercadoria);
+
+           return dadosDTO.Select(dto => new DadosIngredienteModel { Tamanho = ObterTamanho(dto.Tamanho), Quantidade = dto.Quantidade }).ToList();
+        }
+        private List<IngredienteModel> ObterIngredienteModel(long? idProduto)
+        {
+            var ingredienteDTO = ObterProdutomercadoria(idProduto);
+             return  ingredienteDTO.Select(dto=>new IngredienteModel() {Id = dto.Id, Mercadoria = ObterMercadoria(dto.Mercadoria),DadosIngrediente = ObterDadosMercadoriaModel(dto.Id),Ativo = dto.Ativo}).ToList();
+        }
         private ClasseModel ObterClasse(int IDClasse)
         {
-            return _session.Connection.Query<ClasseModel>($"Select * from Classe where id = {IDClasse}").FirstOrDefault();
+            return _session.Connection.Query<ClasseModel>(@"select Id,Descricao as DescricaoClasse,Ativo from Classe where id = @Id", param: new {Id = IDClasse},transaction: _session.Transaction).FirstOrDefault();
         }
         private MercadoriaModel ObterMercadoria(long? Mercadoria)
         {
-           return _session.Connection.Query<MercadoriaModel>($"Select * from Mercadoria where Id = {Mercadoria}").FirstOrDefault();
+           return _session.Connection.Query<MercadoriaModel>(@"select Id,Descricao,TipoMercadoria,TipoMedida,Ativo from Mercadoria where Id = @id and Ativo = 1 ",param: new {Id = Mercadoria}).FirstOrDefault();
         }
         private TamanhoModel ObterTamanho(long? Tamanho)
         {
            return _session.Connection.Query<TamanhoModel>($"Select * from Tamanho where id = {Tamanho}").FirstOrDefault();
-        }
-        private List<ProdutoMercadoriaDTO> ObterProdutomercadoria(long? idProduto)
-        {
-           return _session.Connection.Query<ProdutoMercadoriaDTO>($"SELECT * FROM PRODUTO_HAS_MERCADORIA WHERE PRODUTO = {idProduto} AND ATIVO = 1").ToList();
-        }
-        private List<DadosProdutoMercadoriaDTO> ObterDadosProdutoMercadoriaDTO(long? idProdutoMercadoriaDTO)
-        {
-            return _session.Connection.Query<DadosProdutoMercadoriaDTO>($"Select * from DadosProdutoMercadoria where IdProdutoMercadoria = {idProdutoMercadoriaDTO}").ToList();
         }
         private List<IngredienteModel> ObterIngrediente(long? Produto) 
         {
@@ -103,7 +120,7 @@ namespace Repository.Repository
                                 { 
                                       var model = new IngredienteModel();
 
-                                      model.Ingrediente = ObterMercadoria(dto.Mercadoria);
+                                      model.Mercadoria = ObterMercadoria(dto.Mercadoria);
 
                                       var listadadoDTO = ObterDadosProdutoMercadoriaDTO((int)dto.Id);
 
@@ -141,22 +158,22 @@ namespace Repository.Repository
         #region Metodos Publicos
         public List<ProdutoModel> GetLista(EStatusCadastro status)
         {
-            using (var session = new DbSession())
+            using (_session = new DbSession())
             {
-                var Lista = session.Connection.Query<ProdutoDTO>("Select * from Produto where ativo = 1").ToList();
-                return Lista.Select(dto=> ObterProdutoModel(dto)).ToList();
+                var sql = String.Format("Select Id,Descricao,IdClasse,Ativo from Produto where ativo in ({0})"
+                                                                                                     , status.HasFlag(EStatusCadastro.Todos) ? "0,1" : status.HasFlag(EStatusCadastro.Ativo) ? "1" : "0");
+
+                var listaDTO = _session.Connection.Query<ProdutoDTO>(sql).ToList();
+
+               return listaDTO.Select(dto=>new ProdutoModel() {Id = dto.Id,Descricao = dto.Descricao,Classe = ObterClasse(dto.IdClasse),Ingredientes = ObterIngredienteModel(dto.Id),Ativo = dto.Ativo }).ToList();
             }
 
         }
-        
-
-   
-
         public void Salvar(ProdutoModel produto)
         {
-            using (var Session = new DbSession())
+            using ( _session = new DbSession())
             {
-                var Unit = new UnitOfWork(Session);
+                var Unit = new UnitOfWork(_session);
 
                 Unit.BeginTran();
 
@@ -164,18 +181,19 @@ namespace Repository.Repository
                 {
                     produto.Id = PC_CadastroProduto(produto.ConverterParaDTO());
 
-                    foreach (var Engrediente in produto.ObterProdutoMercadoriaDTO())
+                    foreach (var produtoMercadoria in produto.Ingredientes)
                     {
-                        PC_CadastroProdutoMercadoria(Engrediente);
-                    }
+                        var DTO = produtoMercadoria.ConverterParaDTO();
+                        DTO.Produto = produto.Id;
+                        produtoMercadoria.Id = PC_CadastroProdutoMercadoria(DTO);
 
-                    foreach (var Engrediente in produto.ObterDadosProdutoMercadoriaDTO())
-                    {
-                        PC_CadastroDadosProdutoMercadoria(Engrediente);
+                        foreach (var dadosDto in produtoMercadoria.ConvertDadosparaDTO())
+                        {
+                            PC_CadastroDadosProdutoMercadoria(dadosDto);
+                        }
                     }
 
                     Unit.Commit();
-
                 }
                 catch
                 {

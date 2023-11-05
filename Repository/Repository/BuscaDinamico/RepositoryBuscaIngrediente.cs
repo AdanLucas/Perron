@@ -15,9 +15,10 @@ namespace Repository.Repository.BuscaDinamico
         {
             var ingrediente = new IngredienteModel();
             MercadoriaModel mercadoria = (MercadoriaModel)obj;
-            ingrediente.Ingrediente = mercadoria;
+            ingrediente.Mercadoria = mercadoria;
+            ingrediente.Ativo = true;
 
-            return new EntidadeBuscaModel() { Descricao = ingrediente.Ingrediente.Descricao, DataItem = ingrediente };
+            return new EntidadeBuscaModel() { Descricao = ingrediente.Mercadoria.Descricao, DataItem = ingrediente };
         }
         protected override object MetodoObterPorId(IDbConnection conn, int id)
         {
@@ -27,7 +28,7 @@ namespace Repository.Repository.BuscaDinamico
         }
         protected override IList MetodoObterTodos(IDbConnection conn)
         {
-            return conn.Query<MercadoriaModel>("Select ID,Descricao,TipoMedida from Mercadoria where ativo = 1").ToList();
+            return conn.Query<MercadoriaModel>("Select ID,Descricao,TipoMedida,Ativo from Mercadoria where ativo = 1").ToList();
         }
     }
 }

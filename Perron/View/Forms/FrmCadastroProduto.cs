@@ -27,6 +27,7 @@ namespace Perron.View.Forms
 
         }
 
+        public DataGridView DgvProdutosCadastrados { get {return dgvProdutosCadastrados; } }
 
         public KeyPressEventHandler EventoTeclaPressionada { get; set; }
         public string DescricaoProduto

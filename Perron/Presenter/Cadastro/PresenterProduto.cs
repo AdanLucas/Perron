@@ -3,6 +3,7 @@ using Perron.Extensions;
 using Perron.Presenter;
 using Perron.TelaBusca.Enum;
 using System;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -12,7 +13,7 @@ namespace Perron.Controller
     {
 
         public TabControl TabControl{ get { return _view.TabControl; } }
-
+        public Action NotificarAteracaoComportamentoTela { get; set; } 
         public ProdutoModel Produto { get { return _produto; } }
         public KeyPressEventHandler EventoTeclaPressionada { get { return this._view.EventoTeclaPressionada; } set { _view.EventoTeclaPressionada += value; } }
 
@@ -25,6 +26,7 @@ namespace Perron.Controller
         {
             _view = view;
             _service = service;
+            ConfigurarGrid();
             _produto = new ProdutoModel();
             SetarControllerIngrediente();
             _view.Show();
@@ -59,13 +61,30 @@ namespace Perron.Controller
         }
         protected override void ComportamentoItemSelecionado()
         {
-            _produto = _view.ItemSelecionadoGrid;
-            SetDadosSdabor();
-            _view.VisibilidadeBotao = true;
+     
         }
 
         #endregion
+        private void ConfigurarGrid()
+        {
+            _view.DgvProdutosCadastrados.AutoGenerateColumns = false;
+            _view.DgvProdutosCadastrados.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            _view.DgvProdutosCadastrados.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            _view.DgvProdutosCadastrados.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            _view.DgvProdutosCadastrados.DefaultCellStyle.SelectionBackColor = Color.Green;
+            _view.DgvProdutosCadastrados.DefaultCellStyle.SelectionForeColor = Color.Black;
 
+            var columDescricao = new DataGridViewTextBoxColumn();
+
+            columDescricao.HeaderText = "Descricao";
+            columDescricao.DataPropertyName = "Descricao";
+            columDescricao.ReadOnly = false;
+            columDescricao.Frozen = false;
+            
+
+            _view.DgvProdutosCadastrados.Columns.Add(columDescricao);
+
+        }
         private void BuscarClasse()
         {
             if (_produto != null)
@@ -170,6 +189,10 @@ namespace Perron.Controller
         {
             if (_view.ItemSelecionadoGrid != null)
             {
+                _produto = _view.ItemSelecionadoGrid;
+                SetDadosSdabor();
+                _view.VisibilidadeBotao = true;
+
                 base.ComportamentoAtual = EComportamentoTela.ItemSelecionado;
             }
         }
@@ -185,12 +208,13 @@ namespace Perron.Controller
 
         protected override void AlterandoComportamentoTela()
         {
-            
+            if (this.NotificarAteracaoComportamentoTela != null)
+                            this.NotificarAteracaoComportamentoTela();
         }
 
         protected override void AlterarStatusCadastroExibidos(EStatusCadastro status)
         {
-            _view.PopularGrid(_service.GetListaProduto(status));
+            _view.DgvProdutosCadastrados.DataSource = _service.GetListaProduto(status);
         }
 
         #endregion

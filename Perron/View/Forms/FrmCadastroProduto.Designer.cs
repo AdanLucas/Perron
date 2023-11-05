@@ -46,11 +46,10 @@ namespace Perron.View.Forms
             // 
             this.tabControl1.Controls.Add(this.pagProduto);
             this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabControl1.Location = new System.Drawing.Point(0, 50);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
+            this.tabControl1.Location = new System.Drawing.Point(0, 41);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(716, 567);
+            this.tabControl1.Size = new System.Drawing.Size(537, 461);
             this.tabControl1.TabIndex = 3;
             // 
             // pagProduto
@@ -61,11 +60,10 @@ namespace Perron.View.Forms
             this.pagProduto.Controls.Add(this.label2);
             this.pagProduto.Controls.Add(this.label1);
             this.pagProduto.Controls.Add(this.txtDescricaoProduto);
-            this.pagProduto.Location = new System.Drawing.Point(4, 34);
-            this.pagProduto.Margin = new System.Windows.Forms.Padding(4);
+            this.pagProduto.Location = new System.Drawing.Point(4, 29);
             this.pagProduto.Name = "pagProduto";
-            this.pagProduto.Padding = new System.Windows.Forms.Padding(4);
-            this.pagProduto.Size = new System.Drawing.Size(708, 529);
+            this.pagProduto.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.pagProduto.Size = new System.Drawing.Size(529, 428);
             this.pagProduto.TabIndex = 0;
             this.pagProduto.Text = "Dados Produto";
             this.pagProduto.UseVisualStyleBackColor = true;
@@ -75,14 +73,13 @@ namespace Perron.View.Forms
             this.dgvProdutosCadastrados.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvProdutosCadastrados.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvProdutosCadastrados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvProdutosCadastrados.Location = new System.Drawing.Point(4, 217);
-            this.dgvProdutosCadastrados.Margin = new System.Windows.Forms.Padding(4);
+            this.dgvProdutosCadastrados.Location = new System.Drawing.Point(3, 152);
             this.dgvProdutosCadastrados.MultiSelect = false;
             this.dgvProdutosCadastrados.Name = "dgvProdutosCadastrados";
             this.dgvProdutosCadastrados.ReadOnly = true;
             this.dgvProdutosCadastrados.RowHeadersWidth = 51;
             this.dgvProdutosCadastrados.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvProdutosCadastrados.Size = new System.Drawing.Size(693, 306);
+            this.dgvProdutosCadastrados.Size = new System.Drawing.Size(520, 273);
             this.dgvProdutosCadastrados.TabIndex = 12;
             // 
             // btnBuscarClasse
@@ -90,39 +87,37 @@ namespace Perron.View.Forms
             this.btnBuscarClasse.FlatAppearance.BorderSize = 0;
             this.btnBuscarClasse.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBuscarClasse.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBuscarClasse.Location = new System.Drawing.Point(164, 122);
-            this.btnBuscarClasse.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnBuscarClasse.Location = new System.Drawing.Point(470, 88);
+            this.btnBuscarClasse.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnBuscarClasse.Name = "btnBuscarClasse";
-            this.btnBuscarClasse.Size = new System.Drawing.Size(48, 42);
+            this.btnBuscarClasse.Size = new System.Drawing.Size(36, 34);
             this.btnBuscarClasse.TabIndex = 11;
             this.btnBuscarClasse.UseVisualStyleBackColor = true;
             // 
             // txtClasse
             // 
-            this.txtClasse.Location = new System.Drawing.Point(13, 126);
-            this.txtClasse.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtClasse.Location = new System.Drawing.Point(10, 91);
+            this.txtClasse.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtClasse.Name = "txtClasse";
             this.txtClasse.ReadOnly = true;
-            this.txtClasse.Size = new System.Drawing.Size(144, 30);
+            this.txtClasse.Size = new System.Drawing.Size(456, 26);
             this.txtClasse.TabIndex = 10;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(13, 16);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(10, 13);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(172, 25);
+            this.label2.Size = new System.Drawing.Size(140, 20);
             this.label2.TabIndex = 6;
             this.label2.Text = "Descrição Produto";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 98);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(10, 69);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(73, 25);
+            this.label1.Size = new System.Drawing.Size(57, 20);
             this.label1.TabIndex = 8;
             this.label1.Text = "Classe";
             // 
@@ -130,19 +125,18 @@ namespace Perron.View.Forms
             // 
             this.txtDescricaoProduto.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtDescricaoProduto.Location = new System.Drawing.Point(13, 46);
-            this.txtDescricaoProduto.Margin = new System.Windows.Forms.Padding(4);
+            this.txtDescricaoProduto.Location = new System.Drawing.Point(10, 37);
             this.txtDescricaoProduto.Name = "txtDescricaoProduto";
-            this.txtDescricaoProduto.Size = new System.Drawing.Size(479, 30);
+            this.txtDescricaoProduto.Size = new System.Drawing.Size(456, 26);
             this.txtDescricaoProduto.TabIndex = 5;
             // 
             // FrmCadastroProduto
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(735, 633);
+            this.ClientSize = new System.Drawing.Size(551, 514);
             this.Controls.Add(this.tabControl1);
-            this.Margin = new System.Windows.Forms.Padding(5);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.Name = "FrmCadastroProduto";
             this.Controls.SetChildIndex(this.tabControl1, 0);
